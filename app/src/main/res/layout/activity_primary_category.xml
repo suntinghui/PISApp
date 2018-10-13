@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchMatch.Vertical.Common">
+
+    <com.kotlin.base.widgets.HeaderBar
+        style="@style/MatchWrap"
+        app:isShowBack="false"
+        app:titleText="当前行车信息" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mCategoryRv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/common_gray"
+        android:scrollbars="none" />
+
+
+</LinearLayout>

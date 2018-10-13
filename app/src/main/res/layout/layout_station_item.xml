@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap.Horizontal"
+    android:background="@color/common_white"
+    android:gravity="center_horizontal"
+    android:padding="@dimen/common_padding">
+
+    <TextView
+        android:id="@+id/mIndexTv"
+        style="@style/WrapWrap"
+        android:layout_gravity="center_horizontal"
+        android:text="1"
+        android:textColor="@color/text_dark"
+        android:textSize="@dimen/text_middle_size" />
+
+    <TextView
+        android:id="@+id/mStationNameTv"
+        style="@style/WrapWrap"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="15dp"
+        android:layout_weight="1"
+        android:text="北京站"
+        android:textColor="@color/text_dark"
+        android:textSize="@dimen/text_middle_size" />
+
+    <TextView
+        android:id="@+id/mArrivalTimeTv"
+        style="@style/WrapWrap"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:text="15:30"
+        android:textColor="@color/text_light_dark"
+        android:textSize="@dimen/text_middle_size" />
+
+    <TextView
+        android:id="@+id/mStateTv"
+        style="@style/WrapWrap"
+        android:layout_gravity="center_horizontal"
+        android:text="已完成"
+        android:textColor="@color/text_light_dark"
+        android:textSize="@dimen/text_middle_size" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/icon_arrow_right" />
+
+</LinearLayout>

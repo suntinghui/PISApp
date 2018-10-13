@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.kotlin.base.widgets.HeaderBar
+        style="@style/MatchWrap"
+        app:titleText="信息详情" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/common_padding_middle"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/mTitleTv"
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/common_margin"
+                android:layout_marginRight="@dimen/common_margin"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.2"
+                android:text="应急指挥手机到站不能正常使用的请编行车信息发到指挥中心"
+                android:textColor="@color/text_dark"
+                android:textSize="@dimen/text_big_size" />
+
+            <TextView
+                android:id="@+id/mContentTv"
+                style="@style/WrapWrap"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="30dp"
+                android:lineSpacingMultiplier="1.2"
+                android:text="应急指挥手机到站不能正常使用的请编行车信息发到指挥中心应急指挥手机到站不能正常使用的请编行车信息发到指挥中心应急指挥手机到站不能正常使用的请编行车信息发到指挥中心应急指挥手机到站不能正常使用的请编行车信息发到指挥中心"
+                android:textColor="@color/text_light_dark"
+                android:textSize="@dimen/text_big_size" />
+
+            <TextView
+                android:id="@+id/mSubmitTimeTv"
+                style="@style/MatchWrap"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:lineSpacingMultiplier="1.2"
+                android:text="2018-10-13 19:15:31"
+                android:textColor="@color/text_light_dark"
+                android:textSize="@dimen/text_big_size" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
