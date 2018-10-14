@@ -23,7 +23,7 @@
         android:gravity="center"
         />
 
-    <EditText android:id="@+id/mMobileEt"
+    <EditText android:id="@+id/mUsernameEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/border_corner_all"
@@ -39,16 +39,28 @@
         android:background="@drawable/border_corner_all"
         android:padding="@dimen/common_padding_middle"
         android:hint="请输入密码"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:drawableLeft="@drawable/icon_password"
         android:drawablePadding="@dimen/common_padding_small"
         android:inputType="textPassword"/>
 
+    <!--
     <Button
         android:id="@+id/mLoginBtn"
         android:layout_marginTop="30dp"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:background="@drawable/btn_login"/>
+
+        -->
+
+    <info.hoang8f.widget.FButton
+        android:id="@+id/mLoginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="立即登录"
+        android:textColor="@color/common_white"
+        android:textSize="@dimen/text_big_size" />
 
 </LinearLayout>

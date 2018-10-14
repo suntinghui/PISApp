@@ -8,15 +8,13 @@
         style="@style/MatchWrap"
         app:titleText="系统设置" />
 
-    <LinearLayout
-        style="@style/MatchWrap.Vertical"
-        >
+    <LinearLayout style="@style/MatchWrap.Vertical">
 
         <LinearLayout
             android:id="@+id/mCheckUpdateLayout"
             style="@style/MatchWrap.Horizontal"
-            android:gravity="center_vertical"
             android:background="@color/common_white"
+            android:gravity="center_vertical"
             android:padding="@dimen/common_padding">
 
             <TextView
@@ -50,8 +48,8 @@
         <LinearLayout
             android:id="@+id/mFeedbackLayout"
             style="@style/MatchWrap.Horizontal"
-            android:gravity="center_vertical"
             android:background="@color/common_white"
+            android:gravity="center_vertical"
             android:padding="@dimen/common_padding">
 
             <TextView
@@ -76,8 +74,8 @@
         <LinearLayout
             android:id="@+id/mCallMeLayout"
             style="@style/MatchWrap.Horizontal"
-            android:gravity="center_vertical"
             android:background="@color/common_white"
+            android:gravity="center_vertical"
             android:padding="@dimen/common_padding">
 
             <TextView
@@ -112,13 +110,12 @@
             android:id="@+id/mExitBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="15dp"
             android:text="退出登录"
             android:textColor="@color/common_white"
-            android:textSize="15sp"
-            />
+            android:textSize="15sp" />
 
 
     </LinearLayout>

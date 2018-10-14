@@ -9,6 +9,9 @@ class BaseConstant {
         //SP表名
         const val TABLE_PREFS = "PISApp"
 
+        const val kUSERNAME = "kUsername"
+        const val kPASSWORD = "kPassowrd"
+
         // FIR
         const val FIR_SERVER = "http://api.fir.im/apps/"
         const val FIR_APP_ID = "5bbf11baca87a82b96bf600a"

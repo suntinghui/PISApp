@@ -3,13 +3,13 @@ package com.lkpower.pis.ui.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.blankj.utilcode.util.AppUtils
-import com.blankj.utilcode.util.NetworkUtils
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.utils.NetWorkUtils
 import com.lkpower.base.common.AppManager
@@ -23,8 +23,6 @@ import com.lkpower.pis.injection.component.DaggerSettingComponent
 import com.lkpower.pis.injection.module.SettingModule
 import com.lkpower.pis.presenter.SettingPresenter
 import com.lkpower.pis.presenter.view.SettingView
-import com.orhanobut.logger.Logger
-import info.hoang8f.widget.FButton
 import kotlinx.android.synthetic.main.activity_setting.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -33,9 +31,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 @Route(path = "/pis/SettingActivity")
 class SettingActivity : BaseMvpActivity<SettingPresenter>(), SettingView, View.OnClickListener {
@@ -63,6 +58,7 @@ class SettingActivity : BaseMvpActivity<SettingPresenter>(), SettingView, View.O
         mFeedbackLayout.onClick(this)
         mCallMeLayout.onClick(this)
         mExitBtn.onClick(this)
+
     }
 
     override fun onClick(v: View) {
@@ -71,6 +67,12 @@ class SettingActivity : BaseMvpActivity<SettingPresenter>(), SettingView, View.O
                 checkLatestVersion()
             }
             R.id.mFeedbackLayout -> {
+                    var list:List<String> = listOf("item1","item2","item3")
+                    var pickerView = OptionsPickerBuilder(this, OnOptionsSelectListener { options1, options2, options3, v ->  toast(list.get(options1))})
+                            .build<String>()
+                pickerView.setPicker(list)
+                pickerView.show()
+
 
             }
             R.id.mCallMeLayout -> {
@@ -80,9 +82,9 @@ class SettingActivity : BaseMvpActivity<SettingPresenter>(), SettingView, View.O
                 startActivity(intent);
             }
             R.id.mExitBtn -> {
-                AlertView("提示", "您确定要退出登录吗？", null, arrayOf("取消","确定"), null, this@SettingActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
+                AlertView("提示", "您确定要退出登录吗？", "取消", arrayOf("确定"), null, this@SettingActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
                     when(position) {
-                        1->{
+                        0->{
                             AppManager.instance.finishAllActivity()
                             startActivity<LoginActivity>()
                         }
