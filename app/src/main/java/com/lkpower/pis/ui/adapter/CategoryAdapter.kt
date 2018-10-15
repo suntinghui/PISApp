@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
-import com.lkpower.base.ext.loadUrl
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.Category
 import kotlinx.android.synthetic.main.layout_category_item.view.*

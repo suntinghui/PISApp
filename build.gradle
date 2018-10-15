@@ -17,7 +17,7 @@ buildscript {
 
     ext.rx_lifecycle_version = '2.2.1'
 
-    ext.glide_version = "3.7.0"
+    ext.glide_version = "4.8.0"
 
     ext.take_photo_version = "4.0.3"
 

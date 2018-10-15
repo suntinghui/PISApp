@@ -12,6 +12,8 @@ import com.jph.takephoto.app.TakePhoto
 import com.jph.takephoto.app.TakePhotoImpl
 import com.jph.takephoto.compress.CompressConfig
 import com.jph.takephoto.model.TResult
+import com.jph.takephoto.permission.InvokeListener
+import com.jph.takephoto.permission.PermissionManager
 import com.kotlin.base.utils.DateUtils
 import com.kotlin.base.widgets.ProgressLoading
 import com.lkpower.base.common.BaseApplication
@@ -24,13 +26,21 @@ import com.lkpower.base.presenter.view.BaseView
 import org.jetbrains.anko.toast
 import java.io.File
 import javax.inject.Inject
+import com.jph.takephoto.permission.PermissionManager.TPermissionType
+import com.jph.takephoto.model.TContextWrap
+import com.jph.takephoto.model.InvokeParam
+
+
 
 /*
     存在选择图片的Activity基础封装
  */
-abstract class BaseTakePhotoActivity<T : BasePresenter<*>> : BaseActivity(), BaseView, TakePhoto.TakeResultListener {
+abstract class BaseTakePhotoActivity<T : BasePresenter<*>> : BaseActivity(), BaseView, TakePhoto.TakeResultListener, InvokeListener {
 
     private lateinit var mTakePhoto:TakePhoto
+
+    private var invokeParam: InvokeParam? = null
+
 
     private lateinit var mTempFile: File
 
@@ -51,6 +61,11 @@ abstract class BaseTakePhotoActivity<T : BasePresenter<*>> : BaseActivity(), Bas
 
         mLoadingDialog = ProgressLoading.create(this)
         ARouter.getInstance().inject(this)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        mTakePhoto.onSaveInstanceState(outState)
+        super.onSaveInstanceState(outState)
     }
 
     /*
@@ -151,5 +166,19 @@ abstract class BaseTakePhotoActivity<T : BasePresenter<*>> : BaseActivity(), Bas
         }
 
         this.mTempFile = File(filesDir,tempFileName)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        val type = PermissionManager.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        PermissionManager.handlePermissionsResult(this, type, invokeParam, this)
+    }
+
+    override fun invoke(invokeParam: InvokeParam): TPermissionType? {
+        val type = PermissionManager.checkPermission(TContextWrap.of(this), invokeParam.method)
+        if (TPermissionType.WAIT == type) {
+            this.invokeParam = invokeParam
+        }
+        return type
     }
 }

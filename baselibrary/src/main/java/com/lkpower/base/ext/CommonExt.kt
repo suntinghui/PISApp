@@ -9,7 +9,6 @@ import com.kennyc.view.MultiStateView
 import com.kotlin.base.rx.BaseFunc
 import com.kotlin.base.rx.BaseFuncBoolean
 import com.kotlin.base.rx.BaseSubscriber
-import com.kotlin.base.utils.GlideUtils
 import com.kotlin.base.widgets.DefaultTextWatcher
 import com.lkpower.base.R
 import com.lkpower.base.data.protocol.BaseResp
@@ -78,9 +77,7 @@ fun Button.enable(et:EditText,method: () -> Boolean){
 /*
     ImageView加载网络图片
  */
-fun ImageView.loadUrl(url: String) {
-    GlideUtils.loadUrlImage(context, url, this)
-}
+
 
 /*
     多状态视图开始加载

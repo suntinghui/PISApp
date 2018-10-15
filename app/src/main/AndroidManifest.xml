@@ -26,6 +26,7 @@
         <activity android:name=".ui.activity.ZYRWListActivity" />
         <activity android:name=".ui.activity.PublishListActivity" />
         <activity android:name=".ui.activity.PublishDetailActivity" />
+        <activity android:name=".ui.activity.PreviewImageActivity" />
 
     </application>
 

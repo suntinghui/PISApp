@@ -100,6 +100,12 @@ dependencies {
     api 'com.contrarywind:Android-PickerView:4.1.6'
 
     implementation 'com.android.support:multidex:1.0.2'
+
+    api 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+
+    api 'me.panpf:sketch:2.6.1'
+
+
 }
 
 repositories {

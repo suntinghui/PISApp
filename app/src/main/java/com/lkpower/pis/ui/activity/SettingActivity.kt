@@ -31,6 +31,13 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import android.app.Activity
+import com.luck.picture.lib.PictureSelector
+import com.luck.picture.lib.config.PictureConfig
+import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.tools.PictureFileUtils
+import com.orhanobut.logger.Logger
+
 
 @Route(path = "/pis/SettingActivity")
 class SettingActivity : BaseMvpActivity<SettingPresenter>(), SettingView, View.OnClickListener {
@@ -61,15 +68,21 @@ class SettingActivity : BaseMvpActivity<SettingPresenter>(), SettingView, View.O
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        PictureFileUtils.deleteCacheDirFile(this);
+    }
+
     override fun onClick(v: View) {
         when (v.id) {
             R.id.mCheckUpdateLayout -> {
                 checkLatestVersion()
             }
             R.id.mFeedbackLayout -> {
-                    var list:List<String> = listOf("item1","item2","item3")
-                    var pickerView = OptionsPickerBuilder(this, OnOptionsSelectListener { options1, options2, options3, v ->  toast(list.get(options1))})
-                            .build<String>()
+                var list: List<String> = listOf("item1", "item2", "item3")
+                var pickerView = OptionsPickerBuilder(this, OnOptionsSelectListener { options1, options2, options3, v -> toast(list.get(options1)) })
+                        .build<String>()
                 pickerView.setPicker(list)
                 pickerView.show()
 
@@ -83,13 +96,26 @@ class SettingActivity : BaseMvpActivity<SettingPresenter>(), SettingView, View.O
             }
             R.id.mExitBtn -> {
                 AlertView("提示", "您确定要退出登录吗？", "取消", arrayOf("确定"), null, this@SettingActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
-                    when(position) {
-                        0->{
+                    when (position) {
+                        0 -> {
                             AppManager.instance.finishAllActivity()
                             startActivity<LoginActivity>()
                         }
                     }
                 }).show();
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode === Activity.RESULT_OK) {
+            when (requestCode) {
+                PictureConfig.CHOOSE_REQUEST -> {
+                    val selectList = PictureSelector.obtainMultipleResult(data)
+                    mImagePicker.onPickerDoneResult(selectList)
+                }
             }
         }
     }
