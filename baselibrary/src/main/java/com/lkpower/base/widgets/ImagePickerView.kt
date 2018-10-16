@@ -88,7 +88,7 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
                 .isCamera(true)
                 .compress(true)
                 .synOrAsy(false)
-                .cropCompressQuality(10)
+                .cropCompressQuality(20)
                 .minimumCompressSize(100)
                 .forResult(PictureConfig.CHOOSE_REQUEST)
     }
@@ -101,7 +101,8 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
     fun preAndDeleteImage(item:LocalMedia) {
         ARouter.getInstance()
                 .build("/pis/PreviewImageActivity")
-                .withString("deletePath", item.path)
+                .withString("path", item.path)
+                .withBoolean("ShowDelete", true)
                 .navigation()
     }
 

@@ -41,6 +41,8 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     //ARouter
     kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
+    // Glide
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
 
 
 }

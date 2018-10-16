@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import com.lkpower.base.R
 import kotlinx.android.synthetic.main.layout_label_textview.view.*
 
@@ -44,5 +45,9 @@ class LabelTextView @JvmOverloads constructor(context: Context, attrs: Attribute
      */
     fun setContentText(text:String){
         mContentTv.text = text
+    }
+
+    fun getLayout():LinearLayout {
+        return mLayout
     }
 }

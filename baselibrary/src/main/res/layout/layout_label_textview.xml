@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mLayout"
     style="@style/MatchWrap.Horizontal"
     android:background="@drawable/border_bottom"
     android:gravity="center_vertical"
@@ -9,14 +10,14 @@
         android:id="@+id/mLabelTv"
         style="@style/LabelTitleTextStyle"
         android:layout_weight="3"
-        android:textSize="@dimen/text_middle_size"
-        android:gravity="right" />
+        android:gravity="right"
+        android:textSize="@dimen/text_middle_size" />
 
     <TextView
         android:id="@+id/mContentTv"
         style="@style/LabelContentTextStyle"
-        android:textSize="@dimen/text_middle_size"
         android:layout_marginLeft="@dimen/common_margin"
         android:layout_weight="1"
-        android:gravity="left" />
+        android:gravity="left"
+        android:textSize="@dimen/text_middle_size" />
 </LinearLayout>

@@ -27,6 +27,10 @@
         <activity android:name=".ui.activity.PublishListActivity" />
         <activity android:name=".ui.activity.PublishDetailActivity" />
         <activity android:name=".ui.activity.PreviewImageActivity" />
+        <activity android:name=".ui.activity.FaultHistoryListActivity" />
+        <activity android:name=".ui.activity.FaultHistoryConfirmActivity" />
+        <activity android:name=".ui.activity.FaultReportActivity" />
+
 
     </application>
 

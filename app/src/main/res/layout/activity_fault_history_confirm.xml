@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.kotlin.base.widgets.HeaderBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="故障修复确认" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="false">
+
+        <LinearLayout style="@style/MatchWrap.Vertical">
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mTypeView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="车种" />
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mModelView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="车型" />
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mNumView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="车号" />
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mRemarkView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="故障描述" />
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mFaultPicView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="故障图片" />
+
+            <com.kotlin.base.widgets.ShowImageView
+                android:id="@+id/mShowImageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"></com.kotlin.base.widgets.ShowImageView>
+
+            <LinearLayout
+                style="@style/MatchWrap.Horizontal"
+                android:background="@drawable/border_top_bottom"
+                android:gravity="center_vertical"
+                android:padding="@dimen/common_padding">
+
+                <TextView
+                    style="@style/LabelTitleTextStyle"
+                    android:layout_weight="3"
+                    android:gravity="right"
+                    android:text="确认情况"
+                    android:textSize="@dimen/text_middle_size" />
+
+                <TextView
+                    android:id="@+id/mConfirmTv"
+                    style="@style/LabelContentTextStyle"
+                    android:layout_marginLeft="@dimen/common_margin"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/icon_arrow_drop_down"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_middle_size" />
+
+            </LinearLayout>
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mDescView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="确认说明" />
+
+            <TextView
+                style="@style/LabelTitleTextStyle"
+                android:layout_marginLeft="@dimen/common_margin"
+                android:layout_marginTop="@dimen/common_margin"
+                android:gravity="left"
+                android:text="请拍照上传图片（最多9张）"
+                android:textSize="@dimen/text_middle_size" />
+
+
+            <com.kotlin.base.widgets.ImagePickerView
+                android:id="@+id/mImagePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"></com.kotlin.base.widgets.ImagePickerView>
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/mSendBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin"
+                android:layout_marginBottom="30dp"
+                android:text="发送"
+                android:textColor="@color/common_white"
+                android:textSize="@dimen/text_big_size" />
+
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

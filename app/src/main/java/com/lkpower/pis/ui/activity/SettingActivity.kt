@@ -68,24 +68,12 @@ class SettingActivity : BaseMvpActivity<SettingPresenter>(), SettingView, View.O
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-
-        PictureFileUtils.deleteCacheDirFile(this);
-    }
-
     override fun onClick(v: View) {
         when (v.id) {
             R.id.mCheckUpdateLayout -> {
                 checkLatestVersion()
             }
             R.id.mFeedbackLayout -> {
-                var list: List<String> = listOf("item1", "item2", "item3")
-                var pickerView = OptionsPickerBuilder(this, OnOptionsSelectListener { options1, options2, options3, v -> toast(list.get(options1)) })
-                        .build<String>()
-                pickerView.setPicker(list)
-                pickerView.show()
-
 
             }
             R.id.mCallMeLayout -> {
@@ -103,19 +91,6 @@ class SettingActivity : BaseMvpActivity<SettingPresenter>(), SettingView, View.O
                         }
                     }
                 }).show();
-            }
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (resultCode === Activity.RESULT_OK) {
-            when (requestCode) {
-                PictureConfig.CHOOSE_REQUEST -> {
-                    val selectList = PictureSelector.obtainMultipleResult(data)
-                    mImagePicker.onPickerDoneResult(selectList)
-                }
             }
         }
     }
