@@ -7,15 +7,13 @@ import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
-import com.bigkoo.pickerview.builder.OptionsPickerBuilder
-import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.blankj.utilcode.util.AppUtils
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.utils.NetWorkUtils
 import com.lkpower.base.common.AppManager
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.onClick
-import com.lkpower.base.utils.ViewUtil
+import com.lkpower.base.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.api.SettingApi
 import com.lkpower.pis.data.protocol.FirAppInfo
@@ -31,12 +29,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import android.app.Activity
-import com.luck.picture.lib.PictureSelector
-import com.luck.picture.lib.config.PictureConfig
-import com.luck.picture.lib.entity.LocalMedia
-import com.luck.picture.lib.tools.PictureFileUtils
-import com.orhanobut.logger.Logger
 
 
 @Route(path = "/pis/SettingActivity")
@@ -129,7 +121,7 @@ class SettingActivity : BaseMvpActivity<SettingPresenter>(), SettingView, View.O
             }
 
             override fun onFailure(call: Call<FirAppInfo>, t: Throwable) {
-                ViewUtil.instance.showSimpleAlert(this@SettingActivity, "检查更新时出现异常，请稍候再试")
+                ViewUtils.showSimpleAlert(this@SettingActivity, "检查更新时出现异常，请稍候再试")
             }
         })
     }
@@ -153,7 +145,7 @@ class SettingActivity : BaseMvpActivity<SettingPresenter>(), SettingView, View.O
             }
 
             override fun onFailure(call: Call<FirAppInfo>, t: Throwable) {
-                ViewUtil.instance.showSimpleAlert(this@SettingActivity, "下载出错，请稍候再试")
+                ViewUtils.showSimpleAlert(this@SettingActivity, "下载出错，请稍候再试")
             }
         })
     }

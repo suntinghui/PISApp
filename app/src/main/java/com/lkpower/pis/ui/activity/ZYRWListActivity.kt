@@ -11,6 +11,7 @@ import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.StationInfo
 import com.lkpower.pis.ui.adapter.StationAdapter
 import kotlinx.android.synthetic.main.activity_zyrw_list.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 @Route(path="/pis/ZYRWListActivity")
@@ -40,7 +41,7 @@ class ZYRWListActivity : BaseActivity() {
 
         mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<StationInfo> {
             override fun onItemClick(item: StationInfo, position: Int) {
-                toast("====")
+                startActivity<ZYRWTaskInfoActivity>()
             }
         })
 

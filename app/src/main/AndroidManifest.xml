@@ -30,6 +30,9 @@
         <activity android:name=".ui.activity.FaultHistoryListActivity" />
         <activity android:name=".ui.activity.FaultHistoryConfirmActivity" />
         <activity android:name=".ui.activity.FaultReportActivity" />
+        <activity android:name=".ui.activity.ZYRWTaskInfoActivity" />
+        <activity android:name=".ui.activity.OutCheckinListActivity" />
+        <activity android:name=".ui.activity.OutCheckinDetailActivity" />
 
 
     </application>

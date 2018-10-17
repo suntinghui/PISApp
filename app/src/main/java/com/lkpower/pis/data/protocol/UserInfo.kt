@@ -1,18 +1,19 @@
 package com.lkpower.pis.data.protocol
 
-data class UserInfo (
-        val userId:String,
-        val empId:String,
-        val userName:String,
-        val loginName:String,
-        val birthday:String,
-        val positionName:String,
-        val workTypeName:String,
-        val politicalStatusName:String,
-        val technicalLevelName:String,
-        val belongWorkShop:String,
-        val loginResult:String,
-        val tokenKey:String
+data class UserInfo(
+        val UserId: String,
+        val EmpId: String,
+        val UserName: String,
+        val LoginName: String,
+        val Birthday: String,
+        val PositionName: String,
+        val WorkTypeName: String,
+        val PoliticalStatusName: String,
+        val TechnicalLevelName: String,
+        val BelongWorkShop: String,
+        val LoginResult: String,
+        val ExceptionMes: String,
+        val TokenKey: String
 
 
 )

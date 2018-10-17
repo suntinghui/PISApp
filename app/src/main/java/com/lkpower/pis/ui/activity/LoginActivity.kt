@@ -4,22 +4,25 @@ import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import com.kotlin.base.ui.activity.BaseActivity
+import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.utils.AppPrefsUtils
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.onClick
 import com.lkpower.pis.R
+import com.lkpower.pis.data.protocol.UserInfo
+import com.lkpower.pis.injection.component.DaggerUserComponent
+import com.lkpower.pis.injection.module.UserModule
+import com.lkpower.pis.presenter.LoginPresenter
+import com.lkpower.pis.presenter.view.LoginView
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
-class LoginActivity : BaseActivity(), View.OnClickListener {
+class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //去除标题栏
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //去除状态栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_login)
@@ -28,8 +31,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun initView() {
-        mUsernameEt.setText(AppPrefsUtils.getString(BaseConstant.kUSERNAME))
-        mPasswordEt.setText(AppPrefsUtils.getString(BaseConstant.kPASSWORD))
+        mUsernameEt.setText(AppPrefsUtils.getString(BaseConstant.kUsername))
+        mPasswordEt.setText(AppPrefsUtils.getString(BaseConstant.kPassword))
 
         mLoginBtn.setButtonColor(getResources().getColor(R.color.fbutton_color_carrot));
         mLoginBtn.setShadowEnabled(true);
@@ -43,16 +46,13 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         when (v.id) {
             R.id.mLoginBtn -> {
                 if (checkInput()) {
-                    AppPrefsUtils.putString(BaseConstant.kUSERNAME, mUsernameEt.text.toString())
-                    AppPrefsUtils.putString(BaseConstant.kPASSWORD, mPasswordEt.text.toString())
-                    startActivity<PrimaryCategoryActivity>()
+                    mPresenter.login(mUsernameEt.text.toString(), mPasswordEt.text.toString(), "")
                 }
             }
         }
-
     }
 
-    private fun checkInput():Boolean {
+    private fun checkInput(): Boolean {
         if (mUsernameEt.text.isNullOrEmpty()) {
             toast("请输入用户名")
             return false
@@ -62,4 +62,20 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         }
         return true
     }
+
+    override fun injectComponent() {
+        DaggerUserComponent.builder().activityComponent(mActivityComponent).userModule(UserModule()).build().inject(this)
+        mPresenter.mView = this
+    }
+
+    override fun onLoginResult(result: UserInfo) {
+        AppPrefsUtils.putString(BaseConstant.kUsername, mUsernameEt.text.toString())
+        AppPrefsUtils.putString(BaseConstant.kPassword, mPasswordEt.text.toString())
+
+        AppPrefsUtils.putString(BaseConstant.kEmpId, result.EmpId)
+        AppPrefsUtils.putString(BaseConstant.kTokenKey, result.TokenKey)
+
+        startActivity<PrimaryCategoryActivity>()
+    }
+
 }

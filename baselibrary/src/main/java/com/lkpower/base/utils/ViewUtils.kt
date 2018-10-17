@@ -3,11 +3,7 @@ package com.lkpower.base.utils
 import android.content.Context
 import com.bigkoo.alertview.AlertView
 
-class ViewUtil private constructor() {
-
-    companion object {
-        val instance : ViewUtil by lazy { ViewUtil() }
-    }
+object ViewUtils {
 
     // 简单提示框，只有一个确认按纽，点击后关闭提示框，没有其他动作
     fun showSimpleAlert(context: Context, msg:String) {

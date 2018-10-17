@@ -30,8 +30,7 @@ class RetrofitFactory private constructor(){
         interceptor = Interceptor {
             chain -> val request = chain.request()
                 .newBuilder()
-                .addHeader("Content_Type","application/json")
-                .addHeader("charset","UTF-8")
+                .addHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
                 .build()
 
             chain.proceed(request)
@@ -39,7 +38,7 @@ class RetrofitFactory private constructor(){
 
         //Retrofit实例化
         retrofit = Retrofit.Builder()
-                .baseUrl(BaseConstant.FIR_SERVER)
+                .baseUrl(BaseConstant.SERVER_ADDRESS)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(initClient())

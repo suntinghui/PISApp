@@ -2,6 +2,7 @@ package com.lkpower.pis.service.impl
 
 import com.lkpower.base.ext.convert
 import com.lkpower.pis.data.protocol.UserInfo
+import com.lkpower.pis.data.protocol.XJ_LCFCInfo
 import com.lkpower.pis.data.respository.SettingRespository
 import com.lkpower.pis.data.respository.UserRespository
 import com.lkpower.pis.service.UserService
@@ -15,5 +16,9 @@ class UserServiceImpl @Inject constructor() : UserService {
 
     override fun login(loginName: String, loginPwd: String, deviceId: String): Observable<UserInfo> {
         return respository.login(loginName, loginPwd, deviceId).convert()
+    }
+
+    override fun getLCFCInstance(empId: String, tokenKey: String): Observable<List<XJ_LCFCInfo>> {
+        return respository.getLCFCInstance(empId, tokenKey).convert()
     }
 }

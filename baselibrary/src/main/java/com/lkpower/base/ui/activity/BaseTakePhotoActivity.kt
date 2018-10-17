@@ -29,7 +29,7 @@ import javax.inject.Inject
 import com.jph.takephoto.permission.PermissionManager.TPermissionType
 import com.jph.takephoto.model.TContextWrap
 import com.jph.takephoto.model.InvokeParam
-
+import com.lkpower.base.utils.ViewUtils
 
 
 /*
@@ -102,7 +102,7 @@ abstract class BaseTakePhotoActivity<T : BasePresenter<*>> : BaseActivity(), Bas
         错误信息提示，默认实现
      */
     override fun onError(text:String) {
-        toast(text)
+        ViewUtils.showSimpleAlert(this, text)
     }
 
     /*

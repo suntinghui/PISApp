@@ -3,20 +3,36 @@ package com.lkpower.pis.ui.activity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import com.alibaba.android.arouter.launcher.ARouter
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kotlin.base.ui.activity.BaseActivity
+import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
+import com.kotlin.base.utils.AppPrefsUtils
 import com.lkpower.base.common.AppManager
+import com.lkpower.base.common.BaseConstant
+import com.lkpower.base.ext.onClick
+import com.lkpower.base.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.ui.adapter.CategoryAdapter
 import com.lkpower.pis.data.protocol.Category
+import com.lkpower.pis.data.protocol.XJ_LCFCInfo
+import com.lkpower.pis.injection.component.DaggerUserComponent
+import com.lkpower.pis.injection.module.UserModule
+import com.lkpower.pis.presenter.GetLCFCInstancePresenter
+import com.lkpower.pis.presenter.view.GetLCFCInstanceView
+import kotlinx.android.synthetic.main.activity_fault_history_list.*
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_primary_category.*
 import org.jetbrains.anko.toast
 
-class PrimaryCategoryActivity : BaseActivity() {
+class PrimaryCategoryActivity : BaseMvpActivity<GetLCFCInstancePresenter>(), GetLCFCInstanceView {
 
     private lateinit var mCategoryAdapter: CategoryAdapter
-    private var pressTime:Long = 0
+    private var pressTime: Long = 0
+
+    private lateinit var shift: List<XJ_LCFCInfo>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,9 +40,19 @@ class PrimaryCategoryActivity : BaseActivity() {
         setContentView(R.layout.activity_primary_category)
 
         initView()
+
+        queryLCFC()
     }
 
     private fun initView() {
+        mTitleTv.text = "乘务巡检系统"
+        mTitleTv.onClick {
+            if (shift.isEmpty())
+                queryLCFC()
+            else
+                selectLCFC()
+        }
+
         mCategoryRv.layoutManager = GridLayoutManager(this, 3)
         // 设置分隔线
         RecyclerViewDivider.with(this).build().addTo(mCategoryRv);
@@ -45,6 +71,10 @@ class PrimaryCategoryActivity : BaseActivity() {
 
     }
 
+    private fun queryLCFC() {
+        mPresenter.getLCFCInstance(AppPrefsUtils.getString(BaseConstant.kEmpId), AppPrefsUtils.getString(BaseConstant.kTokenKey))
+    }
+
     private fun loadPrimaryData(): MutableList<Category> {
         return mutableListOf<Category>(
                 Category(1, "出乘管理", R.drawable.icon_ccgl, 0, "/pis/SecondCategoryActivity"),
@@ -59,13 +89,42 @@ class PrimaryCategoryActivity : BaseActivity() {
         )
     }
 
+    override fun injectComponent() {
+        DaggerUserComponent.builder().activityComponent(mActivityComponent).userModule(UserModule()).build().inject(this)
+        mPresenter.mView = this
+    }
+
+    override fun onGetLCFCInstanceResult(result: List<XJ_LCFCInfo>) {
+        shift = result
+        if (shift.isEmpty()) {
+            ViewUtils.showSimpleAlert(this, "该账号下没有行车数据")
+        }
+
+    }
+
+    private fun selectLCFC() {
+        if (shift.isEmpty())
+            return
+
+        var list: List<String> = shift.map { it.ClassName + "-" + it.TrainmanName + "-" + it.SendTime }
+        var pickerView = OptionsPickerBuilder(this, OnOptionsSelectListener { options1, options2, options3, v ->
+            AppPrefsUtils.putString(BaseConstant.kInstanceId, shift.get(options1).ID)
+            mTypeTv.text = list.get(options1)
+        }
+        ).build<String>()
+        pickerView.setPicker(list)
+        pickerView.setSelectOptions(shift.indexOf(shift.first { it.ID == AppPrefsUtils.getString(BaseConstant.kInstanceId) }))
+        pickerView.show()
+    }
+
     override fun onBackPressed() {
         val time = System.currentTimeMillis()
-        if (time - pressTime > 2000){
+        if (time - pressTime > 2000) {
             toast("再按一次退出程序")
             pressTime = time
-        } else{
+        } else {
             AppManager.instance.exitApp(this)
         }
     }
+
 }

@@ -8,7 +8,7 @@ import com.lkpower.pis.presenter.view.LoginView
 import com.lkpower.pis.service.UserService
 import javax.inject.Inject
 
-class UserPresenter @Inject constructor(): BasePresenter<LoginView>() {
+class LoginPresenter @Inject constructor(): BasePresenter<LoginView>() {
     @Inject
     lateinit var userService:UserService
 

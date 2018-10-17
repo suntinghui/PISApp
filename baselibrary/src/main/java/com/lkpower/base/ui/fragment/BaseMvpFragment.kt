@@ -12,6 +12,7 @@ import com.lkpower.base.injection.module.ActivityModule
 import com.lkpower.base.injection.module.LifecycleProviderModule
 import com.lkpower.base.presenter.BasePresenter
 import com.lkpower.base.presenter.view.BaseView
+import com.lkpower.base.utils.ViewUtils
 import org.jetbrains.anko.support.v4.act
 import org.jetbrains.anko.support.v4.toast
 import javax.inject.Inject
@@ -73,6 +74,6 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
         错误信息提示，默认实现
      */
     override fun onError(text:String) {
-        toast(text)
+        ViewUtils.showSimpleAlert(act, text)
     }
 }
