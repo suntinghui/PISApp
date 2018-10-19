@@ -4,11 +4,11 @@ import com.kotlin.base.rx.BaseSubscriber
 import com.lkpower.base.ext.execute
 import com.lkpower.base.presenter.BasePresenter
 import com.lkpower.pis.data.protocol.XJ_LCFCInfo
-import com.lkpower.pis.presenter.view.GetLCFCInstanceView
+import com.lkpower.pis.presenter.view.LCFCInstanceView
 import com.lkpower.pis.service.UserService
 import javax.inject.Inject
 
-class GetLCFCInstancePresenter @Inject constructor() : BasePresenter<GetLCFCInstanceView>() {
+class LCFCInstancePresenter @Inject constructor() : BasePresenter<LCFCInstanceView>() {
     @Inject
     lateinit var userService: UserService
 

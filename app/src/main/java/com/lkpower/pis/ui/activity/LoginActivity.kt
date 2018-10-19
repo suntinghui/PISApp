@@ -34,10 +34,10 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
         mUsernameEt.setText(AppPrefsUtils.getString(BaseConstant.kUsername))
         mPasswordEt.setText(AppPrefsUtils.getString(BaseConstant.kPassword))
 
-        mLoginBtn.setButtonColor(getResources().getColor(R.color.fbutton_color_carrot));
-        mLoginBtn.setShadowEnabled(true);
-        mLoginBtn.setShadowHeight(5);
-        mLoginBtn.setCornerRadius(5);
+        mLoginBtn.setButtonColor(getResources().getColor(R.color.fbutton_color_carrot))
+        mLoginBtn.setShadowEnabled(true)
+        mLoginBtn.setShadowHeight(5)
+        mLoginBtn.setCornerRadius(5)
         mLoginBtn.onClick(this)
 
     }

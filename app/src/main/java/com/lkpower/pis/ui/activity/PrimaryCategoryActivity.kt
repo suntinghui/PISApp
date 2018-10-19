@@ -6,7 +6,6 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
-import com.kotlin.base.ui.activity.BaseActivity
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.kotlin.base.utils.AppPrefsUtils
@@ -20,14 +19,13 @@ import com.lkpower.pis.data.protocol.Category
 import com.lkpower.pis.data.protocol.XJ_LCFCInfo
 import com.lkpower.pis.injection.component.DaggerUserComponent
 import com.lkpower.pis.injection.module.UserModule
-import com.lkpower.pis.presenter.GetLCFCInstancePresenter
-import com.lkpower.pis.presenter.view.GetLCFCInstanceView
+import com.lkpower.pis.presenter.LCFCInstancePresenter
+import com.lkpower.pis.presenter.view.LCFCInstanceView
 import kotlinx.android.synthetic.main.activity_fault_history_list.*
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_primary_category.*
 import org.jetbrains.anko.toast
 
-class PrimaryCategoryActivity : BaseMvpActivity<GetLCFCInstancePresenter>(), GetLCFCInstanceView {
+class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCInstanceView {
 
     private lateinit var mCategoryAdapter: CategoryAdapter
     private var pressTime: Long = 0

@@ -1,17 +1,15 @@
 package com.lkpower.pis.data.protocol
 
-/*
-出乘报道任务
- */
-data class OutCheckInInfo(
+data class SetoutAlcoholTestInfo(
         val ID: String,
         val SetOutInstanceId: String,
         val TaskStatus: String,
-        val LatestCheckInTime: String,
+        val LatesttAlcoholTestTime: String,
+        val DoneTime: String,
+        val Result: String,
         val SiteName: String,
         val BeginTime: String,
         val TaskObj: String,
         val ClassName: String,
         val SendTime: String
-
 )

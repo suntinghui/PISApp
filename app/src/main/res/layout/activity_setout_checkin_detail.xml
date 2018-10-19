@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.kotlin.base.widgets.HeaderBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="详情" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout style="@style/MatchWrap.Vertical">
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mClassNameView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="车次名称" />
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mSendTimeView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="发车时间" />
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mSiteNameView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="站点名称" />
+
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mTaskStatusView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="任务状态" />
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mLatestCheckInTimeView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="最迟完成时间" />
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mBeginTimeView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="出乘开始时间" />
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mTaskObjView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="乘务员ID" />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/mOperBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin"
+                android:text="报到"
+                android:textColor="@color/common_white" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

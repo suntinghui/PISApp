@@ -7,15 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.lkpower.pis.R
-import com.lkpower.pis.data.protocol.OutCheckInInfo
-import com.lkpower.pis.data.protocol.PublishInfo
-import kotlinx.android.synthetic.main.layout_out_checkin_item.view.*
-import kotlinx.android.synthetic.main.layout_publish_item.view.*
+import com.lkpower.pis.data.protocol.SetoutInfo
+import kotlinx.android.synthetic.main.layout_setout_checkin_item.view.*
 
-class OutCheckinAdapter(context: Context) : BaseRecyclerViewAdapter<OutCheckInInfo, OutCheckinAdapter.ViewHolder>(context) {
+class SetOutAdapter(context: Context) : BaseRecyclerViewAdapter<SetoutInfo, SetOutAdapter.ViewHolder>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(mContext).inflate(R.layout.layout_out_checkin_item, parent, false)
+        val view = LayoutInflater.from(mContext).inflate(R.layout.layout_setout_checkin_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -23,7 +21,7 @@ class OutCheckinAdapter(context: Context) : BaseRecyclerViewAdapter<OutCheckInIn
         super.onBindViewHolder(holder, position)
         val model = dataList[position]
         holder.itemView.mStationNameTv.text = model.SiteName
-        holder.itemView.mStatusTv.text = model.TaskStatus
+        holder.itemView.mStatusTv.text = (if (model.TaskStatus == "0") "待执行" else "已完成")
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)

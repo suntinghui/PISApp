@@ -6,9 +6,9 @@
     android:orientation="vertical">
 
     <com.kotlin.base.widgets.HeaderBar
+        android:id="@+id/mHeaderBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:titleText="报道列表"/>
+        android:layout_height="wrap_content"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mCheckinRv"

@@ -5,6 +5,6 @@ import com.lkpower.pis.data.protocol.XJ_LCFCInfo
 
 // 发车实例
 
-interface GetLCFCInstanceView:BaseView {
+interface LCFCInstanceView:BaseView {
     fun onGetLCFCInstanceResult(result:List<XJ_LCFCInfo>)
 }

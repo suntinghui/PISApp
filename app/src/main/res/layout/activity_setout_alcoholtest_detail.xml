@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.kotlin.base.widgets.HeaderBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="详情" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            style="@style/MatchWrap.Vertical"
+            android:background="@color/common_white">
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mClassNameView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="车次名称" />
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mSendTimeView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="发车时间" />
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mSiteNameView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="站点名称" />
+
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mTaskStatusView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="任务状态" />
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mLatesttAlcoholTestTimeView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="最迟完成时间" />
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mBeginTimeView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="出乘开始时间" />
+
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mTaskObjView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="乘务员ID" />
+
+            <LinearLayout
+                android:id="@+id/mShowTestLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="@dimen/common_margin"
+                    android:layout_marginBottom="@dimen/common_margin"
+                    android:background="@color/common_gray" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/border_bottom"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/common_padding"
+                    android:paddingRight="@dimen/common_padding"
+                    android:paddingBottom="@dimen/common_padding">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="right"
+                        android:text="酒测状态"
+                        android:textSize="@dimen/text_middle_size" />
+
+                    <TextView
+                        android:id="@+id/mResultTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_margin"
+                        android:layout_weight="1"
+                        android:drawableRight="@drawable/icon_arrow_drop_down"
+                        android:text="酒测通过" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/common_margin"
+                    android:layout_marginTop="@dimen/common_margin"
+                    android:text="请拍照上传图片（最多9张）"
+                    android:textSize="@dimen/text_middle_size" />
+
+                <com.kotlin.base.widgets.ImagePickerView
+                    android:id="@+id/mImagePicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"></com.kotlin.base.widgets.ImagePickerView>
+
+
+                <info.hoang8f.widget.FButton
+                    android:id="@+id/mOperBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/common_margin"
+                    android:text="确认提交"
+                    android:textColor="@color/common_white" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
