@@ -4,6 +4,7 @@ import com.lkpower.base.data.protocol.BaseResp
 import com.lkpower.pis.data.protocol.SetoutAlcoholTestInfo
 import com.lkpower.pis.data.protocol.SetoutCheckInInfo
 import com.lkpower.pis.data.protocol.SetoutInfo
+import com.lkpower.pis.data.protocol.TaskConveyDetail
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -14,8 +15,7 @@ interface TasktanceApi {
     @POST("WorkTask.ashx?Commond=GetSetOutCheckInList")
     fun getOutCheckInList(@Field("InstanceId") instanceId: String,
                           @Field("tokenKey") tokenKey: String): Observable<BaseResp<List<SetoutCheckInInfo>>>
-
-
+    
     // 获取出乘报到任务实例（详情）
     @FormUrlEncoded
     @POST("WorkTask.ashx?Commond=GetSetOutCheckIn")
@@ -50,6 +50,25 @@ interface TasktanceApi {
     fun setOutAlcoholTest(@Field("TaskId") taskId: String,
                           @Field("Result") result: String,
                           @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+
+    // 获取任务计划列表
+    @FormUrlEncoded
+    @POST("WorkTask.ashx?Commond=GetTaskConveyList")
+    fun getTaskConveyList(@Field("InstanceId") instanceId: String,
+                          @Field("tokenKey") tokenKey: String): Observable<BaseResp<List<TaskConveyDetail>>>
+
+    // 获取任务计划实例（详情）
+    @FormUrlEncoded
+    @POST("WorkTask.ashx?Commond=GetTaskConveyModel")
+    fun getTaskConveyDetail(@Field("ConveyDetailId") conveyDetailId: String,
+                            @Field("tokenKey") tokenKey: String): Observable<BaseResp<TaskConveyDetail>>
+
+    // 计划风险项目确认
+    @FormUrlEncoded
+    @POST("WorkTask.ashx?Commond=TaskRiskItemConfirm")
+    fun taskRiskItemConfirm(@Field("ItemId") itemId: String,
+                            @Field("FeedBack") feedBack:String,
+                            @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
 
 
     // 出乘任务实例列表

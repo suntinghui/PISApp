@@ -6,6 +6,7 @@ import com.lkpower.pis.data.api.TasktanceApi
 import com.lkpower.pis.data.protocol.SetoutAlcoholTestInfo
 import com.lkpower.pis.data.protocol.SetoutCheckInInfo
 import com.lkpower.pis.data.protocol.SetoutInfo
+import com.lkpower.pis.data.protocol.TaskConveyDetail
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -35,19 +36,29 @@ class TasktanceRespository @Inject constructor() {
         return RetrofitFactory.instance.create(TasktanceApi::class.java).setOutAlcoholTest(taskId, result, tokenKey)
     }
 
+    fun getTaskConveyList(instanceId: String, tokenKey: String): Observable<BaseResp<List<TaskConveyDetail>>> {
+        return RetrofitFactory.instance.create(TasktanceApi::class.java).getTaskConveyList(instanceId, tokenKey)
+    }
 
-    fun getSetoutList(instanceId: String, tokenKey: String):Observable<BaseResp<List<SetoutInfo>>> {
+    fun getTaskConveyDetail(conveyDetailId: String, tokenKey: String): Observable<BaseResp<TaskConveyDetail>> {
+        return RetrofitFactory.instance.create(TasktanceApi::class.java).getTaskConveyDetail(conveyDetailId, tokenKey)
+    }
+
+    fun taskRiskItemConfirm(itemId: String, feedBack: String, tokenKey: String): Observable<BaseResp<String>> {
+        return RetrofitFactory.instance.create(TasktanceApi::class.java).taskRiskItemConfirm(itemId, feedBack, tokenKey)
+    }
+
+    fun getSetoutList(instanceId: String, tokenKey: String): Observable<BaseResp<List<SetoutInfo>>> {
         return RetrofitFactory.instance.create(TasktanceApi::class.java).getSetoutList(instanceId, tokenKey)
     }
 
-    fun getSetout(instanceId: String, taskId: String, tokenKey: String):Observable<BaseResp<SetoutInfo>> {
+    fun getSetout(instanceId: String, taskId: String, tokenKey: String): Observable<BaseResp<SetoutInfo>> {
         return RetrofitFactory.instance.create(TasktanceApi::class.java).getSetout(instanceId, taskId, tokenKey)
     }
 
-    fun setoutConfirm(taskId: String, tokenKey: String):Observable<BaseResp<String>> {
+    fun setoutConfirm(taskId: String, tokenKey: String): Observable<BaseResp<String>> {
         return RetrofitFactory.instance.create(TasktanceApi::class.java).setoutConfirm(taskId, tokenKey)
     }
-
 
 
 }

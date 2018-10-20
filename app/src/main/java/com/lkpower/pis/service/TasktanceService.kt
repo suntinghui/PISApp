@@ -3,6 +3,7 @@ package com.lkpower.pis.service
 import com.lkpower.pis.data.protocol.SetoutAlcoholTestInfo
 import com.lkpower.pis.data.protocol.SetoutCheckInInfo
 import com.lkpower.pis.data.protocol.SetoutInfo
+import com.lkpower.pis.data.protocol.TaskConveyDetail
 import io.reactivex.Observable
 
 interface TasktanceService {
@@ -36,6 +37,21 @@ interface TasktanceService {
       酒测
      */
     fun setOutAlcoholTest(taskId: String, result: String, tokenKey: String): Observable<String>
+
+    /*
+    获取任务计划列表
+     */
+    fun getTaskConveyList(instanceId: String, tokenKey: String): Observable<List<TaskConveyDetail>>
+
+    /*
+    获取任务计划实例（详情）
+     */
+    fun getTaskConveyDetail(conveyDetailId: String, tokenKey: String): Observable<TaskConveyDetail>
+
+    /*
+    计划风险项目确认
+     */
+    fun taskRiskItemConfirm(itemId: String, feedBack: String, tokenKey: String): Observable<String>
 
     /*
     获取当前发车实例出乘任务实例列表

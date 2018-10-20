@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lkpower.pis">
 
-    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name="com.lkpower.base.common.BaseApplication"
@@ -35,6 +35,8 @@
         <activity android:name=".ui.activity.SetoutCheckinDetailActivity" />
         <activity android:name=".ui.activity.SetoutListActivity" />
         <activity android:name=".ui.activity.SetoutDetailActivity" />
+        <activity android:name=".ui.activity.TaskConveyListActivity" />
+        <activity android:name=".ui.activity.TaskConveyDetailActivity" />
 
 
     </application>

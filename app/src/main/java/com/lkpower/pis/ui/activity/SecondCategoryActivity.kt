@@ -13,16 +13,16 @@ import com.lkpower.pis.data.protocol.Category
 import com.lkpower.pis.ui.adapter.CategoryAdapter
 import kotlinx.android.synthetic.main.activity_second_category.*
 
-@Route(path="/pis/SecondCategoryActivity")
+@Route(path = "/pis/SecondCategoryActivity")
 class SecondCategoryActivity : BaseActivity() {
 
-    @Autowired(name="id")
+    @Autowired(name = "id")
     @JvmField
-    var parentId:Int = 0
+    var parentId: Int = 0
 
     @Autowired
     @JvmField
-    var title:String = "乘务巡检"
+    var title: String = "乘务巡检"
 
     private lateinit var mCategoryAdapter: CategoryAdapter
 
@@ -52,7 +52,7 @@ class SecondCategoryActivity : BaseActivity() {
                 ARouter.getInstance().build(item.action)
                         .withInt("id", item.id)
                         .withString("title", item.title)
-                        .navigation();
+                        .navigation()
             }
         })
 
@@ -62,8 +62,8 @@ class SecondCategoryActivity : BaseActivity() {
         return hashMapOf(
                 1 to arrayListOf<Category>(
                         Category(100, "报到", R.drawable.icon_bd, 1, "/pis/SetoutCheckinListActivity"),
-                        Category(101, "酒测", R.drawable.icon_jc, 1, ""),
-                        Category(102, "计划任务传达", R.drawable.icon_jhrwcd, 1, ""),
+                        Category(101, "酒测", R.drawable.icon_jc, 1, "/pis/SetoutAlcoholTestListActivity"),
+                        Category(102, "计划任务传达", R.drawable.icon_jhrwcd, 1, "/pis/TaskConveyListActivity"),
                         Category(103, "项目确认", R.drawable.icon_xmqr, 1, ""),
                         Category(104, "出乘确认", R.drawable.icon_ccqr, 1, "/pis/SetoutListActivity")),
                 2 to arrayListOf<Category>(),
@@ -84,7 +84,7 @@ class SecondCategoryActivity : BaseActivity() {
                         Category(702, "酒测", R.drawable.icon_jc, 7, ""),
                         Category(703, "退乘确认", R.drawable.icon_tcgl, 7, "")),
                 8 to arrayListOf<Category>()
-                )
+        )
 
     }
 }

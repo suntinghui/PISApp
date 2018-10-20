@@ -14,5 +14,7 @@ interface TasktanceComponent {
     fun inject(activity: SetoutAlcoholTestListActivity)
     fun inject(activity: SetoutAlcoholTestDetailActivity)
     fun inject(activity: SetoutListActivity)
-    fun inject(activity:SetoutDetailActivity)
+    fun inject(activity: SetoutDetailActivity)
+    fun inject(activity: TaskConveyListActivity)
+    fun inject(activity: TaskConveyDetailActivity)
 }

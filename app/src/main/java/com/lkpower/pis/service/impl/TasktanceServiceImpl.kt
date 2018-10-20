@@ -4,6 +4,7 @@ import com.lkpower.base.ext.convert
 import com.lkpower.pis.data.protocol.SetoutAlcoholTestInfo
 import com.lkpower.pis.data.protocol.SetoutCheckInInfo
 import com.lkpower.pis.data.protocol.SetoutInfo
+import com.lkpower.pis.data.protocol.TaskConveyDetail
 import com.lkpower.pis.data.respository.TasktanceRespository
 import com.lkpower.pis.service.TasktanceService
 import io.reactivex.Observable
@@ -37,6 +38,18 @@ class TasktanceServiceImpl @Inject constructor() : TasktanceService {
 
     override fun setOutAlcoholTest(taskId: String, result: String, tokenKey: String): Observable<String> {
         return respository.setOutAlcoholTest(taskId, result, tokenKey).convert()
+    }
+
+    override fun getTaskConveyList(instanceId: String, tokenKey: String): Observable<List<TaskConveyDetail>> {
+        return respository.getTaskConveyList(instanceId, tokenKey).convert()
+    }
+
+    override fun getTaskConveyDetail(conveyDetailId: String, tokenKey: String): Observable<TaskConveyDetail> {
+        return respository.getTaskConveyDetail(conveyDetailId, tokenKey).convert()
+    }
+
+    override fun taskRiskItemConfirm(itemId: String, feedBack: String, tokenKey: String): Observable<String> {
+        return respository.taskRiskItemConfirm(itemId, feedBack, tokenKey).convert()
     }
 
     override fun getSetoutList(instanceId: String, tokenKey: String): Observable<List<SetoutInfo>> {
