@@ -16,7 +16,7 @@ import com.lkpower.base.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.ui.adapter.CategoryAdapter
 import com.lkpower.pis.data.protocol.Category
-import com.lkpower.pis.data.protocol.XJ_LCFCInfo
+import com.lkpower.pis.data.protocol.XJ_LCFC
 import com.lkpower.pis.injection.component.DaggerUserComponent
 import com.lkpower.pis.injection.module.UserModule
 import com.lkpower.pis.presenter.LCFCInstancePresenter
@@ -30,7 +30,7 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
     private lateinit var mCategoryAdapter: CategoryAdapter
     private var pressTime: Long = 0
 
-    private lateinit var shift: List<XJ_LCFCInfo>
+    private lateinit var shift: List<XJ_LCFC>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,7 +92,7 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
         mPresenter.mView = this
     }
 
-    override fun onGetLCFCInstanceResult(result: List<XJ_LCFCInfo>) {
+    override fun onGetLCFCInstanceResult(result: List<XJ_LCFC>) {
         shift = result
         if (shift.isEmpty()) {
             ViewUtils.showSimpleAlert(this, "该账号下没有行车数据")

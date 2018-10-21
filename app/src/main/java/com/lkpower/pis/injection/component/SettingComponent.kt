@@ -8,6 +8,7 @@ import dagger.Component
 
 @PerComponentScope
 @Component(dependencies = arrayOf(ActivityComponent::class),modules = arrayOf(SettingModule::class))
+
 interface SettingComponent {
     fun inject(activity:SettingActivity)
 }

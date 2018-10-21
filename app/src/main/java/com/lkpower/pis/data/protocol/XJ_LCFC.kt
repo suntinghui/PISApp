@@ -3,7 +3,7 @@ package com.lkpower.pis.data.protocol
 /*
    发车实例
  */
-data class XJ_LCFCInfo(
+data class XJ_LCFC(
         val ID: String,
         val classId: String,
         val ClassName: String,

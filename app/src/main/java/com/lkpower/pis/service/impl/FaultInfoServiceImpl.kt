@@ -1,0 +1,38 @@
+package com.lkpower.pis.service.impl
+
+import com.lkpower.base.ext.convert
+import com.lkpower.pis.data.protocol.DrivingInfo
+import com.lkpower.pis.data.protocol.FaultInfo
+import com.lkpower.pis.data.protocol.ListResult
+import com.lkpower.pis.data.respository.DrivingInfoRespository
+import com.lkpower.pis.data.respository.FaultInfoRespository
+import com.lkpower.pis.data.respository.LearnDocRespository
+import com.lkpower.pis.service.DrivingInfoService
+import com.lkpower.pis.service.FaultInfoService
+import io.reactivex.Observable
+import javax.inject.Inject
+
+class FaultInfoServiceImpl @Inject constructor() : FaultInfoService {
+
+    @Inject
+    lateinit var faultInfoRespository: FaultInfoRespository
+
+
+    override fun getFaultInfoList(searchInfo: String, pageInfo: String, tokenKey: String): Observable<ListResult<FaultInfo>> {
+        return faultInfoRespository.getFaultInfoList(searchInfo, pageInfo, tokenKey).convert()
+    }
+
+    override fun getFaultInfoModel(faultId: String, tokenKey: String): Observable<FaultInfo> {
+        return faultInfoRespository.getFaultInfoModel(faultId, tokenKey).convert()
+    }
+
+    override fun addFaultInfo(tokenKey: String, faultInfo: String): Observable<String> {
+        return faultInfoRespository.addFaultInfo(tokenKey, faultInfo).convert()
+    }
+
+    override fun addFaultInfoConfirm(tokenKey: String, confirmInfo: String): Observable<String> {
+        return faultInfoRespository.addFaultInfoConfirm(tokenKey, confirmInfo).convert()
+    }
+
+
+}

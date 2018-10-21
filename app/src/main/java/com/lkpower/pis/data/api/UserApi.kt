@@ -2,7 +2,7 @@ package com.lkpower.pis.data.api
 
 import com.lkpower.base.data.protocol.BaseResp
 import com.lkpower.pis.data.protocol.UserInfo
-import com.lkpower.pis.data.protocol.XJ_LCFCInfo
+import com.lkpower.pis.data.protocol.XJ_LCFC
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -20,5 +20,5 @@ interface UserApi {
     @FormUrlEncoded
     @POST("WorkTask.ashx?Commond=GetLCFCInstance")
     fun getLCFCInstance(@Field("EmpId") empId: String,
-                        @Field("tokenKey") tokenKey: String): Observable<BaseResp<List<XJ_LCFCInfo>>>
+                        @Field("tokenKey") tokenKey: String): Observable<BaseResp<List<XJ_LCFC>>>
 }

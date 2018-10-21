@@ -1,7 +1,7 @@
 package com.lkpower.pis.service
 
 import com.lkpower.pis.data.protocol.UserInfo
-import com.lkpower.pis.data.protocol.XJ_LCFCInfo
+import com.lkpower.pis.data.protocol.XJ_LCFC
 import io.reactivex.Observable
 
 interface UserService {
@@ -12,5 +12,5 @@ interface UserService {
     /**
      * 获取发车实例
      */
-    fun getLCFCInstance(empId: String, tokenKey: String): Observable<List<XJ_LCFCInfo>>
+    fun getLCFCInstance(empId: String, tokenKey: String): Observable<List<XJ_LCFC>>
 }

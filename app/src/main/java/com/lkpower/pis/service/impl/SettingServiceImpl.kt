@@ -6,8 +6,14 @@ import com.lkpower.pis.service.SettingService
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class SettingServiceImpl @Inject constructor() : SettingService{
+class SettingServiceImpl @Inject constructor() : SettingService {
 
+    @Inject
+    private lateinit var settingRespository: SettingRespository
+
+    override fun addFeebback(feedbackInfo: String, tokenKey: String): Observable<String> {
+        return settingRespository.addFeedback(feedbackInfo, tokenKey).convert()
+    }
 
 
 }
