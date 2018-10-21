@@ -44,10 +44,10 @@ interface InspectionApi {
     @FormUrlEncoded
     @POST("WorkTask.ashx?Commond=AlarmLogInfo")
     fun alarmLogInfo(@Field("InstanceId") instanceId: String,
-                    @Field("DeviceId") deviceId: String,
-                    @Field("MissionInstanceId") missionInstanceId: String,
-                    @Field("Remark") remark: String,
-                    @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+                     @Field("DeviceId") deviceId: String,
+                     @Field("MissionInstanceId") missionInstanceId: String,
+                     @Field("Remark") remark: String,
+                     @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
 
     // 任务预警接收回写
     @FormUrlEncoded
