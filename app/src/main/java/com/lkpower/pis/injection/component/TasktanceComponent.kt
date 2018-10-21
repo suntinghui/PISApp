@@ -17,4 +17,7 @@ interface TasktanceComponent {
     fun inject(activity: SetoutDetailActivity)
     fun inject(activity: TaskConveyListActivity)
     fun inject(activity: TaskConveyDetailActivity)
+    fun inject(activity: SetoutGroupTaskListActivity)
+    fun inject(activity: SetoutConfirmProjListActivity)
+
 }

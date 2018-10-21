@@ -1,10 +1,8 @@
 package com.lkpower.pis.service.impl
 
+import com.lkpower.base.data.protocol.BaseResp
 import com.lkpower.base.ext.convert
-import com.lkpower.pis.data.protocol.SetoutAlcoholTestInfo
-import com.lkpower.pis.data.protocol.SetoutCheckInInfo
-import com.lkpower.pis.data.protocol.SetoutInfo
-import com.lkpower.pis.data.protocol.TaskConveyDetail
+import com.lkpower.pis.data.protocol.*
 import com.lkpower.pis.data.respository.TasktanceRespository
 import com.lkpower.pis.service.TasktanceService
 import io.reactivex.Observable
@@ -50,6 +48,18 @@ class TasktanceServiceImpl @Inject constructor() : TasktanceService {
 
     override fun taskRiskItemConfirm(itemId: String, feedBack: String, tokenKey: String): Observable<String> {
         return respository.taskRiskItemConfirm(itemId, feedBack, tokenKey).convert()
+    }
+
+    override fun getSetoutGroupTaskList(instanceId: String, tokenKey: String): Observable<List<SetoutGroupTask>> {
+        return respository.getSetoutGroupTaskList(instanceId, tokenKey).convert()
+    }
+
+    override fun getSetOutConfirmProjList(instanceId: String, groupTaskId: String, tokenKey: String): Observable<List<SetoutConfirmProj>> {
+        return respository.getSetOutConfirmProjList(instanceId, groupTaskId, tokenKey).convert()
+    }
+
+    override fun setoutConfirmProj(taskId: String, tokenKey: String): Observable<String> {
+        return respository.setoutConfirmProj(taskId, tokenKey).convert()
     }
 
     override fun getSetoutList(instanceId: String, tokenKey: String): Observable<List<SetoutInfo>> {

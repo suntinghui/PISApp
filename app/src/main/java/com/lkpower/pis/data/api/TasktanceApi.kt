@@ -1,10 +1,7 @@
 package com.lkpower.pis.data.api
 
 import com.lkpower.base.data.protocol.BaseResp
-import com.lkpower.pis.data.protocol.SetoutAlcoholTestInfo
-import com.lkpower.pis.data.protocol.SetoutCheckInInfo
-import com.lkpower.pis.data.protocol.SetoutInfo
-import com.lkpower.pis.data.protocol.TaskConveyDetail
+import com.lkpower.pis.data.protocol.*
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -15,7 +12,7 @@ interface TasktanceApi {
     @POST("WorkTask.ashx?Commond=GetSetOutCheckInList")
     fun getOutCheckInList(@Field("InstanceId") instanceId: String,
                           @Field("tokenKey") tokenKey: String): Observable<BaseResp<List<SetoutCheckInInfo>>>
-    
+
     // 获取出乘报到任务实例（详情）
     @FormUrlEncoded
     @POST("WorkTask.ashx?Commond=GetSetOutCheckIn")
@@ -67,8 +64,27 @@ interface TasktanceApi {
     @FormUrlEncoded
     @POST("WorkTask.ashx?Commond=TaskRiskItemConfirm")
     fun taskRiskItemConfirm(@Field("ItemId") itemId: String,
-                            @Field("FeedBack") feedBack:String,
+                            @Field("FeedBack") feedBack: String,
                             @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+
+    // 获取出乘确认项目主任务列表
+    @FormUrlEncoded
+    @POST("WorkTask.ashx?Commond=GetSetOutGroupTaskList")
+    fun getSetoutGroupTaskList(@Field("InstanceId") instanceId: String,
+                               @Field("tokenKey") tokenKey: String): Observable<BaseResp<List<SetoutGroupTask>>>
+
+    // 获取出乘项目确认任务具体项目列表
+    @FormUrlEncoded
+    @POST("WorkTask.ashx?Commond=GetSetOutConfirmProjList")
+    fun getSetOutConfirmProjList(@Field("InstanceId") instanceId: String,
+                                 @Field("GroupTaskId") groupTaskId: String,
+                                 @Field("tokenKey") tokenKey: String): Observable<BaseResp<List<SetoutConfirmProj>>>
+
+    // 出乘项目确认
+    @FormUrlEncoded
+    @POST("WorkTask.ashx?Commond=SetOutConfirmProj")
+    fun setoutConfirmProj(@Field("TaskId") taskId: String,
+                          @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
 
 
     // 出乘任务实例列表

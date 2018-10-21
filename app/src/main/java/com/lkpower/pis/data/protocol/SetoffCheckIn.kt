@@ -3,7 +3,7 @@ package com.lkpower.pis.data.protocol
 /*
 退乘报到任务
  */
-data class SetOffCheckIn(
+data class SetoffCheckIn(
         val ID: String,
         val SetOfftInstance: String,
         val TaskStatus: String,

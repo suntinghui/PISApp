@@ -1,9 +1,9 @@
 package com.lkpower.pis.service
 
-import com.lkpower.pis.data.protocol.SetoutAlcoholTestInfo
-import com.lkpower.pis.data.protocol.SetoutCheckInInfo
-import com.lkpower.pis.data.protocol.SetoutInfo
-import com.lkpower.pis.data.protocol.TaskConveyDetail
+import com.lkpower.base.data.net.RetrofitFactory
+import com.lkpower.base.data.protocol.BaseResp
+import com.lkpower.pis.data.api.TasktanceApi
+import com.lkpower.pis.data.protocol.*
 import io.reactivex.Observable
 
 interface TasktanceService {
@@ -52,6 +52,21 @@ interface TasktanceService {
     计划风险项目确认
      */
     fun taskRiskItemConfirm(itemId: String, feedBack: String, tokenKey: String): Observable<String>
+
+    /*
+   获取出乘确认项目主任务列表
+    */
+    fun getSetoutGroupTaskList(instanceId: String, tokenKey: String): Observable<List<SetoutGroupTask>>
+
+    /*
+    获取出乘项目确认任务具体项目列表
+     */
+    fun getSetOutConfirmProjList(instanceId: String, groupTaskId: String, tokenKey: String): Observable<List<SetoutConfirmProj>>
+
+    /*
+    出乘项目确认
+     */
+    fun setoutConfirmProj(taskId: String, tokenKey: String): Observable<String>
 
     /*
     获取当前发车实例出乘任务实例列表

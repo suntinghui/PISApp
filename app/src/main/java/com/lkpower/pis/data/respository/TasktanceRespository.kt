@@ -3,10 +3,7 @@ package com.lkpower.pis.data.respository
 import com.lkpower.base.data.net.RetrofitFactory
 import com.lkpower.base.data.protocol.BaseResp
 import com.lkpower.pis.data.api.TasktanceApi
-import com.lkpower.pis.data.protocol.SetoutAlcoholTestInfo
-import com.lkpower.pis.data.protocol.SetoutCheckInInfo
-import com.lkpower.pis.data.protocol.SetoutInfo
-import com.lkpower.pis.data.protocol.TaskConveyDetail
+import com.lkpower.pis.data.protocol.*
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -46,6 +43,18 @@ class TasktanceRespository @Inject constructor() {
 
     fun taskRiskItemConfirm(itemId: String, feedBack: String, tokenKey: String): Observable<BaseResp<String>> {
         return RetrofitFactory.instance.create(TasktanceApi::class.java).taskRiskItemConfirm(itemId, feedBack, tokenKey)
+    }
+
+    fun getSetoutGroupTaskList(instanceId: String, tokenKey: String): Observable<BaseResp<List<SetoutGroupTask>>> {
+        return RetrofitFactory.instance.create(TasktanceApi::class.java).getSetoutGroupTaskList(instanceId, tokenKey)
+    }
+
+    fun getSetOutConfirmProjList(instanceId: String, groupTaskId: String, tokenKey: String): Observable<BaseResp<List<SetoutConfirmProj>>> {
+        return RetrofitFactory.instance.create(TasktanceApi::class.java).getSetOutConfirmProjList(instanceId, groupTaskId, tokenKey)
+    }
+
+    fun setoutConfirmProj(taskId: String, tokenKey: String): Observable<BaseResp<String>> {
+        return RetrofitFactory.instance.create(TasktanceApi::class.java).setoutConfirmProj(taskId, tokenKey)
     }
 
     fun getSetoutList(instanceId: String, tokenKey: String): Observable<BaseResp<List<SetoutInfo>>> {

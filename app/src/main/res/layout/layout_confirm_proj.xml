@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/mDescTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/mFeedbackLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/mContentEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_all"
+            android:gravity="top"
+            android:hint="请输入备注内容"
+            android:lines="4"
+            android:padding="@dimen/common_padding_small" />
+
+        <com.kotlin.base.widgets.ImagePickerView
+            android:id="@+id/mPickerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin"></com.kotlin.base.widgets.ImagePickerView>
+
+    </LinearLayout>
+
+    <info.hoang8f.widget.FButton
+        android:id="@+id/mConfirmBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="确认该项"
+        android:textColor="@color/common_white" />
+
+</LinearLayout>

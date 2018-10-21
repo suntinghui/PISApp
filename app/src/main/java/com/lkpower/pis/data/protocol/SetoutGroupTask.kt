@@ -1,7 +1,7 @@
 package com.lkpower.pis.data.protocol
 
 // 出乘确认项目任务（班组出乘任务）
-data class SetOutGroupTask(
+data class SetoutGroupTask(
         val ID: String,
         val InstanceId: String,
         val SiteId: String,

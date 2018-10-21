@@ -37,6 +37,8 @@
         <activity android:name=".ui.activity.SetoutDetailActivity" />
         <activity android:name=".ui.activity.TaskConveyListActivity" />
         <activity android:name=".ui.activity.TaskConveyDetailActivity" />
+        <activity android:name=".ui.activity.SetoutGroupTaskListActivity" />
+        <activity android:name=".ui.activity.SetoutConfirmProjListActivity" />
 
 
     </application>
