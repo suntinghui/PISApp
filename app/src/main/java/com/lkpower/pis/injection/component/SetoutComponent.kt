@@ -2,13 +2,13 @@ package com.lkpower.pis.injection.component
 
 import com.lkpower.base.injection.PerComponentScope
 import com.lkpower.base.injection.component.ActivityComponent
-import com.lkpower.pis.injection.module.TasktanceModule
+import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.ui.activity.*
 import dagger.Component
 
 @PerComponentScope
-@Component(dependencies = arrayOf(ActivityComponent::class), modules = arrayOf(TasktanceModule::class))
-interface TasktanceComponent {
+@Component(dependencies = arrayOf(ActivityComponent::class), modules = arrayOf(SetoutModule::class))
+interface SetoutComponent {
     fun inject(activity: SetoutCheckinListActivity)
     fun inject(activity: SetoutCheckinDetailActivity)
     fun inject(activity: SetoutAlcoholTestListActivity)

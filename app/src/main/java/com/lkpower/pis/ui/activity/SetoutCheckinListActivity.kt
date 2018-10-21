@@ -7,9 +7,9 @@ import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.lkpower.pis.R
-import com.lkpower.pis.data.protocol.SetoutCheckInInfo
-import com.lkpower.pis.injection.component.DaggerTasktanceComponent
-import com.lkpower.pis.injection.module.TasktanceModule
+import com.lkpower.pis.data.protocol.SetoutCheckIn
+import com.lkpower.pis.injection.component.DaggerSetoutComponent
+import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.SetoutCheckInListPresenter
 import com.lkpower.pis.presenter.view.SetoutCheckinListView
 import com.lkpower.pis.ui.adapter.SetOutCheckinAdapter
@@ -38,19 +38,19 @@ class SetoutCheckinListActivity : BaseMvpActivity<SetoutCheckInListPresenter>(),
         mAdapter = SetOutCheckinAdapter(this)
         mCheckinRv.adapter = mAdapter
 
-        mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<SetoutCheckInInfo> {
-            override fun onItemClick(item: SetoutCheckInInfo, position: Int) {
+        mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<SetoutCheckIn> {
+            override fun onItemClick(item: SetoutCheckIn, position: Int) {
                 startActivity<SetoutCheckinDetailActivity>("instanceId" to item.SetOutInstanceId, "taskId" to item.ID)
             }
         })
     }
 
     override fun injectComponent() {
-        DaggerTasktanceComponent.builder().activityComponent(mActivityComponent).tasktanceModule(TasktanceModule()).build().inject(this)
+        DaggerSetoutComponent.builder().activityComponent(mActivityComponent).setoutModule(SetoutModule()).build().inject(this)
         mPresenter.mView = this
     }
 
-    override fun onGetListResult(result: List<SetoutCheckInInfo>) {
+    override fun onGetListResult(result: List<SetoutCheckIn>) {
         mAdapter.setData(result.toMutableList())
     }
 }

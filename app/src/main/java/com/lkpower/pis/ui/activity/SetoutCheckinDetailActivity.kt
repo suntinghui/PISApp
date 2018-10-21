@@ -8,9 +8,9 @@ import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.onClick
 import com.lkpower.base.ext.setVisible
 import com.lkpower.pis.R
-import com.lkpower.pis.data.protocol.SetoutCheckInInfo
-import com.lkpower.pis.injection.component.DaggerTasktanceComponent
-import com.lkpower.pis.injection.module.TasktanceModule
+import com.lkpower.pis.data.protocol.SetoutCheckIn
+import com.lkpower.pis.injection.component.DaggerSetoutComponent
+import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.SetoutCheckinDetailPresenter
 import com.lkpower.pis.presenter.view.SetoutCheckinDetailView
 import kotlinx.android.synthetic.main.activity_setout_checkin_detail.*
@@ -21,18 +21,16 @@ import org.jetbrains.anko.toast
  */
 class SetoutCheckinDetailActivity : BaseMvpActivity<SetoutCheckinDetailPresenter>(), SetoutCheckinDetailView {
 
-    @Autowired
-    @JvmField
-    val instanceId: String = ""
-
-    @Autowired
-    @JvmField
-    val taskId: String = ""
+    private lateinit var instanceId: String
+    private lateinit var taskId:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_setout_checkin_detail)
+
+        instanceId = intent.getStringExtra("instanceId")
+        taskId = intent.getStringExtra("taskId")
 
         this.initView()
 
@@ -57,12 +55,12 @@ class SetoutCheckinDetailActivity : BaseMvpActivity<SetoutCheckinDetailPresenter
     }
 
     override fun injectComponent() {
-        DaggerTasktanceComponent.builder().activityComponent(mActivityComponent).tasktanceModule(TasktanceModule()).build().inject(this)
+        DaggerSetoutComponent.builder().activityComponent(mActivityComponent).setoutModule(SetoutModule()).build().inject(this)
         mPresenter.mView = this
     }
 
     // 取得详情
-    override fun onGetDetailResult(item: SetoutCheckInInfo) {
+    override fun onGetDetailResult(item: SetoutCheckIn) {
         mClassNameView.setContentText(item.ClassName)
         mSendTimeView.setContentText(item.SendTime)
         mSiteNameView.setContentText(item.SiteName)

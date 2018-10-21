@@ -5,20 +5,23 @@ import com.lkpower.pis.data.protocol.*
 import io.reactivex.Observable
 import retrofit2.http.*
 
-interface TasktanceApi {
+/*
+出乘相关
+ */
+interface SetoutApi {
 
     // 获取出乘报到任务列表
     @FormUrlEncoded
     @POST("WorkTask.ashx?Commond=GetSetOutCheckInList")
     fun getOutCheckInList(@Field("InstanceId") instanceId: String,
-                          @Field("tokenKey") tokenKey: String): Observable<BaseResp<List<SetoutCheckInInfo>>>
+                          @Field("tokenKey") tokenKey: String): Observable<BaseResp<List<SetoutCheckIn>>>
 
     // 获取出乘报到任务实例（详情）
     @FormUrlEncoded
     @POST("WorkTask.ashx?Commond=GetSetOutCheckIn")
     fun getOutCheckInDetail(@Field("InstanceId") instanceId: String,
                             @Field("TaskId") taskId: String,
-                            @Field("tokenKey") tokenKey: String): Observable<BaseResp<SetoutCheckInInfo>>
+                            @Field("tokenKey") tokenKey: String): Observable<BaseResp<SetoutCheckIn>>
 
     // 出乘报到
     @FormUrlEncoded
@@ -31,7 +34,7 @@ interface TasktanceApi {
     @POST("WorkTask.ashx?Commond=GetSetOutAlcoholTestList")
     fun getSetoutAlcoholTestList(@Field("InstanceId") instanceId: String,
                                  @Field("tokenKey") taskId: String
-    ): Observable<BaseResp<List<SetoutAlcoholTestInfo>>>
+    ): Observable<BaseResp<List<SetoutAlcoholTest>>>
 
     // 获取出乘酒测任务实例
     @FormUrlEncoded
@@ -39,7 +42,7 @@ interface TasktanceApi {
     fun getSetOutAlcoholTestDetail(@Field("InstanceId") instanceId: String,
                                    @Field("TaskId") taskId: String,
                                    @Field("tokenKey") tokenKey: String
-    ): Observable<BaseResp<SetoutAlcoholTestInfo>>
+    ): Observable<BaseResp<SetoutAlcoholTest>>
 
     // 酒测确认
     @FormUrlEncoded

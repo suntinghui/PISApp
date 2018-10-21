@@ -10,12 +10,11 @@ import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.onClick
 import com.lkpower.base.ext.setVisible
 import com.lkpower.pis.R
-import com.lkpower.pis.data.protocol.SetoutAlcoholTestInfo
-import com.lkpower.pis.injection.component.DaggerTasktanceComponent
-import com.lkpower.pis.injection.module.TasktanceModule
+import com.lkpower.pis.data.protocol.SetoutAlcoholTest
+import com.lkpower.pis.injection.component.DaggerSetoutComponent
+import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.SetoutAlcoholTestDetailPresenter
 import com.lkpower.pis.presenter.view.SetoutAlcoholTestDetailView
-import kotlinx.android.synthetic.main.activity_fault_history_confirm.*
 import kotlinx.android.synthetic.main.activity_setout_alcoholtest_detail.*
 import org.jetbrains.anko.toast
 
@@ -24,18 +23,16 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
     // 0不通过 1通过
     val RESULT_LIST = listOf<String>("酒测不通过", "酒测通过")
 
-    @Autowired
-    @JvmField
-    val instanceId: String = ""
-
-    @Autowired
-    @JvmField
-    val taskId: String = ""
+    private lateinit var instanceId: String
+    private lateinit var taskId:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_setout_alcoholtest_detail)
+
+        instanceId = intent.getStringExtra("instanceId")
+        taskId = intent.getStringExtra("taskId")
 
         this.initView()
 
@@ -61,7 +58,7 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
     }
 
     override fun injectComponent() {
-        DaggerTasktanceComponent.builder().activityComponent(mActivityComponent).tasktanceModule(TasktanceModule()).build().inject(this)
+        DaggerSetoutComponent.builder().activityComponent(mActivityComponent).setoutModule(SetoutModule()).build().inject(this)
         mPresenter.mView = this
     }
 
@@ -77,7 +74,7 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
     }
 
     // 取得详情
-    override fun onGetDetailResult(item: SetoutAlcoholTestInfo) {
+    override fun onGetDetailResult(item: SetoutAlcoholTest) {
         mClassNameView.setContentText(item.ClassName)
         mSendTimeView.setContentText(item.SendTime)
         mSiteNameView.setContentText(item.SiteName)

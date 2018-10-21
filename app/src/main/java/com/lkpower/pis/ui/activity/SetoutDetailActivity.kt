@@ -1,7 +1,6 @@
 package com.lkpower.pis.ui.activity
 
 import android.os.Bundle
-import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.utils.AppPrefsUtils
 import com.lkpower.base.common.BaseConstant
@@ -9,8 +8,8 @@ import com.lkpower.base.ext.onClick
 import com.lkpower.base.ext.setVisible
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoutInfo
-import com.lkpower.pis.injection.component.DaggerTasktanceComponent
-import com.lkpower.pis.injection.module.TasktanceModule
+import com.lkpower.pis.injection.component.DaggerSetoutComponent
+import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.SetoutDetailPresenter
 import com.lkpower.pis.presenter.view.SetoutDetailView
 import kotlinx.android.synthetic.main.activity_setout_detail.*
@@ -21,14 +20,14 @@ import org.jetbrains.anko.toast
  */
 class SetoutDetailActivity : BaseMvpActivity<SetoutDetailPresenter>(), SetoutDetailView {
 
-    @Autowired
-    @JvmField
-    val taskId: String = ""
+    private lateinit var taskId:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_setout_detail)
+
+        taskId = intent.getStringExtra("taskId")
 
         this.initView()
 
@@ -53,7 +52,7 @@ class SetoutDetailActivity : BaseMvpActivity<SetoutDetailPresenter>(), SetoutDet
     }
 
     override fun injectComponent() {
-        DaggerTasktanceComponent.builder().activityComponent(mActivityComponent).tasktanceModule(TasktanceModule()).build().inject(this)
+        DaggerSetoutComponent.builder().activityComponent(mActivityComponent).setoutModule(SetoutModule()).build().inject(this)
         mPresenter.mView = this
     }
 

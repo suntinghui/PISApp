@@ -10,8 +10,8 @@ import com.kotlin.base.utils.AppPrefsUtils
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoutConfirmProj
-import com.lkpower.pis.injection.component.DaggerTasktanceComponent
-import com.lkpower.pis.injection.module.TasktanceModule
+import com.lkpower.pis.injection.component.DaggerSetoutComponent
+import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.SetoutGroupConfirmProjListPresenter
 import com.lkpower.pis.presenter.view.SetoutConfirmProjListView
 import com.lkpower.pis.ui.adapter.ConfirmProjAdapter
@@ -64,7 +64,7 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
 
 
     override fun injectComponent() {
-        DaggerTasktanceComponent.builder().activityComponent(mActivityComponent).tasktanceModule(TasktanceModule()).build().inject(this)
+        DaggerSetoutComponent.builder().activityComponent(mActivityComponent).setoutModule(SetoutModule()).build().inject(this)
         mPresenter.mView = this
     }
 

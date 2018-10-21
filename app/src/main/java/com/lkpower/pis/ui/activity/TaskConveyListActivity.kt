@@ -10,12 +10,11 @@ import com.kotlin.base.utils.AppPrefsUtils
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.TaskConveyDetail
-import com.lkpower.pis.injection.component.DaggerTasktanceComponent
-import com.lkpower.pis.injection.module.TasktanceModule
+import com.lkpower.pis.injection.component.DaggerSetoutComponent
+import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.TaskConveyListPresenter
 import com.lkpower.pis.presenter.view.TaskConveyListView
 import com.lkpower.pis.ui.adapter.TaskConveyAdapter
-import kotlinx.android.synthetic.main.activity_publish_list.*
 import kotlinx.android.synthetic.main.activity_taskconvey_list.*
 import org.jetbrains.anko.startActivity
 
@@ -54,7 +53,7 @@ class TaskConveyListActivity : BaseMvpActivity<TaskConveyListPresenter>(), TaskC
     }
 
     override fun injectComponent() {
-        DaggerTasktanceComponent.builder().activityComponent(mActivityComponent).tasktanceModule(TasktanceModule()).build().inject(this)
+        DaggerSetoutComponent.builder().activityComponent(mActivityComponent).setoutModule(SetoutModule()).build().inject(this)
         mPresenter.mView = this
     }
 

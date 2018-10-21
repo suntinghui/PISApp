@@ -1,22 +1,19 @@
 package com.lkpower.pis.service
 
-import com.lkpower.base.data.net.RetrofitFactory
-import com.lkpower.base.data.protocol.BaseResp
-import com.lkpower.pis.data.api.TasktanceApi
 import com.lkpower.pis.data.protocol.*
 import io.reactivex.Observable
 
-interface TasktanceService {
+interface SetoutService {
 
     /*
      获取出乘报到任务列表
       */
-    fun getSetoutCheckInList(instanceId: String, tokenKey: String): Observable<List<SetoutCheckInInfo>>
+    fun getSetoutCheckInList(instanceId: String, tokenKey: String): Observable<List<SetoutCheckIn>>
 
     /**
      * 获取出乘报到任务实例
      */
-    fun getSetoutCheckInDetail(instanceId: String, taskId: String, tokenKey: String): Observable<SetoutCheckInInfo>
+    fun getSetoutCheckInDetail(instanceId: String, taskId: String, tokenKey: String): Observable<SetoutCheckIn>
 
     /*
       出乘报到
@@ -26,12 +23,12 @@ interface TasktanceService {
     /*
      获取出乘酒测任务列表
       */
-    fun getSetoutAlcoholTestList(instanceId: String, tokenKey: String): Observable<List<SetoutAlcoholTestInfo>>
+    fun getSetoutAlcoholTestList(instanceId: String, tokenKey: String): Observable<List<SetoutAlcoholTest>>
 
     /**
      * 获取出乘酒测任务实例
      */
-    fun getSetoutAlcoholTestDetail(instanceId: String, taskId: String, tokenKey: String): Observable<SetoutAlcoholTestInfo>
+    fun getSetoutAlcoholTestDetail(instanceId: String, taskId: String, tokenKey: String): Observable<SetoutAlcoholTest>
 
     /*
       酒测

@@ -3,14 +3,14 @@ package com.lkpower.pis.presenter
 import com.kotlin.base.rx.BaseSubscriber
 import com.lkpower.base.ext.execute
 import com.lkpower.base.presenter.BasePresenter
-import com.lkpower.pis.data.protocol.SetoutCheckInInfo
+import com.lkpower.pis.data.protocol.SetoutCheckIn
 import com.lkpower.pis.presenter.view.SetoutCheckinDetailView
-import com.lkpower.pis.service.TasktanceService
+import com.lkpower.pis.service.SetoutService
 import javax.inject.Inject
 
 class SetoutCheckinDetailPresenter @Inject constructor() : BasePresenter<SetoutCheckinDetailView>() {
     @Inject
-    lateinit var tasktanceService: TasktanceService
+    lateinit var setoutService: SetoutService
 
     fun getSetoutCheckinDetail(instanceId: String, taskId: String, tokenKey: String) {
         if (!checkNetWork())
@@ -18,8 +18,8 @@ class SetoutCheckinDetailPresenter @Inject constructor() : BasePresenter<SetoutC
 
         mView.showLoading()
 
-        tasktanceService.getSetoutCheckInDetail(instanceId, taskId, tokenKey).execute(object : BaseSubscriber<SetoutCheckInInfo>(mView) {
-            override fun onNext(t: SetoutCheckInInfo) {
+        setoutService.getSetoutCheckInDetail(instanceId, taskId, tokenKey).execute(object : BaseSubscriber<SetoutCheckIn>(mView) {
+            override fun onNext(t: SetoutCheckIn) {
                 mView.onGetDetailResult(t)
             }
         }, lifecycleProvider)
@@ -31,7 +31,7 @@ class SetoutCheckinDetailPresenter @Inject constructor() : BasePresenter<SetoutC
 
         mView.showLoading()
 
-        tasktanceService.setOutCheckIn(taskId, tokenKey).execute(object : BaseSubscriber<String>(mView) {
+        setoutService.setOutCheckIn(taskId, tokenKey).execute(object : BaseSubscriber<String>(mView) {
             override fun onNext(t: String) {
                 mView.setOutResult(t)
             }

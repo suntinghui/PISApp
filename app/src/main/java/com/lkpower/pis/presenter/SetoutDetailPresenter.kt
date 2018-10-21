@@ -3,16 +3,14 @@ package com.lkpower.pis.presenter
 import com.kotlin.base.rx.BaseSubscriber
 import com.lkpower.base.ext.execute
 import com.lkpower.base.presenter.BasePresenter
-import com.lkpower.pis.data.protocol.SetoutCheckInInfo
 import com.lkpower.pis.data.protocol.SetoutInfo
-import com.lkpower.pis.presenter.view.SetoutCheckinDetailView
 import com.lkpower.pis.presenter.view.SetoutDetailView
-import com.lkpower.pis.service.TasktanceService
+import com.lkpower.pis.service.SetoutService
 import javax.inject.Inject
 
 class SetoutDetailPresenter @Inject constructor() : BasePresenter<SetoutDetailView>() {
     @Inject
-    lateinit var tasktanceService: TasktanceService
+    lateinit var setoutService: SetoutService
 
     fun getSetoutDetail(instanceId: String, taskId: String, tokenKey: String) {
         if (!checkNetWork())
@@ -20,7 +18,7 @@ class SetoutDetailPresenter @Inject constructor() : BasePresenter<SetoutDetailVi
 
         mView.showLoading()
 
-        tasktanceService.getSetout(instanceId, taskId, tokenKey).execute(object : BaseSubscriber<SetoutInfo>(mView) {
+        setoutService.getSetout(instanceId, taskId, tokenKey).execute(object : BaseSubscriber<SetoutInfo>(mView) {
             override fun onNext(t: SetoutInfo) {
                 mView.onGetDetailResult(t)
             }
@@ -33,7 +31,7 @@ class SetoutDetailPresenter @Inject constructor() : BasePresenter<SetoutDetailVi
 
         mView.showLoading()
 
-        tasktanceService.setoutConfirm(taskId, tokenKey).execute(object : BaseSubscriber<String>(mView) {
+        setoutService.setoutConfirm(taskId, tokenKey).execute(object : BaseSubscriber<String>(mView) {
             override fun onNext(t: String) {
                 mView.setOutResult(t)
             }

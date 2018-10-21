@@ -34,9 +34,9 @@ class ZYRWTaskInfoActivity : BaseActivity() {
 
         mStateTv.onClick { selectTaskStatus() }
 
-        mSendBtn.setShadowEnabled(true);
-        mSendBtn.setShadowHeight(5);
-        mSendBtn.setCornerRadius(5);
+        mSendBtn.isShadowEnabled = true
+        mSendBtn.shadowHeight = 5
+        mSendBtn.cornerRadius = 5
         mSendBtn.onClick { sendAction() }
 
     }

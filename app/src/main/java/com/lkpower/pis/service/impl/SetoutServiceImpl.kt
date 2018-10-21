@@ -1,24 +1,23 @@
 package com.lkpower.pis.service.impl
 
-import com.lkpower.base.data.protocol.BaseResp
 import com.lkpower.base.ext.convert
 import com.lkpower.pis.data.protocol.*
-import com.lkpower.pis.data.respository.TasktanceRespository
-import com.lkpower.pis.service.TasktanceService
+import com.lkpower.pis.data.respository.SetoutRespository
+import com.lkpower.pis.service.SetoutService
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class TasktanceServiceImpl @Inject constructor() : TasktanceService {
+class SetoutServiceImpl @Inject constructor() : SetoutService {
 
     @Inject
-    lateinit var respository: TasktanceRespository
+    lateinit var respository: SetoutRespository
 
 
-    override fun getSetoutCheckInList(instanceId: String, tokenKey: String): Observable<List<SetoutCheckInInfo>> {
+    override fun getSetoutCheckInList(instanceId: String, tokenKey: String): Observable<List<SetoutCheckIn>> {
         return respository.getOutCheckinList(instanceId, tokenKey).convert()
     }
 
-    override fun getSetoutCheckInDetail(instanceId: String, taskId: String, tokenKey: String): Observable<SetoutCheckInInfo> {
+    override fun getSetoutCheckInDetail(instanceId: String, taskId: String, tokenKey: String): Observable<SetoutCheckIn> {
         return respository.getOutCheckinDetail(instanceId, taskId, tokenKey).convert()
     }
 
@@ -26,11 +25,11 @@ class TasktanceServiceImpl @Inject constructor() : TasktanceService {
         return respository.setOutCheckin(taskId, tokenKey).convert()
     }
 
-    override fun getSetoutAlcoholTestList(instanceId: String, tokenKey: String): Observable<List<SetoutAlcoholTestInfo>> {
+    override fun getSetoutAlcoholTestList(instanceId: String, tokenKey: String): Observable<List<SetoutAlcoholTest>> {
         return respository.getSetoutAlcoholTestList(instanceId, tokenKey).convert()
     }
 
-    override fun getSetoutAlcoholTestDetail(instanceId: String, taskId: String, tokenKey: String): Observable<SetoutAlcoholTestInfo> {
+    override fun getSetoutAlcoholTestDetail(instanceId: String, taskId: String, tokenKey: String): Observable<SetoutAlcoholTest> {
         return respository.getSetOutAlcoholTestDetail(instanceId, taskId, tokenKey).convert()
     }
 

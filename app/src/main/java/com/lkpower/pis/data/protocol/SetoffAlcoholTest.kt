@@ -1,8 +1,11 @@
 package com.lkpower.pis.data.protocol
 
-data class SetoutAlcoholTestInfo(
+/*
+退乘酒测任务
+ */
+data class SetoffAlcoholTest(
         val ID: String,
-        val SetOutInstanceId: String,
+        val SetOfftInstanceId: String,
         val TaskStatus: String,
         val LatesttAlcoholTestTime: String,
         val DoneTime: String,

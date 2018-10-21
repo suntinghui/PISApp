@@ -8,8 +8,8 @@ import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoutGroupTask
-import com.lkpower.pis.injection.component.DaggerTasktanceComponent
-import com.lkpower.pis.injection.module.TasktanceModule
+import com.lkpower.pis.injection.component.DaggerSetoutComponent
+import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.SetoutGroupTaskListPresenter
 import com.lkpower.pis.presenter.view.SetoutGroupTaskListView
 import com.lkpower.pis.ui.adapter.SetOutGroupTaskAdapter
@@ -46,7 +46,7 @@ class SetoutGroupTaskListActivity : BaseMvpActivity<SetoutGroupTaskListPresenter
     }
 
     override fun injectComponent() {
-        DaggerTasktanceComponent.builder().activityComponent(mActivityComponent).tasktanceModule(TasktanceModule()).build().inject(this)
+        DaggerSetoutComponent.builder().activityComponent(mActivityComponent).setoutModule(SetoutModule()).build().inject(this)
         mPresenter.mView = this
     }
 

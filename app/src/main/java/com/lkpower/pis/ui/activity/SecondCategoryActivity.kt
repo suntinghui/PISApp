@@ -64,7 +64,7 @@ class SecondCategoryActivity : BaseActivity() {
                         Category(100, "报到", R.drawable.icon_bd, 1, "/pis/SetoutCheckinListActivity"),
                         Category(101, "酒测", R.drawable.icon_jc, 1, "/pis/SetoutAlcoholTestListActivity"),
                         Category(102, "计划任务传达", R.drawable.icon_jhrwcd, 1, "/pis/TaskConveyListActivity"),
-                        Category(103, "项目确认", R.drawable.icon_xmqr, 1, ""),
+                        Category(103, "项目确认", R.drawable.icon_xmqr, 1, "/pis/SetoutGroupTaskListActivity"),
                         Category(104, "出乘确认", R.drawable.icon_ccqr, 1, "/pis/SetoutListActivity")),
                 2 to arrayListOf<Category>(),
                 3 to arrayListOf<Category>(

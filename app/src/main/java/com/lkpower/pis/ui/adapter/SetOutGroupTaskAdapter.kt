@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.lkpower.pis.R
-import com.lkpower.pis.data.protocol.SetoutCheckInInfo
 import com.lkpower.pis.data.protocol.SetoutGroupTask
 import kotlinx.android.synthetic.main.layout_setout_checkin_item.view.*
 
