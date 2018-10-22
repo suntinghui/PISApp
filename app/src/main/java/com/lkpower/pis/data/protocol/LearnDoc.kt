@@ -12,5 +12,6 @@ data class LearnDoc(
         val Uploader: String,
         val UploaderName: String,
         val UploadDate: String,
-        val AttList: List<AttModel>
+        val ReadState: String,
+        val LearnDocMinControl: String
 )

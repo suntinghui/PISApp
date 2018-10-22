@@ -7,7 +7,6 @@ data class FaultInfoConfirm(
         val PersonId: String,
         val PersonName: String,
         val Remark: String,
-        val ConfirmTime: String,
-        val PhotoInfoList: List<AttModel>
+        val ConfirmTime: String
 
 )

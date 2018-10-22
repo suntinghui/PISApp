@@ -13,8 +13,7 @@ data class PublishInfo (
         val DutyUser: String,
         val SubmitTime: String,
         val StateFlag: String,
-        val IsRead: String,
-        val PhotoInfoList: ArrayList<AttModel>
+        val IsRead: String
 
 )
         */

@@ -9,7 +9,7 @@ import javax.inject.Inject
 class SettingServiceImpl @Inject constructor() : SettingService {
 
     @Inject
-    private lateinit var settingRespository: SettingRespository
+    lateinit var settingRespository: SettingRespository
 
     override fun addFeebback(feedbackInfo: String, tokenKey: String): Observable<String> {
         return settingRespository.addFeedback(feedbackInfo, tokenKey).convert()

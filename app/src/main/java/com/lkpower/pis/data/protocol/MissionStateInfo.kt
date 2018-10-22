@@ -17,6 +17,5 @@ data class MissionStateInfo(
         val checkRead: String,
         val trainNumberId: String,
         val zbsId: String,
-        val InstanceId: String,
-        val PhotoInfoList: List<AttModel>
+        val InstanceId: String
 )

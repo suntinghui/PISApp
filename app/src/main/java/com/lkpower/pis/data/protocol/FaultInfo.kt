@@ -21,8 +21,7 @@ data class FaultInfo(
         val ReportUser: String,
         val ReportTime: String,
         val HandleResult: String,
-        val ConfirmInfo: FaultInfoConfirm,
-        val PhotoInfoList: List<AttModel>
+        val ConfirmInfo: FaultInfoConfirm
 
         */
 )

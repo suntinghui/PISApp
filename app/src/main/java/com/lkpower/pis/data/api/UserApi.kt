@@ -16,6 +16,20 @@ interface UserApi {
               @Field("deviceId") deviceId: String): Observable<BaseResp<UserInfo>>
 
 
+    // 注销
+    @FormUrlEncoded
+    @POST("Identity.ashx?Commond=LoginOff")
+    fun loginOff(@Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+
+    // 修改密码
+    @FormUrlEncoded
+    @POST("Identity.ashx?Commond=ChangePwd")
+    fun changePwd(@Field("LoginName") loginName: String,
+              @Field("HisPwd") loginPwd: String,
+              @Field("newPwd") newPwd: String,
+              @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+
+
     // 获取当前人员的发车实例
     @FormUrlEncoded
     @POST("WorkTask.ashx?Commond=GetLCFCInstance")

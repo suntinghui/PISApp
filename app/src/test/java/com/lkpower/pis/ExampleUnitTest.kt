@@ -1,8 +1,9 @@
 package com.lkpower.pis
 
+import com.google.gson.Gson
+import com.lkpower.pis.data.protocol.PageBean
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -12,6 +13,10 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        var str = Gson().toJson(PageBean(1.toString(),2.toString(),3.toString(),4.toString()))
+        println(str)
+
+        var page = Gson().fromJson(str, PageBean::class.java)
+        println(page)
     }
 }

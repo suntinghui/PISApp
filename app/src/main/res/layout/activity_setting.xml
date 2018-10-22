@@ -46,6 +46,32 @@
         <View style="@style/DividerFixedHeight" />
 
         <LinearLayout
+            android:id="@+id/mClearCacheLayout"
+            style="@style/MatchWrap.Horizontal"
+            android:background="@color/common_white"
+            android:gravity="center_vertical"
+            android:padding="@dimen/common_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="清空缓存"
+                android:textColor="@color/text_dark"
+                android:textSize="@dimen/text_big_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/icon_arrow_right" />
+
+
+        </LinearLayout>
+
+        <View style="@style/DividerFixedHeight" />
+
+        <LinearLayout
             android:id="@+id/mFeedbackLayout"
             style="@style/MatchWrap.Horizontal"
             android:background="@color/common_white"
@@ -116,6 +142,11 @@
             android:text="退出登录"
             android:textColor="@color/common_white"
             android:textSize="15sp" />
+
+        <com.kotlin.base.widgets.LabelAttrView
+            android:id="@+id/mTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></com.kotlin.base.widgets.LabelAttrView>
 
 
     </LinearLayout>

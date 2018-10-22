@@ -82,7 +82,7 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
                 Category(5, "181故障", R.drawable.icon_181gz, 0, "/pis/SecondCategoryActivity"),
                 Category(6, "段发信息", R.drawable.icon_dfxx, 0, "/pis/PublishListActivity"),
                 Category(7, "退乘管理", R.drawable.icon_tcgl, 0, "/pis/SecondCategoryActivity"),
-                Category(8, "学习文件", R.drawable.icon_xxwj, 0, "/pis/SecondCategoryActivity"),
+                Category(8, "学习文件", R.drawable.icon_xxwj, 0, "/pis/LearnDocListActivity"),
                 Category(9, "系统设置", R.drawable.icon_setting, 0, "/pis/SettingActivity")
         )
     }

@@ -15,6 +15,9 @@ class BaseConstant {
         const val kTokenKey = "kTokenKey"
         const val kInstanceId = "kInstanceId"
 
+        // page
+        const val PageSize = 20 // 每页20条数据
+
         // FIR
         const val FIR_SERVER = "http://api.fir.im/apps/"
         const val FIR_APP_ID = "5bbf11baca87a82b96bf600a"

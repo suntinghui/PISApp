@@ -17,6 +17,14 @@ class UserServiceImpl @Inject constructor() : UserService {
         return respository.login(loginName, loginPwd, deviceId).convert()
     }
 
+    override fun loginOff(tokenKey: String): Observable<String> {
+        return respository.loginOff(tokenKey).convert()
+    }
+
+    override fun changePwd(loginName: String, loginPwd: String, newPwd: String, tokenKey: String): Observable<String> {
+        return respository.changePwd(loginName, loginPwd, newPwd, tokenKey).convert()
+    }
+
     override fun getLCFCInstance(empId: String, tokenKey: String): Observable<List<XJ_LCFC>> {
         return respository.getLCFCInstance(empId, tokenKey).convert()
     }

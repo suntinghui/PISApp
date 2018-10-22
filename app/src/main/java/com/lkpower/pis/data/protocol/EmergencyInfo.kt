@@ -7,7 +7,6 @@ data class EmergencyInfo(
         val FeedBackUser: String,
         val FeedBackUserName: String,
         val FeedBackTime: String,
-        val FeedBackContent: String,
-        val PhotoInfoList: List<AttModel>
+        val FeedBackContent: String
 
 )

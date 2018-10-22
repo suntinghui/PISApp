@@ -8,8 +8,12 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.FileUtils
+import com.blankj.utilcode.util.PathUtils
+import com.bumptech.glide.Glide
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.utils.NetWorkUtils
+import com.liulishuo.filedownloader.FileDownloader
 import com.lkpower.base.common.AppManager
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.onClick
@@ -22,6 +26,7 @@ import com.lkpower.pis.injection.module.SettingModule
 import com.lkpower.pis.presenter.SettingPresenter
 import com.lkpower.pis.presenter.view.SettingView
 import kotlinx.android.synthetic.main.activity_setting.*
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import retrofit2.Call
@@ -48,15 +53,21 @@ class SettingActivity : BaseMvpActivity<SettingPresenter>(), SettingView, View.O
         mCurrentVersionTv.text = "当前版本：${AppUtils.getAppVersionName()}"
         mPhoneNumTv.text = PHONE_NUM
 
-        mExitBtn.setButtonColor(getResources().getColor(R.color.fbutton_color_alizarin));
-        mExitBtn.setShadowEnabled(true);
-        mExitBtn.setShadowHeight(5);
-        mExitBtn.setCornerRadius(5);
+        mExitBtn.setButtonColor(getResources().getColor(R.color.fbutton_color_alizarin))
+        mExitBtn.isShadowEnabled = true
+        mExitBtn.shadowHeight = 5
+        mExitBtn.cornerRadius = 5
 
         mCheckUpdateLayout.onClick(this)
+        mClearCacheLayout.onClick(this)
         mFeedbackLayout.onClick(this)
         mCallMeLayout.onClick(this)
         mExitBtn.onClick(this)
+
+
+
+        mTest.setLabelText("附件1")
+        mTest.setAttr("测试下载测试下载测试下载测试下载测试下载.png", "https://raw.githubusercontent.com/lingochamp/FileDownloader/master/art/message-system.png")
 
     }
 
@@ -64,6 +75,9 @@ class SettingActivity : BaseMvpActivity<SettingPresenter>(), SettingView, View.O
         when (v.id) {
             R.id.mCheckUpdateLayout -> {
                 checkLatestVersion()
+            }
+            R.id.mClearCacheLayout -> {
+                clearAllCache()
             }
             R.id.mFeedbackLayout -> {
 
@@ -90,6 +104,18 @@ class SettingActivity : BaseMvpActivity<SettingPresenter>(), SettingView, View.O
     override fun injectComponent() {
         DaggerSettingComponent.builder().activityComponent(mActivityComponent).settingModule(SettingModule()).build().inject(this)
         mPresenter.mView = this
+    }
+
+    private fun clearAllCache() {
+        FileDownloader.setup(this)
+        FileDownloader.getImpl().clearAllTaskData()
+
+        FileUtils.deleteAllInDir(PathUtils.getExternalAppDownloadPath())
+
+        runOnUiThread { Glide.get(this).clearMemory() }
+        doAsync { Glide.get(this@SettingActivity).clearDiskCache() }
+
+        toast("已清空缓存")
     }
 
     // 检查更新

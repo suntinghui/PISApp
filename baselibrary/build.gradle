@@ -79,7 +79,7 @@ dependencies {
     api "com.github.Kennyc1012:MultiStateView:$multi_state_view_version"
 
     //上下拉刷新
-    api 'cn.bingoogolapple:bga-refreshlayout:1.1.7@aar'
+    api 'cn.bingoogolapple:bga-refreshlayout:1.1.8@aar'
 
     //BadgeView
     api 'q.rorbin:badgeview:1.1.2'
@@ -100,6 +100,8 @@ dependencies {
     api 'info.hoang8f:fbutton:1.0.5'
 
     api 'com.contrarywind:Android-PickerView:4.1.6'
+
+    api 'com.liulishuo.filedownloader:library:1.7.5'
 
     implementation 'com.android.support:multidex:1.0.2'
 
