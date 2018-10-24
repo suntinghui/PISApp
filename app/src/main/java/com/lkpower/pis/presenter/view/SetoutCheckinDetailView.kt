@@ -7,5 +7,5 @@ interface SetoutCheckinDetailView : BaseView {
 
     fun onGetDetailResult(result: SetoutCheckIn)
 
-    fun setOutResult(result: String)
+    fun setOutResult(result: Boolean)
 }

@@ -8,7 +8,7 @@
     <com.kotlin.base.widgets.HeaderBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleText="详情" />
+        app:titleText="报到详情" />
 
     <ScrollView
         android:layout_width="match_parent"

@@ -22,7 +22,7 @@ import org.jetbrains.anko.toast
 class SetoutCheckinDetailActivity : BaseMvpActivity<SetoutCheckinDetailPresenter>(), SetoutCheckinDetailView {
 
     private lateinit var instanceId: String
-    private lateinit var taskId:String
+    private lateinit var taskId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,7 +74,7 @@ class SetoutCheckinDetailActivity : BaseMvpActivity<SetoutCheckinDetailPresenter
     }
 
     // 报到
-    override fun setOutResult(result: String) {
+    override fun setOutResult(result: Boolean) {
         toast("报到成功")
         queryDetail()
     }

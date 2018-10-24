@@ -88,7 +88,7 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
     }
 
     // 报到
-    override fun setOutResult(result: String) {
+    override fun setOutResult(result: Boolean) {
         toast("酒测成功")
         queryDetail()
     }

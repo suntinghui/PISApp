@@ -96,6 +96,10 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
         shift = result
         if (shift.isEmpty()) {
             ViewUtils.showSimpleAlert(this, "该账号下没有行车数据")
+        } else {
+            var item = result.get(0)
+            mTitleTv.text = item.ClassName + "#" + item.TrainmanName + "#" + item.SendTime
+            AppPrefsUtils.putString(BaseConstant.kInstanceId, item.ID)
         }
 
     }
@@ -104,14 +108,15 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
         if (shift.isEmpty())
             return
 
-        var list: List<String> = shift.map { it.ClassName + "-" + it.TrainmanName + "-" + it.SendTime }
+        var list: List<String> = shift.map { it.ClassName + "#" + it.TrainmanName + "#" + it.SendTime }
         var pickerView = OptionsPickerBuilder(this, OnOptionsSelectListener { options1, options2, options3, v ->
             AppPrefsUtils.putString(BaseConstant.kInstanceId, shift.get(options1).ID)
-            mTypeTv.text = list.get(options1)
+            mTitleTv.text = list.get(options1)
         }
         ).build<String>()
         pickerView.setPicker(list)
-        pickerView.setSelectOptions(shift.indexOf(shift.first { it.ID == AppPrefsUtils.getString(BaseConstant.kInstanceId) }))
+        pickerView.setSelectOptions(shift.indexOfFirst { it.ID == AppPrefsUtils.getString(BaseConstant.kInstanceId) })
+
         pickerView.show()
     }
 

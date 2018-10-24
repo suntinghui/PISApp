@@ -6,6 +6,8 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
+import com.kotlin.base.utils.AppPrefsUtils
+import com.lkpower.base.common.BaseConstant
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoutAlcoholTest
 import com.lkpower.pis.injection.component.DaggerSetoutComponent
@@ -27,6 +29,16 @@ class SetoutAlcoholTestListActivity : BaseMvpActivity<SetoutAlcoholTestListPrese
         setContentView(R.layout.activity_setout_checkin_list)
 
         initView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        loadData()
+    }
+
+    private fun loadData() {
+        mPresenter.getSetoutAlcoholTestList(AppPrefsUtils.getString(BaseConstant.kInstanceId), AppPrefsUtils.getString(BaseConstant.kTokenKey))
     }
 
     private fun initView() {

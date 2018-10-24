@@ -27,7 +27,7 @@ interface SetoutApi {
     @FormUrlEncoded
     @POST("WorkTask.ashx?Commond=SetOutCheckIn")
     fun setOutCheckin(@Field("TaskId") taskId: String,
-                      @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+                      @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>
 
     // 获取出乘酒测任务列表
     @FormUrlEncoded
@@ -49,7 +49,7 @@ interface SetoutApi {
     @POST("WorkTask.ashx?Commond=SetOutAlcoholTest")
     fun setOutAlcoholTest(@Field("TaskId") taskId: String,
                           @Field("Result") result: String,
-                          @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+                          @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>
 
     // 获取任务计划列表
     @FormUrlEncoded

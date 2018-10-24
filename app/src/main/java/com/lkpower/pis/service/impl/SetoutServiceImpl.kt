@@ -1,6 +1,7 @@
 package com.lkpower.pis.service.impl
 
 import com.lkpower.base.ext.convert
+import com.lkpower.base.ext.convertBoolean
 import com.lkpower.pis.data.protocol.*
 import com.lkpower.pis.data.respository.SetoutRespository
 import com.lkpower.pis.service.SetoutService
@@ -21,8 +22,8 @@ class SetoutServiceImpl @Inject constructor() : SetoutService {
         return respository.getOutCheckinDetail(instanceId, taskId, tokenKey).convert()
     }
 
-    override fun setOutCheckIn(taskId: String, tokenKey: String): Observable<String> {
-        return respository.setOutCheckin(taskId, tokenKey).convert()
+    override fun setOutCheckIn(taskId: String, tokenKey: String): Observable<Boolean> {
+        return respository.setOutCheckin(taskId, tokenKey).convertBoolean()
     }
 
     override fun getSetoutAlcoholTestList(instanceId: String, tokenKey: String): Observable<List<SetoutAlcoholTest>> {
@@ -33,7 +34,7 @@ class SetoutServiceImpl @Inject constructor() : SetoutService {
         return respository.getSetOutAlcoholTestDetail(instanceId, taskId, tokenKey).convert()
     }
 
-    override fun setOutAlcoholTest(taskId: String, result: String, tokenKey: String): Observable<String> {
+    override fun setOutAlcoholTest(taskId: String, result: String, tokenKey: String): Observable<Boolean> {
         return respository.setOutAlcoholTest(taskId, result, tokenKey).convert()
     }
 

@@ -32,8 +32,8 @@ class SetoutAlcoholTestDetailPresenter @Inject constructor() : BasePresenter<Set
 
         mView.showLoading()
 
-        setoutService.setOutAlcoholTest(taskId, result, tokenKey).execute(object : BaseSubscriber<String>(mView) {
-            override fun onNext(t: String) {
+        setoutService.setOutAlcoholTest(taskId, result, tokenKey).execute(object : BaseSubscriber<Boolean>(mView) {
+            override fun onNext(t: Boolean) {
                 mView.setOutResult(t)
             }
         }, lifecycleProvider)

@@ -17,7 +17,7 @@ class SetoutRespository @Inject constructor() {
         return RetrofitFactory.instance.create(SetoutApi::class.java).getOutCheckInDetail(instanceId, taskId, tokenKey)
     }
 
-    fun setOutCheckin(taskId: String, tokenKey: String): Observable<BaseResp<String>> {
+    fun setOutCheckin(taskId: String, tokenKey: String): Observable<BaseResp<Boolean>> {
         return RetrofitFactory.instance.create(SetoutApi::class.java).setOutCheckin(taskId, tokenKey)
     }
 
@@ -29,7 +29,7 @@ class SetoutRespository @Inject constructor() {
         return RetrofitFactory.instance.create(SetoutApi::class.java).getSetOutAlcoholTestDetail(instanceId, taskId, tokenKey)
     }
 
-    fun setOutAlcoholTest(taskId: String, result: String, tokenKey: String): Observable<BaseResp<String>> {
+    fun setOutAlcoholTest(taskId: String, result: String, tokenKey: String): Observable<BaseResp<Boolean>> {
         return RetrofitFactory.instance.create(SetoutApi::class.java).setOutAlcoholTest(taskId, result, tokenKey)
     }
 

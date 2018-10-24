@@ -31,8 +31,8 @@ class SetoutCheckinDetailPresenter @Inject constructor() : BasePresenter<SetoutC
 
         mView.showLoading()
 
-        setoutService.setOutCheckIn(taskId, tokenKey).execute(object : BaseSubscriber<String>(mView) {
-            override fun onNext(t: String) {
+        setoutService.setOutCheckIn(taskId, tokenKey).execute(object : BaseSubscriber<Boolean>(mView) {
+            override fun onNext(t: Boolean) {
                 mView.setOutResult(t)
             }
         }, lifecycleProvider)

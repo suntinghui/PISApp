@@ -33,6 +33,8 @@
         <activity android:name=".ui.activity.ZYRWTaskInfoActivity" />
         <activity android:name=".ui.activity.SetoutCheckinListActivity" />
         <activity android:name=".ui.activity.SetoutCheckinDetailActivity" />
+        <activity android:name=".ui.activity.SetoutAlcoholTestListActivity" />
+        <activity android:name=".ui.activity.SetoutAlcoholTestDetailActivity" />
         <activity android:name=".ui.activity.SetoutListActivity" />
         <activity android:name=".ui.activity.SetoutDetailActivity" />
         <activity android:name=".ui.activity.TaskConveyListActivity" />

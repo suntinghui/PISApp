@@ -18,7 +18,7 @@ interface SetoutService {
     /*
       出乘报到
      */
-    fun setOutCheckIn(taskId: String, tokenKey: String): Observable<String>
+    fun setOutCheckIn(taskId: String, tokenKey: String): Observable<Boolean>
 
     /*
      获取出乘酒测任务列表
@@ -33,7 +33,7 @@ interface SetoutService {
     /*
       酒测
      */
-    fun setOutAlcoholTest(taskId: String, result: String, tokenKey: String): Observable<String>
+    fun setOutAlcoholTest(taskId: String, result: String, tokenKey: String): Observable<Boolean>
 
     /*
     获取任务计划列表

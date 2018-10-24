@@ -7,5 +7,5 @@ interface SetoutAlcoholTestDetailView : BaseView {
 
     fun onGetDetailResult(result: SetoutAlcoholTest)
 
-    fun setOutResult(result: String)
+    fun setOutResult(result: Boolean)
 }
