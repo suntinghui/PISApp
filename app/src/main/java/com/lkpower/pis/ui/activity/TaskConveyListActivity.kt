@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
+import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.kotlin.base.utils.AppPrefsUtils
 import com.lkpower.base.common.BaseConstant
+import com.lkpower.base.ext.startLoading
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.TaskConveyDetail
 import com.lkpower.pis.injection.component.DaggerSetoutComponent
@@ -30,6 +32,11 @@ class TaskConveyListActivity : BaseMvpActivity<TaskConveyListPresenter>(), TaskC
 
         initView()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         loadData()
     }
 
@@ -48,7 +55,12 @@ class TaskConveyListActivity : BaseMvpActivity<TaskConveyListPresenter>(), TaskC
         })
     }
 
+    override fun onDataIsNull() {
+        mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
+    }
+
     private fun loadData() {
+        mMultiStateView.startLoading()
         mPresenter.getTaskConveyList(AppPrefsUtils.getString(BaseConstant.kInstanceId), AppPrefsUtils.getString(BaseConstant.kTokenKey))
     }
 
@@ -59,5 +71,6 @@ class TaskConveyListActivity : BaseMvpActivity<TaskConveyListPresenter>(), TaskC
 
     override fun onGetListResult(result: List<TaskConveyDetail>) {
         mAdapter.setData(result.toMutableList())
+        mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT
     }
 }

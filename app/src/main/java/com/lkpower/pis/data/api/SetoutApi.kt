@@ -68,7 +68,7 @@ interface SetoutApi {
     @POST("WorkTask.ashx?Commond=TaskRiskItemConfirm")
     fun taskRiskItemConfirm(@Field("ItemId") itemId: String,
                             @Field("FeedBack") feedBack: String,
-                            @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+                            @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>
 
     // 获取出乘确认项目主任务列表
     @FormUrlEncoded
@@ -87,7 +87,7 @@ interface SetoutApi {
     @FormUrlEncoded
     @POST("WorkTask.ashx?Commond=SetOutConfirmProj")
     fun setoutConfirmProj(@Field("TaskId") taskId: String,
-                          @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+                          @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>
 
 
     // 出乘任务实例列表
@@ -107,7 +107,7 @@ interface SetoutApi {
     @FormUrlEncoded
     @POST("WorkTask.ashx?Commond=SetTasktance_SetOutConfirm")
     fun setoutConfirm(@Field("TaskId") taskId: String,
-                      @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+                      @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>
 
 
 }

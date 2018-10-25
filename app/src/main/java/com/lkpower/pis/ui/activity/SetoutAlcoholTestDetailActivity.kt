@@ -2,10 +2,13 @@ package com.lkpower.pis.ui.activity
 
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.bigkoo.alertview.AlertView
+import com.bigkoo.alertview.OnItemClickListener
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.utils.AppPrefsUtils
+import com.lkpower.base.common.AppManager
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.onClick
 import com.lkpower.base.ext.setVisible
@@ -16,7 +19,9 @@ import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.SetoutAlcoholTestDetailPresenter
 import com.lkpower.pis.presenter.view.SetoutAlcoholTestDetailView
 import kotlinx.android.synthetic.main.activity_setout_alcoholtest_detail.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
+import java.lang.Exception
 
 class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailPresenter>(), SetoutAlcoholTestDetailView {
 
@@ -24,7 +29,7 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
     val RESULT_LIST = listOf<String>("酒测不通过", "酒测通过")
 
     private lateinit var instanceId: String
-    private lateinit var taskId:String
+    private lateinit var taskId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +59,13 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
     }
 
     private fun setAction() {
-        mPresenter.setOutAlcoholTest(taskId, RESULT_LIST.indexOf(mResultTv.text).toString(), AppPrefsUtils.getString(BaseConstant.kTokenKey))
+        AlertView("确认提交", "当前状态为${mResultTv.text}", "取消", arrayOf("确定"), null, this@SetoutAlcoholTestDetailActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
+            when (position) {
+                0 -> {
+                    mPresenter.setOutAlcoholTest(taskId, RESULT_LIST.indexOf(mResultTv.text).toString(), AppPrefsUtils.getString(BaseConstant.kTokenKey))
+                }
+            }
+        }).show();
     }
 
     override fun injectComponent() {
@@ -62,7 +73,7 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
         mPresenter.mView = this
     }
 
-    // 选择车型
+    // 选择状态
     private fun showResultEvent() {
         var pickerView = OptionsPickerBuilder(this, OnOptionsSelectListener { options1, options2, options3, v ->
             mResultTv.text = RESULT_LIST.get(options1)
@@ -75,16 +86,21 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
 
     // 取得详情
     override fun onGetDetailResult(item: SetoutAlcoholTest) {
-        mClassNameView.setContentText(item.ClassName)
-        mSendTimeView.setContentText(item.SendTime)
-        mSiteNameView.setContentText(item.SiteName)
-        mTaskStatusView.setContentText(if (item.TaskStatus == "0") "待执行" else "已完成")
-        mLatesttAlcoholTestTimeView.setContentText(item.LatesttAlcoholTestTime)
-        mBeginTimeView.setContentText(item.BeginTime)
-        mTaskObjView.setContentText(item.TaskObj)
+        try {
+            mClassNameView.setContentText(item.ClassName)
+            mSendTimeView.setContentText(item.SendTime)
+            mSiteNameView.setContentText(item.SiteName)
+            mTaskStatusView.setContentText(if (item.TaskStatus == "0") "待执行" else "已完成")
+            mLatesttAlcoholTestTimeView.setContentText(item.LatesttAlcoholTestTime)
+            mBeginTimeView.setContentText(item.BeginTime)
+            mTaskObjView.setContentText(item.TaskObj)
 
-        // 任务状态:0=待执行，1=执行中，2=执行完成
-        mShowTestLayout.setVisible(item.TaskStatus == "0")
+            // 任务状态:0=待执行，1=执行中，2=执行完成
+            mShowTestLayout.setVisible(item.TaskStatus == "0")
+
+        } catch (e:Exception) {
+            e.printStackTrace()
+        }
     }
 
     // 报到

@@ -14,7 +14,7 @@ class BaseFunc<T> : Function<BaseResp<T>, Observable<T>> {
             return Observable.error(BaseException(t.Mesg))
         }
 
-        if (t.Data == null){
+        if (t.Data == null || (t.Data is Collection<*> && t.Data.isEmpty())) {
             return Observable.error(DataNullException())
         }
         return Observable.just(t.Data)

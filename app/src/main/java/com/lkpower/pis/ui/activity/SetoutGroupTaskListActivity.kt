@@ -4,8 +4,12 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
+import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
+import com.kotlin.base.utils.AppPrefsUtils
+import com.lkpower.base.common.BaseConstant
+import com.lkpower.base.ext.startLoading
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoutGroupTask
 import com.lkpower.pis.injection.component.DaggerSetoutComponent
@@ -29,6 +33,11 @@ class SetoutGroupTaskListActivity : BaseMvpActivity<SetoutGroupTaskListPresenter
         initView()
     }
 
+    override fun onResume() {
+        super.onResume()
+        loadData()
+    }
+
     private fun initView() {
         mHeaderBar.setTitleText("项目确认列表")
 
@@ -45,13 +54,23 @@ class SetoutGroupTaskListActivity : BaseMvpActivity<SetoutGroupTaskListPresenter
         })
     }
 
+    private fun loadData() {
+        mMultiStateView.startLoading()
+        mPresenter.getSetoutCheckinList(AppPrefsUtils.getString(BaseConstant.kInstanceId), AppPrefsUtils.getString(BaseConstant.kTokenKey))
+    }
+
     override fun injectComponent() {
         DaggerSetoutComponent.builder().activityComponent(mActivityComponent).setoutModule(SetoutModule()).build().inject(this)
         mPresenter.mView = this
     }
 
+    override fun onDataIsNull() {
+        mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
+    }
+
     override fun onGetListResult(result: List<SetoutGroupTask>) {
         mAdapter.setData(result.toMutableList())
+        mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT
     }
 
 

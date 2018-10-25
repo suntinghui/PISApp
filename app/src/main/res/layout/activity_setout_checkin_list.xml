@@ -9,14 +9,20 @@
         android:id="@+id/mHeaderBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleText="报到列表"/>
+        app:titleText="报到列表" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/mCheckinRv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@color/common_gray"
-        android:scrollbars="vertical" />
+    <com.kennyc.view.MultiStateView
+        android:id="@+id/mMultiStateView"
+        style="@style/MultiStateStyle">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mCheckinRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/common_gray"
+            android:scrollbars="vertical" />
+
+    </com.kennyc.view.MultiStateView>
 
 </LinearLayout>

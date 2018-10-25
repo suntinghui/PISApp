@@ -79,7 +79,7 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
         mPublishDateView.setContentText(result.PublishDate)
     }
 
-    override fun onConfirmResult(result: String) {
+    override fun onConfirmResult(result: Boolean) {
         toast("提交成功")
 
         loadDetail()

@@ -48,7 +48,7 @@ interface SetoutService {
     /*
     计划风险项目确认
      */
-    fun taskRiskItemConfirm(itemId: String, feedBack: String, tokenKey: String): Observable<String>
+    fun taskRiskItemConfirm(itemId: String, feedBack: String, tokenKey: String): Observable<Boolean>
 
     /*
    获取出乘确认项目主任务列表
@@ -63,7 +63,7 @@ interface SetoutService {
     /*
     出乘项目确认
      */
-    fun setoutConfirmProj(taskId: String, tokenKey: String): Observable<String>
+    fun setoutConfirmProj(taskId: String, tokenKey: String): Observable<Boolean>
 
     /*
     获取当前发车实例出乘任务实例列表
@@ -78,7 +78,7 @@ interface SetoutService {
     /*
     出乘最终确认
      */
-    fun setoutConfirm(taskId: String, tokenKey: String): Observable<String>
+    fun setoutConfirm(taskId: String, tokenKey: String): Observable<Boolean>
 
 
 }

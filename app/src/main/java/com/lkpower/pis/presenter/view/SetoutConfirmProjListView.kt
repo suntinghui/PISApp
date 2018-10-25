@@ -7,5 +7,5 @@ interface SetoutConfirmProjListView : BaseView {
 
     fun onGetProjListResult(result:List<SetoutConfirmProj>)
 
-    fun onConfirmResult(result:String)
+    fun onConfirmResult(result:Boolean)
 }

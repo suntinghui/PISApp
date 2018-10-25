@@ -35,7 +35,7 @@ class SetoutServiceImpl @Inject constructor() : SetoutService {
     }
 
     override fun setOutAlcoholTest(taskId: String, result: String, tokenKey: String): Observable<Boolean> {
-        return respository.setOutAlcoholTest(taskId, result, tokenKey).convert()
+        return respository.setOutAlcoholTest(taskId, result, tokenKey).convertBoolean()
     }
 
     override fun getTaskConveyList(instanceId: String, tokenKey: String): Observable<List<TaskConveyDetail>> {
@@ -46,8 +46,8 @@ class SetoutServiceImpl @Inject constructor() : SetoutService {
         return respository.getTaskConveyDetail(conveyDetailId, tokenKey).convert()
     }
 
-    override fun taskRiskItemConfirm(itemId: String, feedBack: String, tokenKey: String): Observable<String> {
-        return respository.taskRiskItemConfirm(itemId, feedBack, tokenKey).convert()
+    override fun taskRiskItemConfirm(itemId: String, feedBack: String, tokenKey: String): Observable<Boolean> {
+        return respository.taskRiskItemConfirm(itemId, feedBack, tokenKey).convertBoolean()
     }
 
     override fun getSetoutGroupTaskList(instanceId: String, tokenKey: String): Observable<List<SetoutGroupTask>> {
@@ -58,8 +58,8 @@ class SetoutServiceImpl @Inject constructor() : SetoutService {
         return respository.getSetOutConfirmProjList(instanceId, groupTaskId, tokenKey).convert()
     }
 
-    override fun setoutConfirmProj(taskId: String, tokenKey: String): Observable<String> {
-        return respository.setoutConfirmProj(taskId, tokenKey).convert()
+    override fun setoutConfirmProj(taskId: String, tokenKey: String): Observable<Boolean> {
+        return respository.setoutConfirmProj(taskId, tokenKey).convertBoolean()
     }
 
     override fun getSetoutList(instanceId: String, tokenKey: String): Observable<List<SetoutInfo>> {
@@ -70,8 +70,8 @@ class SetoutServiceImpl @Inject constructor() : SetoutService {
         return respository.getSetout(instanceId, taskId, tokenKey).convert()
     }
 
-    override fun setoutConfirm(taskId: String, tokenKey: String): Observable<String> {
-        return respository.setoutConfirm(taskId, tokenKey).convert()
+    override fun setoutConfirm(taskId: String, tokenKey: String): Observable<Boolean> {
+        return respository.setoutConfirm(taskId, tokenKey).convertBoolean()
     }
 
 

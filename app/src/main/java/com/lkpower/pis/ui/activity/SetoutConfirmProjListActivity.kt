@@ -73,7 +73,7 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
         mAdapter.setData(result.toMutableList())
     }
 
-    override fun onConfirmResult(result: String) {
+    override fun onConfirmResult(result: Boolean) {
         toast("提交成功")
 
         loadDetail()

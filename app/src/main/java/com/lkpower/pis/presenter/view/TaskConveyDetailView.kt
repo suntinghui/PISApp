@@ -7,5 +7,5 @@ interface TaskConveyDetailView : BaseView {
 
     fun onGetDetailResult(result: TaskConveyDetail)
 
-    fun onConfirmResult(result: String)
+    fun onConfirmResult(result: Boolean)
 }

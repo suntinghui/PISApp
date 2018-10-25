@@ -31,8 +31,8 @@ class SetoutGroupConfirmProjListPresenter @Inject constructor() : BasePresenter<
 
         mView.showLoading()
 
-        setoutService.setoutConfirmProj(taskId, tokenKey).execute(object : BaseSubscriber<String>(mView) {
-            override fun onNext(t: String) {
+        setoutService.setoutConfirmProj(taskId, tokenKey).execute(object : BaseSubscriber<Boolean>(mView) {
+            override fun onNext(t: Boolean) {
                 mView.onConfirmResult(t)
             }
         }, lifecycleProvider)

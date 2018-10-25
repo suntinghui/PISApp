@@ -71,7 +71,7 @@ class SetoutDetailActivity : BaseMvpActivity<SetoutDetailPresenter>(), SetoutDet
     }
 
     // 项目确认
-    override fun setOutResult(result: String) {
+    override fun setOutResult(result: Boolean) {
         toast("项目确认成功")
         queryDetail()
     }

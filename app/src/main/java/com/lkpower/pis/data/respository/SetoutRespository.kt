@@ -41,7 +41,7 @@ class SetoutRespository @Inject constructor() {
         return RetrofitFactory.instance.create(SetoutApi::class.java).getTaskConveyDetail(conveyDetailId, tokenKey)
     }
 
-    fun taskRiskItemConfirm(itemId: String, feedBack: String, tokenKey: String): Observable<BaseResp<String>> {
+    fun taskRiskItemConfirm(itemId: String, feedBack: String, tokenKey: String): Observable<BaseResp<Boolean>> {
         return RetrofitFactory.instance.create(SetoutApi::class.java).taskRiskItemConfirm(itemId, feedBack, tokenKey)
     }
 
@@ -53,7 +53,7 @@ class SetoutRespository @Inject constructor() {
         return RetrofitFactory.instance.create(SetoutApi::class.java).getSetOutConfirmProjList(instanceId, groupTaskId, tokenKey)
     }
 
-    fun setoutConfirmProj(taskId: String, tokenKey: String): Observable<BaseResp<String>> {
+    fun setoutConfirmProj(taskId: String, tokenKey: String): Observable<BaseResp<Boolean>> {
         return RetrofitFactory.instance.create(SetoutApi::class.java).setoutConfirmProj(taskId, tokenKey)
     }
 
@@ -65,7 +65,7 @@ class SetoutRespository @Inject constructor() {
         return RetrofitFactory.instance.create(SetoutApi::class.java).getSetout(instanceId, taskId, tokenKey)
     }
 
-    fun setoutConfirm(taskId: String, tokenKey: String): Observable<BaseResp<String>> {
+    fun setoutConfirm(taskId: String, tokenKey: String): Observable<BaseResp<Boolean>> {
         return RetrofitFactory.instance.create(SetoutApi::class.java).setoutConfirm(taskId, tokenKey)
     }
 

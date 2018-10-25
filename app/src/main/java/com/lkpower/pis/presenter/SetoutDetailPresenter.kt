@@ -31,8 +31,8 @@ class SetoutDetailPresenter @Inject constructor() : BasePresenter<SetoutDetailVi
 
         mView.showLoading()
 
-        setoutService.setoutConfirm(taskId, tokenKey).execute(object : BaseSubscriber<String>(mView) {
-            override fun onNext(t: String) {
+        setoutService.setoutConfirm(taskId, tokenKey).execute(object : BaseSubscriber<Boolean>(mView) {
+            override fun onNext(t: Boolean) {
                 mView.setOutResult(t)
             }
         }, lifecycleProvider)

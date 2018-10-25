@@ -31,8 +31,8 @@ class TaskConveyDetailPresenter @Inject constructor() : BasePresenter<TaskConvey
 
         mView.showLoading()
 
-        setoutService.taskRiskItemConfirm(itemId, feedBack, tokenKey).execute(object : BaseSubscriber<String>(mView) {
-            override fun onNext(t: String) {
+        setoutService.taskRiskItemConfirm(itemId, feedBack, tokenKey).execute(object : BaseSubscriber<Boolean>(mView) {
+            override fun onNext(t: Boolean) {
                 mView.onConfirmResult(t)
             }
         }, lifecycleProvider)
