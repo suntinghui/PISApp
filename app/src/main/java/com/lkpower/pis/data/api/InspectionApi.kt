@@ -17,7 +17,7 @@ interface InspectionApi {
 
     // 获取当前发车实例对应的站点列表
     @FormUrlEncoded
-    @POST("WorkTask.ashx?Commond= GetSiteList")
+    @POST("WorkTask.ashx?Commond=GetSiteList")
     fun getSiteList(@Field("InstanceId") instanceId: String,
                     @Field("tokenKey") tokenKey: String): Observable<BaseResp<List<XJ_CZSL>>>
 
@@ -26,7 +26,7 @@ interface InspectionApi {
     @POST("WorkTask.ashx?Commond=GetXJTaskList")
     fun getXJTaskList(@Field("InstanceId") instanceId: String,
                       @Field("SiteId") siteId: String,
-                      @Field("tokenKey") tokenKey: String): Observable<BaseResp<MissionStateInfo>>
+                      @Field("tokenKey") tokenKey: String): Observable<BaseResp<List<MissionStateInfo>>>
 
     // 获取巡检任务实例详细信息
     @FormUrlEncoded
@@ -38,7 +38,9 @@ interface InspectionApi {
     @FormUrlEncoded
     @POST("WorkTask.ashx?Commond=UpdateMissionInfoExt")
     fun updateMissionInfoExt(@Field("TaskId") taskId: String,
-                             @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+                             @Field("State") state: String,
+                             @Field("Remark") remark: String,
+                             @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>
 
     // 任务预警触发日志
     @FormUrlEncoded
@@ -47,7 +49,7 @@ interface InspectionApi {
                      @Field("DeviceId") deviceId: String,
                      @Field("MissionInstanceId") missionInstanceId: String,
                      @Field("Remark") remark: String,
-                     @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+                     @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>
 
     // 任务预警接收回写
     @FormUrlEncoded
@@ -56,5 +58,5 @@ interface InspectionApi {
                            @Field("DeviceId") deviceId: String,
                            @Field("MissionInstanceId") missionInstanceId: String,
                            @Field("Remark") remark: String,
-                           @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+                           @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>
 }

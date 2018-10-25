@@ -1,6 +1,7 @@
 package com.lkpower.pis.service.impl
 
 import com.lkpower.base.ext.convert
+import com.lkpower.base.ext.convertBoolean
 import com.lkpower.pis.data.protocol.DrivingInfo
 import com.lkpower.pis.data.protocol.ListResult
 import com.lkpower.pis.data.protocol.MissionStateInfo
@@ -23,7 +24,7 @@ class InspectionServiceImpl @Inject constructor() : InspectionService {
         return inspectionRespository.getSiteList(instanceId, tokenKey).convert()
     }
 
-    override fun getXJTaskList(instanceId: String, siteId: String, tokenKey: String): Observable<MissionStateInfo> {
+    override fun getXJTaskList(instanceId: String, siteId: String, tokenKey: String): Observable<List<MissionStateInfo>> {
         return inspectionRespository.getXJTaskList(instanceId, siteId, tokenKey).convert()
     }
 
@@ -31,16 +32,16 @@ class InspectionServiceImpl @Inject constructor() : InspectionService {
         return inspectionRespository.getXJTaskModel(taskId, tokenKey).convert()
     }
 
-    override fun updateMissionInfoExt(taskId: String, tokenKey: String): Observable<String> {
-        return inspectionRespository.updateMissionInfoExt(taskId, tokenKey).convert()
+    override fun updateMissionInfoExt(taskId: String, state: String, remark: String,  tokenKey: String): Observable<Boolean> {
+        return inspectionRespository.updateMissionInfoExt(taskId, state, remark, tokenKey).convertBoolean()
     }
 
-    override fun alarmLogInfo(instanceId: String, deviceId: String, missionInstanceId: String, remark: String, tokenKey: String): Observable<String> {
-        return inspectionRespository.alarmLogInfo(instanceId, deviceId, missionInstanceId, remark, tokenKey).convert()
+    override fun alarmLogInfo(instanceId: String, deviceId: String, missionInstanceId: String, remark: String, tokenKey: String): Observable<Boolean> {
+        return inspectionRespository.alarmLogInfo(instanceId, deviceId, missionInstanceId, remark, tokenKey).convertBoolean()
     }
 
-    override fun alarmUpdateLogInfo(instanceId: String, deviceId: String, missionInstanceId: String, remark: String, tokenKey: String): Observable<String> {
-        return inspectionRespository.alarmUpdateLogInfo(instanceId, deviceId, missionInstanceId, remark, tokenKey).convert()
+    override fun alarmUpdateLogInfo(instanceId: String, deviceId: String, missionInstanceId: String, remark: String, tokenKey: String): Observable<Boolean> {
+        return inspectionRespository.alarmUpdateLogInfo(instanceId, deviceId, missionInstanceId, remark, tokenKey).convertBoolean()
     }
 
 

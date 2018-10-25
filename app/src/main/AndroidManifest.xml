@@ -23,14 +23,15 @@
         <activity android:name=".ui.activity.PrimaryCategoryActivity" />
         <activity android:name=".ui.activity.SecondCategoryActivity" />
         <activity android:name=".ui.activity.SettingActivity" />
-        <activity android:name=".ui.activity.ZYRWListActivity" />
         <activity android:name=".ui.activity.PublishListActivity" />
         <activity android:name=".ui.activity.PublishDetailActivity" />
         <activity android:name=".ui.activity.PreviewImageActivity" />
         <activity android:name=".ui.activity.FaultHistoryListActivity" />
         <activity android:name=".ui.activity.FaultHistoryConfirmActivity" />
         <activity android:name=".ui.activity.FaultReportActivity" />
-        <activity android:name=".ui.activity.ZYRWTaskInfoActivity" />
+        <activity android:name=".ui.activity.InspectionStationListActivity" />
+        <activity android:name=".ui.activity.InspectionTaskListActivity" />
+        <activity android:name=".ui.activity.InspectionTaskDetailActivity" />
         <activity android:name=".ui.activity.SetoutCheckinListActivity" />
         <activity android:name=".ui.activity.SetoutCheckinDetailActivity" />
         <activity android:name=".ui.activity.SetoutAlcoholTestListActivity" />

@@ -6,17 +6,15 @@
     android:orientation="vertical">
 
     <com.kotlin.base.widgets.HeaderBar
-        android:id="@+id/mHeaderBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:titleText="项目情况" />
+        style="@style/MatchWrap"
+        app:titleText="作业任务" />
 
     <com.kennyc.view.MultiStateView
         android:id="@+id/mMultiStateView"
         style="@style/MultiStateStyle">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/mProjRv"
+            android:id="@+id/mStationRv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

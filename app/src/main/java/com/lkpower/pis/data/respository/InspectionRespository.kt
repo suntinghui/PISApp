@@ -21,7 +21,7 @@ class InspectionRespository @Inject constructor() {
     }
 
     // 获取当前发车实例指定站点对应的巡检任务列表
-    fun getXJTaskList(instanceId: String, siteId: String, tokenKey: String): Observable<BaseResp<MissionStateInfo>> {
+    fun getXJTaskList(instanceId: String, siteId: String, tokenKey: String): Observable<BaseResp<List<MissionStateInfo>>> {
         return RetrofitFactory.instance.create(InspectionApi::class.java).getXJTaskList(instanceId, siteId, tokenKey)
     }
 
@@ -31,17 +31,17 @@ class InspectionRespository @Inject constructor() {
     }
 
     // 更新巡检任务状态
-    fun updateMissionInfoExt(taskId: String, tokenKey: String): Observable<BaseResp<String>> {
-        return RetrofitFactory.instance.create(InspectionApi::class.java).updateMissionInfoExt(taskId, tokenKey)
+    fun updateMissionInfoExt(taskId: String, state:String, remark:String, tokenKey: String): Observable<BaseResp<Boolean>> {
+        return RetrofitFactory.instance.create(InspectionApi::class.java).updateMissionInfoExt(taskId, state, remark, tokenKey)
     }
 
     // 任务预警触发日志
-    fun alarmLogInfo(instanceId: String, deviceId: String, missionInstanceId: String, remark: String, tokenKey: String): Observable<BaseResp<String>> {
+    fun alarmLogInfo(instanceId: String, deviceId: String, missionInstanceId: String, remark: String, tokenKey: String): Observable<BaseResp<Boolean>> {
         return RetrofitFactory.instance.create(InspectionApi::class.java).alarmLogInfo(instanceId, deviceId, missionInstanceId, remark, tokenKey)
     }
 
     // 任务预警接收回写
-    fun alarmUpdateLogInfo(instanceId: String, deviceId: String, missionInstanceId: String, remark: String, tokenKey: String): Observable<BaseResp<String>> {
+    fun alarmUpdateLogInfo(instanceId: String, deviceId: String, missionInstanceId: String, remark: String, tokenKey: String): Observable<BaseResp<Boolean>> {
         return RetrofitFactory.instance.create(InspectionApi::class.java).alarmUpdateLogInfo(instanceId, deviceId, missionInstanceId, remark, tokenKey)
     }
 }

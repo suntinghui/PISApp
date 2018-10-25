@@ -5,9 +5,11 @@ import android.support.v7.widget.LinearLayoutManager
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
+import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.utils.AppPrefsUtils
 import com.lkpower.base.common.BaseConstant
+import com.lkpower.base.ext.startLoading
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoutConfirmProj
 import com.lkpower.pis.injection.component.DaggerSetoutComponent
@@ -59,6 +61,7 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
     }
 
     private fun loadDetail() {
+        mMultiStateView.startLoading()
         mPresenter.getSetOutConfirmProjList(AppPrefsUtils.getString(BaseConstant.kInstanceId), GroupTaskId, AppPrefsUtils.getString(BaseConstant.kTokenKey))
     }
 
@@ -71,6 +74,11 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
     override fun onGetProjListResult(result: List<SetoutConfirmProj>) {
         taskIdList = result.map { it.ID }
         mAdapter.setData(result.toMutableList())
+        mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT;
+    }
+
+    override fun onDataIsNull() {
+        mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY;
     }
 
     override fun onConfirmResult(result: Boolean) {

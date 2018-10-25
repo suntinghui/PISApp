@@ -7,7 +7,7 @@ data class MissionStateInfo(
         val ID: String,
         val serialNumber: String,
         val missionId: String,
-        val MissionNam: String,
+        val MissionName: String,
         val MissionRemark: String,
         val executor: String,
         val state: String,

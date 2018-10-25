@@ -6,15 +6,12 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kotlin.base.ui.activity.BaseActivity
-import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.PublishInfo
-import com.lkpower.pis.presenter.TempPresenter
 import com.lkpower.pis.ui.adapter.PublishAdapter
 import kotlinx.android.synthetic.main.activity_publish_list.*
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 
 
 @Route(path="/pis/PublishListActivity")

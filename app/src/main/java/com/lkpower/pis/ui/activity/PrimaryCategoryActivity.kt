@@ -76,7 +76,7 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
     private fun loadPrimaryData(): MutableList<Category> {
         return mutableListOf<Category>(
                 Category(1, "出乘管理", R.drawable.icon_ccgl, 0, "/pis/SecondCategoryActivity"),
-                Category(2, "作业任务", R.drawable.icon_zyrw, 0, "/pis/ZYRWListActivity"),
+                Category(2, "作业任务", R.drawable.icon_zyrw, 0, "/pis/InspectionStationListActivity"),
                 Category(3, "行车信息", R.drawable.icon_clxx, 0, "/pis/SecondCategoryActivity"),
                 Category(4, "应急反馈", R.drawable.icon_yjfk, 0, "/pis/SecondCategoryActivity"),
                 Category(5, "181故障", R.drawable.icon_181gz, 0, "/pis/SecondCategoryActivity"),

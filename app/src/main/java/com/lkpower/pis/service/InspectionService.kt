@@ -13,18 +13,18 @@ interface InspectionService {
     fun getSiteList(instanceId: String, tokenKey: String): Observable<List<XJ_CZSL>>
 
     // 获取当前发车实例指定站点对应的巡检任务列表
-    fun getXJTaskList(instanceId: String, siteId: String, tokenKey: String): Observable<MissionStateInfo>
+    fun getXJTaskList(instanceId: String, siteId: String, tokenKey: String): Observable<List<MissionStateInfo>>
 
     // 获取巡检任务实例详细信息
     fun getXJTaskModel(taskId: String, tokenKey: String): Observable<MissionStateInfo>
 
     // 更新巡检任务状态
-    fun updateMissionInfoExt(taskId: String, tokenKey: String): Observable<String>
+    fun updateMissionInfoExt(taskId: String, state:String, remark: String, tokenKey: String): Observable<Boolean>
 
     // 任务预警触发日志
-    fun alarmLogInfo(instanceId: String, deviceId: String, missionInstanceId: String, remark: String, tokenKey: String): Observable<String>
+    fun alarmLogInfo(instanceId: String, deviceId: String, missionInstanceId: String, remark: String, tokenKey: String): Observable<Boolean>
 
     // 任务预警接收回写
-    fun alarmUpdateLogInfo(instanceId: String, deviceId: String, missionInstanceId: String, remark: String, tokenKey: String): Observable<String>
+    fun alarmUpdateLogInfo(instanceId: String, deviceId: String, missionInstanceId: String, remark: String, tokenKey: String): Observable<Boolean>
 
 }
