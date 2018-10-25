@@ -9,12 +9,21 @@
         style="@style/MatchWrap"
         app:titleText="段发信息" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/mPublishRv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@color/common_gray"
-        android:scrollbars="vertical" />
+    <com.kennyc.view.MultiStateView
+        android:id="@+id/mMultiStateView"
+        style="@style/MultiStateStyle">
+
+        <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+            android:id="@+id/mRefreshLayout"
+            style="@style/MatchMatch">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/mPublishRv"
+                style="@style/commonRecyclerView"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    </com.kennyc.view.MultiStateView>
 
 </LinearLayout>

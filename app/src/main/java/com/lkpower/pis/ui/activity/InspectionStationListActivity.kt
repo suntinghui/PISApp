@@ -48,7 +48,7 @@ class InspectionStationListActivity : BaseMvpActivity<InspectionStationListPrese
 
         mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<XJ_CZSL> {
             override fun onItemClick(item: XJ_CZSL, position: Int) {
-                startActivity<InspectionTaskListActivity>("SiteId" to item.ID)
+                startActivity<InspectionTaskListActivity>("SiteId" to item.stationId)
             }
         })
     }

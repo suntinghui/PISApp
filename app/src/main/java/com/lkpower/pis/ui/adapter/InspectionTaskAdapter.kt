@@ -22,7 +22,7 @@ class InspectionTaskAdapter(context: Context) : BaseRecyclerViewAdapter<MissionS
         super.onBindViewHolder(holder, position)
         val model = dataList[position]
         holder.itemView.mTitleTv.text = model.MissionName
-        holder.itemView.mExecutorTv.text = model.executor
+        holder.itemView.mContentTv.text = model.MissionRemark
         holder.itemView.mStateTv.text = PISUtil.getInspectionTaskState(model.state)
     }
 

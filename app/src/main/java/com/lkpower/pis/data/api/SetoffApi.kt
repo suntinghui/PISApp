@@ -29,7 +29,7 @@ interface SetoffApi {
 
     // 退乘报到
     @FormUrlEncoded
-    @POST("WorkTask.ashx?Commond= SetOffCheckIn")
+    @POST("WorkTask.ashx?Commond=SetOffCheckIn")
     fun setOffCheckIn(@Field("TaskId") taskId: String,
                       @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
 
@@ -41,26 +41,26 @@ interface SetoffApi {
 
     // 获取退乘酒测任务实例
     @FormUrlEncoded
-    @POST("WorkTask.ashx?Commond= GetSetOffAlcoholTest")
+    @POST("WorkTask.ashx?Commond=GetSetOffAlcoholTest")
     fun getSetOffAlcoholTest(@Field("InstanceId") instanceId: String,
                           @Field("TaskId") taskId: String,
                           @Field("tokenKey") tokenKey: String): Observable<BaseResp<List<SetoffAlcoholTest>>>
 
     // 退乘酒测确认
     @FormUrlEncoded
-    @POST("WorkTask.ashx?Commond= SetOffAlcoholTest")
+    @POST("WorkTask.ashx?Commond=SetOffAlcoholTest")
     fun setoffAlcoholTest(@Field("TaskId") taskId: String,
                           @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
 
     // 获取当前发车实例退乘任务实例列表
     @FormUrlEncoded
-    @POST("WorkTask.ashx?Commond= GetTasktance_SetOffList")
+    @POST("WorkTask.ashx?Commond=GetTasktance_SetOffList")
     fun getSetoffList(@Field("InstanceId") instanceId: String,
                       @Field("tokenKey") tokenKey: String): Observable<BaseResp<List<Setoff>>>
 
     // 退乘最终确认
     @FormUrlEncoded
-    @POST("WorkTask.ashx?Commond= SetTasktance_SetOffConfirm")
+    @POST("WorkTask.ashx?Commond=SetTasktance_SetOffConfirm")
     fun setoffConfirm(@Field("TaskId") taskId: String,
                       @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
 

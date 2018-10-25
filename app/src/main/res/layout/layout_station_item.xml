@@ -37,7 +37,7 @@
         style="@style/WrapWrap"
         android:layout_gravity="center_horizontal"
         android:text="已完成"
-        android:textColor="@color/text_light_dark"
+        android:textColor="@color/text_normal"
         android:textSize="@dimen/text_middle_size" />
 
     <ImageView

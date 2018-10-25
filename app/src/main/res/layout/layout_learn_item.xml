@@ -1,33 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/MatchWrap.Vertical"
+    style="@style/MatchWrap.Horizontal"
     android:background="@color/common_white"
+    android:gravity="center_vertical"
     android:padding="@dimen/common_padding">
 
-    <TextView
-        android:id="@+id/mDutyUserTv"
-        style="@style/WrapWrap"
-        android:text="全部乘务员"
-        android:textColor="@color/text_light_dark"
-        android:textSize="@dimen/text_big_size" />
-
-    <TextView
-        android:id="@+id/mTitleTv"
-        style="@style/WrapWrap"
-        android:layout_marginTop="15dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:lineSpacingMultiplier="1.2"
-        android:text="应急指挥手机到站不能正常使用的请编行车信息发到指挥中心"
-        android:textColor="@color/text_dark"
-        android:textSize="@dimen/text_middle_size" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/mSubmitTimeTv"
-        style="@style/MatchWrap"
-        android:layout_marginTop="10dp"
-        android:gravity="right"
-        android:text="2018-10-13 17:48:19"
-        android:textColor="@color/text_light_dark"
-        android:textSize="@dimen/text_middle_size" />
+        <TextView
+            android:id="@+id/mTitleTv"
+            style="@style/WrapWrap"
+            android:text="全部乘务员"
+            android:textColor="@color/text_dark"
+            android:textSize="@dimen/text_big_size" />
+
+        <TextView
+            android:id="@+id/mContentTv"
+            style="@style/WrapWrap"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:lineSpacingMultiplier="1.2"
+            android:maxLines="3"
+            android:text="内容"
+            android:textColor="@color/text_normal"
+            android:textSize="@dimen/text_middle_size" />
+
+        <TextView
+            android:id="@+id/mPublishDateTv"
+            style="@style/MatchWrap"
+            android:layout_marginTop="10dp"
+            android:gravity="right"
+            android:text="2018-10-13 17:48:19"
+            android:textColor="@color/text_normal"
+            android:textSize="@dimen/text_middle_size" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/icon_arrow_right" />
 
 </LinearLayout>

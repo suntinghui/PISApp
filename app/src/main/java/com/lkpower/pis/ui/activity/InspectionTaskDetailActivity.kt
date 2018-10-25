@@ -117,8 +117,8 @@ class InspectionTaskDetailActivity : BaseMvpActivity<InspectionTaskDetailPresent
     override fun onGetDetailResult(result: MissionStateInfo) {
         this.hideLoading()
 
-        mTitleTv.setContentText(result.MissionName)
-        mContentTv.setContentText(result.MissionRemark)
+        mTitleView.setContentText(result.MissionName)
+        mContentView.setContentText(result.MissionRemark)
     }
 
     override fun onUpdateMissionInfo(result: Boolean) {

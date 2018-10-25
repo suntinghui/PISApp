@@ -23,5 +23,6 @@ data class XJ_CZSL(
         val orderNum: String,
         val goToBackType: String,
         val classId: String,
-        val normalArriveDate: String
+        val normalArriveDate: String,
+        val State: String
 )

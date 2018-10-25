@@ -14,37 +14,40 @@
         android:layout_marginLeft="15dp"
         android:src="@drawable/icon_arrow_right" />
 
-    <TextView
-        android:id="@+id/mTitleTv"
-        style="@style/MatchWrap"
-        android:layout_toLeftOf="@id/mArrowIv"
-        android:text="任务标题"
-        android:textColor="@color/text_dark"
-        android:textSize="@dimen/text_middle_size" />
-
     <LinearLayout
+        android:id="@+id/mLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/mTitleTv"
-        android:layout_marginTop="10dp"
         android:layout_toLeftOf="@id/mArrowIv"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/mExecutorTv"
+            android:id="@+id/mTitleTv"
             style="@style/MatchWrap"
-            android:layout_alignParentLeft="true"
             android:layout_weight="1"
-            android:text="执行人"
+            android:text="任务标题"
             android:textColor="@color/text_dark"
-            android:textSize="@dimen/text_middle_size" />
+            android:textSize="@dimen/text_big_size" />
 
         <TextView
             android:id="@+id/mStateTv"
             style="@style/WrapWrap"
+            android:layout_marginLeft="15dp"
             android:text="已完成"
-            android:textColor="@color/text_light_dark"
+            android:textColor="@color/text_dark"
             android:textSize="@dimen/text_middle_size" />
+
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/mContentTv"
+        style="@style/MatchWrap"
+        android:layout_below="@id/mLayout"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:text="内容"
+        android:textColor="@color/text_normal"
+        android:textSize="@dimen/text_middle_size" />
 
 </RelativeLayout>

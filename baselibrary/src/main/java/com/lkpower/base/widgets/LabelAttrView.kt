@@ -42,13 +42,15 @@ class LabelAttrView @JvmOverloads constructor(context: Context, attrs: Attribute
 
     }
 
-    fun setLabelText(label: String) {
+    fun setLabelText(label: String): LabelAttrView {
         mLabelTv.text = label
+        return this
     }
 
-    fun setAttr(fileName:String, path: String) {
+    fun setAttr(fileName: String, path: String): LabelAttrView {
         mContentTv.text = fileName
         mContentTv.onClick { DownloadFileUtils.downloadAndOpenFile(context, fileName, path) }
+        return this
     }
 
     fun getLayout(): LinearLayout {

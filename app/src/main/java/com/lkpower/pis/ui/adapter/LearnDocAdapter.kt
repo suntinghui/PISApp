@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.LearnDoc
-import com.lkpower.pis.data.protocol.PublishInfo
-import kotlinx.android.synthetic.main.layout_publish_item.view.*
+import kotlinx.android.synthetic.main.layout_learn_item.view.*
 
 class LearnDocAdapter(context: Context) : BaseRecyclerViewAdapter<LearnDoc, LearnDocAdapter.ViewHolder>(context) {
 
@@ -20,15 +19,17 @@ class LearnDocAdapter(context: Context) : BaseRecyclerViewAdapter<LearnDoc, Lear
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
+
         val model = dataList[position]
-        holder.itemView.mDutyUserTv.text = model.UploaderName
         holder.itemView.mTitleTv.text = model.DocTitle
         if (model.ReadState == "0") { // 未读=0，已读=1
             holder.itemView.mTitleTv.setTextColor(mContext.resources.getColor(R.color.text_dark))
         } else {
-            holder.itemView.mTitleTv.setTextColor(mContext.resources.getColor(R.color.text_light_dark))
+            holder.itemView.mTitleTv.setTextColor(mContext.resources.getColor(R.color.text_normal))
         }
-        holder.itemView.mSubmitTimeTv.text = model.UploadDate
+
+        holder.itemView.mContentTv.text = model.DocRemark
+        holder.itemView.mPublishDateTv.text = model.PublishDate
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)

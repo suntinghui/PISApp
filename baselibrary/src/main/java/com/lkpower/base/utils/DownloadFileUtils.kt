@@ -40,7 +40,6 @@ object DownloadFileUtils {
 
                     override fun completed(task: BaseDownloadTask) {
                         mLoadingDialog.hideLoading()
-                        Toast.makeText(context, "文件下载成功，正在打开文件", Toast.LENGTH_SHORT).show()
 
                         // 打开文件
                         FileUtils.openFile(context, task.path)

@@ -16,7 +16,7 @@ interface LearnDocApi {
 
     // 学习文件查询列表
     @FormUrlEncoded
-    @POST("InfoManager.ashx?Commond= GetLearnDocList")
+    @POST("InfoManager.ashx?Commond=GetLearnDocList")
     fun getLearnDocList(@Field("searchInfo") searchInfo: String,
                              @Field("pageInfo") pageInfo: String,
                              @Field("tokenKey") tokenKey: String): Observable<BaseResp<ListResult<LearnDoc>>>
@@ -29,7 +29,7 @@ interface LearnDocApi {
 
     // 学习文件设置已读
     @FormUrlEncoded
-    @POST("InfoManager.ashx?Commond= SetLearnDocRead")
+    @POST("InfoManager.ashx?Commond=SetLearnDocRead")
     fun setLearnDocRead(@Field("DocId") docId: String,
                         @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
 

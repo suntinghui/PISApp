@@ -63,7 +63,7 @@ class LearnDocListActivity : BaseMvpActivity<LearnDocListPresenter>(), LearnDocL
 
     private fun loadData() {
         mMultiStateView.startLoading()
-        mPresenter.getSetoutCheckinList("", PageBeanUtil.getPageBeanJson(mCurrentPage), AppPrefsUtils.getString(BaseConstant.kTokenKey))
+        mPresenter.getSetoutCheckinList("{}", PageBeanUtil.getPageBeanJson(mCurrentPage), AppPrefsUtils.getString(BaseConstant.kTokenKey))
     }
 
     override fun onGetListResult(result: ListResult<LearnDoc>) {

@@ -22,7 +22,7 @@ interface DrivingInfoApi {
 
     // 获取行车信息详细信息
     @FormUrlEncoded
-    @POST("InfoManager.ashx?Commond= GetXJ_DrivingInfoModel")
+    @POST("InfoManager.ashx?Commond=GetXJ_DrivingInfoModel")
     fun getDrivingInfoModel(@Field("ID") id: String,
                             @Field("tokenKey") tokenKey: String): Observable<BaseResp<DrivingInfo>>
 

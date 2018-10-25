@@ -18,7 +18,7 @@ import javax.inject.Inject
 class PublishRespository @Inject constructor() {
 
     // 发信息查询列表
-    fun getDrivingInfoList(searchInfo: String, pageInfo: String, tokenKey: String): Observable<BaseResp<ListResult<PublishInfo>>> {
+    fun getPublishInfoList(searchInfo: String, pageInfo: String, tokenKey: String): Observable<BaseResp<ListResult<PublishInfo>>> {
         return RetrofitFactory.instance.create(PublishApi::class.java).getPublishInfoList(searchInfo, pageInfo, tokenKey)
     }
 

@@ -4,30 +4,37 @@
     android:background="@color/common_white"
     android:padding="@dimen/common_padding">
 
-    <TextView
-        android:id="@+id/mDutyUserTv"
-        style="@style/WrapWrap"
-        android:text="全部乘务员"
-        android:textColor="@color/text_dark"
-        android:textSize="@dimen/text_big_size" />
 
     <TextView
         android:id="@+id/mTitleTv"
-        style="@style/WrapWrap"
-        android:layout_marginTop="15dp"
-        android:layout_weight="1"
-        android:lineSpacingMultiplier="1.2"
-        android:text="应急指挥手机到站不能正常使用的请编行车信息发到指挥中心"
-        android:textColor="@color/text_light_dark"
-        android:textSize="@dimen/text_middle_size" />
-
-    <TextView
-        android:id="@+id/mSubmitTimeTv"
         style="@style/MatchWrap"
+        android:text="重要通知"
+        android:textColor="@color/text_dark"
+        android:textSize="@dimen/text_big_size" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:gravity="right"
-        android:text="2018-10-13 17:48:19"
-        android:textColor="@color/text_light_dark"
-        android:textSize="@dimen/text_middle_size" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/mDutyUserTv"
+            style="@style/WrapWrap"
+            android:layout_weight="1"
+            android:text="技术部"
+            android:textColor="@color/text_normal"
+            android:textSize="@dimen/text_middle_size" />
+
+
+        <TextView
+            android:id="@+id/mSubmitTimeTv"
+            style="@style/WrapWrap"
+            android:text="2018-10-13 17:48:19"
+            android:textColor="@color/text_normal"
+            android:textSize="@dimen/text_middle_size" />
+    </LinearLayout>
+
 
 </LinearLayout>

@@ -12,11 +12,12 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class PublishServiceImpl @Inject constructor() : PublishService {
+
     @Inject
     lateinit var publishRespository: PublishRespository
 
-    override fun getDrivingInfoList(searchInfo: String, pageInfo: String, tokenKey: String): Observable<ListResult<PublishInfo>> {
-        return publishRespository.getDrivingInfoList(searchInfo, pageInfo, tokenKey).convert()
+    override fun getPublishInfoList(searchInfo: String, pageInfo: String, tokenKey: String): Observable<ListResult<PublishInfo>> {
+        return publishRespository.getPublishInfoList(searchInfo, pageInfo, tokenKey).convert()
     }
 
     override fun getPublishInfoModel(id: String, deviceId: String, tokenKey: String): Observable<PublishInfo> {

@@ -1,14 +1,14 @@
 package com.lkpower.pis.ui.activity
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
-import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.utils.AppPrefsUtils
-import com.lkpower.base.common.AppManager
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.onClick
 import com.lkpower.base.ext.setVisible
@@ -18,10 +18,10 @@ import com.lkpower.pis.injection.component.DaggerSetoutComponent
 import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.SetoutAlcoholTestDetailPresenter
 import com.lkpower.pis.presenter.view.SetoutAlcoholTestDetailView
+import com.luck.picture.lib.PictureSelector
+import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_setout_alcoholtest_detail.*
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
-import java.lang.Exception
 
 class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailPresenter>(), SetoutAlcoholTestDetailView {
 
@@ -82,6 +82,19 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
         pickerView.setPicker(RESULT_LIST)
         pickerView.setSelectOptions(RESULT_LIST.indexOf(mResultTv.text))
         pickerView.show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode === Activity.RESULT_OK) {
+            when (requestCode) {
+                PictureConfig.CHOOSE_REQUEST -> {
+                    val selectList = PictureSelector.obtainMultipleResult(data)
+                    mImagePicker.onPickerDoneResult(selectList)
+                }
+            }
+        }
     }
 
     // 取得详情

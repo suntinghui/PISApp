@@ -42,6 +42,8 @@
         <activity android:name=".ui.activity.TaskConveyDetailActivity" />
         <activity android:name=".ui.activity.SetoutGroupTaskListActivity" />
         <activity android:name=".ui.activity.SetoutConfirmProjListActivity" />
+        <activity android:name=".ui.activity.LearnDocListActivity" />
+        <activity android:name=".ui.activity.LearnDocDetailActivity" />
 
 
     </application>

@@ -16,7 +16,7 @@
         android:id="@+id/mStatusTv"
         style="@style/WrapWrap"
         android:text="未执行"
-        android:textColor="@color/text_light_dark"
+        android:textColor="@color/text_normal"
         android:textSize="@dimen/text_middle_size" />
 
     <ImageView
