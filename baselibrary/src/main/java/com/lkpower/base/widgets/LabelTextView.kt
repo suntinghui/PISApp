@@ -48,8 +48,12 @@ class LabelTextView @JvmOverloads constructor(context: Context, attrs: Attribute
     }
 
     fun setLabelAndContent(label: String, content: String): LabelTextView {
+        var tempContent = content
+        if (content.isNullOrEmpty())
+            tempContent = ""
+
         mLabelTv.text = label
-        mContentTv.text = content
+        mContentTv.text = tempContent
         return this
     }
 

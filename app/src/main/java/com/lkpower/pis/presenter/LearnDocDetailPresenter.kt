@@ -17,7 +17,7 @@ import javax.inject.Inject
 class LearnDocDetailPresenter @Inject constructor() : BasePresenter<LearnDocDetailView>() {
 
     @Inject
-    lateinit var learnDocService: LearnDocServiceImpl
+    lateinit var learnDocService: LearnDocService
 
     @Inject
     lateinit var attachmentService: AttachmentService

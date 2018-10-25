@@ -29,7 +29,7 @@ interface DrivingInfoApi {
     // 行车信息上报
     @FormUrlEncoded
     @POST("InfoManager.ashx?Commond=UpdateDrivingInfo")
-    fun setLearnDocRead(@Field("InstanceId") instanceId: String,
+    fun updateDrivingInfo(@Field("InstanceId") instanceId: String,
                         @Field("Remark") remark: String,
-                        @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+                        @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>
 }

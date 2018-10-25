@@ -26,7 +26,7 @@ class DrivingInfoRespository @Inject constructor() {
     }
 
     // 行车信息上报
-    fun setLearnDocRead(instanceId: String, remark: String, tokenKey: String): Observable<BaseResp<String>> {
-        return RetrofitFactory.instance.create(DrivingInfoApi::class.java).setLearnDocRead(instanceId, remark, tokenKey)
+    fun updateDrivingInfo(instanceId: String, remark: String, tokenKey: String): Observable<BaseResp<Boolean>> {
+        return RetrofitFactory.instance.create(DrivingInfoApi::class.java).updateDrivingInfo(instanceId, remark, tokenKey)
     }
 }

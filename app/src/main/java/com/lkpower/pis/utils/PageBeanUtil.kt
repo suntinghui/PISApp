@@ -9,12 +9,8 @@ object PageBeanUtil {
     /*
     请求时可以不带TotalRecordSize 和 TotalPage
      */
-    fun getPageBean(currentPage: Int): PageBean {
-        return PageBean(currentPage.toString(), BaseConstant.PageSize.toString(), "", "")
-    }
-
     fun getPageBeanJson(currentPage: Int): String {
-        var pageBean = getPageBean(currentPage)
+        var pageBean = PageBean(currentPage.toString(), BaseConstant.PageSize.toString(), "-1", "-1")
         return Gson().toJson(pageBean)
     }
 

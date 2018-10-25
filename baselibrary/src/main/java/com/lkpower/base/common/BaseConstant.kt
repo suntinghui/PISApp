@@ -16,7 +16,7 @@ class BaseConstant {
         const val kInstanceId = "kInstanceId"
 
         // page
-        const val PageSize = 20 // 每页20条数据
+        const val PageSize = 5 // 每页20条数据
 
         // FIR
         const val FIR_SERVER = "http://api.fir.im/apps/"

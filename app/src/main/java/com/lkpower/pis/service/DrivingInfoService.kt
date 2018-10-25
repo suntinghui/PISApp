@@ -13,5 +13,5 @@ interface DrivingInfoService {
     fun getDrivingInfoModel(id: String, tokenKey: String): Observable<DrivingInfo>
 
     // 行车信息上报
-    fun setLearnDocRead(instanceId: String, remark: String, tokenKey: String): Observable<String>
+    fun updateDrivingInfo(instanceId: String, remark: String, tokenKey: String): Observable<Boolean>
 }

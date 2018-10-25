@@ -68,8 +68,8 @@ class SecondCategoryActivity : BaseActivity() {
                         Category(104, "出乘确认", R.drawable.icon_ccqr, 1, "/pis/SetoutListActivity")),
                 2 to arrayListOf<Category>(),
                 3 to arrayListOf<Category>(
-                        Category(301, "上报信息", R.drawable.icon_sbxx, 3, ""),
-                        Category(302, "历史信息", R.drawable.icon_lsxx, 3, "")
+                        Category(301, "上报信息", R.drawable.icon_sbxx, 3, "/pis/DrivingInfoUploadActivity"),
+                        Category(302, "历史信息", R.drawable.icon_lsxx, 3, "/pis/DrivingInfoListActivity")
                 ),
                 4 to arrayListOf<Category>(
                         Category(401, "应急反馈", R.drawable.icon_yjfk, 4, ""),

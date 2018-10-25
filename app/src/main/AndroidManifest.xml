@@ -44,6 +44,9 @@
         <activity android:name=".ui.activity.SetoutConfirmProjListActivity" />
         <activity android:name=".ui.activity.LearnDocListActivity" />
         <activity android:name=".ui.activity.LearnDocDetailActivity" />
+        <activity android:name=".ui.activity.DrivingInfoListActivity" />
+        <activity android:name=".ui.activity.DrivingInfoDetailActivity" />
+        <activity android:name=".ui.activity.DrivingInfoUploadActivity" />
 
 
     </application>
