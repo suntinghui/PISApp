@@ -2,7 +2,7 @@ package com.lkpower.pis.ui.activity
 
 import android.os.Bundle
 import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.kotlin.base.utils.AppPrefsUtils
+import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.onClick
 import com.lkpower.base.ext.setVisible
@@ -44,11 +44,11 @@ class SetoutDetailActivity : BaseMvpActivity<SetoutDetailPresenter>(), SetoutDet
     }
 
     private fun queryDetail() {
-        mPresenter.getSetoutDetail(AppPrefsUtils.getString(BaseConstant.kInstanceId), taskId, AppPrefsUtils.getString(BaseConstant.kTokenKey))
+        mPresenter.getSetoutDetail(PISUtil.getInstanceId(), taskId, PISUtil.getTokenKey())
     }
 
     private fun setAction() {
-        mPresenter.setOutConfirm(taskId, AppPrefsUtils.getString(BaseConstant.kTokenKey))
+        mPresenter.setOutConfirm(taskId, PISUtil.getTokenKey())
     }
 
     override fun injectComponent() {

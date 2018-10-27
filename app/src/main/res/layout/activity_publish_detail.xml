@@ -27,7 +27,7 @@
                 android:layout_marginRight="@dimen/common_margin"
                 android:gravity="center"
                 android:lineSpacingMultiplier="1.2"
-                android:text="标题"
+                android:text=""
                 android:textColor="@color/text_dark"
                 android:textSize="@dimen/text_large_size" />
 
@@ -38,7 +38,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="20dp"
                 android:lineSpacingMultiplier="1.3"
-                android:text="内容"
+                android:text=""
                 android:textColor="@color/text_normal"
                 android:textSize="@dimen/text_big_size" />
 
@@ -47,7 +47,7 @@
                 style="@style/MatchWrap"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="发布人"
+                android:text=""
                 android:textColor="@color/text_normal"
                 android:textSize="@dimen/text_big_size" />
 

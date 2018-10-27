@@ -15,8 +15,14 @@ class BaseConstant {
         const val kTokenKey = "kTokenKey"
         const val kInstanceId = "kInstanceId"
 
+        const val PickerImageSize = 9
+
         // page
         const val PageSize = 5 // 每页20条数据
+
+        const val Att_Type_Inspection = "1" // 行车巡检任务
+        const val Att_Type_Driving = "2" // 行车信息
+        const val Att_Type_Other = "3" // 其他
 
         // FIR
         const val FIR_SERVER = "http://api.fir.im/apps/"

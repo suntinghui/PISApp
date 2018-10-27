@@ -1,13 +1,10 @@
 package com.lkpower.pis.data.api
 
+import com.lkpower.base.data.protocol.AttModel
 import com.lkpower.base.data.protocol.BaseResp
-import com.lkpower.pis.data.protocol.AttModel
-import com.lkpower.pis.data.protocol.DrivingInfo
-import com.lkpower.pis.data.protocol.ListResult
 import io.reactivex.Observable
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import okhttp3.RequestBody
+import retrofit2.http.*
 
 /*
 行车信息
@@ -20,5 +17,12 @@ interface AttachmentApi {
     fun getAttList(@Field("busId") busId: String,
                    @Field("ATTBusModule") attType: String,
                    @Field("tokenKey") tokenKey: String): Observable<BaseResp<List<AttModel>>>
+
+    // 文件删除
+    @FormUrlEncoded
+    @POST("MobileAPI/ATTManager.ashx?Commond=Del")
+    fun deleteFile(@Field("AttId") attId: String,
+                   @Field("ATTBusModule") attType: String,
+                   @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>
 
 }

@@ -6,6 +6,7 @@ import android.view.Window
 import android.view.WindowManager
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.utils.AppPrefsUtils
+import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.onClick
 import com.lkpower.pis.R
@@ -73,7 +74,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
         AppPrefsUtils.putString(BaseConstant.kPassword, mPasswordEt.text.toString())
 
         AppPrefsUtils.putString(BaseConstant.kEmpId, result.EmpId)
-        AppPrefsUtils.putString(BaseConstant.kTokenKey, result.TokenKey)
+        PISUtil.setTokenKey(result.TokenKey)
 
         startActivity<PrimaryCategoryActivity>()
     }

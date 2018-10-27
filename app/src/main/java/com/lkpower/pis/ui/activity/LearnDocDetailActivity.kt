@@ -1,14 +1,13 @@
 package com.lkpower.pis.ui.activity
 
 import android.os.Bundle
-import com.kotlin.base.ui.activity.BaseActivity
 import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.kotlin.base.utils.AppPrefsUtils
+import com.lkpower.pis.utils.PISUtil
 import com.kotlin.base.widgets.LabelAttrView
 import com.kotlin.base.widgets.LabelTextView
 import com.lkpower.base.common.BaseConstant
+import com.lkpower.base.data.protocol.AttModel
 import com.lkpower.pis.R
-import com.lkpower.pis.data.protocol.AttModel
 import com.lkpower.pis.data.protocol.LearnDoc
 import com.lkpower.pis.injection.component.DaggerLearnDocComponent
 import com.lkpower.pis.injection.module.LearnDocModule
@@ -32,8 +31,8 @@ class LearnDocDetailActivity : BaseMvpActivity<LearnDocDetailPresenter>(), Learn
     }
 
     private fun loadData() {
-        mPresenter.getLearnDocModel(docId, AppPrefsUtils.getString(BaseConstant.kTokenKey))
-        mPresenter.getAttList(docId, "3", AppPrefsUtils.getString(BaseConstant.kTokenKey))
+        mPresenter.getLearnDocModel(docId, PISUtil.getTokenKey())
+        mPresenter.getAttList(docId, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
     }
 
 

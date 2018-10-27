@@ -9,6 +9,7 @@ import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.kotlin.base.utils.AppPrefsUtils
+import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.common.AppManager
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.onClick
@@ -40,10 +41,14 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
         initView()
 
         queryLCFC()
+
     }
 
     private fun initView() {
         mTitleTv.text = "乘务巡检系统"
+
+        shift = listOf()
+
         mTitleTv.onClick {
             if (shift.isEmpty())
                 queryLCFC()
@@ -70,7 +75,7 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
     }
 
     private fun queryLCFC() {
-        mPresenter.getLCFCInstance(AppPrefsUtils.getString(BaseConstant.kEmpId), AppPrefsUtils.getString(BaseConstant.kTokenKey))
+        mPresenter.getLCFCInstance(AppPrefsUtils.getString(BaseConstant.kEmpId), PISUtil.getTokenKey())
     }
 
     private fun loadPrimaryData(): MutableList<Category> {
@@ -92,6 +97,10 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
         mPresenter.mView = this
     }
 
+    override fun onDataIsNull() {
+        ViewUtils.showSimpleAlert(this, "该账号下没有行车数据")
+    }
+
     override fun onGetLCFCInstanceResult(result: List<XJ_LCFC>) {
         shift = result
         if (shift.isEmpty()) {
@@ -99,9 +108,8 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
         } else {
             var item = result.get(0)
             mTitleTv.text = item.ClassName + "#" + item.TrainmanName + "#" + item.SendTime
-            AppPrefsUtils.putString(BaseConstant.kInstanceId, item.ID)
+            PISUtil.setInstanceId(item.ID)
         }
-
     }
 
     private fun selectLCFC() {
@@ -110,12 +118,12 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
 
         var list: List<String> = shift.map { it.ClassName + "#" + it.TrainmanName + "#" + it.SendTime }
         var pickerView = OptionsPickerBuilder(this, OnOptionsSelectListener { options1, options2, options3, v ->
-            AppPrefsUtils.putString(BaseConstant.kInstanceId, shift.get(options1).ID)
+            PISUtil.setInstanceId(shift.get(options1).ID)
             mTitleTv.text = list.get(options1)
         }
         ).build<String>()
         pickerView.setPicker(list)
-        pickerView.setSelectOptions(shift.indexOfFirst { it.ID == AppPrefsUtils.getString(BaseConstant.kInstanceId) })
+        pickerView.setSelectOptions(shift.indexOfFirst { it.ID == PISUtil.getInstanceId() })
 
         pickerView.show()
     }

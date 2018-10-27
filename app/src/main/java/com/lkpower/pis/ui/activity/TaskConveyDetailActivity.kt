@@ -6,7 +6,7 @@ import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.kotlin.base.utils.AppPrefsUtils
+import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.TaskConveyDetail
@@ -49,7 +49,7 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
                 AlertView("提示", "已确认信息无误，立即提交？", "取消", arrayOf("确定"), null, this@TaskConveyDetailActivity, AlertView.Style.Alert, OnItemClickListener { o, index ->
                     when (index) {
                         0 -> {
-                            mPresenter.taskRiskItemConfirm(mDetail.RiskItems.get(position).ItemId, feedback, AppPrefsUtils.getString(BaseConstant.kTokenKey))
+                            mPresenter.taskRiskItemConfirm(mDetail.RiskItems.get(position).ItemId, feedback, PISUtil.getTokenKey())
                         }
                     }
                 }).show()
@@ -59,7 +59,7 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
     }
 
     private fun loadDetail() {
-        mPresenter.getTaskConveyDetail(ConveyDetailId, AppPrefsUtils.getString(BaseConstant.kTokenKey))
+        mPresenter.getTaskConveyDetail(ConveyDetailId, PISUtil.getTokenKey())
     }
 
 

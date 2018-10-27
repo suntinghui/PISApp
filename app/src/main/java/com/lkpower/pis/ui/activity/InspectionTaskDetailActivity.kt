@@ -8,7 +8,7 @@ import com.bigkoo.alertview.OnItemClickListener
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.kotlin.base.utils.AppPrefsUtils
+import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.onClick
 import com.lkpower.pis.R
@@ -47,7 +47,7 @@ class InspectionTaskDetailActivity : BaseMvpActivity<InspectionTaskDetailPresent
 
     private fun loadData() {
         this.showLoading()
-        mPresenter.getXJTaskModel(taskId, AppPrefsUtils.getString(BaseConstant.kTokenKey))
+        mPresenter.getXJTaskModel(taskId, PISUtil.getTokenKey())
     }
 
     override fun onDestroy() {
@@ -76,7 +76,7 @@ class InspectionTaskDetailActivity : BaseMvpActivity<InspectionTaskDetailPresent
         AlertView("确认提交？", "您选中的状态为：${mStateTv.text}", "取消", arrayOf("确定"), null, this@InspectionTaskDetailActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
             when (position) {
                 0 -> {
-                    mPresenter.updateMissionInfoExt(taskId, (TASK_STATUS_LIS.indexOf(mStateTv.text) + 3).toString(), mRemarkEt.text.toString(), AppPrefsUtils.getString(BaseConstant.kTokenKey))
+                    mPresenter.updateMissionInfoExt(taskId, (TASK_STATUS_LIS.indexOf(mStateTv.text) + 3).toString(), mRemarkEt.text.toString(), PISUtil.getTokenKey())
                 }
             }
         }).show();

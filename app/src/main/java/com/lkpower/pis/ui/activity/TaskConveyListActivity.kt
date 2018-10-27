@@ -7,7 +7,7 @@ import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
-import com.kotlin.base.utils.AppPrefsUtils
+import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.startLoading
 import com.lkpower.pis.R
@@ -31,6 +31,8 @@ class TaskConveyListActivity : BaseMvpActivity<TaskConveyListPresenter>(), TaskC
         setContentView(R.layout.activity_taskconvey_list)
 
         initView()
+
+
 
     }
 
@@ -61,7 +63,7 @@ class TaskConveyListActivity : BaseMvpActivity<TaskConveyListPresenter>(), TaskC
 
     private fun loadData() {
         mMultiStateView.startLoading()
-        mPresenter.getTaskConveyList(AppPrefsUtils.getString(BaseConstant.kInstanceId), AppPrefsUtils.getString(BaseConstant.kTokenKey))
+        mPresenter.getTaskConveyList(PISUtil.getInstanceId(), PISUtil.getTokenKey())
     }
 
     override fun injectComponent() {
@@ -71,6 +73,10 @@ class TaskConveyListActivity : BaseMvpActivity<TaskConveyListPresenter>(), TaskC
 
     override fun onGetListResult(result: List<TaskConveyDetail>) {
         mAdapter.setData(result.toMutableList())
-        mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT
+
+        if (result.isNotEmpty())
+            mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT
+        else
+            mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
     }
 }

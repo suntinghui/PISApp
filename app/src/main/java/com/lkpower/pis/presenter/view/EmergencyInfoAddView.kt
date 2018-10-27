@@ -6,7 +6,7 @@ import com.lkpower.pis.data.protocol.LearnDoc
 import com.lkpower.pis.data.protocol.ListResult
 import com.lkpower.pis.data.protocol.SetoutCheckIn
 
-interface DrivingInfoUploadView : BaseView {
+interface EmergencyInfoAddView : BaseView {
 
     fun onUploadDetailResult(result: Boolean)
 

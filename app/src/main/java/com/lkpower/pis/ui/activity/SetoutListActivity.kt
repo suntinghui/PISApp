@@ -4,9 +4,10 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
+import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
-import com.kotlin.base.utils.AppPrefsUtils
+import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoutInfo
@@ -50,7 +51,7 @@ class SetoutListActivity : BaseMvpActivity<SetoutListPresenter>(), SetoutListVie
     }
 
     private fun queryList() {
-        mPresenter.getSetoutList(AppPrefsUtils.getString(BaseConstant.kInstanceId), AppPrefsUtils.getString(BaseConstant.kTokenKey))
+        mPresenter.getSetoutList(PISUtil.getInstanceId(), PISUtil.getTokenKey())
     }
 
     override fun injectComponent() {
@@ -60,5 +61,10 @@ class SetoutListActivity : BaseMvpActivity<SetoutListPresenter>(), SetoutListVie
 
     override fun onGetListResult(result: List<SetoutInfo>) {
         mAdapter.setData(result.toMutableList())
+
+        if (result.isNotEmpty())
+            mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT
+        else
+            mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
     }
 }

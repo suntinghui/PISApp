@@ -17,5 +17,5 @@ interface EmergencyInfoService {
     fun getEmergencyInfoModel(emInfoId: String, tokenKey: String): Observable<EmergencyInfo>
 
     // 应急处置反馈
-    fun addEmergencyInfo(instanceId: String, remark: String, tokenKey: String): Observable<String>
+    fun addEmergencyInfo(instanceId: String, remark: String, tokenKey: String): Observable<Boolean>
 }

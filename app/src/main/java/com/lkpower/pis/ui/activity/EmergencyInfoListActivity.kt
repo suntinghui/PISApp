@@ -13,29 +13,29 @@ import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.startLoading
 import com.lkpower.pis.R
-import com.lkpower.pis.data.protocol.LearnDoc
+import com.lkpower.pis.data.protocol.EmergencyInfo
 import com.lkpower.pis.data.protocol.ListResult
-import com.lkpower.pis.injection.component.DaggerLearnDocComponent
-import com.lkpower.pis.injection.module.LearnDocModule
-import com.lkpower.pis.presenter.LearnDocListPresenter
-import com.lkpower.pis.presenter.view.LearnDocListView
-import com.lkpower.pis.ui.adapter.LearnDocAdapter
+import com.lkpower.pis.injection.component.DaggerEmergencyInfoComponent
+import com.lkpower.pis.injection.module.EmergencyInfoModule
+import com.lkpower.pis.presenter.EmergencyInfoListPresenter
+import com.lkpower.pis.presenter.view.EmergencyInfoListView
+import com.lkpower.pis.ui.adapter.EmergencyInfoAdapter
 import com.lkpower.pis.utils.PageBeanUtil
-import kotlinx.android.synthetic.main.activity_learndoc_list.*
+import kotlinx.android.synthetic.main.activity_driving_info_list.*
 import org.jetbrains.anko.startActivity
 
-@Route(path = "/pis/LearnDocListActivity")
-class LearnDocListActivity : BaseMvpActivity<LearnDocListPresenter>(), LearnDocListView, BGARefreshLayout.BGARefreshLayoutDelegate {
+
+@Route(path = "/pis/EmergencyInfoListActivity")
+class EmergencyInfoListActivity : BaseMvpActivity<EmergencyInfoListPresenter>(), EmergencyInfoListView, BGARefreshLayout.BGARefreshLayoutDelegate {
+
+    private lateinit var mAdapter: EmergencyInfoAdapter
 
     private var mCurrentPage = 1
     private var mTotalPage = 1
 
-    private lateinit var mAdapter: LearnDocAdapter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        setContentView(R.layout.activity_learndoc_list)
+        this.setContentView(R.layout.activity_driving_info_list)
 
         initView()
         initRefreshLayout()
@@ -43,30 +43,35 @@ class LearnDocListActivity : BaseMvpActivity<LearnDocListPresenter>(), LearnDocL
     }
 
     private fun initView() {
-        mDocRv.layoutManager = LinearLayoutManager(this)
-        RecyclerViewDivider.with(this).build().addTo(mDocRv);
+        mHeaderBar.setTitleText("应急列表")
 
-        mAdapter = LearnDocAdapter(this)
-        mDocRv.adapter = mAdapter
+        mDrivingRv.layoutManager = LinearLayoutManager(this)
+        // 设置分隔线
+        RecyclerViewDivider.with(this).build().addTo(mDrivingRv);
 
-        mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<LearnDoc> {
-            override fun onItemClick(item: LearnDoc, position: Int) {
-                startActivity<LearnDocDetailActivity>("docId" to item.DocId)
+        mAdapter = EmergencyInfoAdapter(this)
+        mDrivingRv.adapter = mAdapter
+
+        mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<EmergencyInfo> {
+            override fun onItemClick(item: EmergencyInfo, position: Int) {
+                startActivity<EmergencyInfoDetailActivity>("ID" to item.EmInfoId)
             }
         })
-    }
 
-    override fun injectComponent() {
-        DaggerLearnDocComponent.builder().activityComponent(mActivityComponent).learnDocModule(LearnDocModule()).build().inject(this)
-        mPresenter.mView = this
     }
 
     private fun loadData() {
         mMultiStateView.startLoading()
-        mPresenter.getSetoutCheckinList("{}", PageBeanUtil.getPageBeanJson(mCurrentPage), PISUtil.getTokenKey())
+        mPresenter.getEmergencyInfoList("{}", PageBeanUtil.getPageBeanJson(mCurrentPage), PISUtil.getTokenKey())
+
     }
 
-    override fun onGetListResult(result: ListResult<LearnDoc>) {
+    override fun injectComponent() {
+        DaggerEmergencyInfoComponent.builder().activityComponent(mActivityComponent).emergencyInfoModule(EmergencyInfoModule()).build().inject(this)
+        mPresenter.mView = this
+    }
+
+    override fun onGetListResult(result: ListResult<EmergencyInfo>) {
         mTotalPage = result.PageInfo.TotalPage.toInt()
 
         mRefreshLayout.endLoadingMore()
@@ -79,7 +84,9 @@ class LearnDocListActivity : BaseMvpActivity<LearnDocListPresenter>(), LearnDocL
                 mAdapter.dataList.addAll(result.ListRecord.toMutableList())
                 mAdapter.notifyDataSetChanged()
             }
+
             mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT
+
         } else {
             mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
         }

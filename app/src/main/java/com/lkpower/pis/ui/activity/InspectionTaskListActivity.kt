@@ -6,7 +6,7 @@ import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
-import com.kotlin.base.utils.AppPrefsUtils
+import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.startLoading
 import com.lkpower.pis.R
@@ -57,7 +57,7 @@ class InspectionTaskListActivity : BaseMvpActivity<InspectionTaskListPresenter>(
 
     private fun loadData() {
         mMultiStateView.startLoading()
-        mPresenter.getXJTaskList(AppPrefsUtils.getString(BaseConstant.kInstanceId), siteId, AppPrefsUtils.getString(BaseConstant.kTokenKey))
+        mPresenter.getXJTaskList(PISUtil.getInstanceId(), siteId, PISUtil.getTokenKey())
     }
 
     override fun injectComponent() {
@@ -67,7 +67,11 @@ class InspectionTaskListActivity : BaseMvpActivity<InspectionTaskListPresenter>(
 
     override fun onGetListResult(result: List<MissionStateInfo>) {
         mAdapter.setData(result.toMutableList())
-        mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT
+
+        if (result.isNotEmpty())
+            mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT
+        else
+            mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
     }
 
     override fun onDataIsNull() {

@@ -2,12 +2,13 @@ package com.lkpower.pis.injection.component
 
 import com.lkpower.base.injection.PerComponentScope
 import com.lkpower.base.injection.component.ActivityComponent
+import com.lkpower.pis.injection.module.AttachmentModule
 import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.ui.activity.*
 import dagger.Component
 
 @PerComponentScope
-@Component(dependencies = arrayOf(ActivityComponent::class), modules = arrayOf(SetoutModule::class))
+@Component(dependencies = arrayOf(ActivityComponent::class), modules = arrayOf(SetoutModule::class, AttachmentModule::class))
 interface SetoutComponent {
     fun inject(activity: SetoutCheckinListActivity)
     fun inject(activity: SetoutCheckinDetailActivity)

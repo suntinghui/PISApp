@@ -105,4 +105,8 @@ object FileUtils {
         context.startActivity(intent)
     }
 
+    fun isNetFile(path: String): Boolean {
+        return path.startsWith("http://") || path.startsWith("https://")
+    }
+
 }

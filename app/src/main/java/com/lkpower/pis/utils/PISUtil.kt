@@ -1,6 +1,30 @@
 package com.lkpower.pis.utils
 
+import com.kotlin.base.utils.AppPrefsUtils
+import com.lkpower.base.common.BaseConstant
+import java.util.*
+
 object PISUtil {
+
+    fun setTokenKey(tokenKey: String) {
+        AppPrefsUtils.putString(BaseConstant.kTokenKey, tokenKey)
+    }
+
+    fun getTokenKey(): String {
+        return AppPrefsUtils.getString(BaseConstant.kTokenKey)
+    }
+
+    fun setInstanceId(instanceId: String) {
+        return AppPrefsUtils.putString(BaseConstant.kInstanceId, instanceId)
+    }
+
+    fun getInstanceId(): String {
+        return AppPrefsUtils.getString(BaseConstant.kInstanceId)
+    }
+
+    fun getUUID(): String {
+        return UUID.randomUUID().toString()
+    }
 
     fun getInspectionStationState(code: String): String {
         return when (code.toInt()) {

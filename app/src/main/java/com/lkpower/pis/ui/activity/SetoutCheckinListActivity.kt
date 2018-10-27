@@ -7,7 +7,7 @@ import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
-import com.kotlin.base.utils.AppPrefsUtils
+import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.startLoading
 import com.lkpower.pis.R
@@ -58,7 +58,7 @@ class SetoutCheckinListActivity : BaseMvpActivity<SetoutCheckInListPresenter>(),
 
     private fun loadData() {
         mMultiStateView.startLoading()
-        mPresenter.getSetoutCheckinList(AppPrefsUtils.getString(BaseConstant.kInstanceId), AppPrefsUtils.getString(BaseConstant.kTokenKey))
+        mPresenter.getSetoutCheckinList(PISUtil.getInstanceId(), PISUtil.getTokenKey())
     }
 
     override fun onDataIsNull() {
@@ -72,6 +72,10 @@ class SetoutCheckinListActivity : BaseMvpActivity<SetoutCheckInListPresenter>(),
 
     override fun onGetListResult(result: List<SetoutCheckIn>) {
         mAdapter.setData(result.toMutableList())
-        mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT
+
+        if (result.isNotEmpty())
+            mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT
+        else
+            mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
     }
 }

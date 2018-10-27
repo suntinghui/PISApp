@@ -10,7 +10,7 @@ import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.text.SpannableStringBuilder
 import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.kotlin.base.utils.AppPrefsUtils
+import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.pis.data.protocol.PublishInfo
 import com.lkpower.pis.injection.component.DaggerPublishComponent
@@ -31,7 +31,7 @@ class PublishDetailActivity : BaseMvpActivity<PublishDetailPresenter>(), Publish
     }
 
     private fun loadData() {
-        mPresenter.gePublishModel(intent.getStringExtra("ID"), "", AppPrefsUtils.getString(BaseConstant.kTokenKey))
+        mPresenter.gePublishModel(intent.getStringExtra("ID"), "", PISUtil.getTokenKey())
     }
 
     override fun injectComponent() {

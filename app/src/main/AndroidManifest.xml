@@ -47,6 +47,9 @@
         <activity android:name=".ui.activity.DrivingInfoListActivity" />
         <activity android:name=".ui.activity.DrivingInfoDetailActivity" />
         <activity android:name=".ui.activity.DrivingInfoUploadActivity" />
+        <activity android:name=".ui.activity.EmergencyInfoListActivity" />
+        <activity android:name=".ui.activity.EmergencyInfoDetailActivity" />
+        <activity android:name=".ui.activity.EmergencyInfoAddActivity" />
 
 
     </application>

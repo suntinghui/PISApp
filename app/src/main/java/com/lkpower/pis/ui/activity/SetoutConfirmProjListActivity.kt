@@ -7,7 +7,7 @@ import com.bigkoo.alertview.OnItemClickListener
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.kotlin.base.utils.AppPrefsUtils
+import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.startLoading
 import com.lkpower.pis.R
@@ -51,7 +51,7 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
                 AlertView("提示", "已确认信息无误，立即提交？", "取消", arrayOf("确定"), null, this@SetoutConfirmProjListActivity, AlertView.Style.Alert, OnItemClickListener { o, index ->
                     when (index) {
                         0 -> {
-                            mPresenter.setoutConfirmProj(taskIdList?.get(position), AppPrefsUtils.getString(BaseConstant.kTokenKey))
+                            mPresenter.setoutConfirmProj(taskIdList?.get(position), PISUtil.getTokenKey())
                         }
                     }
                 }).show()
@@ -62,7 +62,7 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
 
     private fun loadDetail() {
         mMultiStateView.startLoading()
-        mPresenter.getSetOutConfirmProjList(AppPrefsUtils.getString(BaseConstant.kInstanceId), GroupTaskId, AppPrefsUtils.getString(BaseConstant.kTokenKey))
+        mPresenter.getSetOutConfirmProjList(PISUtil.getInstanceId(), GroupTaskId, PISUtil.getTokenKey())
     }
 
 
@@ -74,7 +74,11 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
     override fun onGetProjListResult(result: List<SetoutConfirmProj>) {
         taskIdList = result.map { it.ID }
         mAdapter.setData(result.toMutableList())
-        mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT;
+
+        if (result.isNotEmpty())
+            mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT
+        else
+            mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
     }
 
     override fun onDataIsNull() {

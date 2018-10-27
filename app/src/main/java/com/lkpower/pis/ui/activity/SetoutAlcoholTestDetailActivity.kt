@@ -8,10 +8,13 @@ import com.bigkoo.alertview.OnItemClickListener
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.kotlin.base.utils.AppPrefsUtils
+import com.kotlin.base.widgets.ImagePickerView
+import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.common.BaseConstant
+import com.lkpower.base.data.protocol.AttModel
 import com.lkpower.base.ext.onClick
 import com.lkpower.base.ext.setVisible
+import com.lkpower.base.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoutAlcoholTest
 import com.lkpower.pis.injection.component.DaggerSetoutComponent
@@ -31,6 +34,8 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
     private lateinit var instanceId: String
     private lateinit var taskId: String
 
+    private lateinit var busId: String // 上传图片用，从详情中取得
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,6 +43,7 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
 
         instanceId = intent.getStringExtra("instanceId")
         taskId = intent.getStringExtra("taskId")
+        busId = ""
 
         this.initView()
 
@@ -52,20 +58,42 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
         mOperBtn.shadowHeight = 5
         mOperBtn.cornerRadius = 5
         mOperBtn.onClick { setAction() }
+
+        mImagePicker.setAttType(BaseConstant.Att_Type_Other)
+        mImagePicker.setEditable(true)
+        // 上传图片的事件
+        mImagePicker.setUploadListener(object : ImagePickerView.UploadListener {
+            override fun onError() {
+                ViewUtils.showSimpleAlert(this@SetoutAlcoholTestDetailActivity, "有图片上传失败，请重新确定上传")
+            }
+
+            override fun onComplete() {
+                mPresenter.setOutAlcoholTest(taskId, RESULT_LIST.indexOf(mResultTv.text).toString(), PISUtil.getTokenKey())
+            }
+
+        })
     }
 
     private fun queryDetail() {
-        mPresenter.getSetoutAlcoholTestDetail(instanceId, taskId, AppPrefsUtils.getString(BaseConstant.kTokenKey))
+        mPresenter.getSetoutAlcoholTestDetail(instanceId, taskId, PISUtil.getTokenKey())
     }
 
     private fun setAction() {
         AlertView("确认提交", "当前状态为${mResultTv.text}", "取消", arrayOf("确定"), null, this@SetoutAlcoholTestDetailActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
             when (position) {
                 0 -> {
-                    mPresenter.setOutAlcoholTest(taskId, RESULT_LIST.indexOf(mResultTv.text).toString(), AppPrefsUtils.getString(BaseConstant.kTokenKey))
+                    mImagePicker.uploadAction(busId, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
                 }
             }
         }).show();
+    }
+
+    private fun queryAtt() {
+        mPresenter.getAttList(busId, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
+    }
+
+    override fun onGetAttListResult(result: List<AttModel>) {
+        mImagePicker.setNetImages(result)
     }
 
     override fun injectComponent() {
@@ -100,6 +128,8 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
     // 取得详情
     override fun onGetDetailResult(item: SetoutAlcoholTest) {
         try {
+            busId = item.ID
+
             mClassNameView.setContentText(item.ClassName)
             mSendTimeView.setContentText(item.SendTime)
             mSiteNameView.setContentText(item.SiteName)
@@ -111,7 +141,10 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
             // 任务状态:0=待执行，1=执行中，2=执行完成
             mShowTestLayout.setVisible(item.TaskStatus == "0")
 
-        } catch (e:Exception) {
+            // 取到busId后才可以查询附件
+            queryAtt()
+
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }

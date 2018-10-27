@@ -9,7 +9,7 @@ import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
-import com.kotlin.base.utils.AppPrefsUtils
+import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.startLoading
 import com.lkpower.pis.R
@@ -60,7 +60,7 @@ class DrivingInfoListActivity : BaseMvpActivity<DrivingInfoListPresenter>(), Dri
 
     private fun loadData() {
         mMultiStateView.startLoading()
-        mPresenter.getDrivingInfoList("{}", PageBeanUtil.getPageBeanJson(mCurrentPage), AppPrefsUtils.getString(BaseConstant.kTokenKey))
+        mPresenter.getDrivingInfoList("{}", PageBeanUtil.getPageBeanJson(mCurrentPage), PISUtil.getTokenKey())
 
     }
 
@@ -83,6 +83,8 @@ class DrivingInfoListActivity : BaseMvpActivity<DrivingInfoListPresenter>(), Dri
                 mAdapter.notifyDataSetChanged()
             }
             mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT
+        } else {
+            mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
         }
     }
 

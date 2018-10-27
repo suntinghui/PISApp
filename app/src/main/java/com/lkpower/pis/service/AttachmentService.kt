@@ -1,12 +1,6 @@
 package com.lkpower.pis.service
 
-import com.lkpower.base.data.net.RetrofitFactory
-import com.lkpower.base.data.protocol.BaseResp
-import com.lkpower.pis.data.api.PublishApi
-import com.lkpower.pis.data.protocol.AttModel
-import com.lkpower.pis.data.protocol.LearnDoc
-import com.lkpower.pis.data.protocol.ListResult
-import com.lkpower.pis.data.protocol.PublishInfo
+import com.lkpower.base.data.protocol.AttModel
 import io.reactivex.Observable
 
 interface AttachmentService {
@@ -19,5 +13,9 @@ interface AttachmentService {
 
     // 查询附件列表
     fun getAttList(busId: String, ATTBusModule: String, tokenKey: String): Observable<List<AttModel>>
+
+
+    // 删除附件
+    fun deleteFile(attId: String, attType: String, tokenKey: String): Observable<Boolean>
 
 }

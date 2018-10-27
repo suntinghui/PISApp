@@ -1,6 +1,7 @@
 package com.lkpower.pis.service.impl
 
 import com.lkpower.base.ext.convert
+import com.lkpower.base.ext.convertBoolean
 import com.lkpower.pis.data.protocol.DrivingInfo
 import com.lkpower.pis.data.protocol.EmergencyInfo
 import com.lkpower.pis.data.protocol.ListResult
@@ -25,8 +26,8 @@ class EmergencyInfoServiceImpl @Inject constructor() : EmergencyInfoService {
         return emergencyInfoRespository.getEmergencyInfoModel(emInfoId, tokenKey).convert()
     }
 
-    override fun addEmergencyInfo(instanceId: String, remark: String, tokenKey: String): Observable<String> {
-        return emergencyInfoRespository.addEmergencyInfo(instanceId, remark, tokenKey).convert()
+    override fun addEmergencyInfo(instanceId: String, remark: String, tokenKey: String): Observable<Boolean> {
+        return emergencyInfoRespository.addEmergencyInfo(instanceId, remark, tokenKey).convertBoolean()
     }
 
 

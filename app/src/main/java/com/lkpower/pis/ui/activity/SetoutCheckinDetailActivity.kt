@@ -3,7 +3,7 @@ package com.lkpower.pis.ui.activity
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.kotlin.base.utils.AppPrefsUtils
+import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.onClick
 import com.lkpower.base.ext.setVisible
@@ -48,11 +48,11 @@ class SetoutCheckinDetailActivity : BaseMvpActivity<SetoutCheckinDetailPresenter
     }
 
     private fun queryDetail() {
-        mPresenter.getSetoutCheckinDetail(instanceId, taskId, AppPrefsUtils.getString(BaseConstant.kTokenKey))
+        mPresenter.getSetoutCheckinDetail(instanceId, taskId, PISUtil.getTokenKey())
     }
 
     private fun setAction() {
-        mPresenter.setOutCheckin(taskId, AppPrefsUtils.getString(BaseConstant.kTokenKey))
+        mPresenter.setOutCheckin(taskId, PISUtil.getTokenKey())
     }
 
     override fun injectComponent() {

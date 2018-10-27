@@ -1,4 +1,4 @@
-package com.lkpower.pis.data.protocol
+package com.lkpower.base.data.protocol
 
 data class AttModel(
         val AttId: String,

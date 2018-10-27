@@ -72,8 +72,8 @@ class SecondCategoryActivity : BaseActivity() {
                         Category(302, "历史信息", R.drawable.icon_lsxx, 3, "/pis/DrivingInfoListActivity")
                 ),
                 4 to arrayListOf<Category>(
-                        Category(401, "应急反馈", R.drawable.icon_yjfk, 4, ""),
-                        Category(402, "历史应急", R.drawable.icon_lsxx, 4, "")
+                        Category(401, "应急反馈", R.drawable.icon_yjfk, 4, "/pis/EmergencyInfoAddActivity"),
+                        Category(402, "历史应急", R.drawable.icon_lsxx, 4, "/pis/EmergencyInfoListActivity")
                 ),
                 5 to arrayListOf<Category>(
                         Category(501, "故障反馈", R.drawable.icon_yjfk, 5, "/pis/FaultReportActivity"),
