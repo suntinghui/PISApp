@@ -35,7 +35,14 @@
                 android:layout_height="wrap_content"
                 app:labelText="任务内容"></com.kotlin.base.widgets.LabelTextView>
 
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mStateView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="任务标题"></com.kotlin.base.widgets.LabelTextView>
+
             <LinearLayout
+                android:id="@+id/mStateLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -60,10 +67,17 @@
                     android:layout_marginLeft="@dimen/common_margin"
                     android:layout_weight="1"
                     android:drawableRight="@drawable/icon_arrow_drop_down"
-                    android:text="请选择完成状态" />
+                    android:text="" />
             </LinearLayout>
 
+            <com.kotlin.base.widgets.LabelTextView
+                android:id="@+id/mRemarkView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="备注"></com.kotlin.base.widgets.LabelTextView>
+
             <LinearLayout
+                android:id="@+id/mRemarkLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -83,15 +97,15 @@
                     android:textSize="@dimen/text_middle_size" />
 
                 <EditText
-                    android:background="@drawable/border_all"
                     android:id="@+id/mRemarkEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/common_margin"
-                    android:padding="@dimen/common_padding_small"
                     android:layout_weight="1"
+                    android:background="@drawable/border_all"
                     android:hint="请输入备注"
-                    android:lines="4" />
+                    android:lines="4"
+                    android:padding="@dimen/common_padding_small" />
             </LinearLayout>
 
             <TextView

@@ -19,6 +19,9 @@ import com.lkpower.pis.ui.adapter.SetOutAdapter
 import kotlinx.android.synthetic.main.activity_setout_checkin_list.*
 import org.jetbrains.anko.startActivity
 
+/*
+出乘确认(出乘管理最后一项)列表
+ */
 @Route(path = "/pis/SetoutListActivity")
 class SetoutListActivity : BaseMvpActivity<SetoutListPresenter>(), SetoutListView {
 
@@ -30,6 +33,10 @@ class SetoutListActivity : BaseMvpActivity<SetoutListPresenter>(), SetoutListVie
         setContentView(R.layout.activity_setout_checkin_list)
 
         initView()
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         queryList()
     }

@@ -43,17 +43,20 @@ class LabelTextView @JvmOverloads constructor(context: Context, attrs: Attribute
     /*
         设置内容文本
      */
-    fun setContentText(text: String) {
-        mContentTv.text = text
+    fun setContentText(text: String?) {
+        if (null == text || text.isNullOrEmpty())
+            mContentTv.text = "无"
+        else
+            mContentTv.text = text
     }
 
-    fun setLabelAndContent(label: String, content: String): LabelTextView {
-        var tempContent = content
-        if (content.isNullOrEmpty())
-            tempContent = ""
+    fun setLabelAndContent(label: String, content: String?): LabelTextView {
+        if (null == content || content.isNullOrEmpty())
+            mContentTv.text = "无"
+        else
+            mContentTv.text = content
 
         mLabelTv.text = label
-        mContentTv.text = tempContent
         return this
     }
 

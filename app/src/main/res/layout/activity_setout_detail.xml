@@ -52,12 +52,6 @@
                 android:layout_height="wrap_content"
                 app:labelText="出乘开始时间" />
 
-            <com.kotlin.base.widgets.LabelTextView
-                android:id="@+id/mTaskObjView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:labelText="乘务员ID" />
-
             <info.hoang8f.widget.FButton
                 android:id="@+id/mOperBtn"
                 android:layout_width="match_parent"

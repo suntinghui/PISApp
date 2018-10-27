@@ -65,7 +65,7 @@ class SetoutRespository @Inject constructor() {
         return RetrofitFactory.instance.create(SetoutApi::class.java).getSetout(instanceId, taskId, tokenKey)
     }
 
-    fun setoutConfirm(taskId: String, tokenKey: String): Observable<BaseResp<Boolean>> {
+    fun setoutConfirm(taskId: String, tokenKey: String): Observable<BaseResp<CommonReturn>> {
         return RetrofitFactory.instance.create(SetoutApi::class.java).setoutConfirm(taskId, tokenKey)
     }
 

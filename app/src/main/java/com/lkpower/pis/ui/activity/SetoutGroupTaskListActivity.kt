@@ -20,6 +20,9 @@ import com.lkpower.pis.ui.adapter.SetOutGroupTaskAdapter
 import kotlinx.android.synthetic.main.activity_setout_grouptask_list.*
 import org.jetbrains.anko.startActivity
 
+/*
+出乘管理-项目确认的列表
+ */
 @Route(path = "/pis/SetoutGroupTaskListActivity")
 class SetoutGroupTaskListActivity : BaseMvpActivity<SetoutGroupTaskListPresenter>(), SetoutGroupTaskListView {
 

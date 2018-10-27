@@ -34,7 +34,7 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
     private lateinit var instanceId: String
     private lateinit var taskId: String
 
-    private lateinit var busId: String // 上传图片用，从详情中取得
+    private lateinit var setoutAlcoholTest: SetoutAlcoholTest
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +43,6 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
 
         instanceId = intent.getStringExtra("instanceId")
         taskId = intent.getStringExtra("taskId")
-        busId = ""
 
         this.initView()
 
@@ -60,7 +59,6 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
         mOperBtn.onClick { setAction() }
 
         mImagePicker.setAttType(BaseConstant.Att_Type_Other)
-        mImagePicker.setEditable(true)
         // 上传图片的事件
         mImagePicker.setUploadListener(object : ImagePickerView.UploadListener {
             override fun onError() {
@@ -78,22 +76,18 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
         mPresenter.getSetoutAlcoholTestDetail(instanceId, taskId, PISUtil.getTokenKey())
     }
 
+    private fun queryAtt() {
+        mPresenter.getAttList(setoutAlcoholTest.ID, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
+    }
+
     private fun setAction() {
         AlertView("确认提交", "当前状态为${mResultTv.text}", "取消", arrayOf("确定"), null, this@SetoutAlcoholTestDetailActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
             when (position) {
                 0 -> {
-                    mImagePicker.uploadAction(busId, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
+                    mImagePicker.uploadAction(setoutAlcoholTest.ID, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
                 }
             }
         }).show();
-    }
-
-    private fun queryAtt() {
-        mPresenter.getAttList(busId, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
-    }
-
-    override fun onGetAttListResult(result: List<AttModel>) {
-        mImagePicker.setNetImages(result)
     }
 
     override fun injectComponent() {
@@ -125,21 +119,30 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
         }
     }
 
+    override fun onGetAttListResult(result: List<AttModel>) {
+        mImagePicker.setNetImages(result)
+    }
+
     // 取得详情
     override fun onGetDetailResult(item: SetoutAlcoholTest) {
         try {
-            busId = item.ID
+            setoutAlcoholTest = item
+
+            // 任务状态:0=待执行，1=执行中，2=执行完成
+            mImagePicker.setEditable(setoutAlcoholTest.TaskStatus == "0")
 
             mClassNameView.setContentText(item.ClassName)
             mSendTimeView.setContentText(item.SendTime)
             mSiteNameView.setContentText(item.SiteName)
             mTaskStatusView.setContentText(if (item.TaskStatus == "0") "待执行" else "已完成")
+            mResultView.setContentText(if (item.Result == "0") "不通过" else "通过") // 不通过=0，通过=1
             mLatesttAlcoholTestTimeView.setContentText(item.LatesttAlcoholTestTime)
             mBeginTimeView.setContentText(item.BeginTime)
-            mTaskObjView.setContentText(item.TaskObj)
 
-            // 任务状态:0=待执行，1=执行中，2=执行完成
-            mShowTestLayout.setVisible(item.TaskStatus == "0")
+            mTestLayout.setVisible(setoutAlcoholTest.TaskStatus == "0")
+            mOperBtn.setVisible(setoutAlcoholTest.TaskStatus == "0")
+            mResultView.setVisible(setoutAlcoholTest.TaskStatus != "0")
+
 
             // 取到busId后才可以查询附件
             queryAtt()

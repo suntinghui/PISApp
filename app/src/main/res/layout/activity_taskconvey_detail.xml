@@ -7,7 +7,8 @@
 
     <com.kotlin.base.widgets.HeaderBar
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.kotlin.base.widgets.HeaderBar>
+        android:layout_height="wrap_content"
+        app:titleText="任务确认"></com.kotlin.base.widgets.HeaderBar>
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -54,12 +55,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="完布时间"></com.kotlin.base.widgets.LabelTextView>
-
-            <com.kotlin.base.widgets.LabelTextView
-                android:id="@+id/mRiskItemsView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:labelText="相关风险项"></com.kotlin.base.widgets.LabelTextView>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/mRiskItemsRv"

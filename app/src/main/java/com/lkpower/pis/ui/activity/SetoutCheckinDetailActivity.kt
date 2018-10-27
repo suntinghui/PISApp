@@ -69,10 +69,10 @@ class SetoutCheckinDetailActivity : BaseMvpActivity<SetoutCheckinDetailPresenter
             mTaskStatusView.setContentText(if (item.TaskStatus == "0") "待执行" else "已完成")
             mLatestCheckInTimeView.setContentText(item.LatestCheckInTime)
             mBeginTimeView.setContentText(item.BeginTime)
-            mTaskObjView.setContentText(item.TaskObj)
 
             // 任务状态:0=待执行，1=执行中，2=执行完成
             mOperBtn.setVisible(item.TaskStatus == "0")
+
         } catch (e: Exception) {
             e.printStackTrace()
         }

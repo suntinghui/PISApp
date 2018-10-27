@@ -7,6 +7,7 @@ import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.onClick
 import com.lkpower.base.ext.setVisible
 import com.lkpower.pis.R
+import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.SetoutInfo
 import com.lkpower.pis.injection.component.DaggerSetoutComponent
 import com.lkpower.pis.injection.module.SetoutModule
@@ -64,14 +65,13 @@ class SetoutDetailActivity : BaseMvpActivity<SetoutDetailPresenter>(), SetoutDet
         mTaskStatusView.setContentText(if (item.TaskStatus == "0") "待执行" else "已完成")
         mOverConfirmTimeView.setContentText(item.OverConfirmTIme)
         mBeginTimeView.setContentText(item.BeginTime)
-        mTaskObjView.setContentText(item.TaskObj)
 
         // 任务状态:0=待执行，1=执行中，2=执行完成
         mOperBtn.setVisible(item.TaskStatus == "0")
     }
 
     // 项目确认
-    override fun setOutResult(result: Boolean) {
+    override fun setOutResult(result: CommonReturn) {
         toast("项目确认成功")
         queryDetail()
     }

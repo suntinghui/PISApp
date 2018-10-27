@@ -20,7 +20,7 @@ interface AttachmentApi {
 
     // 文件删除
     @FormUrlEncoded
-    @POST("MobileAPI/ATTManager.ashx?Commond=Del")
+    @POST("ATTManager.ashx?Commond=Del")
     fun deleteFile(@Field("AttId") attId: String,
                    @Field("ATTBusModule") attType: String,
                    @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>

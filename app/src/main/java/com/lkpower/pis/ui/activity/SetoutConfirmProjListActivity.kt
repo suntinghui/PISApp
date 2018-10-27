@@ -1,5 +1,7 @@
 package com.lkpower.pis.ui.activity
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.bigkoo.alertview.AlertView
@@ -9,6 +11,7 @@ import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.common.BaseConstant
+import com.lkpower.base.data.protocol.AttModel
 import com.lkpower.base.ext.startLoading
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoutConfirmProj
@@ -17,9 +20,16 @@ import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.SetoutGroupConfirmProjListPresenter
 import com.lkpower.pis.presenter.view.SetoutConfirmProjListView
 import com.lkpower.pis.ui.adapter.ConfirmProjAdapter
+import com.luck.picture.lib.PictureSelector
+import com.luck.picture.lib.config.PictureConfig
+import kotlinx.android.synthetic.main.activity_setout_alcoholtest_detail.*
 import kotlinx.android.synthetic.main.activity_setout_confirm_proj_list.*
 import org.jetbrains.anko.toast
 
+/*
+出乘管理-项目确认-列表-详情
+
+ */
 class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjListPresenter>(), SetoutConfirmProjListView {
 
     private var GroupTaskId: String = ""
@@ -40,8 +50,6 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
 
     private fun initView() {
         mProjRv.layoutManager = LinearLayoutManager(this)
-        // 设置分隔线
-        RecyclerViewDivider.with(this).build().addTo(mProjRv);
 
         mAdapter = ConfirmProjAdapter(this)
         mProjRv.adapter = mAdapter
@@ -89,6 +97,23 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
         toast("提交成功")
 
         loadDetail()
+    }
+
+    override fun onGetAttListResult(result: List<AttModel>) {
+        mImagePicker.setNetImages(result)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode === Activity.RESULT_OK) {
+            when (requestCode) {
+                PictureConfig.CHOOSE_REQUEST -> {
+                    val selectList = PictureSelector.obtainMultipleResult(data)
+                    mImagePicker.onPickerDoneResult(selectList)
+                }
+            }
+        }
     }
 
 

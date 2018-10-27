@@ -117,6 +117,7 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
     // 设置网络图片列表
     public fun setNetImages(attList: List<AttModel>) {
         netAttList = attList
+        netList.clear()
 
         attList.map {
             var localMedia = LocalMedia()

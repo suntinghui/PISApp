@@ -31,9 +31,6 @@ class TaskConveyListActivity : BaseMvpActivity<TaskConveyListPresenter>(), TaskC
         setContentView(R.layout.activity_taskconvey_list)
 
         initView()
-
-
-
     }
 
     override fun onResume() {

@@ -70,8 +70,8 @@ class SetoutServiceImpl @Inject constructor() : SetoutService {
         return respository.getSetout(instanceId, taskId, tokenKey).convert()
     }
 
-    override fun setoutConfirm(taskId: String, tokenKey: String): Observable<Boolean> {
-        return respository.setoutConfirm(taskId, tokenKey).convertBoolean()
+    override fun setoutConfirm(taskId: String, tokenKey: String): Observable<CommonReturn> {
+        return respository.setoutConfirm(taskId, tokenKey).convert()
     }
 
 
