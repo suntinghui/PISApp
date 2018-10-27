@@ -5,6 +5,8 @@ import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.lkpower.pis.utils.PISUtil
 import com.kotlin.base.widgets.LabelTextView
 import com.lkpower.base.common.BaseConstant
+import com.lkpower.base.data.protocol.AttModel
+import com.lkpower.base.ext.setVisible
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.EmergencyInfo
 import com.lkpower.pis.injection.component.DaggerEmergencyInfoComponent
@@ -20,16 +22,27 @@ class EmergencyInfoDetailActivity : BaseMvpActivity<EmergencyInfoDetailPresenter
 
         setContentView(R.layout.activity_driving_info_detail)
 
-        loadData()
+        mHeaderBar.setTitleText("应急反馈")
+
+        queryDetail()
     }
 
-    private fun loadData() {
+    private fun queryDetail() {
         this.showLoading()
         mPresenter.getEmergencyInfoModel(intent.getStringExtra("ID"), PISUtil.getTokenKey())
     }
 
+    private fun queryAtt(busId: String) {
+        mPresenter.getAttList(busId, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
+    }
+
     override fun onDataIsNull() {
         this.hideLoading()
+
+        // 如果没有附件会走这里,是否合理?
+        mImagePicker.setVisible(false)
+        mDetailLayout.addView(LabelTextView(this).setLabelAndContent("图片信息", "暂无"))
+
     }
 
     override fun injectComponent() {
@@ -39,6 +52,8 @@ class EmergencyInfoDetailActivity : BaseMvpActivity<EmergencyInfoDetailPresenter
 
     override fun onGetDetailResult(result: EmergencyInfo) {
         this.hideLoading()
+
+        queryAtt(result.EmInfoId)
 
         try {
             mDetailLayout.addView(LabelTextView(this).setLabelAndContent("车次名称", result.CarNumberName))
@@ -50,5 +65,12 @@ class EmergencyInfoDetailActivity : BaseMvpActivity<EmergencyInfoDetailPresenter
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    override fun onGetAttListResult(result: List<AttModel>) {
+        mImagePicker.setVisible(true)
+        mImagePicker.setEditable(false)
+                .setAttType(BaseConstant.Att_Type_Driving)
+                .setNetImages(result)
     }
 }

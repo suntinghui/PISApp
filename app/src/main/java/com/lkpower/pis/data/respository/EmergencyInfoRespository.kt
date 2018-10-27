@@ -3,6 +3,7 @@ package com.lkpower.pis.data.respository
 import com.lkpower.base.data.net.RetrofitFactory
 import com.lkpower.base.data.protocol.BaseResp
 import com.lkpower.pis.data.api.EmergencyInfoApi
+import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.EmergencyInfo
 import com.lkpower.pis.data.protocol.ListResult
 import io.reactivex.Observable
@@ -24,7 +25,7 @@ class EmergencyInfoRespository @Inject constructor() {
     }
 
     // 应急处置反馈
-    fun addEmergencyInfo(instanceId: String, remark: String, tokenKey: String): Observable<BaseResp<String>> {
-        return RetrofitFactory.instance.create(EmergencyInfoApi::class.java).addEmergencyInfo(instanceId, remark, tokenKey)
+    fun addEmergencyInfo(info:String, tokenKey: String): Observable<BaseResp<CommonReturn>> {
+        return RetrofitFactory.instance.create(EmergencyInfoApi::class.java).addEmergencyInfo(info, tokenKey)
     }
 }

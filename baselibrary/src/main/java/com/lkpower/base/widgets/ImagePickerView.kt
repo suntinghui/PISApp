@@ -2,23 +2,20 @@ package com.kotlin.base.widgets
 
 import android.app.Activity
 import android.content.Context
-import android.media.Image
 import android.support.v7.widget.GridLayoutManager
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.ImageView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.lkpower.base.R
 import com.lkpower.pis.ui.adapter.ImagePickerAdapter
 import kotlinx.android.synthetic.main.layout_imagepicker_view.view.*
-import com.bumptech.glide.Glide
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.data.net.RetrofitFactory
-import com.lkpower.base.data.protocol.AttApi
+import com.lkpower.base.data.api.AttApi
 import com.lkpower.base.data.protocol.AttModel
 import com.lkpower.base.data.protocol.BaseResp
 import com.lkpower.base.event.DeleteSelectImageEvent
@@ -37,7 +34,6 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import okhttp3.MediaType
 import okhttp3.MultipartBody
-import okhttp3.Request
 import okhttp3.RequestBody
 import java.io.File
 

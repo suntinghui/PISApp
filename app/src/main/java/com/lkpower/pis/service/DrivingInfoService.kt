@@ -1,5 +1,6 @@
 package com.lkpower.pis.service
 
+import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.DrivingInfo
 import com.lkpower.pis.data.protocol.ListResult
 import io.reactivex.Observable
@@ -13,5 +14,5 @@ interface DrivingInfoService {
     fun getDrivingInfoModel(id: String, tokenKey: String): Observable<DrivingInfo>
 
     // 行车信息上报
-    fun updateDrivingInfo(instanceId: String, remark: String, tokenKey: String): Observable<Boolean>
+    fun updateDrivingInfo(instanceId: String, remark: String, uuid: String, tokenKey: String): Observable<CommonReturn>
 }

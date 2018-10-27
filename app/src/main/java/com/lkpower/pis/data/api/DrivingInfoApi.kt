@@ -1,6 +1,7 @@
 package com.lkpower.pis.data.api
 
 import com.lkpower.base.data.protocol.BaseResp
+import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.DrivingInfo
 import com.lkpower.pis.data.protocol.ListResult
 import io.reactivex.Observable
@@ -30,6 +31,7 @@ interface DrivingInfoApi {
     @FormUrlEncoded
     @POST("InfoManager.ashx?Commond=UpdateDrivingInfo")
     fun updateDrivingInfo(@Field("InstanceId") instanceId: String,
-                        @Field("Remark") remark: String,
-                        @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>
+                          @Field("Remark") remark: String,
+                          @Field("ID") uuid: String,
+                          @Field("tokenKey") tokenKey: String): Observable<BaseResp<CommonReturn>>
 }

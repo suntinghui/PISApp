@@ -37,16 +37,6 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/mRemarkTv"
-            style="@style/MatchWrap"
-            android:layout_marginTop="10dp"
-            android:gravity="left"
-            android:maxLines="2"
-            android:text="备注"
-            android:textColor="@color/text_dark"
-            android:textSize="@dimen/text_middle_size" />
-
-        <TextView
             android:id="@+id/mSubmitTimeTv"
             style="@style/MatchWrap"
             android:layout_marginTop="10dp"

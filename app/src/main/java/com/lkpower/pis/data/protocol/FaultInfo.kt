@@ -2,9 +2,9 @@ package com.lkpower.pis.data.protocol
 
 data class FaultInfo(
 
-        val DutyUser:String,
-        val Title:String,
-        val SubmitTime:String
+        val DutyUser: String,
+        val Title: String,
+        val SubmitTime: String
 
 
         /*
@@ -21,6 +21,7 @@ data class FaultInfo(
         val ReportUser: String,
         val ReportTime: String,
         val HandleResult: String,
+        val InstanceId:String,
         val ConfirmInfo: FaultInfoConfirm
 
         */

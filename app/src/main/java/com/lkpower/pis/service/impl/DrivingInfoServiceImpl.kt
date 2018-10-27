@@ -2,6 +2,7 @@ package com.lkpower.pis.service.impl
 
 import com.lkpower.base.ext.convert
 import com.lkpower.base.ext.convertBoolean
+import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.DrivingInfo
 import com.lkpower.pis.data.protocol.ListResult
 import com.lkpower.pis.data.respository.DrivingInfoRespository
@@ -24,7 +25,7 @@ class DrivingInfoServiceImpl @Inject constructor() : DrivingInfoService {
         return drivingRespository.getDrivingInfoModel(id, tokenKey).convert()
     }
 
-    override fun updateDrivingInfo(instanceId: String, remark: String, tokenKey: String): Observable<Boolean> {
-        return drivingRespository.updateDrivingInfo(instanceId, remark, tokenKey).convertBoolean()
+    override fun updateDrivingInfo(instanceId: String, remark: String, uuid: String, tokenKey: String): Observable<CommonReturn> {
+        return drivingRespository.updateDrivingInfo(instanceId, remark, uuid, tokenKey).convert()
     }
 }

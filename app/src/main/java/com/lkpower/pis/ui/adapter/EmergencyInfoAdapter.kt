@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.layout_driving_info_item.view.*
 class EmergencyInfoAdapter(context: Context) : BaseRecyclerViewAdapter<EmergencyInfo, EmergencyInfoAdapter.ViewHolder>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(mContext).inflate(R.layout.layout_driving_info_item, parent, false)
+        val view = LayoutInflater.from(mContext).inflate(R.layout.layout_emergency_info_item, parent, false)
         return ViewHolder(view)
     }
 

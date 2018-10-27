@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
+import com.lkpower.base.ext.setVisible
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.DrivingInfo
 import kotlinx.android.synthetic.main.layout_driving_info_item.view.*
@@ -23,6 +24,12 @@ class DrivingInfoAdapter(context: Context) : BaseRecyclerViewAdapter<DrivingInfo
 
         holder.itemView.mCarNumberNameTv.text = model.CarNumberName
         holder.itemView.mGroupNameTv.text = model.GroupName
+        if (model.Remark.isNullOrEmpty()) {
+            holder.itemView.mRemarkTv.setVisible(false)
+        } else {
+            holder.itemView.mRemarkTv.setVisible(true)
+            holder.itemView.mRemarkTv.text = model.Remark
+        }
         holder.itemView.mSubmitTimeTv.text = model.SubmitTime
     }
 

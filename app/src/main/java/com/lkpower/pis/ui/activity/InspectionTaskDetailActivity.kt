@@ -3,6 +3,7 @@ package com.lkpower.pis.ui.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
@@ -34,6 +35,8 @@ class InspectionTaskDetailActivity : BaseMvpActivity<InspectionTaskDetailPresent
     private lateinit var taskId: String
     private lateinit var missionStateInfo: MissionStateInfo
 
+    private lateinit var tempRemark:String // 选择图片后会导致输入的文字丢失，所以进行暂存
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inspection_task_detail)
@@ -41,10 +44,6 @@ class InspectionTaskDetailActivity : BaseMvpActivity<InspectionTaskDetailPresent
         taskId = intent.getStringExtra("TaskId")
 
         initView()
-    }
-
-    override fun onResume() {
-        super.onResume()
 
         loadData()
     }
@@ -76,7 +75,7 @@ class InspectionTaskDetailActivity : BaseMvpActivity<InspectionTaskDetailPresent
             }
 
             override fun onComplete() {
-                //mPresenter.updateMissionInfoExt(taskId, (TASK_STATUS_LIS.indexOf(mStateTv.text) + 3).toString(), mRemarkEt.text.toString(), PISUtil.getTokenKey())
+                mPresenter.updateMissionInfoExt(taskId, (TASK_STATUS_LIS.indexOf(mStateTv.text) + 3).toString(), mRemarkEt.text.toString(), PISUtil.getTokenKey())
             }
 
         })
@@ -92,7 +91,7 @@ class InspectionTaskDetailActivity : BaseMvpActivity<InspectionTaskDetailPresent
         AlertView("确认提交？", "您选中的状态为：${mStateTv.text}", "取消", arrayOf("确定"), null, this@InspectionTaskDetailActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
             when (position) {
                 0 -> {
-                    mImagePicker.uploadAction(missionStateInfo.ID, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
+                    mImagePicker.uploadAction(missionStateInfo.ID, BaseConstant.Att_Type_Inspection, PISUtil.getTokenKey())
                 }
             }
         }).show();
@@ -134,6 +133,9 @@ class InspectionTaskDetailActivity : BaseMvpActivity<InspectionTaskDetailPresent
         this.hideLoading()
 
         missionStateInfo = result
+
+        if (result.remark.isNotEmpty())
+            mRemarkEt.text = Editable.Factory.getInstance().newEditable(result.remark)
 
         mTitleView.setContentText(result.MissionName)
         mContentView.setContentText(result.MissionRemark)

@@ -4,6 +4,7 @@ import com.lkpower.base.data.net.RetrofitFactory
 import com.lkpower.base.data.protocol.BaseResp
 import com.lkpower.pis.data.api.DrivingInfoApi
 import com.lkpower.pis.data.api.LearnDocApi
+import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.DrivingInfo
 import com.lkpower.pis.data.protocol.LearnDoc
 import com.lkpower.pis.data.protocol.ListResult
@@ -26,7 +27,7 @@ class DrivingInfoRespository @Inject constructor() {
     }
 
     // 行车信息上报
-    fun updateDrivingInfo(instanceId: String, remark: String, tokenKey: String): Observable<BaseResp<Boolean>> {
-        return RetrofitFactory.instance.create(DrivingInfoApi::class.java).updateDrivingInfo(instanceId, remark, tokenKey)
+    fun updateDrivingInfo(instanceId: String, remark: String, uuid: String, tokenKey: String): Observable<BaseResp<CommonReturn>> {
+        return RetrofitFactory.instance.create(DrivingInfoApi::class.java).updateDrivingInfo(instanceId, remark, uuid, tokenKey)
     }
 }

@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <com.kotlin.base.widgets.HeaderBar
+        android:id="@+id/mHeaderBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:titleText="行车信息"></com.kotlin.base.widgets.HeaderBar>
@@ -27,6 +28,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"></LinearLayout>
 
+            <com.kotlin.base.widgets.ImagePickerView
+                android:id="@+id/mImagePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_margin_middle"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="@dimen/common_margin_middle"
+                android:visibility="gone"></com.kotlin.base.widgets.ImagePickerView>
 
         </LinearLayout>
 

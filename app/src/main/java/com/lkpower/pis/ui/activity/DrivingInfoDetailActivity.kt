@@ -1,11 +1,12 @@
 package com.lkpower.pis.ui.activity
 
 import android.os.Bundle
-import com.kotlin.base.ui.activity.BaseActivity
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.lkpower.pis.utils.PISUtil
 import com.kotlin.base.widgets.LabelTextView
 import com.lkpower.base.common.BaseConstant
+import com.lkpower.base.data.protocol.AttModel
+import com.lkpower.base.ext.setVisible
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.DrivingInfo
 import com.lkpower.pis.injection.component.DaggerDrivingInfoComponent
@@ -22,16 +23,25 @@ class DrivingInfoDetailActivity : BaseMvpActivity<DrivingInfoDetailPresenter>(),
 
         setContentView(R.layout.activity_driving_info_detail)
 
-        loadData()
+        queryDetail()
     }
 
-    private fun loadData() {
+    private fun queryDetail() {
         this.showLoading()
         mPresenter.getDrivingInfoModel(intent.getStringExtra("ID"), PISUtil.getTokenKey())
     }
 
+    private fun queryAtt(busId: String) {
+        mPresenter.getAttList(busId, BaseConstant.Att_Type_Driving, PISUtil.getTokenKey())
+    }
+
     override fun onDataIsNull() {
         this.hideLoading()
+
+        // 如果没有附件会走这里,是否合理?
+        mImagePicker.setVisible(false)
+        mDetailLayout.addView(LabelTextView(this).setLabelAndContent("图片信息", "暂无"))
+
     }
 
     override fun injectComponent() {
@@ -42,6 +52,8 @@ class DrivingInfoDetailActivity : BaseMvpActivity<DrivingInfoDetailPresenter>(),
     override fun onGetDetailResult(result: DrivingInfo) {
         this.hideLoading()
 
+        queryAtt(result.ID)
+
         try {
             mDetailLayout.addView(LabelTextView(this).setLabelAndContent("车次名称", result.CarNumberName))
             mDetailLayout.addView(LabelTextView(this).setLabelAndContent("组别名称", result.GroupName))
@@ -51,5 +63,12 @@ class DrivingInfoDetailActivity : BaseMvpActivity<DrivingInfoDetailPresenter>(),
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    override fun onGetAttListResult(result: List<AttModel>) {
+        mImagePicker.setVisible(true)
+        mImagePicker.setEditable(false)
+                .setAttType(BaseConstant.Att_Type_Driving)
+                .setNetImages(result)
     }
 }

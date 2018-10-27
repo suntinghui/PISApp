@@ -1,13 +1,12 @@
 package com.lkpower.pis.data.api
 
 import com.lkpower.base.data.protocol.BaseResp
+import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.DrivingInfo
 import com.lkpower.pis.data.protocol.EmergencyInfo
 import com.lkpower.pis.data.protocol.ListResult
 import io.reactivex.Observable
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /*
 应急信息
@@ -30,7 +29,6 @@ interface EmergencyInfoApi {
     // 应急处置反馈
     @FormUrlEncoded
     @POST("InfoManager.ashx?Commond=AddEmergencyInfo")
-    fun addEmergencyInfo(@Field("InstanceId") instanceId: String,
-                         @Field("Remark") remark: String,
-                         @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+    fun addEmergencyInfo(@Field("EmergencyInfo") info: String,
+                         @Field("tokenKey") tokenKey: String): Observable<BaseResp<CommonReturn>>
 }
