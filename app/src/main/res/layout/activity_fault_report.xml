@@ -38,17 +38,19 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:gravity="right"
-                    android:text="车种"
+                    android:text="故障配件"
                     android:textSize="@dimen/text_middle_size" />
 
-                <TextView
-                    android:id="@+id/mTypeTv"
+                <AutoCompleteTextView
+                    android:id="@+id/mFailPartTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/common_margin"
                     android:layout_weight="1"
-                    android:drawableRight="@drawable/icon_arrow_drop_down"
-                    android:text="请选择车种" />
+                    android:background="@null"
+                    android:completionThreshold="1"
+                    android:hint="请输入故障配件关键词"
+                    android:maxLines="2" />
             </LinearLayout>
 
             <LinearLayout
@@ -67,17 +69,18 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:gravity="right"
-                    android:text="车型"
+                    android:text="故障类型"
                     android:textSize="@dimen/text_middle_size" />
 
                 <TextView
-                    android:id="@+id/mModelTv"
+                    android:id="@+id/mFaultTypeTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/common_margin"
                     android:layout_weight="1"
                     android:drawableRight="@drawable/icon_arrow_drop_down"
-                    android:text="请选择车型" />
+                    android:text="请选择故障类型"
+                    android:textColor="@color/text_dark" />
             </LinearLayout>
 
             <LinearLayout
@@ -99,6 +102,7 @@
                     android:textSize="@dimen/text_middle_size" />
 
                 <EditText
+                    android:id="@+id/mTrainNoEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/common_margin"
@@ -112,6 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/border_bottom"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingTop="@dimen/common_padding"
                 android:paddingRight="@dimen/common_padding"
@@ -126,6 +131,7 @@
                     android:textSize="@dimen/text_middle_size" />
 
                 <EditText
+                    android:id="@+id/mRemarkEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/common_margin"

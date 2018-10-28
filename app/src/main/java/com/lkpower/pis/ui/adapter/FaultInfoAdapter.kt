@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
+import com.lkpower.base.ext.setVisible
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.FaultInfo
+import kotlinx.android.synthetic.main.layout_fault_item.view.*
 import kotlinx.android.synthetic.main.layout_publish_item.view.*
 
 class FaultInfoAdapter(context: Context) : BaseRecyclerViewAdapter<FaultInfo, FaultInfoAdapter.ViewHolder>(context) {
@@ -20,9 +22,11 @@ class FaultInfoAdapter(context: Context) : BaseRecyclerViewAdapter<FaultInfo, Fa
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
         val model = dataList[position]
-        holder.itemView.mDutyUserTv.text = model.DutyUser
-        holder.itemView.mTitleTv.text = model.Title
-        holder.itemView.mSubmitTimeTv.text = model.SubmitTime
+
+        holder.itemView.mFailPartTv.text = model.PartName + " - " + model.FaultTypeName
+        holder.itemView.mRemarkTv.setVisible(model.Remark.isNullOrEmpty().not())
+        holder.itemView.mRemarkTv.text = model.Remark
+        holder.itemView.mReportTimeTv.text = model.ReportTime
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)

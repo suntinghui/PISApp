@@ -41,7 +41,7 @@ class SetoffListActivity : BaseMvpActivity<SetoffListPresenter>(), SetoffListVie
     }
 
     private fun initView() {
-        mHeaderBar.setTitleText("出乘列表")
+        mHeaderBar.setTitleText("退乘列表")
 
         mCheckinRv.layoutManager = LinearLayoutManager(this)
         RecyclerViewDivider.with(this).build().addTo(mCheckinRv);

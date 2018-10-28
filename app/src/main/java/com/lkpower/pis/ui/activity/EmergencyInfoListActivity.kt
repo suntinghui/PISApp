@@ -103,10 +103,6 @@ class EmergencyInfoListActivity : BaseMvpActivity<EmergencyInfoListPresenter>(),
         mRefreshLayout.setRefreshViewHolder(viewHolder)
     }
 
-    override fun onDataIsNull() {
-        mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
-    }
-
     override fun onBGARefreshLayoutBeginLoadingMore(refreshLayout: BGARefreshLayout?): Boolean {
         return if (mCurrentPage < mTotalPage) {
             mCurrentPage++

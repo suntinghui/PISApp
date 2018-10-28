@@ -59,10 +59,6 @@ class SetoffAlcoholTestListActivity : BaseMvpActivity<SetoffAlcoholTestListPrese
         })
     }
 
-    override fun onDataIsNull() {
-        mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
-    }
-
     override fun injectComponent() {
         DaggerSetoffComponent.builder().activityComponent(mActivityComponent).setoffModule(SetoffModule()).build().inject(this)
         mPresenter.mView = this

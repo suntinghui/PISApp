@@ -97,10 +97,6 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
         mPresenter.mView = this
     }
 
-    override fun onDataIsNull() {
-        ViewUtils.showSimpleAlert(this, "该账号下没有行车数据")
-    }
-
     override fun onGetLCFCInstanceResult(result: List<XJ_LCFC>) {
         shift = result
         if (shift.isEmpty()) {

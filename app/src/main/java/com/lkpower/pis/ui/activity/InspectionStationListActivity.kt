@@ -71,8 +71,4 @@ class InspectionStationListActivity : BaseMvpActivity<InspectionStationListPrese
         else
             mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
     }
-
-    override fun onDataIsNull() {
-        mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
-    }
 }

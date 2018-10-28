@@ -83,10 +83,6 @@ class DrivingInfoUploadActivity : BaseMvpActivity<DrivingInfoUploadPresenter>(),
         mPresenter.mView = this
     }
 
-    override fun onDataIsNull() {
-        this.hideLoading()
-    }
-
     override fun onUploadDetailResult(result: CommonReturn) {
         this.hideLoading()
         toast("上报成功")

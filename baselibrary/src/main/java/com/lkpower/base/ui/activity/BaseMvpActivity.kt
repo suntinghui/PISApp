@@ -12,6 +12,7 @@ import com.lkpower.base.presenter.BasePresenter
 import com.lkpower.base.presenter.view.BaseView
 import com.lkpower.base.utils.ViewUtils
 import org.jetbrains.anko.toast
+import java.lang.Exception
 import javax.inject.Inject
 
 /*
@@ -66,13 +67,18 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
         隐藏加载框，默认实现
      */
     override fun hideLoading() {
-        mLoadingDialog.hideLoading()
+        try {
+            mLoadingDialog.hideLoading()
+        }catch (e:Exception){
+
+        }
     }
 
     /*
         错误信息提示，默认实现
      */
     override fun onError(text:String) {
+        this.hideLoading()
         ViewUtils.showSimpleAlert(this, text)
     }
 }

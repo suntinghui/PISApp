@@ -54,10 +54,6 @@ class TaskConveyListActivity : BaseMvpActivity<TaskConveyListPresenter>(), TaskC
         })
     }
 
-    override fun onDataIsNull() {
-        mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
-    }
-
     private fun loadData() {
         mMultiStateView.startLoading()
         mPresenter.getTaskConveyList(PISUtil.getInstanceId(), PISUtil.getTokenKey())

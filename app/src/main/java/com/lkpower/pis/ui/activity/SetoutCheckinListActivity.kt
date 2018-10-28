@@ -60,10 +60,6 @@ class SetoutCheckinListActivity : BaseMvpActivity<SetoutCheckInListPresenter>(),
         mPresenter.getSetoutCheckinList(PISUtil.getInstanceId(), PISUtil.getTokenKey())
     }
 
-    override fun onDataIsNull() {
-        mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
-    }
-
     override fun injectComponent() {
         DaggerSetoutComponent.builder().activityComponent(mActivityComponent).setoutModule(SetoutModule()).build().inject(this)
         mPresenter.mView = this

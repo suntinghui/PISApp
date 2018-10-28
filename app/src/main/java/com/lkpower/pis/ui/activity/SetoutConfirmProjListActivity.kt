@@ -89,10 +89,6 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
             mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
     }
 
-    override fun onDataIsNull() {
-        mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY;
-    }
-
     override fun onConfirmResult(result: Boolean) {
         toast("提交成功")
 

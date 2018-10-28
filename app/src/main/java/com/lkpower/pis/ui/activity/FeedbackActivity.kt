@@ -56,10 +56,6 @@ class FeedbackActivity : BaseMvpActivity<FeedbackPresenter>(), FeedbackView {
         mPresenter.mView = this
     }
 
-    override fun onDataIsNull() {
-        this.hideLoading()
-    }
-
     override fun onAddResult(result: CommonReturn) {
         this.hideLoading()
         toast("提交成功，感谢您的反馈")

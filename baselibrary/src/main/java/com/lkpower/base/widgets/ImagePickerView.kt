@@ -169,6 +169,8 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
                 .subscribe(object : Observer<BaseResp<List<AttModel>>> {
                     override fun onComplete() {
                         Logger.e("===========onComplete")
+                        // 上传成功后要删除所有的本地选择的图片
+                        localList.clear()
                         this@ImagePickerView.listener.onComplete()
                     }
 

@@ -36,15 +36,6 @@ class EmergencyInfoDetailActivity : BaseMvpActivity<EmergencyInfoDetailPresenter
         mPresenter.getAttList(busId, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
     }
 
-    override fun onDataIsNull() {
-        this.hideLoading()
-
-        // 如果没有附件会走这里,是否合理?
-        mImagePicker.setVisible(false)
-        mDetailLayout.addView(LabelTextView(this).setLabelAndContent("图片信息", "暂无"))
-
-    }
-
     override fun injectComponent() {
         DaggerEmergencyInfoComponent.builder().activityComponent(mActivityComponent).emergencyInfoModule(EmergencyInfoModule()).build().inject(this)
         mPresenter.mView = this
@@ -68,9 +59,16 @@ class EmergencyInfoDetailActivity : BaseMvpActivity<EmergencyInfoDetailPresenter
     }
 
     override fun onGetAttListResult(result: List<AttModel>) {
-        mImagePicker.setVisible(true)
-        mImagePicker.setEditable(false)
-                .setAttType(BaseConstant.Att_Type_Driving)
-                .setNetImages(result)
+        this.hideLoading()
+
+        if (result.isEmpty()) {
+            mImagePicker.setVisible(false)
+            mDetailLayout.addView(LabelTextView(this).setLabelAndContent("图片信息", "暂无"))
+        } else {
+            mImagePicker.setVisible(true)
+            mImagePicker.setEditable(false)
+                    .setAttType(BaseConstant.Att_Type_Driving)
+                    .setNetImages(result)
+        }
     }
 }

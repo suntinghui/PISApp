@@ -66,10 +66,6 @@ class SetoutGroupTaskListActivity : BaseMvpActivity<SetoutGroupTaskListPresenter
         mPresenter.mView = this
     }
 
-    override fun onDataIsNull() {
-        mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
-    }
-
     override fun onGetListResult(result: List<SetoutGroupTask>) {
         mAdapter.setData(result.toMutableList())
 

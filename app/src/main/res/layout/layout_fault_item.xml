@@ -5,28 +5,28 @@
     android:padding="@dimen/common_padding">
 
     <TextView
-        android:id="@+id/mDutyUserTv"
+        android:id="@+id/mFailPartTv"
         style="@style/WrapWrap"
-        android:text="全部乘务员"
+        android:text="故障件名称"
         android:textColor="@color/text_dark"
         android:textSize="@dimen/text_big_size" />
 
     <TextView
-        android:id="@+id/mTitleTv"
+        android:id="@+id/mRemarkTv"
         style="@style/WrapWrap"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="1"
         android:lineSpacingMultiplier="1.2"
-        android:text="应急指挥手机到站不能正常使用的请编行车信息发到指挥中心"
+        android:text="故障说明"
         android:textColor="@color/text_normal"
         android:textSize="@dimen/text_middle_size" />
 
     <TextView
-        android:id="@+id/mSubmitTimeTv"
+        android:id="@+id/mReportTimeTv"
         style="@style/MatchWrap"
         android:layout_marginTop="10dp"
         android:gravity="right"
-        android:text="2018-10-13 17:48:19"
+        android:text="上报日期"
         android:textColor="@color/text_normal"
         android:textSize="@dimen/text_middle_size" />
 

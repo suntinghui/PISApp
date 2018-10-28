@@ -1,6 +1,7 @@
 package com.lkpower.pis.data.api
 
 import com.lkpower.base.data.protocol.BaseResp
+import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.DrivingInfo
 import com.lkpower.pis.data.protocol.FaultInfo
 import com.lkpower.pis.data.protocol.ListResult
@@ -31,11 +32,11 @@ interface FaultInfoApi {
     @FormUrlEncoded
     @POST("InfoManager.ashx?Commond=AddFaultInfo")
     fun addFaultInfo(@Field("tokenKey") tokenKey: String,
-                     @Field("faultInfo") faultInfo: String): Observable<BaseResp<String>>
+                     @Field("faultInfo") faultInfo: String): Observable<BaseResp<CommonReturn>>
 
     // 故障修复确认
     @FormUrlEncoded
     @POST("InfoManager.ashx?Commond=AddFaultInfoConfirm")
     fun addFaultInfoConfirm(@Field("tokenKey") tokenKey: String,
-                            @Field("confirmInfo") confirmInfo: String): Observable<BaseResp<String>>
+                            @Field("confirmInfo") confirmInfo: String): Observable<BaseResp<CommonReturn>>
 }

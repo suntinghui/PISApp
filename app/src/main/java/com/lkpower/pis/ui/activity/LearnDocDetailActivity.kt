@@ -50,12 +50,12 @@ class LearnDocDetailActivity : BaseMvpActivity<LearnDocDetailPresenter>(), Learn
 
     }
 
-    override fun onDataIsNull() {
-        mAttLayout.addView(LabelTextView(this).setLabelAndContent("文件", "无文件"))
-
-    }
-
     override fun onGetAttListResult(result: List<AttModel>) {
+        if (result.isEmpty()) {
+            mAttLayout.addView(LabelTextView(this).setLabelAndContent("文件", "无文件"))
+            return
+        }
+
         result.mapIndexed { index, attModel ->
             mAttLayout.addView(LabelAttrView(this).setLabelText("文件${index + 1}").setAttr(attModel.AttName, attModel.DownLoadUrl))
         }

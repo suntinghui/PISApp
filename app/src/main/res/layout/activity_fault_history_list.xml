@@ -3,78 +3,80 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/common_white"
     android:orientation="vertical">
 
     <com.kotlin.base.widgets.HeaderBar
+        android:id="@+id/mHeaderBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleText="历史故障"/>
+        app:titleText="历史故障" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="true"
-        android:paddingTop="@dimen/common_padding_small"
-        android:paddingBottom="@dimen/common_padding_small"
         android:focusableInTouchMode="true"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="@dimen/common_padding_middle">
 
-        <TextView
-            android:id="@+id/mTypeTv"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableRight="@drawable/icon_arrow_drop_down"
             android:gravity="center_vertical"
-            android:text="车种"
-            android:textAlignment="center"
-            android:textSize="@dimen/text_middle_size" />
+            android:orientation="horizontal">
 
-        <View
-            android:layout_width="1px"
-            android:layout_height="35dp"
-            android:layout_marginLeft="@dimen/common_margin_small"
-            android:layout_marginRight="@dimen/common_margin_small"
-            android:background="@color/common_divider" />
+            <AutoCompleteTextView
+                android:id="@+id/mFailPartTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border_all"
+                android:completionThreshold="1"
+                android:hint="请输入故障配件"
+                android:maxLines="2"
+                android:padding="@dimen/common_padding_middle" />
 
-        <TextView
-            android:id="@+id/mModelTv"
+            <TextView
+                android:id="@+id/mFaultTypeTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_margin"
+                android:layout_weight="1"
+                android:background="@drawable/border_all"
+                android:drawableRight="@drawable/icon_arrow_drop_down"
+                android:padding="@dimen/common_padding_middle"
+                android:text="故障类型" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:drawableRight="@drawable/icon_arrow_drop_down"
-            android:gravity="center_vertical"
-            android:text="车型"
-            android:textAlignment="center"
-            android:textSize="@dimen/text_middle_size" />
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <View
-            android:layout_width="1px"
-            android:layout_height="35dp"
-            android:layout_marginLeft="@dimen/common_margin_small"
-            android:layout_marginRight="@dimen/common_margin_middle"
-            android:background="@color/common_divider" />
+            <EditText
+                android:id="@+id/mTrainNoEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border_all"
+                android:hint="请输入车号"
+                android:padding="@dimen/common_padding_middle" />
 
-        <EditText
-            android:id="@+id/mNumTv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="车号"
-            android:textSize="@dimen/text_middle_size" />
-
-        <info.hoang8f.widget.FButton
-            android:id="@+id/mSearchBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginLeft="@dimen/common_margin"
-            android:layout_marginRight="@dimen/common_margin"
-            android:text="检索"
-            android:textColor="@color/common_white"
-            android:textSize="@dimen/text_small_size" />
-
+            <info.hoang8f.widget.FButton
+                android:id="@+id/mSearchBtn"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="20dp"
+                android:padding="@dimen/common_padding_middle"
+                android:text="检 索"
+                android:textColor="@color/common_white"
+                android:textSize="@dimen/text_middle_size" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -83,12 +85,21 @@
         android:layout_height="1px"
         android:background="@color/common_divider" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/mHistoryRv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@color/common_gray"
-        android:scrollbars="vertical" />
+    <com.kennyc.view.MultiStateView
+        android:id="@+id/mMultiStateView"
+        style="@style/MultiStateStyle">
+
+        <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+            android:id="@+id/mRefreshLayout"
+            style="@style/MatchMatch">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/mHistoryRv"
+                style="@style/commonRecyclerView"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    </com.kennyc.view.MultiStateView>
 
 </LinearLayout>

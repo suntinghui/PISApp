@@ -7,7 +7,7 @@ import okhttp3.RequestBody
 import retrofit2.http.*
 
 /*
-行车信息
+附件
  */
 interface AttachmentApi {
 

@@ -2,13 +2,11 @@ package com.lkpower.pis.data.respository
 
 import com.lkpower.base.data.net.RetrofitFactory
 import com.lkpower.base.data.protocol.BaseResp
+import com.lkpower.pis.data.api.CommonApi
 import com.lkpower.pis.data.api.DrivingInfoApi
 import com.lkpower.pis.data.api.FaultInfoApi
 import com.lkpower.pis.data.api.LearnDocApi
-import com.lkpower.pis.data.protocol.DrivingInfo
-import com.lkpower.pis.data.protocol.FaultInfo
-import com.lkpower.pis.data.protocol.LearnDoc
-import com.lkpower.pis.data.protocol.ListResult
+import com.lkpower.pis.data.protocol.*
 import io.reactivex.Observable
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -28,13 +26,23 @@ class FaultInfoRespository @Inject constructor() {
     }
 
     // 故障反馈
-    fun addFaultInfo(tokenKey: String, faultInfo: String): Observable<BaseResp<String>> {
+    fun addFaultInfo(tokenKey: String, faultInfo: String): Observable<BaseResp<CommonReturn>> {
         return RetrofitFactory.instance.create(FaultInfoApi::class.java).addFaultInfo(tokenKey, faultInfo)
     }
 
     // 故障修复确认
-    fun addFaultInfoConfirm(tokenKey: String, confirmInfo: String): Observable<BaseResp<String>> {
+    fun addFaultInfoConfirm(tokenKey: String, confirmInfo: String): Observable<BaseResp<CommonReturn>> {
         return RetrofitFactory.instance.create(FaultInfoApi::class.java).addFaultInfoConfirm(tokenKey, confirmInfo)
+    }
+
+    // 获取故障配件
+    fun getFailPartList(keyword: String): Observable<BaseResp<List<SysDic>>> {
+        return RetrofitFactory.instance.create(CommonApi::class.java).getDicList("FailPart", "", keyword)
+    }
+
+    // 获取故障类型
+    fun getFaultTypeList(relParentId: String, keyword: String): Observable<BaseResp<List<SysDic>>> {
+        return RetrofitFactory.instance.create(CommonApi::class.java).getDicList("FaultType", relParentId, keyword)
     }
 
 

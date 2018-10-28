@@ -61,10 +61,6 @@ class SetoffCheckinListActivity : BaseMvpActivity<SetoffCheckInListPresenter>(),
         mPresenter.getSetoffCheckinList(PISUtil.getInstanceId(), PISUtil.getTokenKey())
     }
 
-    override fun onDataIsNull() {
-        mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
-    }
-
     override fun injectComponent() {
         DaggerSetoffComponent.builder().activityComponent(mActivityComponent).setoffModule(SetoffModule()).build().inject(this)
         mPresenter.mView = this

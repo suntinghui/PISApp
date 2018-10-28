@@ -62,6 +62,7 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
         // 上传图片的事件
         mImagePicker.setUploadListener(object : ImagePickerView.UploadListener {
             override fun onError() {
+                this@SetoutAlcoholTestDetailActivity.hideLoading()
                 ViewUtils.showSimpleAlert(this@SetoutAlcoholTestDetailActivity, "有图片上传失败，请重新确定上传")
             }
 
@@ -84,6 +85,7 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
         AlertView("确认提交", "当前状态为${mResultTv.text}", "取消", arrayOf("确定"), null, this@SetoutAlcoholTestDetailActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
             when (position) {
                 0 -> {
+                    this@SetoutAlcoholTestDetailActivity.showLoading()
                     mImagePicker.uploadAction(setoutAlcoholTest.ID, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
                 }
             }
@@ -154,7 +156,8 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
 
     // 报到
     override fun setOutResult(result: Boolean) {
-        toast("酒测成功")
+        this.hideLoading()
+        toast("酒测上报成功")
         queryDetail()
     }
 }

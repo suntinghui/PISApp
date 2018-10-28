@@ -125,10 +125,6 @@ class InspectionTaskDetailActivity : BaseMvpActivity<InspectionTaskDetailPresent
         mPresenter.mView = this
     }
 
-    override fun onDataIsNull() {
-        this.hideLoading()
-    }
-
     override fun onGetDetailResult(result: MissionStateInfo) {
         this.hideLoading()
 

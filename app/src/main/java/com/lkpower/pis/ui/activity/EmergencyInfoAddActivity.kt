@@ -87,10 +87,6 @@ class EmergencyInfoAddActivity : BaseMvpActivity<EmergencyInfoAddPresenter>(), E
         mPresenter.mView = this
     }
 
-    override fun onDataIsNull() {
-        this.hideLoading()
-    }
-
     override fun onUploadDetailResult(result: CommonReturn) {
         this.hideLoading()
         toast("反馈成功")
