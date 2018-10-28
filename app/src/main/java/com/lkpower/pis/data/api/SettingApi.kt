@@ -2,6 +2,7 @@ package com.lkpower.pis.data.api
 
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.data.protocol.BaseResp
+import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.FirAppInfo
 import com.lkpower.pis.data.protocol.ListResult
 import com.lkpower.pis.data.protocol.PublishInfo
@@ -24,7 +25,7 @@ interface SettingApi {
     @FormUrlEncoded
     @POST("SetConfig.ashx?Commond=AddFeedBack")
     fun addFeedback(@Field("confirmInfo") confirmInfo: String,
-                    @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+                    @Field("tokenKey") tokenKey: String): Observable<BaseResp<CommonReturn>>
 
 
 }

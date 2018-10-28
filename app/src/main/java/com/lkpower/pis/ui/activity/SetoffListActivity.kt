@@ -7,24 +7,24 @@ import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
-import com.lkpower.pis.utils.PISUtil
 import com.lkpower.pis.R
-import com.lkpower.pis.data.protocol.SetoutInfo
-import com.lkpower.pis.injection.component.DaggerSetoutComponent
-import com.lkpower.pis.injection.module.SetoutModule
-import com.lkpower.pis.presenter.SetoutListPresenter
-import com.lkpower.pis.presenter.view.SetoutListView
-import com.lkpower.pis.ui.adapter.SetoutAdapter
+import com.lkpower.pis.data.protocol.SetoffInfo
+import com.lkpower.pis.injection.component.DaggerSetoffComponent
+import com.lkpower.pis.injection.module.SetoffModule
+import com.lkpower.pis.presenter.SetoffListPresenter
+import com.lkpower.pis.presenter.view.SetoffListView
+import com.lkpower.pis.ui.adapter.SetoffAdapter
+import com.lkpower.pis.utils.PISUtil
 import kotlinx.android.synthetic.main.activity_setout_checkin_list.*
 import org.jetbrains.anko.startActivity
 
 /*
 出乘确认(出乘管理最后一项)列表
  */
-@Route(path = "/pis/SetoutListActivity")
-class SetoutListActivity : BaseMvpActivity<SetoutListPresenter>(), SetoutListView {
+@Route(path = "/pis/SetoffListActivity")
+class SetoffListActivity : BaseMvpActivity<SetoffListPresenter>(), SetoffListView {
 
-    private lateinit var mAdapter: SetoutAdapter
+    private lateinit var mAdapter: SetoffAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,26 +46,26 @@ class SetoutListActivity : BaseMvpActivity<SetoutListPresenter>(), SetoutListVie
         mCheckinRv.layoutManager = LinearLayoutManager(this)
         RecyclerViewDivider.with(this).build().addTo(mCheckinRv);
 
-        mAdapter = SetoutAdapter(this)
+        mAdapter = SetoffAdapter(this)
         mCheckinRv.adapter = mAdapter
 
-        mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<SetoutInfo> {
-            override fun onItemClick(item: SetoutInfo, position: Int) {
-                startActivity<SetoutDetailActivity>("taskId" to item.SetOutInstanceId)
+        mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<SetoffInfo> {
+            override fun onItemClick(item: SetoffInfo, position: Int) {
+                startActivity<SetoffDetailActivity>("taskId" to item.SetOffInstanceId)
             }
         })
     }
 
     private fun queryList() {
-        mPresenter.getSetoutList(PISUtil.getInstanceId(), PISUtil.getTokenKey())
+        mPresenter.getSetoffList(PISUtil.getInstanceId(), PISUtil.getTokenKey())
     }
 
     override fun injectComponent() {
-        DaggerSetoutComponent.builder().activityComponent(mActivityComponent).setoutModule(SetoutModule()).build().inject(this)
+        DaggerSetoffComponent.builder().activityComponent(mActivityComponent).setoffModule(SetoffModule()).build().inject(this)
         mPresenter.mView = this
     }
 
-    override fun onGetListResult(result: List<SetoutInfo>) {
+    override fun onGetListResult(result: List<SetoffInfo>) {
         mAdapter.setData(result.toMutableList())
 
         if (result.isNotEmpty())

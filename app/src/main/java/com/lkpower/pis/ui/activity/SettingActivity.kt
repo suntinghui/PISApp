@@ -5,13 +5,14 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.FileUtils
 import com.blankj.utilcode.util.PathUtils
 import com.bumptech.glide.Glide
-import com.kotlin.base.ui.activity.BaseMvpActivity
+import com.kotlin.base.ui.activity.BaseActivity
 import com.kotlin.base.utils.NetWorkUtils
 import com.liulishuo.filedownloader.FileDownloader
 import com.lkpower.base.common.AppManager
@@ -21,10 +22,6 @@ import com.lkpower.base.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.api.SettingApi
 import com.lkpower.pis.data.protocol.FirAppInfo
-import com.lkpower.pis.injection.component.DaggerSettingComponent
-import com.lkpower.pis.injection.module.SettingModule
-import com.lkpower.pis.presenter.SettingPresenter
-import com.lkpower.pis.presenter.view.SettingView
 import kotlinx.android.synthetic.main.activity_setting.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
@@ -35,14 +32,15 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
 @Route(path = "/pis/SettingActivity")
-class SettingActivity : BaseMvpActivity<SettingPresenter>(), SettingView, View.OnClickListener {
+class SettingActivity : BaseActivity(), View.OnClickListener {
 
     val PHONE_NUM = "18501281696"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        ARouter.getInstance().inject(this)
 
         this.setContentView(R.layout.activity_setting)
 
@@ -64,11 +62,6 @@ class SettingActivity : BaseMvpActivity<SettingPresenter>(), SettingView, View.O
         mCallMeLayout.onClick(this)
         mExitBtn.onClick(this)
 
-
-
-        mTest.setLabelText("附件1")
-        mTest.setAttr("测试下载测试下载测试下载测试下载测试下载.png", "https://raw.githubusercontent.com/lingochamp/FileDownloader/master/art/message-system.png")
-
     }
 
     override fun onClick(v: View) {
@@ -80,7 +73,7 @@ class SettingActivity : BaseMvpActivity<SettingPresenter>(), SettingView, View.O
                 clearAllCache()
             }
             R.id.mFeedbackLayout -> {
-
+                startActivity<FeedbackActivity>()
             }
             R.id.mCallMeLayout -> {
                 var intent = Intent(Intent.ACTION_DIAL);
@@ -99,11 +92,6 @@ class SettingActivity : BaseMvpActivity<SettingPresenter>(), SettingView, View.O
                 }).show();
             }
         }
-    }
-
-    override fun injectComponent() {
-        DaggerSettingComponent.builder().activityComponent(mActivityComponent).settingModule(SettingModule()).build().inject(this)
-        mPresenter.mView = this
     }
 
     private fun clearAllCache() {

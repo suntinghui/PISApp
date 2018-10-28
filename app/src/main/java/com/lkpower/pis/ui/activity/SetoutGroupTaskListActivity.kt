@@ -8,7 +8,6 @@ import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.lkpower.pis.utils.PISUtil
-import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.startLoading
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoutGroupTask
@@ -16,7 +15,7 @@ import com.lkpower.pis.injection.component.DaggerSetoutComponent
 import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.SetoutGroupTaskListPresenter
 import com.lkpower.pis.presenter.view.SetoutGroupTaskListView
-import com.lkpower.pis.ui.adapter.SetOutGroupTaskAdapter
+import com.lkpower.pis.ui.adapter.SetoutGroupTaskAdapter
 import kotlinx.android.synthetic.main.activity_setout_grouptask_list.*
 import org.jetbrains.anko.startActivity
 
@@ -26,7 +25,7 @@ import org.jetbrains.anko.startActivity
 @Route(path = "/pis/SetoutGroupTaskListActivity")
 class SetoutGroupTaskListActivity : BaseMvpActivity<SetoutGroupTaskListPresenter>(), SetoutGroupTaskListView {
 
-    private lateinit var mAdapter: SetOutGroupTaskAdapter
+    private lateinit var mAdapter: SetoutGroupTaskAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +46,7 @@ class SetoutGroupTaskListActivity : BaseMvpActivity<SetoutGroupTaskListPresenter
         mTaskRv.layoutManager = LinearLayoutManager(this)
         RecyclerViewDivider.with(this).build().addTo(mTaskRv);
 
-        mAdapter = SetOutGroupTaskAdapter(this)
+        mAdapter = SetoutGroupTaskAdapter(this)
         mTaskRv.adapter = mAdapter
 
         mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<SetoutGroupTask> {

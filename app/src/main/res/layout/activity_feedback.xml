@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.kotlin.base.widgets.HeaderBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="意见反馈"></com.kotlin.base.widgets.HeaderBar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/mContentEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/border_all"
+            android:gravity="top"
+            android:hint="请输入意见内容..."
+            android:lineSpacingMultiplier="1.5"
+            android:lines="5"
+            android:maxLength="500"
+            android:padding="@dimen/common_padding"
+            android:textSize="@dimen/text_middle_size" />
+
+        <info.hoang8f.widget.FButton
+            android:id="@id/mSendBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="提 交"
+            android:textColor="@color/common_white"
+            android:textSize="@dimen/text_middle_size" />
+
+    </LinearLayout>
+
+</LinearLayout>

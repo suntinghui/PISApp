@@ -80,9 +80,9 @@ class SecondCategoryActivity : BaseActivity() {
                         Category(502, "历史故障", R.drawable.icon_lsxx, 5, "/pis/FaultHistoryListActivity")),
                 6 to arrayListOf<Category>(),
                 7 to arrayListOf<Category>(
-                        Category(701, "报到", R.drawable.icon_bd, 7, ""),
-                        Category(702, "酒测", R.drawable.icon_jc, 7, ""),
-                        Category(703, "退乘确认", R.drawable.icon_tcgl, 7, "")),
+                        Category(701, "报到", R.drawable.icon_bd, 7, "/pis/SetoffCheckinListActivity"),
+                        Category(702, "酒测", R.drawable.icon_jc, 7, "/pis/SetoffAlcoholTestListActivity"),
+                        Category(703, "退乘确认", R.drawable.icon_tcgl, 7, "/pis/SetoffListActivity")),
                 8 to arrayListOf<Category>()
         )
 

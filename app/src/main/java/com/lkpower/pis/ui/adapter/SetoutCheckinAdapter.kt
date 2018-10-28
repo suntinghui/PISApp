@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.lkpower.pis.R
-import com.lkpower.pis.data.protocol.SetoutInfo
+import com.lkpower.pis.data.protocol.SetoutCheckIn
 import kotlinx.android.synthetic.main.layout_setout_checkin_item.view.*
 
-class SetOutAdapter(context: Context) : BaseRecyclerViewAdapter<SetoutInfo, SetOutAdapter.ViewHolder>(context) {
+class SetoutCheckinAdapter(context: Context) : BaseRecyclerViewAdapter<SetoutCheckIn, SetoutCheckinAdapter.ViewHolder>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(mContext).inflate(R.layout.layout_setout_checkin_item, parent, false)

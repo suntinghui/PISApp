@@ -8,19 +8,24 @@ import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.onClick
 import com.lkpower.base.ext.setVisible
 import com.lkpower.pis.R
+import com.lkpower.pis.data.protocol.SetoffCheckIn
 import com.lkpower.pis.data.protocol.SetoutCheckIn
+import com.lkpower.pis.injection.component.DaggerSetoffComponent
 import com.lkpower.pis.injection.component.DaggerSetoutComponent
+import com.lkpower.pis.injection.module.SetoffModule
 import com.lkpower.pis.injection.module.SetoutModule
+import com.lkpower.pis.presenter.SetoffCheckinDetailPresenter
 import com.lkpower.pis.presenter.SetoutCheckinDetailPresenter
+import com.lkpower.pis.presenter.view.SetoffCheckinDetailView
 import com.lkpower.pis.presenter.view.SetoutCheckinDetailView
 import kotlinx.android.synthetic.main.activity_setout_checkin_detail.*
 import org.jetbrains.anko.toast
 import java.lang.Exception
 
 /*
-   出乘任务报道详情，包含报到操作
+   退乘任务报道详情，包含报到操作
  */
-class SetoutCheckinDetailActivity : BaseMvpActivity<SetoutCheckinDetailPresenter>(), SetoutCheckinDetailView {
+class SetoffCheckinDetailActivity : BaseMvpActivity<SetoffCheckinDetailPresenter>(), SetoffCheckinDetailView {
 
     private lateinit var instanceId: String
     private lateinit var taskId: String
@@ -48,20 +53,20 @@ class SetoutCheckinDetailActivity : BaseMvpActivity<SetoutCheckinDetailPresenter
     }
 
     private fun queryDetail() {
-        mPresenter.getSetoutCheckinDetail(instanceId, taskId, PISUtil.getTokenKey())
+        mPresenter.getSetoffCheckIn(instanceId, taskId, PISUtil.getTokenKey())
     }
 
     private fun setAction() {
-        mPresenter.setOutCheckin(taskId, PISUtil.getTokenKey())
+        mPresenter.setOffCheckIn(taskId, PISUtil.getTokenKey())
     }
 
     override fun injectComponent() {
-        DaggerSetoutComponent.builder().activityComponent(mActivityComponent).setoutModule(SetoutModule()).build().inject(this)
+        DaggerSetoffComponent.builder().activityComponent(mActivityComponent).setoffModule(SetoffModule()).build().inject(this)
         mPresenter.mView = this
     }
 
     // 取得详情
-    override fun onGetDetailResult(item: SetoutCheckIn) {
+    override fun onGetDetailResult(item: SetoffCheckIn) {
         try {
             mClassNameView.setContentText(item.ClassName)
             mSendTimeView.setContentText(item.SendTime)
@@ -80,7 +85,7 @@ class SetoutCheckinDetailActivity : BaseMvpActivity<SetoutCheckinDetailPresenter
 
     // 报到
     override fun setOutResult(result: Boolean) {
-        toast("出乘报到成功")
+        toast("退乘报到成功")
         queryDetail()
     }
 }

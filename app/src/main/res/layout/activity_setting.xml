@@ -143,11 +143,6 @@
             android:textColor="@color/common_white"
             android:textSize="15sp" />
 
-        <com.kotlin.base.widgets.LabelAttrView
-            android:id="@+id/mTest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></com.kotlin.base.widgets.LabelAttrView>
-
 
     </LinearLayout>
 

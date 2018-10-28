@@ -8,7 +8,6 @@ import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.lkpower.pis.utils.PISUtil
-import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.startLoading
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoutAlcoholTest
@@ -16,14 +15,14 @@ import com.lkpower.pis.injection.component.DaggerSetoutComponent
 import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.SetoutAlcoholTestListPresenter
 import com.lkpower.pis.presenter.view.SetoutAlcoholTestListView
-import com.lkpower.pis.ui.adapter.SetOutAlcoholTestAdapter
+import com.lkpower.pis.ui.adapter.SetoutAlcoholTestAdapter
 import kotlinx.android.synthetic.main.activity_setout_checkin_list.*
 import org.jetbrains.anko.startActivity
 
 @Route(path = "/pis/SetoutAlcoholTestListActivity")
 class SetoutAlcoholTestListActivity : BaseMvpActivity<SetoutAlcoholTestListPresenter>(), SetoutAlcoholTestListView {
 
-    private lateinit var mAdapter: SetOutAlcoholTestAdapter
+    private lateinit var mAdapter: SetoutAlcoholTestAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +49,7 @@ class SetoutAlcoholTestListActivity : BaseMvpActivity<SetoutAlcoholTestListPrese
         mCheckinRv.layoutManager = LinearLayoutManager(this)
         RecyclerViewDivider.with(this).build().addTo(mCheckinRv);
 
-        mAdapter = SetOutAlcoholTestAdapter(this)
+        mAdapter = SetoutAlcoholTestAdapter(this)
         mCheckinRv.adapter = mAdapter
 
         mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<SetoutAlcoholTest> {

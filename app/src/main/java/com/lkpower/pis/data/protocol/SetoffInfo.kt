@@ -1,9 +1,6 @@
 package com.lkpower.pis.data.protocol
 
-/*
-退乘任务
- */
-data class Setoff(
+data class SetoffInfo(
         val SetOffInstanceId: String,
         val InstanceId: String,
         val SiteId: String,

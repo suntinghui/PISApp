@@ -7,22 +7,22 @@ import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
-import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.ext.startLoading
 import com.lkpower.pis.R
-import com.lkpower.pis.data.protocol.SetoutCheckIn
-import com.lkpower.pis.injection.component.DaggerSetoutComponent
-import com.lkpower.pis.injection.module.SetoutModule
-import com.lkpower.pis.presenter.SetoutCheckInListPresenter
-import com.lkpower.pis.presenter.view.SetoutCheckinListView
-import com.lkpower.pis.ui.adapter.SetoutCheckinAdapter
+import com.lkpower.pis.data.protocol.SetoffAlcoholTest
+import com.lkpower.pis.injection.component.DaggerSetoffComponent
+import com.lkpower.pis.injection.module.SetoffModule
+import com.lkpower.pis.presenter.SetoffAlcoholTestListPresenter
+import com.lkpower.pis.presenter.view.SetoffAlcoholTestListView
+import com.lkpower.pis.ui.adapter.SetoffAlcoholTestAdapter
+import com.lkpower.pis.utils.PISUtil
 import kotlinx.android.synthetic.main.activity_setout_checkin_list.*
 import org.jetbrains.anko.startActivity
 
-@Route(path = "/pis/SetoutCheckinListActivity")
-class SetoutCheckinListActivity : BaseMvpActivity<SetoutCheckInListPresenter>(), SetoutCheckinListView {
+@Route(path = "/pis/SetoffAlcoholTestListActivity")
+class SetoffAlcoholTestListActivity : BaseMvpActivity<SetoffAlcoholTestListPresenter>(), SetoffAlcoholTestListView {
 
-    private lateinit var mAdapter: SetoutCheckinAdapter
+    private lateinit var mAdapter: SetoffAlcoholTestAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,6 @@ class SetoutCheckinListActivity : BaseMvpActivity<SetoutCheckInListPresenter>(),
         setContentView(R.layout.activity_setout_checkin_list)
 
         initView()
-
     }
 
     override fun onResume() {
@@ -39,25 +38,25 @@ class SetoutCheckinListActivity : BaseMvpActivity<SetoutCheckInListPresenter>(),
         loadData()
     }
 
+    private fun loadData() {
+        mMultiStateView.startLoading()
+        mPresenter.getSetoffAlcoholTestList(PISUtil.getInstanceId(), PISUtil.getTokenKey())
+    }
+
     private fun initView() {
-        mHeaderBar.setTitleText("出乘报到")
+        mHeaderBar.setTitleText("酒测列表")
 
         mCheckinRv.layoutManager = LinearLayoutManager(this)
         RecyclerViewDivider.with(this).build().addTo(mCheckinRv);
 
-        mAdapter = SetoutCheckinAdapter(this)
+        mAdapter = SetoffAlcoholTestAdapter(this)
         mCheckinRv.adapter = mAdapter
 
-        mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<SetoutCheckIn> {
-            override fun onItemClick(item: SetoutCheckIn, position: Int) {
-                startActivity<SetoutCheckinDetailActivity>("instanceId" to item.SetOutInstanceId, "taskId" to item.ID)
+        mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<SetoffAlcoholTest> {
+            override fun onItemClick(item: SetoffAlcoholTest, position: Int) {
+                startActivity<SetoffAlcoholTestDetailActivity>("instanceId" to item.SetOffInstanceId, "taskId" to item.ID)
             }
         })
-    }
-
-    private fun loadData() {
-        mMultiStateView.startLoading()
-        mPresenter.getSetoutCheckinList(PISUtil.getInstanceId(), PISUtil.getTokenKey())
     }
 
     override fun onDataIsNull() {
@@ -65,11 +64,11 @@ class SetoutCheckinListActivity : BaseMvpActivity<SetoutCheckInListPresenter>(),
     }
 
     override fun injectComponent() {
-        DaggerSetoutComponent.builder().activityComponent(mActivityComponent).setoutModule(SetoutModule()).build().inject(this)
+        DaggerSetoffComponent.builder().activityComponent(mActivityComponent).setoffModule(SetoffModule()).build().inject(this)
         mPresenter.mView = this
     }
 
-    override fun onGetListResult(result: List<SetoutCheckIn>) {
+    override fun onGetListResult(result: List<SetoffAlcoholTest>) {
         mAdapter.setData(result.toMutableList())
 
         if (result.isNotEmpty())

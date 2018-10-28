@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.lkpower.pis.R
-import com.lkpower.pis.data.protocol.SetoutAlcoholTest
+import com.lkpower.pis.data.protocol.SetoutGroupTask
 import kotlinx.android.synthetic.main.layout_setout_checkin_item.view.*
 
-class SetOutAlcoholTestAdapter(context: Context) : BaseRecyclerViewAdapter<SetoutAlcoholTest, SetOutAlcoholTestAdapter.ViewHolder>(context) {
+class SetoutGroupTaskAdapter(context: Context) : BaseRecyclerViewAdapter<SetoutGroupTask, SetoutGroupTaskAdapter.ViewHolder>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(mContext).inflate(R.layout.layout_setout_checkin_item, parent, false)

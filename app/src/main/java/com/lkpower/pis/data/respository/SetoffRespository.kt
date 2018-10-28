@@ -29,7 +29,7 @@ class SetoffRespository @Inject constructor() {
     }
 
     // 退乘报到
-    fun setOffCheckIn(taskId: String, tokenKey: String): Observable<BaseResp<String>> {
+    fun setOffCheckIn(taskId: String, tokenKey: String): Observable<BaseResp<Boolean>> {
         return RetrofitFactory.instance.create(SetoffApi::class.java).setOffCheckIn(taskId, tokenKey)
     }
 
@@ -39,22 +39,27 @@ class SetoffRespository @Inject constructor() {
     }
 
     // 获取退乘酒测任务实例
-    fun getSetOffAlcoholTest(instanceId: String, taskId: String, tokenKey: String): Observable<BaseResp<List<SetoffAlcoholTest>>> {
+    fun getSetOffAlcoholTest(instanceId: String, taskId: String, tokenKey: String): Observable<BaseResp<SetoffAlcoholTest>> {
         return RetrofitFactory.instance.create(SetoffApi::class.java).getSetOffAlcoholTest(instanceId, taskId, tokenKey)
     }
 
     // 退乘酒测确认
-    fun setoffAlcoholTest(taskId: String, tokenKey: String): Observable<BaseResp<String>> {
-        return RetrofitFactory.instance.create(SetoffApi::class.java).setoffAlcoholTest(taskId, tokenKey)
+    fun setoffAlcoholTest(taskId: String, state: String, tokenKey: String): Observable<BaseResp<Boolean>> {
+        return RetrofitFactory.instance.create(SetoffApi::class.java).setoffAlcoholTest(taskId, state, tokenKey)
     }
 
     // 获取当前发车实例退乘任务实例列表
-    fun getSetoffList(instanceId: String, tokenKey: String): Observable<BaseResp<List<Setoff>>> {
+    fun getSetoffList(instanceId: String, tokenKey: String): Observable<BaseResp<List<SetoffInfo>>> {
         return RetrofitFactory.instance.create(SetoffApi::class.java).getSetoffList(instanceId, tokenKey)
     }
 
+    // 获取当前发车实例退乘任务实例
+    fun getSetoff(instanceId: String, taskId: String, tokenKey: String): Observable<BaseResp<SetoffInfo>> {
+        return RetrofitFactory.instance.create(SetoffApi::class.java).getSetoff(instanceId, taskId, tokenKey)
+    }
+
     // 退乘最终确认
-    fun setoffConfirm(taskId: String, tokenKey: String): Observable<BaseResp<String>> {
+    fun setoffConfirm(taskId: String, tokenKey: String): Observable<BaseResp<CommonReturn>> {
         return RetrofitFactory.instance.create(SetoffApi::class.java).setoffConfirm(taskId, tokenKey)
     }
 

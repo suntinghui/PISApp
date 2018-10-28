@@ -50,6 +50,13 @@
         <activity android:name=".ui.activity.EmergencyInfoListActivity" />
         <activity android:name=".ui.activity.EmergencyInfoDetailActivity" />
         <activity android:name=".ui.activity.EmergencyInfoAddActivity" />
+        <activity android:name=".ui.activity.SetoffCheckinListActivity" />
+        <activity android:name=".ui.activity.SetoffCheckinDetailActivity" />
+        <activity android:name=".ui.activity.SetoffAlcoholTestListActivity" />
+        <activity android:name=".ui.activity.SetoffAlcoholTestDetailActivity" />
+        <activity android:name=".ui.activity.SetoffListActivity" />
+        <activity android:name=".ui.activity.SetoffDetailActivity" />
+        <activity android:name=".ui.activity.FeedbackActivity" />
 
 
     </application>
