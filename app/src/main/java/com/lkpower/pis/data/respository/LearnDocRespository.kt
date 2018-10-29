@@ -21,7 +21,7 @@ class LearnDocRespository @Inject constructor() {
     }
 
     // 学习文件设置已读
-    fun setLearnDocRead(docId: String, tokenKey: String): Observable<BaseResp<String>> {
+    fun setLearnDocRead(docId: String, tokenKey: String): Observable<BaseResp<Boolean>> {
         return RetrofitFactory.instance.create(LearnDocApi::class.java).setLearnDocRead(docId, tokenKey)
     }
 }

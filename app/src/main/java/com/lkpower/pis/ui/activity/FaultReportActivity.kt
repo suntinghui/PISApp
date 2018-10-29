@@ -7,7 +7,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.ArrayAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.alibaba.android.arouter.launcher.ARouter
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
@@ -51,8 +50,6 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        ARouter.getInstance().inject(this)
-
         setContentView(R.layout.activity_fault_report)
 
         uuid = PISUtil.getUUID()
@@ -84,6 +81,7 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
 
         // 设置选择事件
         mFailPartTv.setOnItemClickListener { parent, view, position, id ->
+            ViewUtils.closeKeyboard(this@FaultReportActivity)
             selectFailPart = failPartList.get(position)
             queryFaultTypeData()
         }
@@ -97,7 +95,7 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
 
         mImagePicker.setAttType(BaseConstant.Att_Type_Other)
         // 上传图片的事件
-        mImagePicker.setUploadListener(object : ImagePickerView.UploadListener {
+        mImagePicker.setOnUploadListener(object : ImagePickerView.OnUploadListener {
             override fun onError() {
                 this@FaultReportActivity.hideLoading()
                 ViewUtils.showSimpleAlert(this@FaultReportActivity, "有图片上传失败，请重新确定上传")
@@ -120,6 +118,7 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
                 return
             }
 
+            // 有可能没有故障件下没有故障类型
             if (selectFaultType == null) {
                 toast("没有选择故障类型")
                 return
@@ -171,9 +170,14 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
 
     override fun onFaultTypeResult(result: List<SysDic>) {
         faultTypeList = result.toMutableList()
+
         if (faultTypeList.isNotEmpty()) {
             selectFaultType = faultTypeList.first()
             mFaultTypeTv.text = selectFaultType.DicValue
+
+        } else {
+            selectFaultType = SysDic("","","","","","")
+            mFaultTypeTv.text = "该故障件没有故障类型"
         }
     }
 

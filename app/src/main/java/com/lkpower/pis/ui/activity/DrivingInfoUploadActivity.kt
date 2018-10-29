@@ -6,11 +6,9 @@ import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
-import com.kotlin.base.ui.activity.BaseActivity
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.widgets.ImagePickerView
 import com.lkpower.base.common.BaseConstant
-import com.lkpower.base.data.protocol.AttModel
 import com.lkpower.base.ext.onClick
 import com.lkpower.base.utils.ViewUtils
 import com.lkpower.pis.R
@@ -48,7 +46,7 @@ class DrivingInfoUploadActivity : BaseMvpActivity<DrivingInfoUploadPresenter>(),
 
         mImagePicker.setAttType(BaseConstant.Att_Type_Driving)
         // 上传图片的事件
-        mImagePicker.setUploadListener(object : ImagePickerView.UploadListener {
+        mImagePicker.setOnUploadListener(object : ImagePickerView.OnUploadListener {
             override fun onError() {
                 this@DrivingInfoUploadActivity.hideLoading()
                 ViewUtils.showSimpleAlert(this@DrivingInfoUploadActivity, "有图片上传失败，请重新确定上传")

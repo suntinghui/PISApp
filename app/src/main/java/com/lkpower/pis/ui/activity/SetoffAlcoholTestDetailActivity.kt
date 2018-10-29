@@ -60,7 +60,7 @@ class SetoffAlcoholTestDetailActivity : BaseMvpActivity<SetoffAlcoholTestDetailP
 
         mImagePicker.setAttType(BaseConstant.Att_Type_Other)
         // 上传图片的事件
-        mImagePicker.setUploadListener(object : ImagePickerView.UploadListener {
+        mImagePicker.setOnUploadListener(object : ImagePickerView.OnUploadListener {
             override fun onError() {
                 this@SetoffAlcoholTestDetailActivity.hideLoading()
                 ViewUtils.showSimpleAlert(this@SetoffAlcoholTestDetailActivity, "有图片上传失败，请重新确定上传")

@@ -7,7 +7,6 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.google.gson.Gson
-import com.kotlin.base.ui.activity.BaseActivity
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.utils.DateUtils
 import com.kotlin.base.widgets.ImagePickerView
@@ -17,9 +16,7 @@ import com.lkpower.base.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.EmergencyInfo
-import com.lkpower.pis.injection.component.DaggerDrivingInfoComponent
 import com.lkpower.pis.injection.component.DaggerEmergencyInfoComponent
-import com.lkpower.pis.injection.module.DrivingInfoModule
 import com.lkpower.pis.injection.module.EmergencyInfoModule
 import com.lkpower.pis.presenter.EmergencyInfoAddPresenter
 import com.lkpower.pis.presenter.view.EmergencyInfoAddView
@@ -52,7 +49,7 @@ class EmergencyInfoAddActivity : BaseMvpActivity<EmergencyInfoAddPresenter>(), E
 
         mImagePicker.setAttType(BaseConstant.Att_Type_Driving)
         // 上传图片的事件
-        mImagePicker.setUploadListener(object : ImagePickerView.UploadListener {
+        mImagePicker.setOnUploadListener(object : ImagePickerView.OnUploadListener {
             override fun onError() {
                 this@EmergencyInfoAddActivity.hideLoading()
                 ViewUtils.showSimpleAlert(this@EmergencyInfoAddActivity, "有图片上传失败，请重新确定上传")

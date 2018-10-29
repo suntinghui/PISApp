@@ -22,10 +22,21 @@ android {
         }
     }
 
+    configurations.all {
+        resolutionStrategy.eachDependency {
+            DependencyResolveDetails details ->
+                def requested = details.requested
+                if (requested.group == 'com.android.support') {
+                    if (!requested.name.startsWith("multidex")) {
+                        details.useVersion '27.1.1'
+                    }
+                }
+        }
+    }
+
 }
 
 dependencies {
-    //Android Support
     api "com.android.support:support-v4:${android_support_version}"
     api "com.android.support:appcompat-v7:${android_support_version}"
     api "com.android.support:recyclerview-v7:${android_support_version}"
@@ -41,7 +52,7 @@ dependencies {
     api "org.jetbrains.anko:anko-support-v4-commons:$anko_version"
 
     // RxJava and RxAndroid
-    api "io.reactivex.rxjava2:rxjava:2.1.12"
+    api 'io.reactivex.rxjava2:rxjava:2.1.12'
     api "io.reactivex.rxjava2:rxandroid:${rx_android_version}"
 
     //Retrofit
@@ -60,6 +71,7 @@ dependencies {
 
     //Glide
     api "com.github.bumptech.glide:glide:$glide_version"
+
     // Glide
     kapt "com.github.bumptech.glide:compiler:$glide_version"
 
@@ -98,18 +110,11 @@ dependencies {
 
     // android-flat-button
     api 'info.hoang8f:fbutton:1.0.5'
-
     api 'com.contrarywind:Android-PickerView:4.1.6'
-
     api 'com.liulishuo.filedownloader:library:1.7.5'
-
     implementation 'com.android.support:multidex:1.0.2'
-
     api 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
-
     api 'me.panpf:sketch:2.6.1'
-
-
 }
 
 repositories {

@@ -1,6 +1,7 @@
 package com.lkpower.pis.service.impl
 
 import com.lkpower.base.ext.convert
+import com.lkpower.base.ext.convertBoolean
 import com.lkpower.pis.data.protocol.LearnDoc
 import com.lkpower.pis.data.protocol.ListResult
 import com.lkpower.pis.data.respository.LearnDocRespository
@@ -21,7 +22,7 @@ class LearnDocServiceImpl @Inject constructor() : LearnDocService {
         return docRespository.getLearnDocModel(docId, tokenKey).convert()
     }
 
-    override fun setLearnDocRead(docId: String, tokenKey: String): Observable<String> {
-        return docRespository.setLearnDocRead(docId, tokenKey).convert()
+    override fun setLearnDocRead(docId: String, tokenKey: String): Observable<Boolean> {
+        return docRespository.setLearnDocRead(docId, tokenKey).convertBoolean()
     }
 }

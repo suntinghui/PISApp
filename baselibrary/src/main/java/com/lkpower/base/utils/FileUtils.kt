@@ -1,12 +1,13 @@
 package com.lkpower.base.utils
 
-import android.content.Intent
-import android.R.attr.scheme
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
+import android.os.Build
+import android.support.v4.content.FileProvider
 import java.io.File
-import java.nio.file.Files.exists
-import java.util.*
+import android.os.Environment.DIRECTORY_DOWNLOADS
+import android.os.Environment.getExternalStoragePublicDirectory
 
 
 object FileUtils {
@@ -96,13 +97,19 @@ object FileUtils {
         return type
     }
 
-    fun openFile(context: Context, fileDirectory: String) {
-        val intent = Intent()
-        val file = File(fileDirectory)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)//设置标记
-        intent.action = Intent.ACTION_VIEW//动作，查看
-        intent.setDataAndType(Uri.fromFile(file), getMIMEType(file))//设置类型
-        context.startActivity(intent)
+    fun openFile(mContext: Context, filePath: String) {
+        val file = File(filePath)
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        if (Build.VERSION.SDK_INT >= 24) {
+            val apkUri = FileProvider.getUriForFile(mContext, "com.lkpower.pis.fileProvider", file)
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            intent.setDataAndType(apkUri, "application/vnd.android.package-archive")
+        } else {
+            intent.setDataAndType(Uri.fromFile(file),
+                    "application/vnd.android.package-archive")
+        }
+        mContext.startActivity(intent)
     }
 
     fun isNetFile(path: String): Boolean {

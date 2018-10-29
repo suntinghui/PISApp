@@ -31,13 +31,13 @@ class SetoutGroupConfirmProjListPresenter @Inject constructor() : BasePresenter<
         }, lifecycleProvider)
     }
 
-    fun setoutConfirmProj(taskId: String, tokenKey: String) {
+    fun setoutConfirmProj(taskId: String, confirmRemark: String, tokenKey: String) {
         if (!checkNetWork())
             return
 
         mView.showLoading()
 
-        setoutService.setoutConfirmProj(taskId, tokenKey).execute(object : BaseSubscriber<Boolean>(mView) {
+        setoutService.setoutConfirmProj(taskId,confirmRemark, tokenKey).execute(object : BaseSubscriber<Boolean>(mView) {
             override fun onNext(t: Boolean) {
                 mView.onConfirmResult(t)
             }

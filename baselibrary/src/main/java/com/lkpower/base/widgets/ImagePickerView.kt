@@ -36,6 +36,7 @@ import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
+import java.lang.Exception
 
 /*
 
@@ -58,7 +59,8 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
     private var isEditable: Boolean = true
     private var attType = "1"
 
-    private lateinit var listener: UploadListener
+    private lateinit var onUploadListener: OnUploadListener
+    private lateinit var onImageClickLisenter: OnImageClickLisenter
 
     //初始化属性
     init {
@@ -85,6 +87,10 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
 
         mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<LocalMedia> {
             override fun onItemClick(item: LocalMedia, position: Int) {
+                if (this@ImagePickerView::onImageClickLisenter.isInitialized) {
+                    this@ImagePickerView.onImageClickLisenter.onClick(item.path)
+                }
+
                 if (item.path.isNullOrEmpty()) {
                     showPickerView()
                 } else {
@@ -135,15 +141,19 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
         return this
     }
 
-    public fun setUploadListener(listener: UploadListener) {
-        this.listener = listener
+    public fun setOnUploadListener(listener: OnUploadListener) {
+        this.onUploadListener = listener
+    }
+
+    public fun setOnImageClickListener(listener: OnImageClickLisenter) {
+        this.onImageClickLisenter = listener
     }
 
     // 外部调用该接口后开始上传图片
     public fun uploadAction(busId: String, attType: String, tokenKey: String) {
         // 如果没有可以上传的图片,则直接调用onComplete()
         if (localList.isEmpty()) {
-            this.listener.onComplete()
+            this.onUploadListener.onComplete()
             return
         }
 
@@ -171,7 +181,7 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
                         Logger.e("===========onComplete")
                         // 上传成功后要删除所有的本地选择的图片
                         localList.clear()
-                        this@ImagePickerView.listener.onComplete()
+                        this@ImagePickerView.onUploadListener.onComplete()
                     }
 
                     override fun onSubscribe(d: Disposable) {
@@ -185,7 +195,7 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
                     override fun onError(e: Throwable) {
                         Logger.e("===========onError")
                         e.printStackTrace()
-                        this@ImagePickerView.listener.onError()
+                        this@ImagePickerView.onUploadListener.onError()
                     }
 
                 })
@@ -261,9 +271,13 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
         return empty
     }
 
-    interface UploadListener {
+    interface OnUploadListener {
         fun onError()
         fun onComplete()
+    }
+
+    interface OnImageClickLisenter {
+        fun onClick(path: String?)
     }
 
 }

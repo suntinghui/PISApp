@@ -48,15 +48,6 @@ class InspectionTaskDetailActivity : BaseMvpActivity<InspectionTaskDetailPresent
         loadData()
     }
 
-    private fun loadData() {
-        this.showLoading()
-        mPresenter.getXJTaskModel(taskId, PISUtil.getTokenKey())
-    }
-
-    private fun queryAtt() {
-        mPresenter.getAttList(missionStateInfo.ID, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
-    }
-
     private fun initView() {
 
         mStateTv.text = TASK_STATUS_LIS.first()
@@ -69,7 +60,7 @@ class InspectionTaskDetailActivity : BaseMvpActivity<InspectionTaskDetailPresent
 
         mImagePicker.setAttType(BaseConstant.Att_Type_Inspection)
         // 上传图片的事件
-        mImagePicker.setUploadListener(object : ImagePickerView.UploadListener {
+        mImagePicker.setOnUploadListener(object : ImagePickerView.OnUploadListener {
             override fun onError() {
                 ViewUtils.showSimpleAlert(this@InspectionTaskDetailActivity, "有图片上传失败，请重新确定上传")
             }
@@ -80,6 +71,15 @@ class InspectionTaskDetailActivity : BaseMvpActivity<InspectionTaskDetailPresent
 
         })
 
+    }
+
+    private fun loadData() {
+        this.showLoading()
+        mPresenter.getXJTaskModel(taskId, PISUtil.getTokenKey())
+    }
+
+    private fun queryAtt() {
+        mPresenter.getAttList(missionStateInfo.ID, BaseConstant.Att_Type_Inspection, PISUtil.getTokenKey())
     }
 
     private fun sendAction() {

@@ -23,7 +23,7 @@ class FaultInfoAdapter(context: Context) : BaseRecyclerViewAdapter<FaultInfo, Fa
         super.onBindViewHolder(holder, position)
         val model = dataList[position]
 
-        holder.itemView.mFailPartTv.text = model.PartName + " - " + model.FaultTypeName
+        holder.itemView.mFailPartTv.text = model.PartName + " " + if (model.FaultTypeName.isNullOrEmpty()) "" else model.FaultTypeName
         holder.itemView.mRemarkTv.setVisible(model.Remark.isNullOrEmpty().not())
         holder.itemView.mRemarkTv.text = model.Remark
         holder.itemView.mReportTimeTv.text = model.ReportTime

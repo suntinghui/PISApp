@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/common_white"
     android:orientation="vertical">
 
     <com.kotlin.base.widgets.HeaderBar
@@ -12,47 +13,23 @@
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:nestedScrollingEnabled="false">
+        android:layout_height="match_parent">
 
         <LinearLayout style="@style/MatchWrap.Vertical">
 
-            <com.kotlin.base.widgets.LabelTextView
-                android:id="@+id/mTypeView"
+            <LinearLayout
+                android:id="@+id/mDetailLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="车种" />
+                android:orientation="vertical"></LinearLayout>
 
-            <com.kotlin.base.widgets.LabelTextView
-                android:id="@+id/mModelView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:labelText="车型" />
-
-            <com.kotlin.base.widgets.LabelTextView
-                android:id="@+id/mNumView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:labelText="车号" />
-
-            <com.kotlin.base.widgets.LabelTextView
-                android:id="@+id/mRemarkView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:labelText="故障描述" />
-
-            <com.kotlin.base.widgets.LabelTextView
-                android:id="@+id/mFaultPicView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:labelText="故障图片" />
-
-            <com.kotlin.base.widgets.ShowImageView
+            <com.kotlin.base.widgets.ImagePickerView
                 android:id="@+id/mShowImageView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"></com.kotlin.base.widgets.ShowImageView>
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"></com.kotlin.base.widgets.ImagePickerView>
 
             <LinearLayout
                 style="@style/MatchWrap.Horizontal"
@@ -64,7 +41,7 @@
                     style="@style/LabelTitleTextStyle"
                     android:layout_weight="3"
                     android:gravity="right"
-                    android:text="确认情况"
+                    android:text="修复情况"
                     android:textSize="@dimen/text_middle_size" />
 
                 <TextView
@@ -78,11 +55,37 @@
 
             </LinearLayout>
 
-            <com.kotlin.base.widgets.LabelTextView
-                android:id="@+id/mDescView"
+            <LinearLayout
+                android:id="@+id/mRemarkLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="确认说明" />
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/border_bottom"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/common_padding"
+                android:paddingRight="@dimen/common_padding"
+                android:paddingBottom="@dimen/common_padding">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="right"
+                    android:text="备注说明"
+                    android:textSize="@dimen/text_middle_size" />
+
+                <EditText
+                    android:id="@+id/mRemarkEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/common_margin"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请输入备注"
+                    android:lines="2" />
+            </LinearLayout>
 
             <TextView
                 style="@style/LabelTitleTextStyle"

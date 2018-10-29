@@ -8,7 +8,7 @@ interface LearnDocDetailView : BaseView {
 
     fun onGetDetailResult(result: LearnDoc)
 
-    fun setOutResult(result: String)
+    fun setReadResult(result: Boolean)
 
     fun onGetAttListResult(result: List<AttModel>)
 }

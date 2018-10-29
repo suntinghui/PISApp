@@ -37,9 +37,9 @@ class LearnDocDetailPresenter @Inject constructor() : BasePresenter<LearnDocDeta
 
         mView.showLoading()
 
-        learnDocService.setLearnDocRead(docId, tokenKey).execute(object : BaseSubscriber<String>(mView) {
-            override fun onNext(t: String) {
-                mView.setOutResult(t)
+        learnDocService.setLearnDocRead(docId, tokenKey).execute(object : BaseSubscriber<Boolean>(mView) {
+            override fun onNext(t: Boolean) {
+                mView.setReadResult(t)
             }
         }, lifecycleProvider)
     }

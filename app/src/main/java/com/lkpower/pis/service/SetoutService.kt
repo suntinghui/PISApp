@@ -63,7 +63,7 @@ interface SetoutService {
     /*
     出乘项目确认
      */
-    fun setoutConfirmProj(taskId: String, tokenKey: String): Observable<Boolean>
+    fun setoutConfirmProj(taskId: String, confirmRemark: String, tokenKey: String): Observable<Boolean>
 
     /*
     获取当前发车实例出乘任务实例列表

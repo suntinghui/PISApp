@@ -31,7 +31,7 @@ interface LearnDocApi {
     @FormUrlEncoded
     @POST("InfoManager.ashx?Commond=SetLearnDocRead")
     fun setLearnDocRead(@Field("DocId") docId: String,
-                        @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+                        @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>
 
 
 }

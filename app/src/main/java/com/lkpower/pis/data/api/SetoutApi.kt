@@ -87,6 +87,8 @@ interface SetoutApi {
     @FormUrlEncoded
     @POST("WorkTask.ashx?Commond=SetOutConfirmProj")
     fun setoutConfirmProj(@Field("TaskId") taskId: String,
+                          @Field("TaskStatus") taskStatus: String,
+                          @Field("ConfirmRemark") ConfirmRemark: String,
                           @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>
 
 

@@ -13,5 +13,5 @@ interface LearnDocService {
     fun getLearnDocModel(docId: String, tokenKey: String): Observable<LearnDoc>
 
     // 学习文件设置已读
-    fun setLearnDocRead(docId: String, tokenKey: String): Observable<String>
+    fun setLearnDocRead(docId: String, tokenKey: String): Observable<Boolean>
 }

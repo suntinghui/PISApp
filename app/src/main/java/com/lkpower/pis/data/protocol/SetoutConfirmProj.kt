@@ -10,6 +10,7 @@ data class SetoutConfirmProj(
         val ProjectId: String,
         val ProjectName: String,
         val ConfirmTime: String,
+        val ConfirmRemark: String,
         val DetailSetId: String,
         val TaskStatus: String,
         val DoneTime: String

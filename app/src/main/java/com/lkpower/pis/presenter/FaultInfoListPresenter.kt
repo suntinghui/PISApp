@@ -25,4 +25,26 @@ class FaultInfoListPresenter @Inject constructor() : BasePresenter<FaultInfoList
             }
         }, lifecycleProvider)
     }
+
+    fun getFailPartList(keyword: String) {
+        if (!checkNetWork())
+            return
+
+        faultInfoService.getFailPartList(keyword).execute(object : BaseSubscriber<List<SysDic>>(mView) {
+            override fun onNext(t: List<SysDic>) {
+                mView.onFailPartResult(t)
+            }
+        }, lifecycleProvider)
+    }
+
+    fun getFaultTypeList(relParentId: String, keyword: String="") {
+        if (!checkNetWork())
+            return
+
+        faultInfoService.getFaultTypeList(relParentId, keyword).execute(object : BaseSubscriber<List<SysDic>>(mView) {
+            override fun onNext(t: List<SysDic>) {
+                mView.onFaultTypeResult(t)
+            }
+        }, lifecycleProvider)
+    }
 }
