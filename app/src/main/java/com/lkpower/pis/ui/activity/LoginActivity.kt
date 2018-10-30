@@ -15,6 +15,7 @@ import com.lkpower.pis.injection.component.DaggerUserComponent
 import com.lkpower.pis.injection.module.UserModule
 import com.lkpower.pis.presenter.LoginPresenter
 import com.lkpower.pis.presenter.view.LoginView
+import com.umeng.analytics.MobclickAgent
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -75,6 +76,8 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
 
         AppPrefsUtils.putString(BaseConstant.kEmpId, result.EmpId)
         PISUtil.setTokenKey(result.TokenKey)
+
+        MobclickAgent.onProfileSignIn(mUsernameEt.text.toString())
 
         startActivity<PrimaryCategoryActivity>()
     }

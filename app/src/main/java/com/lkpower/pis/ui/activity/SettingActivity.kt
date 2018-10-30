@@ -22,6 +22,7 @@ import com.lkpower.base.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.api.SettingApi
 import com.lkpower.pis.data.protocol.FirAppInfo
+import com.umeng.analytics.MobclickAgent
 import kotlinx.android.synthetic.main.activity_setting.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
@@ -85,6 +86,8 @@ class SettingActivity : BaseActivity(), View.OnClickListener {
                 AlertView("提示", "您确定要退出登录吗？", "取消", arrayOf("确定"), null, this@SettingActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
                     when (position) {
                         0 -> {
+                            MobclickAgent.onProfileSignOff()
+
                             AppManager.instance.finishAllActivity()
                             startActivity<LoginActivity>()
                         }

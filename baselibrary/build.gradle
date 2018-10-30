@@ -115,6 +115,12 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.2'
     api 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
     api 'me.panpf:sketch:2.6.1'
+
+    // UMeng
+    api 'com.umeng.umsdk:analytics:7.5.4'
+    api 'com.umeng.umsdk:common:1.5.4'
+    api 'com.umeng.sdk:utdid:1.1.5.3'
+    api 'com.umeng.sdk:push:4.2.0'
 }
 
 repositories {

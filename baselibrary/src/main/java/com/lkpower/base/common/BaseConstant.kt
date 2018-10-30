@@ -28,5 +28,9 @@ class BaseConstant {
         const val FIR_SERVER = "http://api.fir.im/apps/"
         const val FIR_APP_ID = "5bbf11baca87a82b96bf600a"
         const val FIR_APP_TOKEN = "b466e4ea1d74d418b79837f4fd6302a8"
+
+        // UMENG
+        const val UMENG_APPKEY = "580d95c6c895761f96000494"
+        const val UMENG_MESSAGE_SECRET = "36608f6621ffe5f61f79554a5fa7cd46"
     }
 }
