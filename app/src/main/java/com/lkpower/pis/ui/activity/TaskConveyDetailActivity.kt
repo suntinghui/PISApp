@@ -7,12 +7,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.widget.LinearLayout
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
-import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.widgets.ImagePickerView
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.data.protocol.AttModel
-import com.lkpower.base.ext.startLoading
+import com.lkpower.base.utils.PISUtil
+import com.lkpower.base.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.RiskItem
 import com.lkpower.pis.data.protocol.TaskConveyDetail
@@ -21,7 +21,6 @@ import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.TaskConveyDetailPresenter
 import com.lkpower.pis.presenter.view.TaskConveyDetailView
 import com.lkpower.pis.ui.adapter.RiskItemAdapter
-import com.lkpower.pis.utils.PISUtil
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_taskconvey_detail.*
@@ -82,7 +81,6 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
 
     // 加载详情
     private fun loadDetail() {
-        mMultiStateView.startLoading()
         mPresenter.getTaskConveyDetail(ConveyDetailId, PISUtil.getTokenKey())
     }
 
@@ -100,7 +98,6 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
         var riskItems = result.RiskItems
 
         if (riskItems.isNotEmpty()) {
-            mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT
 
             dataList = riskItems.toMutableList()
 
@@ -110,8 +107,6 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
             }
             mAdapter.setData(riskItems.toMutableList())
 
-        } else {
-            mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
         }
     }
 
@@ -119,7 +114,7 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
     override fun onConfirmResult(result: Boolean) {
         this.hideLoading()
 
-        toast("提交成功")
+        ViewUtils.success(this,"提交成功")
 
         loadDetail()
     }

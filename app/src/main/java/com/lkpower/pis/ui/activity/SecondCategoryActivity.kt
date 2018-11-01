@@ -8,10 +8,13 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kotlin.base.ui.activity.BaseActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
+import com.lkpower.base.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.Category
 import com.lkpower.pis.ui.adapter.CategoryAdapter
 import kotlinx.android.synthetic.main.activity_second_category.*
+import org.jetbrains.anko.toast
+import java.lang.Exception
 
 @Route(path = "/pis/SecondCategoryActivity")
 class SecondCategoryActivity : BaseActivity() {
@@ -44,17 +47,22 @@ class SecondCategoryActivity : BaseActivity() {
         // 设置分隔线
         RecyclerViewDivider.with(this).build().addTo(mCategoryRv);
 
-        mCategoryAdapter = CategoryAdapter(this)
-        mCategoryRv.adapter = mCategoryAdapter
-        mCategoryAdapter.setData(loadSecondCategoryData().get(parentId)!!)
-        mCategoryAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<Category> {
-            override fun onItemClick(item: Category, position: Int) {
-                ARouter.getInstance().build(item.action)
-                        .withInt("id", item.id)
-                        .withString("title", item.title)
-                        .navigation()
-            }
-        })
+        try {
+            mCategoryAdapter = CategoryAdapter(this)
+            mCategoryRv.adapter = mCategoryAdapter
+            mCategoryAdapter.setData(loadSecondCategoryData().get(parentId)!!)
+            mCategoryAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<Category> {
+                override fun onItemClick(item: Category, position: Int) {
+                    ARouter.getInstance().build(item.action)
+                            .withInt("id", item.id)
+                            .withString("title", item.title)
+                            .navigation()
+                }
+            })
+        } catch (e: Exception) {
+            e.printStackTrace()
+            ViewUtils.error(this, "菜单结构设置异常")
+        }
 
     }
 
@@ -63,27 +71,28 @@ class SecondCategoryActivity : BaseActivity() {
                 1 to arrayListOf<Category>(
                         Category(100, "报到", R.drawable.icon_bd, 1, "/pis/SetoutCheckinListActivity"),
                         Category(101, "酒测", R.drawable.icon_jc, 1, "/pis/SetoutAlcoholTestListActivity"),
-                        Category(102, "计划任务传达", R.drawable.icon_jhrwcd, 1, "/pis/TaskConveyListActivity"),
-                        Category(103, "项目确认", R.drawable.icon_xmqr, 1, "/pis/SetoutGroupTaskListActivity"),
-                        Category(104, "出乘确认", R.drawable.icon_ccqr, 1, "/pis/SetoutListActivity")),
+                        Category(102, "出乘确认", R.drawable.icon_ccqr, 1, "/pis/SetoutListActivity")),
                 2 to arrayListOf<Category>(),
-                3 to arrayListOf<Category>(
-                        Category(301, "上报信息", R.drawable.icon_sbxx, 3, "/pis/DrivingInfoUploadActivity"),
-                        Category(302, "历史信息", R.drawable.icon_lsxx, 3, "/pis/DrivingInfoListActivity")
-                ),
-                4 to arrayListOf<Category>(
-                        Category(401, "应急反馈", R.drawable.icon_yjfk, 4, "/pis/EmergencyInfoAddActivity"),
-                        Category(402, "历史应急", R.drawable.icon_lsxx, 4, "/pis/EmergencyInfoListActivity")
-                ),
+                3 to arrayListOf<Category>(),
+                4 to arrayListOf<Category>(),
                 5 to arrayListOf<Category>(
-                        Category(501, "故障反馈", R.drawable.icon_yjfk, 5, "/pis/FaultReportActivity"),
-                        Category(502, "历史故障", R.drawable.icon_lsxx, 5, "/pis/FaultHistoryListActivity")),
-                6 to arrayListOf<Category>(),
+                        Category(501, "上报信息", R.drawable.icon_sbxx, 5, "/pis/DrivingInfoUploadActivity"),
+                        Category(502, "历史信息", R.drawable.icon_lsxx, 5, "/pis/DrivingInfoListActivity")
+                ),
+                6 to arrayListOf<Category>(
+                        Category(601, "应急反馈", R.drawable.icon_yjfk, 6, "/pis/EmergencyInfoAddActivity"),
+                        Category(602, "历史应急", R.drawable.icon_lsxx, 6, "/pis/EmergencyInfoListActivity")
+                ),
                 7 to arrayListOf<Category>(
-                        Category(701, "报到", R.drawable.icon_bd, 7, "/pis/SetoffCheckinListActivity"),
-                        Category(702, "酒测", R.drawable.icon_jc, 7, "/pis/SetoffAlcoholTestListActivity"),
-                        Category(703, "退乘确认", R.drawable.icon_tcgl, 7, "/pis/SetoffListActivity")),
-                8 to arrayListOf<Category>()
+                        Category(701, "故障反馈", R.drawable.icon_yjfk, 7, "/pis/FaultReportActivity"),
+                        Category(702, "历史故障", R.drawable.icon_lsxx, 7, "/pis/FaultHistoryListActivity")),
+                8 to arrayListOf<Category>(),
+                9 to arrayListOf<Category>(
+                        Category(901, "报到", R.drawable.icon_bd, 9, "/pis/SetoffCheckinListActivity"),
+                        Category(902, "酒测", R.drawable.icon_jc, 9, "/pis/SetoffAlcoholTestListActivity"),
+                        Category(903, "退乘确认", R.drawable.icon_tcgl, 9, "/pis/SetoffListActivity")),
+                10 to arrayListOf<Category>(),
+                11 to arrayListOf<Category>()
         )
 
     }

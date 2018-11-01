@@ -6,9 +6,10 @@ import android.view.Window
 import android.view.WindowManager
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.utils.AppPrefsUtils
-import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.onClick
+import com.lkpower.base.utils.PISUtil
+import com.lkpower.base.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.UserInfo
 import com.lkpower.pis.injection.component.DaggerUserComponent
@@ -18,7 +19,6 @@ import com.lkpower.pis.presenter.view.LoginView
 import com.umeng.analytics.MobclickAgent
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
 
@@ -33,6 +33,8 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
     }
 
     private fun initView() {
+        mSettingIv.onClick { settingIpAction() }
+
         mUsernameEt.setText(AppPrefsUtils.getString(BaseConstant.kUsername))
         mPasswordEt.setText(AppPrefsUtils.getString(BaseConstant.kPassword))
 
@@ -48,18 +50,22 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
         when (v.id) {
             R.id.mLoginBtn -> {
                 if (checkInput()) {
-                    mPresenter.login(mUsernameEt.text.toString(), mPasswordEt.text.toString(), "")
+                    mPresenter.login(mUsernameEt.text.toString(), mPasswordEt.text.toString(), PISUtil.getDeviceId(this))
                 }
             }
         }
     }
 
+    private fun settingIpAction() {
+        startActivity<ModifyServerAddressActivity>()
+    }
+
     private fun checkInput(): Boolean {
         if (mUsernameEt.text.isNullOrEmpty()) {
-            toast("请输入用户名")
+            ViewUtils.warning(this, "请输入用户名")
             return false
         } else if (mPasswordEt.text.isNullOrEmpty()) {
-            toast("请输入密码")
+            ViewUtils.warning(this, "请输入密码")
             return false
         }
         return true

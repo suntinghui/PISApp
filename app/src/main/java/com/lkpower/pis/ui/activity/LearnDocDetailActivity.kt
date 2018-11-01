@@ -3,13 +3,14 @@ package com.lkpower.pis.ui.activity
 import android.os.Bundle
 import android.os.Handler
 import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
 import com.kotlin.base.widgets.LabelAttrView
 import com.kotlin.base.widgets.LabelTextView
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.data.protocol.AttModel
 import com.lkpower.base.ext.onClick
 import com.lkpower.base.ext.setVisible
+import com.lkpower.base.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.LearnDoc
 import com.lkpower.pis.injection.component.DaggerLearnDocComponent
@@ -53,7 +54,7 @@ class LearnDocDetailActivity : BaseMvpActivity<LearnDocDetailPresenter>(), Learn
 
         mDetailLayout.addView(LabelTextView(this).setLabelAndContent("文件标题", result.DocTitle))
         mDetailLayout.addView(LabelTextView(this).setLabelAndContent("文件说明", result.DocRemark))
-        mDetailLayout.addView(LabelTextView(this).setLabelAndContent("发布日期", result.PublishDate))
+        mDetailLayout.addView(LabelTextView(this).setLabelAndContent("发布日期", result.PublishDate.replace("00:00:00", "")))
         mDetailLayout.addView(LabelTextView(this).setLabelAndContent("有效状态", if (result.Enable == "1") "有效" else "无效"))
         mDetailLayout.addView(LabelTextView(this).setLabelAndContent("阅读状态", if (result.ReadState == "0" || null == result.ReadState) "未读" else "已读"))
 
@@ -86,7 +87,7 @@ class LearnDocDetailActivity : BaseMvpActivity<LearnDocDetailPresenter>(), Learn
     }
 
     override fun setReadResult(result: Boolean) {
-        toast("操作成功")
+        ViewUtils.success(this, "操作成功")
 
         loadData()
     }

@@ -20,7 +20,7 @@ import com.lkpower.pis.injection.component.DaggerSetoffComponent
 import com.lkpower.pis.injection.module.SetoffModule
 import com.lkpower.pis.presenter.SetoffAlcoholTestDetailPresenter
 import com.lkpower.pis.presenter.view.SetoffAlcoholTestDetailView
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_setout_alcoholtest_detail.*
@@ -157,7 +157,7 @@ class SetoffAlcoholTestDetailActivity : BaseMvpActivity<SetoffAlcoholTestDetailP
     // 报到
     override fun setOffResult(result: Boolean) {
         this.hideLoading()
-        toast("酒测上报成功")
+        ViewUtils.success(this, "酒测上报成功")
         queryDetail()
     }
 }

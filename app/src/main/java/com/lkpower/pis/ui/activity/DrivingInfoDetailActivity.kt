@@ -2,7 +2,7 @@ package com.lkpower.pis.ui.activity
 
 import android.os.Bundle
 import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
 import com.kotlin.base.widgets.LabelTextView
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.data.protocol.AttModel

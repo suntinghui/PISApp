@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<paths>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
     <external-path
         name="files_root"
         path="Android/data/com.lkpower.pis/" />
+
+    <external-path
+        name="download_path"
+        path="/storage/emulated/0/Android/data/com.lkpower.pis/files/Download/" />
 
     <external-path
         name="external_storage_root"

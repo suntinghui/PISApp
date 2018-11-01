@@ -26,7 +26,7 @@ import com.lkpower.pis.injection.component.DaggerFaultInfoComponent
 import com.lkpower.pis.injection.module.FaultInfoModule
 import com.lkpower.pis.presenter.FaultInfoDetailPresenter
 import com.lkpower.pis.presenter.view.FaultInfoDetailView
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_fault_history_confirm.*
@@ -68,7 +68,7 @@ class FaultHistoryConfirmActivity : BaseMvpActivity<FaultInfoDetailPresenter>(),
     // 确认修复提交事件
     private fun sendAction() {
         if (mRemarkEt.text.toString().isNullOrEmpty()) {
-            toast("请输入修复备注说明")
+            ViewUtils.warning(this, "请输入修复备注说明")
             return
         }
 
@@ -157,7 +157,7 @@ class FaultHistoryConfirmActivity : BaseMvpActivity<FaultInfoDetailPresenter>(),
     // 确认修复结果
     override fun onConfirmResult(result: CommonReturn) {
         this.hideLoading()
-        toast("已成功提交")
+        ViewUtils.success(this, "已成功提交")
         finish()
     }
 

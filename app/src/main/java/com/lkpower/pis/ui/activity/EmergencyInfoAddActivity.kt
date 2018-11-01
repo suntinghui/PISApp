@@ -20,7 +20,7 @@ import com.lkpower.pis.injection.component.DaggerEmergencyInfoComponent
 import com.lkpower.pis.injection.module.EmergencyInfoModule
 import com.lkpower.pis.presenter.EmergencyInfoAddPresenter
 import com.lkpower.pis.presenter.view.EmergencyInfoAddView
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_driving_info_upload.*
@@ -65,7 +65,7 @@ class EmergencyInfoAddActivity : BaseMvpActivity<EmergencyInfoAddPresenter>(), E
 
     private fun sendAction() {
         if (mRemarkEt.text.toString().isNullOrEmpty()) {
-            toast("请输入备注信息")
+            ViewUtils.warning(this, "请输入备注信息")
             return
         }
 
@@ -86,7 +86,7 @@ class EmergencyInfoAddActivity : BaseMvpActivity<EmergencyInfoAddPresenter>(), E
 
     override fun onUploadDetailResult(result: CommonReturn) {
         this.hideLoading()
-        toast("反馈成功")
+        ViewUtils.success(this, "反馈成功")
         finish()
     }
 

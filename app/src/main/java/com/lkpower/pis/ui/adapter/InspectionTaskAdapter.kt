@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.MissionStateInfo
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
 import kotlinx.android.synthetic.main.layout_inspection_task_item.view.*
 
 class InspectionTaskAdapter(context: Context) : BaseRecyclerViewAdapter<MissionStateInfo, InspectionTaskAdapter.ViewHolder>(context) {

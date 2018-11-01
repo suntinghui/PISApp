@@ -11,6 +11,7 @@ data class DrivingInfo(
         val StateFlag: String,
         val ReadFlag: String,
         val Publisher: String,
-        val PublisherName: String
+        val PublisherName: String,
+        val DeviceId: String
 
 )

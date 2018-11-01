@@ -9,22 +9,20 @@ import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.kotlin.base.utils.AppPrefsUtils
-import com.lkpower.pis.utils.PISUtil
 import com.lkpower.base.common.AppManager
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.ext.onClick
+import com.lkpower.base.utils.PISUtil
 import com.lkpower.base.utils.ViewUtils
 import com.lkpower.pis.R
-import com.lkpower.pis.ui.adapter.CategoryAdapter
 import com.lkpower.pis.data.protocol.Category
 import com.lkpower.pis.data.protocol.XJ_LCFC
 import com.lkpower.pis.injection.component.DaggerUserComponent
 import com.lkpower.pis.injection.module.UserModule
 import com.lkpower.pis.presenter.LCFCInstancePresenter
 import com.lkpower.pis.presenter.view.LCFCInstanceView
-import kotlinx.android.synthetic.main.activity_fault_history_list.*
+import com.lkpower.pis.ui.adapter.CategoryAdapter
 import kotlinx.android.synthetic.main.activity_primary_category.*
-import org.jetbrains.anko.toast
 
 class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCInstanceView {
 
@@ -81,14 +79,16 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
     private fun loadPrimaryData(): MutableList<Category> {
         return mutableListOf<Category>(
                 Category(1, "出乘管理", R.drawable.icon_ccgl, 0, "/pis/SecondCategoryActivity"),
-                Category(2, "作业任务", R.drawable.icon_zyrw, 0, "/pis/InspectionStationListActivity"),
-                Category(3, "行车信息", R.drawable.icon_clxx, 0, "/pis/SecondCategoryActivity"),
-                Category(4, "应急反馈", R.drawable.icon_yjfk, 0, "/pis/SecondCategoryActivity"),
-                Category(5, "181故障", R.drawable.icon_181gz, 0, "/pis/SecondCategoryActivity"),
-                Category(6, "段发信息", R.drawable.icon_dfxx, 0, "/pis/PublishListActivity"),
-                Category(7, "退乘管理", R.drawable.icon_tcgl, 0, "/pis/SecondCategoryActivity"),
-                Category(8, "学习文件", R.drawable.icon_xxwj, 0, "/pis/LearnDocListActivity"),
-                Category(9, "系统设置", R.drawable.icon_setting, 0, "/pis/SettingActivity")
+                Category(2, "计划任务传达", R.drawable.icon_jhrwcd, 0, "/pis/TaskConveyListActivity"),
+                Category(3, "项目确认", R.drawable.icon_xmqr, 0, "/pis/SetoutGroupTaskListActivity"),
+                Category(4, "作业任务", R.drawable.icon_zyrw, 0, "/pis/InspectionStationListActivity"),
+                Category(5, "行车信息", R.drawable.icon_clxx, 0, "/pis/SecondCategoryActivity"),
+                Category(6, "应急反馈", R.drawable.icon_yjfk, 0, "/pis/SecondCategoryActivity"),
+                Category(7, "181故障", R.drawable.icon_181gz, 0, "/pis/SecondCategoryActivity"),
+                Category(8, "段发信息", R.drawable.icon_dfxx, 0, "/pis/PublishListActivity"),
+                Category(9, "退乘管理", R.drawable.icon_tcgl, 0, "/pis/SecondCategoryActivity"),
+                Category(10, "学习文件", R.drawable.icon_xxwj, 0, "/pis/LearnDocListActivity"),
+                Category(11, "系统设置", R.drawable.icon_setting, 0, "/pis/SettingActivity")
         )
     }
 
@@ -127,7 +127,7 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
     override fun onBackPressed() {
         val time = System.currentTimeMillis()
         if (time - pressTime > 2000) {
-            toast("再按一次退出程序")
+            ViewUtils.warning(this, "再按一次退出程序")
             pressTime = time
         } else {
             AppManager.instance.exitApp(this)

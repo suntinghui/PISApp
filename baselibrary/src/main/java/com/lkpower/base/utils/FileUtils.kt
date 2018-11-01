@@ -101,14 +101,14 @@ object FileUtils {
         val file = File(filePath)
         val intent = Intent(Intent.ACTION_VIEW)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val apkUri = FileProvider.getUriForFile(mContext, "com.lkpower.pis.fileProvider", file)
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            intent.setDataAndType(apkUri, "application/vnd.android.package-archive")
+            intent.setDataAndType(apkUri, getMIMEType(file))
         } else {
-            intent.setDataAndType(Uri.fromFile(file),
-                    "application/vnd.android.package-archive")
+            intent.setDataAndType(Uri.fromFile(file), getMIMEType(file))
         }
+
         mContext.startActivity(intent)
     }
 

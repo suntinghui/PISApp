@@ -7,7 +7,7 @@ import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoutInfo
 import com.lkpower.pis.injection.component.DaggerSetoutComponent

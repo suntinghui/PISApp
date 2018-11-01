@@ -41,7 +41,7 @@ class RiskItemAdapter(context: Context) : BaseRecyclerViewAdapter<RiskItem, Risk
         }
         holder.itemView.mConfirmBtn.onClick {
             if (holder.itemView.mContentEt.text.isNullOrEmpty()) {
-                Toast.makeText(context, "请输入内容", Toast.LENGTH_SHORT).show()
+                ViewUtils.warning(context, "请输入内容")
                 return@onClick
             }
 

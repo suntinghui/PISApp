@@ -2,16 +2,13 @@ package com.lkpower.pis.ui.activity
 
 import android.graphics.Color
 import android.os.Bundle
-import com.alibaba.android.arouter.launcher.ARouter
-import com.kotlin.base.ui.activity.BaseActivity
 import com.lkpower.pis.R
 import kotlinx.android.synthetic.main.activity_publish_detail.*
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.text.SpannableStringBuilder
 import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.lkpower.pis.utils.PISUtil
-import com.lkpower.base.common.BaseConstant
+import com.lkpower.base.utils.PISUtil
 import com.lkpower.pis.data.protocol.PublishInfo
 import com.lkpower.pis.injection.component.DaggerPublishComponent
 import com.lkpower.pis.injection.module.PublishModule
@@ -31,7 +28,7 @@ class PublishDetailActivity : BaseMvpActivity<PublishDetailPresenter>(), Publish
     }
 
     private fun loadData() {
-        mPresenter.gePublishModel(intent.getStringExtra("ID"), "", PISUtil.getTokenKey())
+        mPresenter.gePublishModel(intent.getStringExtra("ID"), PISUtil.getDeviceId(this), PISUtil.getTokenKey())
     }
 
     override fun injectComponent() {

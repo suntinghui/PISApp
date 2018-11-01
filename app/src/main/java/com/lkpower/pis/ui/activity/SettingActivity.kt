@@ -106,13 +106,13 @@ class SettingActivity : BaseActivity(), View.OnClickListener {
         runOnUiThread { Glide.get(this).clearMemory() }
         doAsync { Glide.get(this@SettingActivity).clearDiskCache() }
 
-        toast("已清空缓存")
+        ViewUtils.success(this, "已清空缓存")
     }
 
     // 检查更新
     private fun checkLatestVersion() {
         if (!NetWorkUtils.isNetWorkAvailable(this)) {
-            toast("当前网络不可用，请稍候再试")
+            ViewUtils.warning(this, "当前网络不可用，请稍候再试")
             return
         }
 
@@ -133,7 +133,7 @@ class SettingActivity : BaseActivity(), View.OnClickListener {
                     }).show();
 
                 } else {
-                    toast("当前已经是最新版本")
+                    ViewUtils.success(this@SettingActivity, "当前已经是最新版本")
                 }
             }
 
@@ -146,7 +146,7 @@ class SettingActivity : BaseActivity(), View.OnClickListener {
     // 方法一:通过获取到download_token得到下载地址,然后打开浏览器自动下载
     private fun getDownloadToken() {
         if (!NetWorkUtils.isNetWorkAvailable(this)) {
-            toast("当前网络不可用，请稍候再试")
+            ViewUtils.warning(this, "当前网络不可用，请稍候再试")
             return
         }
 

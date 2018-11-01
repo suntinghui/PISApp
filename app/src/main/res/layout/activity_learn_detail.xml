@@ -41,6 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:text="学习完成"
+                android:textSize="@dimen/text_big_size"
                 android:textColor="@color/common_white"
                 android:visibility="gone" />
 

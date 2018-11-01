@@ -11,7 +11,8 @@ import com.lkpower.pis.injection.component.DaggerSetoffComponent
 import com.lkpower.pis.injection.module.SetoffModule
 import com.lkpower.pis.presenter.SetoffDetailPresenter
 import com.lkpower.pis.presenter.view.SetoffDetailView
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
+import com.lkpower.base.utils.ViewUtils
 import kotlinx.android.synthetic.main.activity_setout_detail.*
 import org.jetbrains.anko.toast
 
@@ -71,7 +72,7 @@ class SetoffDetailActivity : BaseMvpActivity<SetoffDetailPresenter>(), SetoffDet
 
     // 项目确认
     override fun setOffResult(result: CommonReturn) {
-        toast("项目确认成功")
+        ViewUtils.success(this, "项目确认成功")
         queryDetail()
     }
 }

@@ -11,7 +11,6 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
-import com.google.gson.Gson
 import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
@@ -20,7 +19,6 @@ import com.lkpower.base.ext.startLoading
 import com.lkpower.base.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.FaultInfo
-import com.lkpower.pis.data.protocol.FaultInfoConfirm
 import com.lkpower.pis.data.protocol.ListResult
 import com.lkpower.pis.data.protocol.SysDic
 import com.lkpower.pis.injection.component.DaggerFaultInfoComponent
@@ -28,7 +26,7 @@ import com.lkpower.pis.injection.module.FaultInfoModule
 import com.lkpower.pis.presenter.FaultInfoListPresenter
 import com.lkpower.pis.presenter.view.FaultInfoListView
 import com.lkpower.pis.ui.adapter.FaultInfoAdapter
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
 import com.lkpower.pis.utils.PageBeanUtil
 import kotlinx.android.synthetic.main.activity_fault_history_list.*
 import org.jetbrains.anko.startActivity
@@ -130,7 +128,7 @@ class FaultHistoryListActivity : BaseMvpActivity<FaultInfoListPresenter>(), Faul
             FaultType = ""
         }
 
-        var searchInfo = "{'TrainNo':$trainNo,'PartId':$PartId,'FaultType':$FaultType}"
+        var searchInfo = "{'TrainNo':$trainNo,'PartId':$PartId,'FaultType':$FaultType, 'DeviceId':${PISUtil.getDeviceId(this)}}"
 
         mPresenter.getFaultInfoList(searchInfo, PageBeanUtil.getPageBeanJson(mCurrentPage), PISUtil.getTokenKey())
     }
@@ -169,7 +167,7 @@ class FaultHistoryListActivity : BaseMvpActivity<FaultInfoListPresenter>(), Faul
     // 查询故障类型
     private fun queryFaultTypeData() {
         if (selectFailPart == null) {
-            toast("您所选择的故障配件无效")
+            ViewUtils.warning(this, "您所选择的故障配件无效")
             return
         }
 
@@ -195,12 +193,12 @@ class FaultHistoryListActivity : BaseMvpActivity<FaultInfoListPresenter>(), Faul
     // 选择故障类型
     private fun showFaultTypeEvent() {
         if (selectFailPart == null) {
-            toast("请先填写故障配件")
+            ViewUtils.warning(this, "请先填写故障配件")
             return
         }
 
         if (faultTypeList.isEmpty()) {
-            toast("没有查询到故障类型")
+            ViewUtils.warning(this, "没有查询到故障类型")
             return
         }
 

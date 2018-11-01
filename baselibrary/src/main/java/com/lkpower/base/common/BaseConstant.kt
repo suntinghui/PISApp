@@ -4,7 +4,8 @@ class BaseConstant {
 
     companion object {
 
-        const val SERVER_ADDRESS = "http://101.200.233.58:8066/MobileAPI/"
+        const val DEFAULT_SERVER_ADDRESS = "101.200.233.58:8066"
+        const val kSERVER_ADDRESS = "kSERVER_ADDRESS"
 
         //SP表名
         const val TABLE_PREFS = "PISApp"

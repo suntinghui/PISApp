@@ -9,8 +9,7 @@ import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
-import com.lkpower.pis.utils.PISUtil
-import com.lkpower.base.common.BaseConstant
+import com.lkpower.base.utils.PISUtil
 import com.lkpower.base.ext.startLoading
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.EmergencyInfo
@@ -62,7 +61,7 @@ class EmergencyInfoListActivity : BaseMvpActivity<EmergencyInfoListPresenter>(),
 
     private fun loadData() {
         mMultiStateView.startLoading()
-        mPresenter.getEmergencyInfoList("{}", PageBeanUtil.getPageBeanJson(mCurrentPage), PISUtil.getTokenKey())
+        mPresenter.getEmergencyInfoList("{'DeviceId':${PISUtil.getDeviceId(this)}}", PageBeanUtil.getPageBeanJson(mCurrentPage), PISUtil.getTokenKey())
 
     }
 

@@ -15,8 +15,8 @@ android {
         applicationId "com.lkpower.pis"
         minSdkVersion min_sdk_version
         targetSdkVersion target_sdk_version
-        versionCode 11
-        versionName "1.1"
+        versionCode 12
+        versionName "1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }

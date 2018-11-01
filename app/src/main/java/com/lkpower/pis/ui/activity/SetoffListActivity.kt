@@ -14,7 +14,7 @@ import com.lkpower.pis.injection.module.SetoffModule
 import com.lkpower.pis.presenter.SetoffListPresenter
 import com.lkpower.pis.presenter.view.SetoffListView
 import com.lkpower.pis.ui.adapter.SetoffAdapter
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
 import kotlinx.android.synthetic.main.activity_setout_checkin_list.*
 import org.jetbrains.anko.startActivity
 

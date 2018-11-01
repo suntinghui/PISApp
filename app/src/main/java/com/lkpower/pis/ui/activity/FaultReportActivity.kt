@@ -27,7 +27,7 @@ import com.lkpower.pis.injection.component.DaggerFaultInfoComponent
 import com.lkpower.pis.injection.module.FaultInfoModule
 import com.lkpower.pis.presenter.FaultInfoAddPresenter
 import com.lkpower.pis.presenter.view.FaultInfoAddView
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_fault_report.*
@@ -114,27 +114,27 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
     private fun sendAction() {
         try {
             if (selectFailPart == null) {
-                toast("请填写故障配件")
+                ViewUtils.warning(this, "请填写故障配件")
                 return
             }
 
             // 有可能没有故障件下没有故障类型
             if (selectFaultType == null) {
-                toast("没有选择故障类型")
+                ViewUtils.warning(this, "没有选择故障类型")
                 return
             }
 
             if (mTrainNoEt.text.toString().isNullOrEmpty()) {
-                toast("请输入车号")
+                ViewUtils.warning(this, "请输入车号")
                 return
             }
 
             if (mRemarkEt.text.toString().isNullOrEmpty()) {
-                toast("请输入故障说明信息")
+                ViewUtils.warning(this, "请输入故障说明信息")
                 return
             }
         } catch (e: Exception) {
-            toast("请先填写相应信息")
+            ViewUtils.warning(this, "请先填写相应信息")
             return
         }
 
@@ -156,7 +156,7 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
     // 查询故障类型
     private fun queryFaultTypeData() {
         if (selectFailPart == null) {
-            toast("您所选择的故障配件无效")
+            ViewUtils.warning(this, "您所选择的故障配件无效")
             return
         }
 
@@ -184,12 +184,12 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
     // 选择故障类型
     private fun showFaultTypeEvent() {
         if (selectFailPart == null) {
-            toast("请先填写故障配件")
+            ViewUtils.warning(this, "请先填写故障配件")
             return
         }
 
         if (faultTypeList.isEmpty()) {
-            toast("没有查询到故障类型")
+            ViewUtils.warning(this, "没有查询到故障类型")
             return
         }
 
@@ -211,7 +211,7 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
 
     override fun onAddDetailResult(result: CommonReturn) {
         this.hideLoading()
-        toast("上报成功")
+        ViewUtils.success(this, "上报成功")
         finish()
     }
 

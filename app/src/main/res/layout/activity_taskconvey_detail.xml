@@ -57,19 +57,13 @@
                 android:layout_height="wrap_content"
                 app:labelText="完布时间"></com.kotlin.base.widgets.LabelTextView>
 
-            <com.kennyc.view.MultiStateView
-                android:id="@+id/mMultiStateView"
-                style="@style/MultiStateStyle">
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/mRiskItemsRv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/common_gray"
-                    android:scrollbars="vertical" />
-
-            </com.kennyc.view.MultiStateView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/mRiskItemsRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/common_gray"
+                android:scrollbars="vertical" />
 
 
         </LinearLayout>

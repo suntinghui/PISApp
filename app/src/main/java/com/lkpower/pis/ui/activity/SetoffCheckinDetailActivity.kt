@@ -1,23 +1,17 @@
 package com.lkpower.pis.ui.activity
 
 import android.os.Bundle
-import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.lkpower.pis.utils.PISUtil
-import com.lkpower.base.common.BaseConstant
+import com.lkpower.base.utils.PISUtil
 import com.lkpower.base.ext.onClick
 import com.lkpower.base.ext.setVisible
+import com.lkpower.base.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoffCheckIn
-import com.lkpower.pis.data.protocol.SetoutCheckIn
 import com.lkpower.pis.injection.component.DaggerSetoffComponent
-import com.lkpower.pis.injection.component.DaggerSetoutComponent
 import com.lkpower.pis.injection.module.SetoffModule
-import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.SetoffCheckinDetailPresenter
-import com.lkpower.pis.presenter.SetoutCheckinDetailPresenter
 import com.lkpower.pis.presenter.view.SetoffCheckinDetailView
-import com.lkpower.pis.presenter.view.SetoutCheckinDetailView
 import kotlinx.android.synthetic.main.activity_setout_checkin_detail.*
 import org.jetbrains.anko.toast
 import java.lang.Exception
@@ -85,7 +79,7 @@ class SetoffCheckinDetailActivity : BaseMvpActivity<SetoffCheckinDetailPresenter
 
     // 报到
     override fun setOutResult(result: Boolean) {
-        toast("退乘报到成功")
+        ViewUtils.success(this, "退乘报到成功")
         queryDetail()
     }
 }

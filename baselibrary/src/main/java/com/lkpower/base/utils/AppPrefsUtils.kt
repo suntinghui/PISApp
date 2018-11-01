@@ -47,6 +47,10 @@ object AppPrefsUtils {
         return sp.getString(key, "")
     }
 
+    fun getString(key: String, defValue: String): String {
+        return sp.getString(key, defValue)
+    }
+
     /*
         Int数据
      */

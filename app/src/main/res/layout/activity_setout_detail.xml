@@ -57,7 +57,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/common_margin"
-                android:text="项目确认"
+                android:text="确  定"
+                android:textSize="@dimen/text_big_size"
                 android:textColor="@color/common_white" />
 
 

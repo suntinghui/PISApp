@@ -15,7 +15,7 @@ import com.lkpower.pis.injection.module.SetoffModule
 import com.lkpower.pis.presenter.SetoffAlcoholTestListPresenter
 import com.lkpower.pis.presenter.view.SetoffAlcoholTestListView
 import com.lkpower.pis.ui.adapter.SetoffAlcoholTestAdapter
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
 import kotlinx.android.synthetic.main.activity_setout_checkin_list.*
 import org.jetbrains.anko.startActivity
 

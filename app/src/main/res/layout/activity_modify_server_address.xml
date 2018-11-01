@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_gray"
+    android:orientation="vertical">
+
+    <com.kotlin.base.widgets.HeaderBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="修改服务器地址"></com.kotlin.base.widgets.HeaderBar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="http://"
+                android:textColor="#666666"
+                android:textSize="@dimen/text_middle_size" />
+
+            <EditText
+                android:id="@+id/mAddressEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/border_all"
+                android:hint="请输入服务器地址"
+                android:inputType="textUri"
+                android:lines="3"
+                android:padding="10dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text="
+1、请不要随意修改服务器地址，否则可能会造成无法登录的情况；\n
+2、服务器地址需要上级部门告知，并请严格按照格式输入；\n
+3、输入内容格式为只包含IP地址和端口。"
+            android:textColor="@color/common_red"
+            android:textSize="@dimen/text_middle_size" />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/mSendBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="确认修改"
+            android:textSize="@dimen/text_big_size"
+            android:textColor="@color/common_white" />
+
+    </LinearLayout>
+
+</LinearLayout>

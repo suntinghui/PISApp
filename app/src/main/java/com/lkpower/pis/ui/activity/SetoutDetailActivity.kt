@@ -2,10 +2,10 @@ package com.lkpower.pis.ui.activity
 
 import android.os.Bundle
 import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.lkpower.pis.utils.PISUtil
-import com.lkpower.base.common.BaseConstant
+import com.lkpower.base.utils.PISUtil
 import com.lkpower.base.ext.onClick
 import com.lkpower.base.ext.setVisible
+import com.lkpower.base.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.SetoutInfo
@@ -72,7 +72,7 @@ class SetoutDetailActivity : BaseMvpActivity<SetoutDetailPresenter>(), SetoutDet
 
     // 项目确认
     override fun setOutResult(result: CommonReturn) {
-        toast("项目确认成功")
+        ViewUtils.success(this, "项目确认成功")
         queryDetail()
     }
 }

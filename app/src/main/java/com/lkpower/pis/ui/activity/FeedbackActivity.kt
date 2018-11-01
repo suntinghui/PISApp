@@ -12,7 +12,8 @@ import com.lkpower.pis.injection.component.DaggerSettingComponent
 import com.lkpower.pis.injection.module.SettingModule
 import com.lkpower.pis.presenter.FeedbackPresenter
 import com.lkpower.pis.presenter.view.FeedbackView
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
+import com.lkpower.base.utils.ViewUtils
 import kotlinx.android.synthetic.main.activity_feedback.*
 import org.jetbrains.anko.toast
 
@@ -35,12 +36,12 @@ class FeedbackActivity : BaseMvpActivity<FeedbackPresenter>(), FeedbackView {
 
     private fun sendAction() {
         if (mContentEt.text.isNullOrEmpty()) {
-            toast("意见内容不能为空")
+            ViewUtils.warning(this, "意见内容不能为空")
             return
         }
 
         if (mContentEt.text.toString().length < 10) {
-            toast("意见内容不能少于10个字")
+            ViewUtils.warning(this, "意见内容不能少于10个字")
             return
         }
 
@@ -58,7 +59,7 @@ class FeedbackActivity : BaseMvpActivity<FeedbackPresenter>(), FeedbackView {
 
     override fun onAddResult(result: CommonReturn) {
         this.hideLoading()
-        toast("提交成功，感谢您的反馈")
+        ViewUtils.success(this, "提交成功，感谢您的反馈")
         finish()
     }
 }

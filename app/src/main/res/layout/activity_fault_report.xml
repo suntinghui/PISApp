@@ -161,7 +161,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/common_margin"
                 android:layout_marginBottom="30dp"
-                android:text="发送"
+                android:text="确  定"
                 android:textColor="@color/common_white"
                 android:textSize="@dimen/text_big_size" />
 

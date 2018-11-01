@@ -19,7 +19,8 @@ import com.lkpower.pis.injection.component.DaggerAttachmentComponent
 import com.lkpower.pis.injection.module.AttachmentModule
 import com.lkpower.pis.presenter.AttachmentDeletePresenter
 import com.lkpower.pis.presenter.view.AttachmentDeleteView
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
+import com.lkpower.base.utils.ViewUtils
 import kotlinx.android.synthetic.main.activity_preview.*
 import me.panpf.sketch.decode.ImageAttrs
 import me.panpf.sketch.request.CancelCause
@@ -76,12 +77,12 @@ class PreviewImageActivity : BaseMvpActivity<AttachmentDeletePresenter>(), Attac
 
             override fun onCanceled(cause: CancelCause) {
                 this@PreviewImageActivity.hideLoading()
-                toast("加载图片过程被取消")
+                ViewUtils.success(this@PreviewImageActivity, "加载图片过程被取消")
             }
 
             override fun onError(cause: ErrorCause) {
                 this@PreviewImageActivity.hideLoading()
-                toast("图片加载失败")
+                ViewUtils.error(this@PreviewImageActivity, "图片加载失败")
             }
 
             override fun onCompleted(drawable: Drawable, imageFrom: ImageFrom, imageAttrs: ImageAttrs) {
@@ -100,7 +101,7 @@ class PreviewImageActivity : BaseMvpActivity<AttachmentDeletePresenter>(), Attac
                 0 -> {
                     if (FileUtils.isNetFile(path)) {
                         if (attId.isEmpty() || attType.isEmpty())
-                            toast("无法删除图片，请返回重试")
+                            ViewUtils.warning(this@PreviewImageActivity, "无法删除图片，请返回重试")
                         else
                             mPresenter.deleteFile(attId, attType, PISUtil.getTokenKey())
 
@@ -119,7 +120,7 @@ class PreviewImageActivity : BaseMvpActivity<AttachmentDeletePresenter>(), Attac
     }
 
     override fun onDeleteResult(result: Boolean) {
-        toast("删除成功")
+        ViewUtils.success(this, "删除成功")
 
         Bus.send(DeleteSelectImageEvent(path))
         finish()

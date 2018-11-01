@@ -141,7 +141,7 @@
             android:layout_marginRight="15dp"
             android:text="退出登录"
             android:textColor="@color/common_white"
-            android:textSize="15sp" />
+            android:textSize="@dimen/text_big_size" />
 
 
     </LinearLayout>

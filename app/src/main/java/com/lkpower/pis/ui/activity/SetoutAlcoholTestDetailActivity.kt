@@ -9,7 +9,7 @@ import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.widgets.ImagePickerView
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
 import com.lkpower.base.common.BaseConstant
 import com.lkpower.base.data.protocol.AttModel
 import com.lkpower.base.ext.onClick
@@ -157,7 +157,7 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
     // 报到
     override fun setOutResult(result: Boolean) {
         this.hideLoading()
-        toast("酒测上报成功")
+        ViewUtils.success(this, "酒测上报成功")
         queryDetail()
     }
 }

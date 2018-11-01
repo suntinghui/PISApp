@@ -7,7 +7,7 @@ import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kennyc.view.MultiStateView
 import com.kotlin.base.ui.activity.BaseMvpActivity
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
 import com.lkpower.base.ext.startLoading
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoffCheckIn
@@ -16,7 +16,6 @@ import com.lkpower.pis.injection.module.SetoffModule
 import com.lkpower.pis.presenter.SetoffCheckInListPresenter
 import com.lkpower.pis.presenter.view.SetoffCheckinListView
 import com.lkpower.pis.ui.adapter.SetoffCheckinAdapter
-import com.lkpower.pis.ui.adapter.SetoutCheckinAdapter
 import kotlinx.android.synthetic.main.activity_setout_checkin_list.*
 import org.jetbrains.anko.startActivity
 

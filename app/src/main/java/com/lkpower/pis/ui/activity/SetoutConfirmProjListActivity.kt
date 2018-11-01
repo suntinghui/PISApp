@@ -20,7 +20,8 @@ import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.SetoutGroupConfirmProjListPresenter
 import com.lkpower.pis.presenter.view.SetoutConfirmProjListView
 import com.lkpower.pis.ui.adapter.ConfirmProjAdapter
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
+import com.lkpower.base.utils.ViewUtils
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_setout_confirm_proj_list.*
@@ -109,7 +110,7 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
     override fun onConfirmResult(result: Boolean) {
         this.hideLoading()
 
-        toast("提交成功")
+        ViewUtils.success(this, "提交成功")
 
         loadDetail()
     }

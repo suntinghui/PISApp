@@ -44,9 +44,10 @@
     <info.hoang8f.widget.FButton
         android:layout_marginTop="20dp"
         android:id="@+id/mConfirmBtn"
+        android:textSize="@dimen/text_big_size"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="确认该项"
+        android:text="确  定"
         android:textColor="@color/common_white" />
 
 </LinearLayout>

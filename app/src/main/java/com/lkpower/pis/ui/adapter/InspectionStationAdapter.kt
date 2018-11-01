@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.XJ_CZSL
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
 import kotlinx.android.synthetic.main.layout_station_item.view.*
 
 class InspectionStationAdapter(context: Context) : BaseRecyclerViewAdapter<XJ_CZSL, InspectionStationAdapter.ViewHolder>(context) {

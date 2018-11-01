@@ -17,7 +17,7 @@ import com.lkpower.pis.injection.component.DaggerDrivingInfoComponent
 import com.lkpower.pis.injection.module.DrivingInfoModule
 import com.lkpower.pis.presenter.DrivingInfoUploadPresenter
 import com.lkpower.pis.presenter.view.DrivingInfoUploadView
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_driving_info_upload.*
@@ -62,7 +62,7 @@ class DrivingInfoUploadActivity : BaseMvpActivity<DrivingInfoUploadPresenter>(),
 
     private fun sendAction() {
         if (mRemarkEt.text.toString().isNullOrEmpty()) {
-            toast("请输入备注信息")
+            ViewUtils.warning(this, "请输入备注信息")
             return
         }
 
@@ -83,7 +83,7 @@ class DrivingInfoUploadActivity : BaseMvpActivity<DrivingInfoUploadPresenter>(),
 
     override fun onUploadDetailResult(result: CommonReturn) {
         this.hideLoading()
-        toast("上报成功")
+        ViewUtils.success(this, "上报成功")
         finish()
     }
 

@@ -21,7 +21,7 @@ import com.lkpower.pis.injection.component.DaggerInspectionComponent
 import com.lkpower.pis.injection.module.InspectionModule
 import com.lkpower.pis.presenter.InspectionTaskDetailPresenter
 import com.lkpower.pis.presenter.view.InspectionTaskDetailView
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.base.utils.PISUtil
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_inspection_task_detail.*
@@ -84,7 +84,7 @@ class InspectionTaskDetailActivity : BaseMvpActivity<InspectionTaskDetailPresent
 
     private fun sendAction() {
         if (mRemarkEt.text.toString().isNullOrEmpty()) {
-            toast("请输入备注信息")
+            ViewUtils.warning(this, "请输入备注信息")
             return
         }
 
@@ -144,7 +144,7 @@ class InspectionTaskDetailActivity : BaseMvpActivity<InspectionTaskDetailPresent
     }
 
     override fun onUpdateMissionInfo(result: Boolean) {
-        toast("操作成功")
+        ViewUtils.success(this, "操作成功")
         loadData()
     }
 
