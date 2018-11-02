@@ -51,6 +51,7 @@ open class BaseApplication : MultiDexApplication() {
     fun registerUMPush() {
         var mPushAgent = PushAgent.getInstance(this)
         mPushAgent.displayNotificationNumber = 0 // 参数number可以设置为0~10之间任意整数。当参数为0时，表示不合并通知。
+        mPushAgent.setNoDisturbMode(0, 0, 0, 0) // 关闭免打扰模式
         mPushAgent.resourcePackageName = "com.lkpower.pis"
 
         mPushAgent.notificationPlaySound = MsgConstant.NOTIFICATION_PLAY_SERVER //声音
@@ -64,6 +65,7 @@ open class BaseApplication : MultiDexApplication() {
             }
 
             override fun onFailure(p0: String?, p1: String?) {
+                Logger.e("注册UMeng失败！$p0  $p1")
             }
         })
 
