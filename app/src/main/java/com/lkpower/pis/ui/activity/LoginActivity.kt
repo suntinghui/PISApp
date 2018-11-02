@@ -1,5 +1,6 @@
 package com.lkpower.pis.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.Window
@@ -90,7 +91,10 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
 
         registerUMengAlias()
 
-        startActivity<PrimaryCategoryActivity>()
+        var intent = Intent(this, PrimaryCategoryActivity::class.java)
+        intent.putExtra("abc", "ABC")
+        this.startActivity(intent)
+        //startActivity<PrimaryCategoryActivity>()
     }
 
     /*
@@ -99,15 +103,15 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
     private fun registerUMengAlias() {
         var mPushAgent: PushAgent = PushAgent.getInstance(this)
 
-        mPushAgent.addAlias(AppPrefsUtils.getString(BaseConstant.kEmpId), "User_ID", object : UTrack.ICallBack {
+        mPushAgent.addAlias(AppPrefsUtils.getString(BaseConstant.kEmpId), "USER_ID", object : UTrack.ICallBack {
             override fun onMessage(isSuccess: Boolean, message: String?) {
-                Logger.e("Alias User_ID ${message} - ${isSuccess}")
+                Logger.e("Alias USER_ID $message - $isSuccess")
             }
         })
 
         mPushAgent.addAlias(PISUtil.getDeviceId(this), "DeviceID", object : UTrack.ICallBack {
             override fun onMessage(isSuccess: Boolean, message: String?) {
-                Logger.e("Alias DeviceID ${message} - ${isSuccess}")
+                Logger.e("Alias DeviceID $message - $isSuccess")
             }
         })
 

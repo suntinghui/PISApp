@@ -10,25 +10,38 @@ import com.lkpower.pis.utils.NotificationUtil
 import com.lkpower.pis.utils.ViewUtils
 import com.orhanobut.logger.Logger
 import com.umeng.message.UmengMessageService
+import com.umeng.message.entity.UMessage
+import org.android.agoo.common.AgooConstants
+import org.json.JSONObject
 import java.lang.Exception
 import java.util.*
+
+
+/*
+Bundle[{task_id=null, id=f__-mSxtk3anNW0E&&uatlbh3154114788036601&&WmxRMeuVKssDAAQme/xemu+B&&01&&, body={"display_type":"notification","extra":{"MissionInstanceId":"0c27f6e4-6d87-474e-85e7-bb6327acf4d3","StationName":"南宁站","PushType":"SetOutBeginWarning","InstanceId":"9c88b677-9f93-4e1e-8d14-297c5d0b3dfc","ArriveDate":"2018-10-28 07:00:00","StationId":"2a6ba24d-4136-44aa-a4ff-efdb6306d0c8"},"msg_id":"uatlbh3154114788036601","body":{"after_open":"go_custom","ticker":"车次T290/89-南宁站 (出乘任务)","builder_id":0,"custom":"comment-notify","text":"车次T290/89-南宁站 出乘任务即将开始：07:00:00","title":"车次T290/89-南宁站 出乘任务即将开始：07:00:00"},"random_min":0}}]
+*/
 
 class UMengNotificationService : UmengMessageService() {
 
     override fun onMessage(context: Context, intent: Intent) {
         try {
-            Logger.e("收到推送消息...${Gson().to(intent)}")
+            Logger.e("收到推送消息...")
 
             var ticker = ""
             var title = ""
             var content = ""
             var tempIntent: Intent = Intent()
 
-            var InstanceId = intent.getStringExtra("InstanceId") ?: "" // 发车实例
-            var StationId = intent.getStringExtra("StationId") ?: "" // 站点ID
-            var StationName = intent.getStringExtra("StationName") ?: "" // 站点名称
-            var ArriveDate = intent.getStringExtra("ArriveDate") ?: "" // 任务开始时间
-            var PushType = intent.getStringExtra("PushType") ?: "" // 预警类型
+            val messageBody = intent.getStringExtra(AgooConstants.MESSAGE_BODY)
+            Logger.e("MESSAGE_BODY: $messageBody")
+
+            var umessage = UMessage(JSONObject(messageBody))
+
+            var InstanceId = umessage.extra.get("InstanceId") ?: "" // 发车实例
+            var StationId = umessage.extra.get("StationId") ?: "" // 站点ID
+            var StationName = umessage.extra.get("StationName") ?: "" // 站点名称
+            var ArriveDate = umessage.extra.get("ArriveDate") ?: "" // 任务开始时间
+            var PushType = umessage.extra.get("PushType") ?: "" // 预警类型
 
             when (PushType) {
                 "MissionWarning" -> { // 到站预警

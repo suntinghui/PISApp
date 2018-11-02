@@ -6,6 +6,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
+import com.google.gson.Gson
 import com.lkpower.pis.ui.activity.BaseMvpActivity
 import com.lkpower.pis.ui.adapter.BaseRecyclerViewAdapter
 import com.lkpower.pis.utils.AppPrefsUtils
@@ -22,6 +23,7 @@ import com.lkpower.pis.injection.module.UserModule
 import com.lkpower.pis.presenter.LCFCInstancePresenter
 import com.lkpower.pis.presenter.view.LCFCInstanceView
 import com.lkpower.pis.ui.adapter.CategoryAdapter
+import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_primary_category.*
 
 class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCInstanceView {
@@ -35,6 +37,10 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_primary_category)
+
+        var intent = getIntent()
+
+        Logger.e("收到推送消息...${Gson().toJson(intent)}")
 
         initView()
 
