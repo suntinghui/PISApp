@@ -1,6 +1,6 @@
 package com.lkpower.pis.data.api
 
-import com.lkpower.base.data.protocol.BaseResp
+import com.lkpower.pis.data.protocol.BaseResp
 import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.DrivingInfo
 import com.lkpower.pis.data.protocol.ListResult

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.Window
 import android.view.WindowManager
-import com.kotlin.base.ui.activity.BaseActivity
+import com.lkpower.pis.ui.activity.BaseActivity
 import com.lkpower.pis.R
 import org.jetbrains.anko.startActivity
 

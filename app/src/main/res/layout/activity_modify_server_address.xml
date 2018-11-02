@@ -6,10 +6,10 @@
     android:background="@color/common_gray"
     android:orientation="vertical">
 
-    <com.kotlin.base.widgets.HeaderBar
+    <com.lkpower.pis.widgets.HeaderBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleText="修改服务器地址"></com.kotlin.base.widgets.HeaderBar>
+        app:titleText="修改服务器地址"></com.lkpower.pis.widgets.HeaderBar>
 
     <LinearLayout
         android:layout_width="match_parent"

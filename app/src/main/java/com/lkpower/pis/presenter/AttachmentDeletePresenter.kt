@@ -1,12 +1,9 @@
 package com.lkpower.pis.presenter
 
-import com.kotlin.base.rx.BaseSubscriber
-import com.lkpower.base.ext.execute
-import com.lkpower.base.presenter.BasePresenter
+import com.lkpower.pis.rx.BaseSubscriber
+import com.lkpower.pis.ext.execute
 import com.lkpower.pis.presenter.view.AttachmentDeleteView
-import com.lkpower.pis.presenter.view.DrivingInfoUploadView
 import com.lkpower.pis.service.AttachmentService
-import com.lkpower.pis.service.DrivingInfoService
 import javax.inject.Inject
 
 class AttachmentDeletePresenter @Inject constructor() : BasePresenter<AttachmentDeleteView>() {

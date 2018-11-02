@@ -1,7 +1,7 @@
 package com.lkpower.pis.data.api
 
-import com.lkpower.base.common.BaseConstant
-import com.lkpower.base.data.protocol.BaseResp
+import com.lkpower.pis.common.BaseConstant
+import com.lkpower.pis.data.protocol.BaseResp
 import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.FirAppInfo
 import com.lkpower.pis.data.protocol.ListResult

@@ -2,9 +2,9 @@ package com.lkpower.pis.ui.activity
 
 import android.os.Bundle
 import com.google.gson.Gson
-import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.kotlin.base.utils.DateUtils
-import com.lkpower.base.ext.onClick
+import com.lkpower.pis.ui.activity.BaseMvpActivity
+import com.lkpower.pis.utils.DateUtils
+import com.lkpower.pis.ext.onClick
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.Feedback
@@ -12,8 +12,8 @@ import com.lkpower.pis.injection.component.DaggerSettingComponent
 import com.lkpower.pis.injection.module.SettingModule
 import com.lkpower.pis.presenter.FeedbackPresenter
 import com.lkpower.pis.presenter.view.FeedbackView
-import com.lkpower.base.utils.PISUtil
-import com.lkpower.base.utils.ViewUtils
+import com.lkpower.pis.utils.PISUtil
+import com.lkpower.pis.utils.ViewUtils
 import kotlinx.android.synthetic.main.activity_feedback.*
 import org.jetbrains.anko.toast
 

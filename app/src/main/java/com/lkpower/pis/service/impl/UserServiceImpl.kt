@@ -1,6 +1,6 @@
 package com.lkpower.pis.service.impl
 
-import com.lkpower.base.ext.convert
+import com.lkpower.pis.ext.convert
 import com.lkpower.pis.data.protocol.UserInfo
 import com.lkpower.pis.data.protocol.XJ_LCFC
 import com.lkpower.pis.data.respository.UserRespository

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.kotlin.base.widgets.HeaderBar
+    <com.lkpower.pis.widgets.HeaderBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:titleText="任务信息" />
@@ -22,23 +22,23 @@
             android:focusableInTouchMode="true"
             android:orientation="vertical">
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mTitleView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="任务标题"></com.kotlin.base.widgets.LabelTextView>
+                app:labelText="任务标题"></com.lkpower.pis.widgets.LabelTextView>
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mContentView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="任务内容"></com.kotlin.base.widgets.LabelTextView>
+                app:labelText="任务内容"></com.lkpower.pis.widgets.LabelTextView>
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mStateView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="任务标题"></com.kotlin.base.widgets.LabelTextView>
+                app:labelText="任务标题"></com.lkpower.pis.widgets.LabelTextView>
 
             <LinearLayout
                 android:id="@+id/mStateLayout"
@@ -69,11 +69,11 @@
                     android:text="" />
             </LinearLayout>
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mRemarkView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="备注"></com.kotlin.base.widgets.LabelTextView>
+                app:labelText="备注"></com.lkpower.pis.widgets.LabelTextView>
 
             <LinearLayout
                 android:id="@+id/mRemarkLayout"
@@ -114,13 +114,13 @@
                 android:text="请拍照上传图片（最多9张）"
                 android:textSize="@dimen/text_middle_size" />
 
-            <com.kotlin.base.widgets.ImagePickerView
+            <com.lkpower.pis.widgets.ImagePickerView
                 android:id="@+id/mImagePicker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"></com.kotlin.base.widgets.ImagePickerView>
+                android:layout_marginRight="10dp"></com.lkpower.pis.widgets.ImagePickerView>
 
             <info.hoang8f.widget.FButton
                 android:id="@+id/mSendBtn"

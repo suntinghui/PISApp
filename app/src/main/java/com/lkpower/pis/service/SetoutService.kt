@@ -78,7 +78,7 @@ interface SetoutService {
     /*
     出乘最终确认
      */
-    fun setoutConfirm(taskId: String, tokenKey: String): Observable<CommonReturn>
+    fun setoutConfirm(taskId: String, TaskPlace: String, tokenKey: String): Observable<CommonReturn>
 
 
 }

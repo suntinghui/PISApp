@@ -1,7 +1,7 @@
 package com.lkpower.pis.data.respository
 
-import com.lkpower.base.data.net.RetrofitFactory
-import com.lkpower.base.data.protocol.BaseResp
+import com.lkpower.pis.data.net.RetrofitFactory
+import com.lkpower.pis.data.protocol.BaseResp
 import com.lkpower.pis.data.api.SetoffApi
 import com.lkpower.pis.data.api.SetoutApi
 import com.lkpower.pis.data.protocol.*
@@ -59,8 +59,8 @@ class SetoffRespository @Inject constructor() {
     }
 
     // 退乘最终确认
-    fun setoffConfirm(taskId: String, tokenKey: String): Observable<BaseResp<CommonReturn>> {
-        return RetrofitFactory.instance.create(SetoffApi::class.java).setoffConfirm(taskId, tokenKey)
+    fun setoffConfirm(taskId: String, TaskPlace: String, tokenKey: String): Observable<BaseResp<CommonReturn>> {
+        return RetrofitFactory.instance.create(SetoffApi::class.java).setoffConfirm(taskId, TaskPlace, tokenKey)
     }
 
 

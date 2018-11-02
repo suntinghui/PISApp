@@ -14,5 +14,7 @@ data class SetoutInfo(
         val OverConfirmTIme: String,
         val TaskObj: String,
         val ClassName: String,
-        val SendTime: String
+        val SendTime: String,
+        val TaskPlaceSource: List<String>,
+        val TaskPlace: String
 )

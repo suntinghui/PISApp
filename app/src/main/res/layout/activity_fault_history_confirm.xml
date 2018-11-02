@@ -6,7 +6,7 @@
     android:background="@color/common_white"
     android:orientation="vertical">
 
-    <com.kotlin.base.widgets.HeaderBar
+    <com.lkpower.pis.widgets.HeaderBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:titleText="故障修复确认" />
@@ -23,13 +23,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"></LinearLayout>
 
-            <com.kotlin.base.widgets.ImagePickerView
+            <com.lkpower.pis.widgets.ImagePickerView
                 android:id="@+id/mShowImageView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"></com.kotlin.base.widgets.ImagePickerView>
+                android:layout_marginRight="10dp"></com.lkpower.pis.widgets.ImagePickerView>
 
             <LinearLayout
                 style="@style/MatchWrap.Horizontal"
@@ -96,13 +96,13 @@
                 android:textSize="@dimen/text_middle_size" />
 
 
-            <com.kotlin.base.widgets.ImagePickerView
+            <com.lkpower.pis.widgets.ImagePickerView
                 android:id="@+id/mImagePicker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"></com.kotlin.base.widgets.ImagePickerView>
+                android:layout_marginRight="10dp"></com.lkpower.pis.widgets.ImagePickerView>
 
             <info.hoang8f.widget.FButton
                 android:id="@+id/mSendBtn"

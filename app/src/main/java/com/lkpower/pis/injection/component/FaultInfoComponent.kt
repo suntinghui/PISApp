@@ -1,7 +1,7 @@
 package com.lkpower.pis.injection.component
 
-import com.lkpower.base.injection.PerComponentScope
-import com.lkpower.base.injection.component.ActivityComponent
+import com.lkpower.pis.injection.PerComponentScope
+import com.lkpower.pis.injection.component.ActivityComponent
 import com.lkpower.pis.injection.module.AttachmentModule
 import com.lkpower.pis.injection.module.DrivingInfoModule
 import com.lkpower.pis.injection.module.FaultInfoModule

@@ -1,8 +1,8 @@
 package com.lkpower.pis.presenter
 
-import com.kotlin.base.rx.BaseSubscriber
-import com.lkpower.base.ext.execute
-import com.lkpower.base.presenter.BasePresenter
+import com.lkpower.pis.rx.BaseSubscriber
+import com.lkpower.pis.ext.execute
+import com.lkpower.pis.presenter.BasePresenter
 import com.lkpower.pis.data.protocol.UserInfo
 import com.lkpower.pis.presenter.view.LoginView
 import com.lkpower.pis.service.UserService

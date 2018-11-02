@@ -1,6 +1,6 @@
 package com.lkpower.pis.data.api
 
-import com.lkpower.base.data.protocol.BaseResp
+import com.lkpower.pis.data.protocol.BaseResp
 import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.SetoffAlcoholTest
 import com.lkpower.pis.data.protocol.SetoffCheckIn
@@ -71,6 +71,7 @@ interface SetoffApi {
     @FormUrlEncoded
     @POST("WorkTask.ashx?Commond=SetTasktance_SetOffConfirm")
     fun setoffConfirm(@Field("TaskId") taskId: String,
+                      @Field("TaskPlace") TaskPlace: String,
                       @Field("tokenKey") tokenKey: String): Observable<BaseResp<CommonReturn>>
 
 

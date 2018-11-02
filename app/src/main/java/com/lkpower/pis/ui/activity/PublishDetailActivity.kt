@@ -7,8 +7,8 @@ import kotlinx.android.synthetic.main.activity_publish_detail.*
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.text.SpannableStringBuilder
-import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.lkpower.base.utils.PISUtil
+import com.lkpower.pis.ui.activity.BaseMvpActivity
+import com.lkpower.pis.utils.PISUtil
 import com.lkpower.pis.data.protocol.PublishInfo
 import com.lkpower.pis.injection.component.DaggerPublishComponent
 import com.lkpower.pis.injection.module.PublishModule

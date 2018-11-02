@@ -1,6 +1,6 @@
 package com.lkpower.pis.service
 
-import com.lkpower.base.data.protocol.AttModel
+import com.lkpower.pis.data.protocol.AttModel
 import io.reactivex.Observable
 
 interface AttachmentService {

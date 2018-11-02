@@ -1,7 +1,7 @@
 package com.lkpower.pis.service
 
-import com.lkpower.base.data.net.RetrofitFactory
-import com.lkpower.base.data.protocol.BaseResp
+import com.lkpower.pis.data.net.RetrofitFactory
+import com.lkpower.pis.data.protocol.BaseResp
 import com.lkpower.pis.data.api.CommonApi
 import com.lkpower.pis.data.api.FaultInfoApi
 import com.lkpower.pis.data.protocol.*

@@ -33,11 +33,11 @@
             android:lines="4"
             android:padding="@dimen/common_padding_small" />
 
-        <com.kotlin.base.widgets.ImagePickerView
+        <com.lkpower.pis.widgets.ImagePickerView
             android:id="@+id/mPickerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/common_margin"></com.kotlin.base.widgets.ImagePickerView>
+            android:layout_marginTop="@dimen/common_margin"></com.lkpower.pis.widgets.ImagePickerView>
 
     </LinearLayout>
 

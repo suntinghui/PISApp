@@ -1,8 +1,8 @@
 package com.lkpower.pis.data.respository
 
-import com.lkpower.base.data.net.RetrofitFactory
-import com.lkpower.base.data.protocol.AttModel
-import com.lkpower.base.data.protocol.BaseResp
+import com.lkpower.pis.data.net.RetrofitFactory
+import com.lkpower.pis.data.protocol.AttModel
+import com.lkpower.pis.data.protocol.BaseResp
 import com.lkpower.pis.data.api.AttachmentApi
 import io.reactivex.Observable
 import javax.inject.Inject

@@ -1,6 +1,6 @@
 package com.lkpower.pis.data.api
 
-import com.lkpower.base.data.protocol.BaseResp
+import com.lkpower.pis.data.protocol.BaseResp
 import com.lkpower.pis.data.protocol.MissionStateInfo
 import com.lkpower.pis.data.protocol.XJ_CZSL
 import com.lkpower.pis.data.protocol.XJ_LCFC

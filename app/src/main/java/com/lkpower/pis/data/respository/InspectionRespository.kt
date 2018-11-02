@@ -1,8 +1,8 @@
 package com.lkpower.pis.data.respository
 
-import com.lkpower.base.data.net.RetrofitFactory
-import com.lkpower.base.data.protocol.BaseResp
-import com.lkpower.base.ext.convert
+import com.lkpower.pis.data.net.RetrofitFactory
+import com.lkpower.pis.data.protocol.BaseResp
+import com.lkpower.pis.ext.convert
 import com.lkpower.pis.data.api.DrivingInfoApi
 import com.lkpower.pis.data.api.InspectionApi
 import com.lkpower.pis.data.api.LearnDocApi

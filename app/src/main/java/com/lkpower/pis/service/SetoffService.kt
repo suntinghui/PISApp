@@ -1,7 +1,7 @@
 package com.lkpower.pis.service
 
-import com.lkpower.base.data.net.RetrofitFactory
-import com.lkpower.base.data.protocol.BaseResp
+import com.lkpower.pis.data.net.RetrofitFactory
+import com.lkpower.pis.data.protocol.BaseResp
 import com.lkpower.pis.data.api.SetoffApi
 import com.lkpower.pis.data.api.SetoutApi
 import com.lkpower.pis.data.protocol.*
@@ -34,7 +34,7 @@ interface SetoffService {
     fun getSetoff(instanceId: String, taskId: String, tokenKey: String): Observable<SetoffInfo>
 
     // 退乘最终确认
-    fun setoffConfirm(taskId: String, tokenKey: String): Observable<CommonReturn>
+    fun setoffConfirm(taskId: String, TaskPlace: String, tokenKey: String): Observable<CommonReturn>
 
 
 }

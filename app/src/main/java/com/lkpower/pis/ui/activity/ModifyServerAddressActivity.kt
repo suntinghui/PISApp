@@ -2,13 +2,13 @@ package com.lkpower.pis.ui.activity
 
 import android.os.Bundle
 import android.text.Editable
-import com.kotlin.base.ui.activity.BaseActivity
-import com.kotlin.base.utils.AppPrefsUtils
-import com.lkpower.base.common.BaseConstant
-import com.lkpower.base.ext.onClick
+import com.lkpower.pis.ui.activity.BaseActivity
+import com.lkpower.pis.utils.AppPrefsUtils
+import com.lkpower.pis.common.BaseConstant
+import com.lkpower.pis.ext.onClick
 import com.lkpower.pis.R
-import com.lkpower.base.utils.PISUtil
-import com.lkpower.base.utils.ViewUtils
+import com.lkpower.pis.utils.PISUtil
+import com.lkpower.pis.utils.ViewUtils
 import kotlinx.android.synthetic.main.activity_modify_server_address.*
 import org.jetbrains.anko.toast
 

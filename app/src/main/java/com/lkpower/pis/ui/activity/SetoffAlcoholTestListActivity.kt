@@ -5,9 +5,9 @@ import android.support.v7.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kennyc.view.MultiStateView
-import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
-import com.lkpower.base.ext.startLoading
+import com.lkpower.pis.ui.activity.BaseMvpActivity
+import com.lkpower.pis.ui.adapter.BaseRecyclerViewAdapter
+import com.lkpower.pis.ext.startLoading
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoffAlcoholTest
 import com.lkpower.pis.injection.component.DaggerSetoffComponent
@@ -15,7 +15,7 @@ import com.lkpower.pis.injection.module.SetoffModule
 import com.lkpower.pis.presenter.SetoffAlcoholTestListPresenter
 import com.lkpower.pis.presenter.view.SetoffAlcoholTestListView
 import com.lkpower.pis.ui.adapter.SetoffAlcoholTestAdapter
-import com.lkpower.base.utils.PISUtil
+import com.lkpower.pis.utils.PISUtil
 import kotlinx.android.synthetic.main.activity_setout_checkin_list.*
 import org.jetbrains.anko.startActivity
 

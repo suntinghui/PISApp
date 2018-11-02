@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.kotlin.base.widgets.HeaderBar
+    <com.lkpower.pis.widgets.HeaderBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:titleText="详情" />
@@ -16,41 +16,75 @@
 
         <LinearLayout style="@style/MatchWrap.Vertical">
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mClassNameView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="车次名称" />
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mSendTimeView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="发车时间" />
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mSiteNameView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="站点名称" />
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mTaskStatusView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="任务状态" />
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mOverConfirmTimeView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="出乘结束确认时间" />
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mBeginTimeView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="出乘开始时间" />
+
+            <com.lkpower.pis.widgets.LabelTextView
+                android:id="@+id/mTaskPlaceView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="出乘地点" />
+
+            <LinearLayout
+                android:id="@+id/mTaskPlaceLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/border_bottom"
+                android:orientation="horizontal"
+                android:padding="@dimen/common_padding">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="right"
+                    android:text="出乘地点"
+                    android:textSize="@dimen/text_middle_size" />
+
+                <TextView
+                    android:id="@+id/mTaskPlaceTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/common_margin"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/icon_arrow_drop_down"
+                    android:text="请选择出乘地点"
+                    android:textColor="@color/text_dark" />
+            </LinearLayout>
 
             <info.hoang8f.widget.FButton
                 android:id="@+id/mOperBtn"
@@ -58,8 +92,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/common_margin"
                 android:text="确  定"
-                android:textSize="@dimen/text_big_size"
-                android:textColor="@color/common_white" />
+                android:textColor="@color/common_white"
+                android:textSize="@dimen/text_big_size" />
 
 
         </LinearLayout>

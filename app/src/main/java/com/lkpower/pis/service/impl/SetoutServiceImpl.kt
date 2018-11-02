@@ -1,7 +1,7 @@
 package com.lkpower.pis.service.impl
 
-import com.lkpower.base.ext.convert
-import com.lkpower.base.ext.convertBoolean
+import com.lkpower.pis.ext.convert
+import com.lkpower.pis.ext.convertBoolean
 import com.lkpower.pis.data.protocol.*
 import com.lkpower.pis.data.respository.SetoutRespository
 import com.lkpower.pis.service.SetoutService
@@ -70,8 +70,8 @@ class SetoutServiceImpl @Inject constructor() : SetoutService {
         return respository.getSetout(instanceId, taskId, tokenKey).convert()
     }
 
-    override fun setoutConfirm(taskId: String, tokenKey: String): Observable<CommonReturn> {
-        return respository.setoutConfirm(taskId, tokenKey).convert()
+    override fun setoutConfirm(taskId: String, TaskPlace: String, tokenKey: String): Observable<CommonReturn> {
+        return respository.setoutConfirm(taskId, TaskPlace, tokenKey).convert()
     }
 
 

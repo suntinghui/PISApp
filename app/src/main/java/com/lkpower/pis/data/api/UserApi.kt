@@ -1,6 +1,6 @@
 package com.lkpower.pis.data.api
 
-import com.lkpower.base.data.protocol.BaseResp
+import com.lkpower.pis.data.protocol.BaseResp
 import com.lkpower.pis.data.protocol.UserInfo
 import com.lkpower.pis.data.protocol.XJ_LCFC
 import io.reactivex.Observable

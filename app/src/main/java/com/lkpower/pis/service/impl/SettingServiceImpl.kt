@@ -1,6 +1,6 @@
 package com.lkpower.pis.service.impl
 
-import com.lkpower.base.ext.convert
+import com.lkpower.pis.ext.convert
 import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.respository.SettingRespository
 import com.lkpower.pis.service.SettingService

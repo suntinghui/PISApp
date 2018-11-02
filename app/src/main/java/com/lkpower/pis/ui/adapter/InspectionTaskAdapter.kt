@@ -5,10 +5,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
+import com.lkpower.pis.ui.adapter.BaseRecyclerViewAdapter
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.MissionStateInfo
-import com.lkpower.base.utils.PISUtil
+import com.lkpower.pis.utils.PISUtil
 import kotlinx.android.synthetic.main.layout_inspection_task_item.view.*
 
 class InspectionTaskAdapter(context: Context) : BaseRecyclerViewAdapter<MissionStateInfo, InspectionTaskAdapter.ViewHolder>(context) {

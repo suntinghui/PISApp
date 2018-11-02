@@ -1,11 +1,11 @@
 package com.lkpower.pis.ui.activity
 
 import android.os.Bundle
-import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.lkpower.base.utils.PISUtil
-import com.lkpower.base.ext.onClick
-import com.lkpower.base.ext.setVisible
-import com.lkpower.base.utils.ViewUtils
+import com.lkpower.pis.ui.activity.BaseMvpActivity
+import com.lkpower.pis.utils.PISUtil
+import com.lkpower.pis.ext.onClick
+import com.lkpower.pis.ext.setVisible
+import com.lkpower.pis.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoffCheckIn
 import com.lkpower.pis.injection.component.DaggerSetoffComponent

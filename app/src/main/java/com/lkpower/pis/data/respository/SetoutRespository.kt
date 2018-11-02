@@ -1,7 +1,7 @@
 package com.lkpower.pis.data.respository
 
-import com.lkpower.base.data.net.RetrofitFactory
-import com.lkpower.base.data.protocol.BaseResp
+import com.lkpower.pis.data.net.RetrofitFactory
+import com.lkpower.pis.data.protocol.BaseResp
 import com.lkpower.pis.data.api.SetoutApi
 import com.lkpower.pis.data.protocol.*
 import io.reactivex.Observable
@@ -65,8 +65,8 @@ class SetoutRespository @Inject constructor() {
         return RetrofitFactory.instance.create(SetoutApi::class.java).getSetout(instanceId, taskId, tokenKey)
     }
 
-    fun setoutConfirm(taskId: String, tokenKey: String): Observable<BaseResp<CommonReturn>> {
-        return RetrofitFactory.instance.create(SetoutApi::class.java).setoutConfirm(taskId, tokenKey)
+    fun setoutConfirm(taskId: String, TaskPlace: String, tokenKey: String): Observable<BaseResp<CommonReturn>> {
+        return RetrofitFactory.instance.create(SetoutApi::class.java).setoutConfirm(taskId, TaskPlace, tokenKey)
     }
 
 

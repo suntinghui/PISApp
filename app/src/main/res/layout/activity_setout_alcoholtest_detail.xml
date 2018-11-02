@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.kotlin.base.widgets.HeaderBar
+    <com.lkpower.pis.widgets.HeaderBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:titleText="详情" />
@@ -18,44 +18,44 @@
             style="@style/MatchWrap.Vertical"
             android:background="@color/common_white">
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mClassNameView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="车次名称" />
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mSendTimeView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="发车时间" />
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mSiteNameView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="站点名称" />
 
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mTaskStatusView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="任务状态" />
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mResultView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="酒测结果" />
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mLatesttAlcoholTestTimeView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="最迟完成时间" />
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mBeginTimeView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -99,13 +99,13 @@
                 android:text="请拍照上传图片（最多9张）"
                 android:textSize="@dimen/text_middle_size" />
 
-            <com.kotlin.base.widgets.ImagePickerView
+            <com.lkpower.pis.widgets.ImagePickerView
                 android:id="@+id/mImagePicker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"></com.kotlin.base.widgets.ImagePickerView>
+                android:layout_marginRight="10dp"></com.lkpower.pis.widgets.ImagePickerView>
 
 
             <info.hoang8f.widget.FButton

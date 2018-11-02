@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
+import com.lkpower.pis.ui.adapter.BaseRecyclerViewAdapter
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.DrivingInfo
 import com.lkpower.pis.data.protocol.EmergencyInfo

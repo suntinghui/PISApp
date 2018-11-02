@@ -1,7 +1,7 @@
 package com.lkpower.pis.utils
 
 import com.google.gson.Gson
-import com.lkpower.base.common.BaseConstant
+import com.lkpower.pis.common.BaseConstant
 import com.lkpower.pis.data.protocol.PageBean
 
 object PageBeanUtil {

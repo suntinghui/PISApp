@@ -1,8 +1,8 @@
 package com.lkpower.pis.presenter
 
-import com.kotlin.base.rx.BaseSubscriber
-import com.lkpower.base.ext.execute
-import com.lkpower.base.presenter.BasePresenter
+import com.lkpower.pis.rx.BaseSubscriber
+import com.lkpower.pis.ext.execute
+import com.lkpower.pis.presenter.BasePresenter
 import com.lkpower.pis.data.protocol.*
 import com.lkpower.pis.presenter.view.InspectionStationListView
 import com.lkpower.pis.presenter.view.InspectionTaskListView

@@ -6,10 +6,10 @@
     android:background="@color/common_white"
     android:orientation="vertical">
 
-    <com.kotlin.base.widgets.HeaderBar
+    <com.lkpower.pis.widgets.HeaderBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleText="信息上报"></com.kotlin.base.widgets.HeaderBar>
+        app:titleText="信息上报"></com.lkpower.pis.widgets.HeaderBar>
 
     <LinearLayout
         android:id="@+id/mRemarkLayout"
@@ -53,13 +53,13 @@
         android:text="请拍照上传图片（最多9张）"
         android:textSize="@dimen/text_middle_size" />
 
-    <com.kotlin.base.widgets.ImagePickerView
+    <com.lkpower.pis.widgets.ImagePickerView
         android:id="@+id/mImagePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"></com.kotlin.base.widgets.ImagePickerView>
+        android:layout_marginRight="10dp"></com.lkpower.pis.widgets.ImagePickerView>
 
     <info.hoang8f.widget.FButton
         android:id="@+id/mSendBtn"

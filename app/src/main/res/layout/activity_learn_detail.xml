@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.kotlin.base.widgets.HeaderBar
+    <com.lkpower.pis.widgets.HeaderBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleText="学习文件"></com.kotlin.base.widgets.HeaderBar>
+        app:titleText="学习文件"></com.lkpower.pis.widgets.HeaderBar>
 
     <ScrollView
         android:layout_width="match_parent"

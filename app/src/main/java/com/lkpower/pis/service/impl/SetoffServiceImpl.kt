@@ -1,7 +1,7 @@
 package com.lkpower.pis.service.impl
 
-import com.lkpower.base.ext.convert
-import com.lkpower.base.ext.convertBoolean
+import com.lkpower.pis.ext.convert
+import com.lkpower.pis.ext.convertBoolean
 import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.SetoffAlcoholTest
 import com.lkpower.pis.data.protocol.SetoffCheckIn
@@ -48,8 +48,8 @@ class SetoffServiceImpl @Inject constructor() : SetoffService {
         return respository.getSetoff(instanceId, taskId, tokenKey).convert()
     }
 
-    override fun setoffConfirm(taskId: String, tokenKey: String): Observable<CommonReturn> {
-        return respository.setoffConfirm(taskId, tokenKey).convert()
+    override fun setoffConfirm(taskId: String, TaskPlace: String, tokenKey: String): Observable<CommonReturn> {
+        return respository.setoffConfirm(taskId, TaskPlace, tokenKey).convert()
     }
 
 }

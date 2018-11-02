@@ -6,7 +6,7 @@
     android:background="@color/common_white"
     android:orientation="vertical">
 
-    <com.kotlin.base.widgets.HeaderBar
+    <com.lkpower.pis.widgets.HeaderBar
         android:id="@+id/mHeaderBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -7,11 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
-import com.kotlin.base.widgets.ImagePickerView
-import com.lkpower.base.common.BaseApplication.Companion.context
-import com.lkpower.base.ext.onClick
-import com.lkpower.base.utils.ViewUtils
+import com.lkpower.pis.ui.adapter.BaseRecyclerViewAdapter
+import com.lkpower.pis.widgets.ImagePickerView
+import com.lkpower.pis.common.BaseApplication.Companion.context
+import com.lkpower.pis.ext.onClick
+import com.lkpower.pis.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.RiskItem
 import com.orhanobut.logger.Logger

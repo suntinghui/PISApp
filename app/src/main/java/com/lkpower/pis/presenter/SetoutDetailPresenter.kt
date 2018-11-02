@@ -1,8 +1,8 @@
 package com.lkpower.pis.presenter
 
-import com.kotlin.base.rx.BaseSubscriber
-import com.lkpower.base.ext.execute
-import com.lkpower.base.presenter.BasePresenter
+import com.lkpower.pis.rx.BaseSubscriber
+import com.lkpower.pis.ext.execute
+import com.lkpower.pis.presenter.BasePresenter
 import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.SetoutInfo
 import com.lkpower.pis.presenter.view.SetoutDetailView
@@ -26,13 +26,13 @@ class SetoutDetailPresenter @Inject constructor() : BasePresenter<SetoutDetailVi
         }, lifecycleProvider)
     }
 
-    fun setOutConfirm(taskId: String, tokenKey: String) {
+    fun setOutConfirm(taskId: String, TaskPlace: String, tokenKey: String) {
         if (!checkNetWork())
             return
 
         mView.showLoading()
 
-        setoutService.setoutConfirm(taskId, tokenKey).execute(object : BaseSubscriber<CommonReturn>(mView) {
+        setoutService.setoutConfirm(taskId, TaskPlace, tokenKey).execute(object : BaseSubscriber<CommonReturn>(mView) {
             override fun onNext(t: CommonReturn) {
                 mView.setOutResult(t)
             }

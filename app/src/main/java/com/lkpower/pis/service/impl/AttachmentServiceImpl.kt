@@ -1,8 +1,8 @@
 package com.lkpower.pis.service.impl
 
-import com.lkpower.base.data.protocol.AttModel
-import com.lkpower.base.ext.convert
-import com.lkpower.base.ext.convertBoolean
+import com.lkpower.pis.data.protocol.AttModel
+import com.lkpower.pis.ext.convert
+import com.lkpower.pis.ext.convertBoolean
 import com.lkpower.pis.data.respository.AttachmentRespository
 import com.lkpower.pis.service.AttachmentService
 import io.reactivex.Observable

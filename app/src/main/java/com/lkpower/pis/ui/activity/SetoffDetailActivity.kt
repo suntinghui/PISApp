@@ -1,9 +1,12 @@
 package com.lkpower.pis.ui.activity
 
 import android.os.Bundle
-import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.lkpower.base.ext.onClick
-import com.lkpower.base.ext.setVisible
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener
+import com.lkpower.pis.ui.activity.BaseMvpActivity
+import com.lkpower.pis.ext.isNullOrEmpty
+import com.lkpower.pis.ext.onClick
+import com.lkpower.pis.ext.setVisible
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.SetoffInfo
@@ -11,10 +14,9 @@ import com.lkpower.pis.injection.component.DaggerSetoffComponent
 import com.lkpower.pis.injection.module.SetoffModule
 import com.lkpower.pis.presenter.SetoffDetailPresenter
 import com.lkpower.pis.presenter.view.SetoffDetailView
-import com.lkpower.base.utils.PISUtil
-import com.lkpower.base.utils.ViewUtils
-import kotlinx.android.synthetic.main.activity_setout_detail.*
-import org.jetbrains.anko.toast
+import com.lkpower.pis.utils.PISUtil
+import com.lkpower.pis.utils.ViewUtils
+import kotlinx.android.synthetic.main.activity_setoff_detail.*
 
 /*
    退乘确认
@@ -22,11 +24,12 @@ import org.jetbrains.anko.toast
 class SetoffDetailActivity : BaseMvpActivity<SetoffDetailPresenter>(), SetoffDetailView {
 
     private lateinit var taskId: String
+    private lateinit var setoff: SetoffInfo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_setout_detail)
+        setContentView(R.layout.activity_setoff_detail)
 
         taskId = intent.getStringExtra("taskId")
 
@@ -49,7 +52,7 @@ class SetoffDetailActivity : BaseMvpActivity<SetoffDetailPresenter>(), SetoffDet
     }
 
     private fun setAction() {
-        mPresenter.setoffConfirm(taskId, PISUtil.getTokenKey())
+        mPresenter.setoffConfirm(taskId, mTaskPlaceTv.text.toString(), PISUtil.getTokenKey())
     }
 
     override fun injectComponent() {
@@ -59,6 +62,8 @@ class SetoffDetailActivity : BaseMvpActivity<SetoffDetailPresenter>(), SetoffDet
 
     // 取得详情
     override fun onGetDetailResult(item: SetoffInfo) {
+        setoff = item
+
         mClassNameView.setContentText(item.ClassName)
         mSendTimeView.setContentText(item.SendTime)
         mSiteNameView.setContentText(item.SiteName)
@@ -66,13 +71,41 @@ class SetoffDetailActivity : BaseMvpActivity<SetoffDetailPresenter>(), SetoffDet
         mOverConfirmTimeView.setContentText(item.OverConfirmTIme)
         mBeginTimeView.setContentText(item.BeginTime)
 
-        // 任务状态:0=待执行，1=执行中，2=执行完成
-        mOperBtn.setVisible(item.TaskStatus == "0")
+        mTaskPlaceView.setContentText(item.TaskPlace)
+        mTaskPlaceTv.text = if (item.TaskPlaceSource == null || item.TaskPlaceSource.isNullOrEmpty()) "没有退乘地点" else item.TaskPlaceSource.first()
+        mTaskPlaceTv.onClick { selectTaskPlace() }
+
+        refreshStatus()
+    }
+
+    private fun selectTaskPlace() {
+        if (setoff.TaskPlaceSource == null || setoff.TaskPlaceSource.isNullOrEmpty()) {
+            ViewUtils.warning(this, "没有退乘地点可供选择")
+            return
+        }
+
+        var pickerView = OptionsPickerBuilder(this, OnOptionsSelectListener { options1, options2, options3, v ->
+            mTaskPlaceTv.text = setoff.TaskPlaceSource.get(options1)
+        }
+        ).build<String>()
+        pickerView.setPicker(setoff.TaskPlaceSource)
+        pickerView.setSelectOptions(setoff.TaskPlaceSource.indexOf(mTaskPlaceTv.text.toString()))
+        pickerView.show()
     }
 
     // 项目确认
     override fun setOffResult(result: CommonReturn) {
-        ViewUtils.success(this, "项目确认成功")
+        ViewUtils.success(this, "操作成功")
         queryDetail()
+    }
+
+    private fun refreshStatus() {
+        // 任务状态:0=待执行，1=执行中，2=执行完成
+
+        var done = setoff.TaskStatus == "2"
+
+        mOperBtn.setVisible(done.not())
+        mTaskPlaceLayout.setVisible(done.not())
+        mTaskPlaceView.setVisible(done)
     }
 }

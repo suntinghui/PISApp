@@ -1,6 +1,6 @@
 package com.lkpower.pis.data.api
 
-import com.lkpower.base.data.protocol.BaseResp
+import com.lkpower.pis.data.protocol.BaseResp
 import com.lkpower.pis.data.protocol.*
 import io.reactivex.Observable
 import retrofit2.http.*
@@ -109,6 +109,7 @@ interface SetoutApi {
     @FormUrlEncoded
     @POST("WorkTask.ashx?Commond=SetTasktance_SetOutConfirm")
     fun setoutConfirm(@Field("TaskId") taskId: String,
+                      @Field("TaskPlace") TaskPlace: String,
                       @Field("tokenKey") tokenKey: String): Observable<BaseResp<CommonReturn>>
 
 

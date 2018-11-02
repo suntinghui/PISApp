@@ -6,9 +6,9 @@ import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
-import com.kotlin.base.ui.activity.BaseActivity
-import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
-import com.lkpower.base.utils.ViewUtils
+import com.lkpower.pis.ui.activity.BaseActivity
+import com.lkpower.pis.ui.adapter.BaseRecyclerViewAdapter
+import com.lkpower.pis.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.Category
 import com.lkpower.pis.ui.adapter.CategoryAdapter

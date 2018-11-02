@@ -5,8 +5,8 @@ import android.support.v7.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kennyc.view.MultiStateView
-import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.kotlin.base.ui.adapter.BaseRecyclerViewAdapter
+import com.lkpower.pis.ui.activity.BaseMvpActivity
+import com.lkpower.pis.ui.adapter.BaseRecyclerViewAdapter
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoffInfo
 import com.lkpower.pis.injection.component.DaggerSetoffComponent
@@ -14,7 +14,7 @@ import com.lkpower.pis.injection.module.SetoffModule
 import com.lkpower.pis.presenter.SetoffListPresenter
 import com.lkpower.pis.presenter.view.SetoffListView
 import com.lkpower.pis.ui.adapter.SetoffAdapter
-import com.lkpower.base.utils.PISUtil
+import com.lkpower.pis.utils.PISUtil
 import kotlinx.android.synthetic.main.activity_setout_checkin_list.*
 import org.jetbrains.anko.startActivity
 

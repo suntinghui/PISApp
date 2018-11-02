@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.kotlin.base.widgets.HeaderBar
+    <com.lkpower.pis.widgets.HeaderBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:titleText="报到详情" />
@@ -16,38 +16,38 @@
 
         <LinearLayout style="@style/MatchWrap.Vertical">
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mClassNameView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="车次名称" />
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mSendTimeView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="发车时间" />
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mSiteNameView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="站点名称" />
 
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mTaskStatusView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="任务状态" />
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mLatestCheckInTimeView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="最迟完成时间" />
 
-            <com.kotlin.base.widgets.LabelTextView
+            <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mBeginTimeView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

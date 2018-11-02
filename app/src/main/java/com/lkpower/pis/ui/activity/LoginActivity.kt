@@ -4,19 +4,22 @@ import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.kotlin.base.utils.AppPrefsUtils
-import com.lkpower.base.common.BaseConstant
-import com.lkpower.base.ext.onClick
-import com.lkpower.base.utils.PISUtil
-import com.lkpower.base.utils.ViewUtils
+import com.lkpower.pis.ui.activity.BaseMvpActivity
+import com.lkpower.pis.utils.AppPrefsUtils
+import com.lkpower.pis.common.BaseConstant
+import com.lkpower.pis.ext.onClick
+import com.lkpower.pis.utils.PISUtil
+import com.lkpower.pis.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.UserInfo
 import com.lkpower.pis.injection.component.DaggerUserComponent
 import com.lkpower.pis.injection.module.UserModule
 import com.lkpower.pis.presenter.LoginPresenter
 import com.lkpower.pis.presenter.view.LoginView
+import com.orhanobut.logger.Logger
 import com.umeng.analytics.MobclickAgent
+import com.umeng.message.PushAgent
+import com.umeng.message.UTrack
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
 
@@ -85,7 +88,30 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
 
         MobclickAgent.onProfileSignIn(mUsernameEt.text.toString())
 
+        registerUMengAlias()
+
         startActivity<PrimaryCategoryActivity>()
+    }
+
+    /*
+    每个类型的alias同时只能存在一个，新的会覆盖掉旧的，所以不需要删除旧的
+     */
+    private fun registerUMengAlias() {
+        var mPushAgent: PushAgent = PushAgent.getInstance(this)
+
+        mPushAgent.addAlias(AppPrefsUtils.getString(BaseConstant.kEmpId), "User_ID", object : UTrack.ICallBack {
+            override fun onMessage(isSuccess: Boolean, message: String?) {
+                Logger.e("Alias User_ID ${message} - ${isSuccess}")
+            }
+        })
+
+        mPushAgent.addAlias(PISUtil.getDeviceId(this), "DeviceID", object : UTrack.ICallBack {
+            override fun onMessage(isSuccess: Boolean, message: String?) {
+                Logger.e("Alias DeviceID ${message} - ${isSuccess}")
+            }
+        })
+
+
     }
 
 }

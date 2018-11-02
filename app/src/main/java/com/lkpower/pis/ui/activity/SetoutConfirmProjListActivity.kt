@@ -8,11 +8,11 @@ import android.widget.LinearLayout
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.kennyc.view.MultiStateView
-import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.kotlin.base.widgets.ImagePickerView
-import com.lkpower.base.common.BaseConstant
-import com.lkpower.base.data.protocol.AttModel
-import com.lkpower.base.ext.startLoading
+import com.lkpower.pis.ui.activity.BaseMvpActivity
+import com.lkpower.pis.widgets.ImagePickerView
+import com.lkpower.pis.common.BaseConstant
+import com.lkpower.pis.data.protocol.AttModel
+import com.lkpower.pis.ext.startLoading
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoutConfirmProj
 import com.lkpower.pis.injection.component.DaggerSetoutComponent
@@ -20,8 +20,8 @@ import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.SetoutGroupConfirmProjListPresenter
 import com.lkpower.pis.presenter.view.SetoutConfirmProjListView
 import com.lkpower.pis.ui.adapter.ConfirmProjAdapter
-import com.lkpower.base.utils.PISUtil
-import com.lkpower.base.utils.ViewUtils
+import com.lkpower.pis.utils.PISUtil
+import com.lkpower.pis.utils.ViewUtils
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_setout_confirm_proj_list.*

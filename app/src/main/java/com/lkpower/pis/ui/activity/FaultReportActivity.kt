@@ -12,12 +12,12 @@ import com.bigkoo.alertview.OnItemClickListener
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.google.gson.Gson
-import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.kotlin.base.utils.DateUtils
-import com.kotlin.base.widgets.ImagePickerView
-import com.lkpower.base.common.BaseConstant
-import com.lkpower.base.ext.onClick
-import com.lkpower.base.utils.ViewUtils
+import com.lkpower.pis.ui.activity.BaseMvpActivity
+import com.lkpower.pis.utils.DateUtils
+import com.lkpower.pis.widgets.ImagePickerView
+import com.lkpower.pis.common.BaseConstant
+import com.lkpower.pis.ext.onClick
+import com.lkpower.pis.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.FaultInfo
@@ -27,7 +27,7 @@ import com.lkpower.pis.injection.component.DaggerFaultInfoComponent
 import com.lkpower.pis.injection.module.FaultInfoModule
 import com.lkpower.pis.presenter.FaultInfoAddPresenter
 import com.lkpower.pis.presenter.view.FaultInfoAddView
-import com.lkpower.base.utils.PISUtil
+import com.lkpower.pis.utils.PISUtil
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_fault_report.*
@@ -183,7 +183,7 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
 
     // 选择故障类型
     private fun showFaultTypeEvent() {
-        if (selectFailPart == null) {
+        if (this::selectFailPart.isInitialized.not() || selectFailPart == null) {
             ViewUtils.warning(this, "请先填写故障配件")
             return
         }

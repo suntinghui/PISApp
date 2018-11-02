@@ -1,7 +1,7 @@
 package com.lkpower.pis.data.api
 
-import com.lkpower.base.data.protocol.AttModel
-import com.lkpower.base.data.protocol.BaseResp
+import com.lkpower.pis.data.protocol.AttModel
+import com.lkpower.pis.data.protocol.BaseResp
 import io.reactivex.Observable
 import okhttp3.RequestBody
 import retrofit2.http.*

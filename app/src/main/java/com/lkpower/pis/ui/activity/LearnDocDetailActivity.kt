@@ -2,15 +2,15 @@ package com.lkpower.pis.ui.activity
 
 import android.os.Bundle
 import android.os.Handler
-import com.kotlin.base.ui.activity.BaseMvpActivity
-import com.lkpower.base.utils.PISUtil
-import com.kotlin.base.widgets.LabelAttrView
-import com.kotlin.base.widgets.LabelTextView
-import com.lkpower.base.common.BaseConstant
-import com.lkpower.base.data.protocol.AttModel
-import com.lkpower.base.ext.onClick
-import com.lkpower.base.ext.setVisible
-import com.lkpower.base.utils.ViewUtils
+import com.lkpower.pis.ui.activity.BaseMvpActivity
+import com.lkpower.pis.utils.PISUtil
+import com.lkpower.pis.widgets.LabelAttrView
+import com.lkpower.pis.widgets.LabelTextView
+import com.lkpower.pis.common.BaseConstant
+import com.lkpower.pis.data.protocol.AttModel
+import com.lkpower.pis.ext.onClick
+import com.lkpower.pis.ext.setVisible
+import com.lkpower.pis.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.LearnDoc
 import com.lkpower.pis.injection.component.DaggerLearnDocComponent

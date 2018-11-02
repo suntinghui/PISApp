@@ -1,6 +1,6 @@
 package com.lkpower.pis.service.impl
 
-import com.lkpower.base.ext.convert
+import com.lkpower.pis.ext.convert
 import com.lkpower.pis.data.protocol.LearnDoc
 import com.lkpower.pis.data.protocol.ListResult
 import com.lkpower.pis.data.protocol.PublishInfo
