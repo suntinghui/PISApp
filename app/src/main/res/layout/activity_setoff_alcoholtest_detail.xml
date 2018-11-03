@@ -40,7 +40,7 @@
                 android:id="@+id/mBeginTimeView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="出乘开始时间" />
+                app:labelText="退乘开始时间" />
 
             <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mLatesttAlcoholTestTimeView"

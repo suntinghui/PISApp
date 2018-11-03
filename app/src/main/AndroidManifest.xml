@@ -63,6 +63,8 @@
 
         <service android:name=".ui.service.UMengNotificationService" />
 
+        <receiver android:name=".ui.receiver.NotificationReceiver" />
+
 
         <provider
             android:name="android.support.v4.content.FileProvider"

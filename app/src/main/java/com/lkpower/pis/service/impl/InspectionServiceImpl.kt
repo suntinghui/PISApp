@@ -36,13 +36,5 @@ class InspectionServiceImpl @Inject constructor() : InspectionService {
         return inspectionRespository.updateMissionInfoExt(taskId, state, remark, tokenKey).convertBoolean()
     }
 
-    override fun alarmLogInfo(instanceId: String, deviceId: String, missionInstanceId: String, remark: String, tokenKey: String): Observable<Boolean> {
-        return inspectionRespository.alarmLogInfo(instanceId, deviceId, missionInstanceId, remark, tokenKey).convertBoolean()
-    }
-
-    override fun alarmUpdateLogInfo(instanceId: String, deviceId: String, missionInstanceId: String, remark: String, tokenKey: String): Observable<Boolean> {
-        return inspectionRespository.alarmUpdateLogInfo(instanceId, deviceId, missionInstanceId, remark, tokenKey).convertBoolean()
-    }
-
 
 }

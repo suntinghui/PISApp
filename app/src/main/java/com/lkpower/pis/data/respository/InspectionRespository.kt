@@ -35,13 +35,4 @@ class InspectionRespository @Inject constructor() {
         return RetrofitFactory.instance.create(InspectionApi::class.java).updateMissionInfoExt(taskId, state, remark, tokenKey)
     }
 
-    // 任务预警触发日志
-    fun alarmLogInfo(instanceId: String, deviceId: String, missionInstanceId: String, remark: String, tokenKey: String): Observable<BaseResp<Boolean>> {
-        return RetrofitFactory.instance.create(InspectionApi::class.java).alarmLogInfo(instanceId, deviceId, missionInstanceId, remark, tokenKey)
-    }
-
-    // 任务预警接收回写
-    fun alarmUpdateLogInfo(instanceId: String, deviceId: String, missionInstanceId: String, remark: String, tokenKey: String): Observable<BaseResp<Boolean>> {
-        return RetrofitFactory.instance.create(InspectionApi::class.java).alarmUpdateLogInfo(instanceId, deviceId, missionInstanceId, remark, tokenKey)
-    }
 }

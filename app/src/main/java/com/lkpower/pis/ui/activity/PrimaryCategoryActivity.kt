@@ -24,6 +24,8 @@ import com.lkpower.pis.presenter.LCFCInstancePresenter
 import com.lkpower.pis.presenter.view.LCFCInstanceView
 import com.lkpower.pis.ui.adapter.CategoryAdapter
 import com.orhanobut.logger.Logger
+import com.umeng.message.PushAgent
+import com.umeng.message.UTrack
 import kotlinx.android.synthetic.main.activity_primary_category.*
 
 class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCInstanceView {
@@ -37,10 +39,6 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_primary_category)
-
-        var intent = getIntent()
-
-        Logger.e("收到推送消息...${Gson().toJson(intent)}")
 
         initView()
 
@@ -111,6 +109,8 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
             var item = result.get(0)
             mTitleTv.text = item.ClassName + "#" + item.TrainmanName + "#" + item.SendTime
             PISUtil.setInstanceId(item.ID)
+
+            setUMengPushAlias(item.TrainmanId)
         }
     }
 
@@ -122,6 +122,7 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
         var pickerView = OptionsPickerBuilder(this, OnOptionsSelectListener { options1, options2, options3, v ->
             PISUtil.setInstanceId(shift.get(options1).ID)
             mTitleTv.text = list.get(options1)
+            setUMengPushAlias(shift.get(options1).TrainmanId)
         }
         ).build<String>()
         pickerView.setPicker(list)
@@ -138,6 +139,15 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
         } else {
             AppManager.instance.exitApp(this)
         }
+    }
+
+    private fun setUMengPushAlias(groudId: String) {
+        var mPushAgent = PushAgent.getInstance(this)
+        mPushAgent.addAlias(groudId, "GroupID", object : UTrack.ICallBack {
+            override fun onMessage(isSuccess: Boolean, message: String?) {
+                Logger.e("Alias GroupID $message - $isSuccess")
+            }
+        })
     }
 
 }

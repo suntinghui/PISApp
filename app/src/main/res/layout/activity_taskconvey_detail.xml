@@ -55,7 +55,7 @@
                 android:id="@+id/mPublishDateView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="完布时间"></com.lkpower.pis.widgets.LabelTextView>
+                app:labelText="发布时间"></com.lkpower.pis.widgets.LabelTextView>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/mRiskItemsRv"

@@ -40,7 +40,8 @@
         android:drawableLeft="@drawable/icon_username"
         android:drawablePadding="@dimen/common_padding"
         android:hint="请输入用户名"
-        android:padding="@dimen/common_padding_middle" />
+        android:padding="@dimen/common_padding_middle"
+        android:textSize="@dimen/text_big_size" />
 
     <EditText
         android:id="@+id/mPasswordEt"
@@ -52,17 +53,8 @@
         android:drawablePadding="@dimen/common_padding"
         android:hint="请输入密码"
         android:inputType="textPassword"
-        android:padding="@dimen/common_padding_middle" />
-
-    <!--
-    <Button
-        android:id="@+id/mLoginBtn"
-        android:layout_marginTop="30dp"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="@drawable/btn_login"/>
-
-        -->
+        android:padding="@dimen/common_padding_middle"
+        android:textSize="@dimen/text_big_size" />
 
     <info.hoang8f.widget.FButton
         android:id="@+id/mLoginBtn"

@@ -27,7 +27,7 @@ class SetoffCheckinDetailActivity : BaseMvpActivity<SetoffCheckinDetailPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_setout_checkin_detail)
+        setContentView(R.layout.activity_setoff_checkin_detail)
 
         instanceId = intent.getStringExtra("instanceId")
         taskId = intent.getStringExtra("taskId")

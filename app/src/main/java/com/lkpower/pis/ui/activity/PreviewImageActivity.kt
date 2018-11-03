@@ -28,6 +28,7 @@ import me.panpf.sketch.request.DisplayListener
 import me.panpf.sketch.request.ErrorCause
 import me.panpf.sketch.request.ImageFrom
 import org.jetbrains.anko.toast
+import java.lang.Exception
 
 @Route(path = "/pis/PreviewImageActivity")
 class PreviewImageActivity : BaseMvpActivity<AttachmentDeletePresenter>(), AttachmentDeleteView {
@@ -100,10 +101,11 @@ class PreviewImageActivity : BaseMvpActivity<AttachmentDeletePresenter>(), Attac
             when (position) {
                 0 -> {
                     if (FileUtils.isNetFile(path)) {
-                        if (attId.isEmpty() || attType.isEmpty())
+                        if (attId.isEmpty() || attType.isEmpty()) {
                             ViewUtils.warning(this@PreviewImageActivity, "无法删除图片，请返回重试")
-                        else
+                        } else {
                             mPresenter.deleteFile(attId, attType, PISUtil.getTokenKey())
+                        }
 
                     } else {
                         Bus.send(DeleteSelectImageEvent(path))
@@ -129,11 +131,15 @@ class PreviewImageActivity : BaseMvpActivity<AttachmentDeletePresenter>(), Attac
     override fun onDestroy() {
         super.onDestroy()
 
-        ImageViewUtil.releaseImageResource(mImageView)
+        try {
+            ImageViewUtil.releaseImageResource(mImageView)
 
-        if (mRootLayout != null && mImageView != null) {
-            mRootLayout.removeView(mImageView)
-            //mImageView = null
+            if (mRootLayout != null && mImageView != null) {
+                mRootLayout.removeView(mImageView)
+                //mImageView = null
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 }

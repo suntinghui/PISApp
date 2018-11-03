@@ -26,7 +26,7 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
 
     lateinit var mActivityComponent: ActivityComponent
 
-    private lateinit var mLoadingDialog:ProgressLoading
+    private lateinit var mLoadingDialog: ProgressLoading
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,7 +69,7 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
     override fun hideLoading() {
         try {
             mLoadingDialog.hideLoading()
-        }catch (e:Exception){
+        } catch (e: Exception) {
 
         }
     }
@@ -77,8 +77,9 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
     /*
         错误信息提示，默认实现
      */
-    override fun onError(text:String) {
+    override fun onError(text: String) {
         this.hideLoading()
-        ViewUtils.showSimpleAlert(this, text)
+
+        ViewUtils.error(this, text)
     }
 }

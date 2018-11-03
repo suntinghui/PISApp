@@ -29,7 +29,8 @@ import org.jetbrains.anko.toast
 class SetoffAlcoholTestDetailActivity : BaseMvpActivity<SetoffAlcoholTestDetailPresenter>(), SetoffAlcoholTestDetailView {
 
     // 0不通过 1通过
-    val RESULT_LIST = listOf<String>("酒测不通过", "酒测通过")
+    val RESULT_VALUE_LIST = listOf<String>("酒测通过", "酒测不通过")
+    val RESULT_KEY_LIST = listOf<String>("1", "0")
 
     private lateinit var instanceId: String
     private lateinit var taskId: String
@@ -39,7 +40,7 @@ class SetoffAlcoholTestDetailActivity : BaseMvpActivity<SetoffAlcoholTestDetailP
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_setout_alcoholtest_detail)
+        setContentView(R.layout.activity_setoff_alcoholtest_detail)
 
         instanceId = intent.getStringExtra("instanceId")
         taskId = intent.getStringExtra("taskId")
@@ -50,7 +51,7 @@ class SetoffAlcoholTestDetailActivity : BaseMvpActivity<SetoffAlcoholTestDetailP
     }
 
     private fun initView() {
-        mResultTv.text = RESULT_LIST.get(0)
+        mResultTv.text = RESULT_VALUE_LIST.get(0)
         mResultTv.onClick { this.showResultEvent() }
 
         mOperBtn.isShadowEnabled = true
@@ -67,7 +68,7 @@ class SetoffAlcoholTestDetailActivity : BaseMvpActivity<SetoffAlcoholTestDetailP
             }
 
             override fun onComplete() {
-                mPresenter.setoffAlcoholTest(taskId, RESULT_LIST.indexOf(mResultTv.text).toString(), PISUtil.getTokenKey())
+                mPresenter.setoffAlcoholTest(taskId, RESULT_KEY_LIST.get(RESULT_VALUE_LIST.indexOf(mResultTv.text)), PISUtil.getTokenKey())
             }
 
         })
@@ -100,11 +101,11 @@ class SetoffAlcoholTestDetailActivity : BaseMvpActivity<SetoffAlcoholTestDetailP
     // 选择状态
     private fun showResultEvent() {
         var pickerView = OptionsPickerBuilder(this, OnOptionsSelectListener { options1, options2, options3, v ->
-            mResultTv.text = RESULT_LIST.get(options1)
+            mResultTv.text = RESULT_VALUE_LIST.get(options1)
         }
         ).build<String>()
-        pickerView.setPicker(RESULT_LIST)
-        pickerView.setSelectOptions(RESULT_LIST.indexOf(mResultTv.text))
+        pickerView.setPicker(RESULT_VALUE_LIST)
+        pickerView.setSelectOptions(RESULT_VALUE_LIST.indexOf(mResultTv.text))
         pickerView.show()
     }
 

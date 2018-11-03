@@ -35,16 +35,10 @@
                 app:labelText="站点名称" />
 
             <com.lkpower.pis.widgets.LabelTextView
-                android:id="@+id/mTaskStatusView"
+                android:id="@+id/mTaskPlaceView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="任务状态" />
-
-            <com.lkpower.pis.widgets.LabelTextView
-                android:id="@+id/mOverConfirmTimeView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:labelText="退乘结束确认时间" />
+                app:labelText="退乘地点" />
 
             <com.lkpower.pis.widgets.LabelTextView
                 android:id="@+id/mBeginTimeView"
@@ -53,10 +47,17 @@
                 app:labelText="退乘开始时间" />
 
             <com.lkpower.pis.widgets.LabelTextView
-                android:id="@+id/mTaskPlaceView"
+                android:id="@+id/mOverConfirmTimeView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="退乘地点" />
+                app:labelText="退乘结束确认时间" />
+
+            <com.lkpower.pis.widgets.LabelTextView
+                android:id="@+id/mTaskStatusView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="任务状态" />
+
 
             <LinearLayout
                 android:id="@+id/mTaskPlaceLayout"

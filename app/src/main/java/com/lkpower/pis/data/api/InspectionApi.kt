@@ -5,6 +5,7 @@ import com.lkpower.pis.data.protocol.MissionStateInfo
 import com.lkpower.pis.data.protocol.XJ_CZSL
 import com.lkpower.pis.data.protocol.XJ_LCFC
 import io.reactivex.Observable
+import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -47,16 +48,19 @@ interface InspectionApi {
     @POST("WorkTask.ashx?Commond=AlarmLogInfo")
     fun alarmLogInfo(@Field("InstanceId") instanceId: String,
                      @Field("DeviceId") deviceId: String,
+                     @Field("StationId") stationId: String,
                      @Field("MissionInstanceId") missionInstanceId: String,
                      @Field("Remark") remark: String,
-                     @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>
+                     @Field("tokenKey") tokenKey: String): Call<Boolean>
 
     // 任务预警接收回写
     @FormUrlEncoded
     @POST("WorkTask.ashx?Commond=AlarmUpdateLogInfo")
     fun alarmUpdateLogInfo(@Field("InstanceId") instanceId: String,
                            @Field("DeviceId") deviceId: String,
+                           @Field("StationId") stationId: String,
                            @Field("MissionInstanceId") missionInstanceId: String,
                            @Field("Remark") remark: String,
-                           @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>
+                           @Field("tokenKey") tokenKey: String): Call<Boolean>
+
 }

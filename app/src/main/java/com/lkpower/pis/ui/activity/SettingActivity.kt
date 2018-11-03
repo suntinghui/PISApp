@@ -36,7 +36,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Route(path = "/pis/SettingActivity")
 class SettingActivity : BaseActivity(), View.OnClickListener {
 
-    val PHONE_NUM = "18501281696"
+    val PHONE_NUM = "0771-2769564"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

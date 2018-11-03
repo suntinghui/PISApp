@@ -7,29 +7,28 @@ import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener
-import com.lkpower.pis.ui.activity.BaseMvpActivity
-import com.lkpower.pis.widgets.ImagePickerView
-import com.lkpower.pis.utils.PISUtil
+import com.lkpower.pis.R
 import com.lkpower.pis.common.BaseConstant
 import com.lkpower.pis.data.protocol.AttModel
+import com.lkpower.pis.data.protocol.SetoutAlcoholTest
 import com.lkpower.pis.ext.onClick
 import com.lkpower.pis.ext.setVisible
-import com.lkpower.pis.utils.ViewUtils
-import com.lkpower.pis.R
-import com.lkpower.pis.data.protocol.SetoutAlcoholTest
 import com.lkpower.pis.injection.component.DaggerSetoutComponent
 import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.SetoutAlcoholTestDetailPresenter
 import com.lkpower.pis.presenter.view.SetoutAlcoholTestDetailView
+import com.lkpower.pis.utils.PISUtil
+import com.lkpower.pis.utils.ViewUtils
+import com.lkpower.pis.widgets.ImagePickerView
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_setout_alcoholtest_detail.*
-import org.jetbrains.anko.toast
 
 class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailPresenter>(), SetoutAlcoholTestDetailView {
 
     // 0不通过 1通过
-    val RESULT_LIST = listOf<String>("酒测不通过", "酒测通过")
+    val RESULT_VALUE_LIST = listOf<String>("酒测通过", "酒测不通过")
+    val RESULT_KEY_LIST = listOf<String>("1", "0")
 
     private lateinit var instanceId: String
     private lateinit var taskId: String
@@ -50,7 +49,7 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
     }
 
     private fun initView() {
-        mResultTv.text = RESULT_LIST.get(0)
+        mResultTv.text = RESULT_VALUE_LIST.get(0)
         mResultTv.onClick { this.showResultEvent() }
 
         mOperBtn.isShadowEnabled = true
@@ -67,7 +66,7 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
             }
 
             override fun onComplete() {
-                mPresenter.setOutAlcoholTest(taskId, RESULT_LIST.indexOf(mResultTv.text).toString(), PISUtil.getTokenKey())
+                mPresenter.setOutAlcoholTest(taskId, RESULT_KEY_LIST.get(RESULT_VALUE_LIST.indexOf(mResultTv.text)), PISUtil.getTokenKey())
             }
 
         })
@@ -100,11 +99,11 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
     // 选择状态
     private fun showResultEvent() {
         var pickerView = OptionsPickerBuilder(this, OnOptionsSelectListener { options1, options2, options3, v ->
-            mResultTv.text = RESULT_LIST.get(options1)
+            mResultTv.text = RESULT_VALUE_LIST.get(options1)
         }
         ).build<String>()
-        pickerView.setPicker(RESULT_LIST)
-        pickerView.setSelectOptions(RESULT_LIST.indexOf(mResultTv.text))
+        pickerView.setPicker(RESULT_VALUE_LIST)
+        pickerView.setSelectOptions(RESULT_VALUE_LIST.indexOf(mResultTv.text))
         pickerView.show()
     }
 

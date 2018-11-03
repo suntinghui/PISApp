@@ -21,10 +21,4 @@ interface InspectionService {
     // 更新巡检任务状态
     fun updateMissionInfoExt(taskId: String, state:String, remark: String, tokenKey: String): Observable<Boolean>
 
-    // 任务预警触发日志
-    fun alarmLogInfo(instanceId: String, deviceId: String, missionInstanceId: String, remark: String, tokenKey: String): Observable<Boolean>
-
-    // 任务预警接收回写
-    fun alarmUpdateLogInfo(instanceId: String, deviceId: String, missionInstanceId: String, remark: String, tokenKey: String): Observable<Boolean>
-
 }

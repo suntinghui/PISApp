@@ -91,10 +91,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
 
         registerUMengAlias()
 
-        var intent = Intent(this, PrimaryCategoryActivity::class.java)
-        intent.putExtra("abc", "ABC")
-        this.startActivity(intent)
-        //startActivity<PrimaryCategoryActivity>()
+        startActivity<PrimaryCategoryActivity>()
     }
 
     /*
