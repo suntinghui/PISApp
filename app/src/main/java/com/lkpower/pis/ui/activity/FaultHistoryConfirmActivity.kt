@@ -123,7 +123,7 @@ class FaultHistoryConfirmActivity : BaseMvpActivity<FaultInfoDetailPresenter>(),
 
             mDetailLayout.addView(LabelTextView(this).setLabelAndContent("车号", result.TrainNo))
             mDetailLayout.addView(LabelTextView(this).setLabelAndContent("故障配件", result.PartName))
-            mDetailLayout.addView(LabelTextView(this).setLabelAndContent("故障类型", result.FaultType))
+            mDetailLayout.addView(LabelTextView(this).setLabelAndContent("故障类型", result.FaultTypeName))
             mDetailLayout.addView(LabelTextView(this).setLabelAndContent("故障说明", result.Remark))
             mDetailLayout.addView(LabelTextView(this).setLabelAndContent("上报时间", result.ReportTime))
 

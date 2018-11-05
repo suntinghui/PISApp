@@ -8,6 +8,7 @@ import com.lkpower.pis.common.AppManager
 import com.lkpower.pis.common.BaseConstant
 import com.lkpower.pis.common.PushTypeConstant
 import com.lkpower.pis.data.api.InspectionApi
+import com.lkpower.pis.data.protocol.BaseResp
 import com.lkpower.pis.ui.activity.*
 import com.lkpower.pis.ui.receiver.NotificationReceiver
 import com.lkpower.pis.utils.NotificationUtil
@@ -45,6 +46,7 @@ class UMengNotificationService : UmengMessageService() {
             var ticker = ""
             var title = ""
             var content = ""
+            var action = "" // ARouter路径
             var tempIntent: Intent = Intent()
 
             val messageBody = intent.getStringExtra(AgooConstants.MESSAGE_BODY)
@@ -64,6 +66,7 @@ class UMengNotificationService : UmengMessageService() {
                     ticker = "您有一条到站预警消息"
                     title = "到站预警"
                     content = "$StationName 即将到站"
+                    action = "/pis/InspectionTaskListActivity"
                     tempIntent = Intent(context, InspectionTaskListActivity::class.java)
 
                     AlarmLogInfo()
@@ -73,6 +76,7 @@ class UMengNotificationService : UmengMessageService() {
                     ticker = "您有一条出乘开始预警消息"
                     title = "出乘任务开始预警"
                     content = "$StationName 出乘任务将在$ArriveDate 开始，请及时处理"
+                    action = "/pis/SetoutCheckinListActivity"
                     tempIntent = Intent(context, SetoutCheckinListActivity::class.java)
 
                 }
@@ -81,6 +85,7 @@ class UMengNotificationService : UmengMessageService() {
                     ticker = "您有一条退乘开始预警消息"
                     title = "退乘任务开始预警"
                     content = "$StationName 退乘任务将在$ArriveDate 开始，请及时处理"
+                    action = "/pis/SetoffCheckinListActivity"
                     tempIntent = Intent(context, SetoffCheckinListActivity::class.java)
 
                 }
@@ -89,6 +94,7 @@ class UMengNotificationService : UmengMessageService() {
                     ticker = "您有一条出乘报到超时预警消息"
                     title = "出乘报到超时预警"
                     content = "$StationName 出乘报到任务已超时，请及时处理"
+                    action = "/pis/SetoutCheckinListActivity"
                     tempIntent = Intent(context, SetoutCheckinListActivity::class.java)
 
                 }
@@ -97,6 +103,7 @@ class UMengNotificationService : UmengMessageService() {
                     ticker = "您有一条退乘报到超时预警消息"
                     title = "退乘报到超时预警"
                     content = "$StationName 退乘报到任务已超时，请及时处理"
+                    action = "/pis/SetoffCheckinListActivity"
                     tempIntent = Intent(context, SetoffCheckinListActivity::class.java)
 
                 }
@@ -105,6 +112,7 @@ class UMengNotificationService : UmengMessageService() {
                     ticker = "您有一条出乘酒测超时预警消息"
                     title = "出乘酒测超时预警"
                     content = "$StationName 出乘酒测任务已超时，请及时处理"
+                    action = "/pis/SetoutAlcoholTestListActivity"
                     tempIntent = Intent(context, SetoutAlcoholTestListActivity::class.java)
 
                 }
@@ -113,6 +121,7 @@ class UMengNotificationService : UmengMessageService() {
                     ticker = "您有一条退乘酒测超时预警消息"
                     title = "退乘酒测超时预警"
                     content = "$StationName 退乘酒测任务已超时，请及时处理"
+                    action = "/pis/SetoffAlcoholTestListActivity"
                     tempIntent = Intent(context, SetoffAlcoholTestListActivity::class.java)
 
                 }
@@ -121,6 +130,7 @@ class UMengNotificationService : UmengMessageService() {
                     ticker = "您有一条出乘确认项目超时预警消息"
                     title = "出乘确认项目超时预警"
                     content = "$StationName 出乘确认项目已超时，请及时处理"
+                    action = "/pis/SetoutConfirmProjListActivity"
                     tempIntent = Intent(context, SetoutConfirmProjListActivity::class.java)
 
                 }
@@ -129,6 +139,7 @@ class UMengNotificationService : UmengMessageService() {
                     ticker = "您有一条出乘答题任务超时预警消息"
                     title = "出乘答题任务超时预警"
                     content = "$StationName 出乘答题任务已超时，请及时处理"
+                    action = "/pis/LearnDocListActivity"
                     tempIntent = Intent(context, LearnDocListActivity::class.java)
 
                 }
@@ -137,6 +148,7 @@ class UMengNotificationService : UmengMessageService() {
                     ticker = "您有一条出乘最终确认超时预警消息"
                     title = "出乘最终确认超时预警"
                     content = "$StationName 出乘最终确认已超时，请及时处理"
+                    action = "/pis/SetoutListActivity"
                     tempIntent = Intent(context, SetoutListActivity::class.java)
 
                 }
@@ -145,6 +157,7 @@ class UMengNotificationService : UmengMessageService() {
                     ticker = "您有一条退乘最终确认超时预警消息"
                     title = "退乘最终确认超时预警"
                     content = "$StationName 退乘最终确认已超时，请及时处理"
+                    action = "/pis/SetoffListActivity"
                     tempIntent = Intent(context, SetoffListActivity::class.java)
                 }
 
@@ -152,6 +165,7 @@ class UMengNotificationService : UmengMessageService() {
                     ticker = "您有一条计划任务传达预警消息"
                     title = "计划任务传达预警"
                     content = "$StationName 计划任务传达将在$ArriveDate 开始，请及时处理"
+                    action = "/pis/TaskConveyListActivity"
                     tempIntent = Intent(context, TaskConveyListActivity::class.java)
 
                 }
@@ -160,6 +174,7 @@ class UMengNotificationService : UmengMessageService() {
                     ticker = "您有一条巡检任务预警消息"
                     title = "巡检任务预警"
                     content = "$StationName 巡检任务将在$ArriveDate 开始，请及时处理"
+                    action = "/pis/InspectionTaskListActivity"
                     tempIntent = Intent(context, InspectionTaskListActivity::class.java)
 
                 }
@@ -170,6 +185,7 @@ class UMengNotificationService : UmengMessageService() {
                     ticker = "收到一条推送消息"
                     title = "巡检任务预警"
                     content = "收到一条乘务巡检消息，请您及时处理，否则有可能会上报后台系统"
+                    action = "/pis/LoginActivity"
                     tempIntent = Intent(context, LoginActivity::class.java)
                 }
             }// end When
@@ -184,6 +200,7 @@ class UMengNotificationService : UmengMessageService() {
             tempIntent.putExtra("StationName", StationName)
             tempIntent.putExtra("MissionInstanceId", MissionInstanceId)
             tempIntent.putExtra("ArriveDate", ArriveDate)
+            tempIntent.putExtra("action", action)
 
             NotificationUtil.showNotification(context, ticker, title, content, tempIntent)
 
@@ -200,12 +217,12 @@ class UMengNotificationService : UmengMessageService() {
                 .build()
         val request = retrofit.create(InspectionApi::class.java)
         val call = request.alarmLogInfo(InstanceId, PISUtil.getDeviceId(context), StationId, MissionInstanceId, "", PISUtil.getTokenKey())
-        call.enqueue(object : Callback<Boolean> {
-            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-                Logger.e("AlarmLogInfo 预警触发日志成功！")
+        call.enqueue(object : Callback<BaseResp<Boolean>> {
+            override fun onResponse(call: Call<BaseResp<Boolean>>, response: Response<BaseResp<Boolean>>) {
+                Logger.e("AlarmLogInfo ${response.body().toString()}")
             }
 
-            override fun onFailure(call: Call<Boolean>, t: Throwable) {
+            override fun onFailure(call: Call<BaseResp<Boolean>>, t: Throwable) {
                 Logger.e("AlarmLogInfo 预警触发日志失败！")
             }
         })

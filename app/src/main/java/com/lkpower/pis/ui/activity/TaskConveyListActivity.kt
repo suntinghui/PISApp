@@ -2,6 +2,7 @@ package com.lkpower.pis.ui.activity
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kennyc.view.MultiStateView

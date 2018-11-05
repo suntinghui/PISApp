@@ -8,17 +8,17 @@ import com.lkpower.pis.presenter.view.LoginView
 import com.lkpower.pis.service.UserService
 import javax.inject.Inject
 
-class LoginPresenter @Inject constructor(): BasePresenter<LoginView>() {
+class LoginPresenter @Inject constructor() : BasePresenter<LoginView>() {
     @Inject
-    lateinit var userService:UserService
+    lateinit var userService: UserService
 
-    fun login(userName:String, pwd:String, deviceId:String) {
+    fun login(userName: String, pwd: String, deviceId: String, APPVersion: String) {
         if (!checkNetWork())
             return
 
         mView.showLoading()
 
-        userService.login(userName, pwd, deviceId).execute(object:BaseSubscriber<UserInfo>(mView){
+        userService.login(userName, pwd, deviceId, APPVersion).execute(object : BaseSubscriber<UserInfo>(mView) {
             override fun onNext(t: UserInfo) {
                 mView.onLoginResult(t)
             }

@@ -51,7 +51,7 @@ interface InspectionApi {
                      @Field("StationId") stationId: String,
                      @Field("MissionInstanceId") missionInstanceId: String,
                      @Field("Remark") remark: String,
-                     @Field("tokenKey") tokenKey: String): Call<Boolean>
+                     @Field("tokenKey") tokenKey: String): Call<BaseResp<Boolean>>
 
     // 任务预警接收回写
     @FormUrlEncoded
@@ -61,6 +61,6 @@ interface InspectionApi {
                            @Field("StationId") stationId: String,
                            @Field("MissionInstanceId") missionInstanceId: String,
                            @Field("Remark") remark: String,
-                           @Field("tokenKey") tokenKey: String): Call<Boolean>
+                           @Field("tokenKey") tokenKey: String): Call<BaseResp<Boolean>>
 
 }

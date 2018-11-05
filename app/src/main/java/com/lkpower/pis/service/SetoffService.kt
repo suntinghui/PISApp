@@ -25,7 +25,7 @@ interface SetoffService {
     fun getSetOffAlcoholTest(instanceId: String, taskId: String, tokenKey: String): Observable<SetoffAlcoholTest>
 
     // 退乘酒测确认
-    fun setoffAlcoholTest(taskId: String, state: String, tokenKey: String): Observable<Boolean>
+    fun setoffAlcoholTest(taskId: String, result: String, tokenKey: String): Observable<Boolean>
 
     // 获取当前发车实例退乘任务实例列表
     fun getSetoffList(instanceId: String, tokenKey: String): Observable<List<SetoffInfo>>

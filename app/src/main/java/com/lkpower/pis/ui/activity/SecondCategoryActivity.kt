@@ -53,9 +53,8 @@ class SecondCategoryActivity : BaseActivity() {
             mCategoryAdapter.setData(loadSecondCategoryData().get(parentId)!!)
             mCategoryAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<Category> {
                 override fun onItemClick(item: Category, position: Int) {
+                    // 此处不允许传递参数，推送处也有使用，否则会出现问题
                     ARouter.getInstance().build(item.action)
-                            .withInt("id", item.id)
-                            .withString("title", item.title)
                             .navigation()
                 }
             })

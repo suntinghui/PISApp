@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.blankj.utilcode.util.AppUtils
 import com.lkpower.pis.ui.activity.BaseMvpActivity
 import com.lkpower.pis.utils.AppPrefsUtils
 import com.lkpower.pis.common.BaseConstant
@@ -24,6 +26,7 @@ import com.umeng.message.UTrack
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
 
+@Route(path = "/pis/LoginActivity")
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,13 +51,15 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
         mLoginBtn.setCornerRadius(5)
         mLoginBtn.onClick(this)
 
+        com.lkpower.pis.utils.AppUtils.checkVoice(this)
+
     }
 
     override fun onClick(v: View) {
         when (v.id) {
             R.id.mLoginBtn -> {
                 if (checkInput()) {
-                    mPresenter.login(mUsernameEt.text.toString(), mPasswordEt.text.toString(), PISUtil.getDeviceId(this))
+                    mPresenter.login(mUsernameEt.text.toString(), mPasswordEt.text.toString(), PISUtil.getDeviceId(this), AppUtils.getAppVersionName())
                 }
             }
         }

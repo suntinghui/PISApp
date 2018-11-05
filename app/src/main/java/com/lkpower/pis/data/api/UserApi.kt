@@ -13,7 +13,8 @@ interface UserApi {
     @POST("Identity.ashx?Commond=AppLogin")
     fun login(@Field("loginName") loginName: String,
               @Field("loginPwd") loginPwd: String,
-              @Field("deviceId") deviceId: String): Observable<BaseResp<UserInfo>>
+              @Field("DeviceID") deviceId: String,
+              @Field("APPVersion") APPVersion: String): Observable<BaseResp<UserInfo>>
 
 
     // 注销
@@ -25,9 +26,9 @@ interface UserApi {
     @FormUrlEncoded
     @POST("Identity.ashx?Commond=ChangePwd")
     fun changePwd(@Field("LoginName") loginName: String,
-              @Field("HisPwd") loginPwd: String,
-              @Field("newPwd") newPwd: String,
-              @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+                  @Field("HisPwd") loginPwd: String,
+                  @Field("newPwd") newPwd: String,
+                  @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
 
 
     // 获取当前人员的发车实例

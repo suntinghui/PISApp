@@ -2,6 +2,7 @@ package com.lkpower.pis.ui.activity
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.kennyc.view.MultiStateView
 import com.lkpower.pis.ui.activity.BaseMvpActivity
@@ -18,6 +19,7 @@ import com.lkpower.pis.ui.adapter.InspectionTaskAdapter
 import kotlinx.android.synthetic.main.activity_inspection_task_list.*
 import org.jetbrains.anko.startActivity
 
+@Route(path = "/pis/InspectionTaskListActivity")
 class InspectionTaskListActivity : BaseMvpActivity<InspectionTaskListPresenter>(), InspectionTaskListView {
 
     private lateinit var mAdapter: InspectionTaskAdapter

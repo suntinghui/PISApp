@@ -3,6 +3,7 @@ package com.lkpower.pis.ui.activity
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
+import com.alibaba.android.arouter.launcher.ARouter
 import com.eightbitlab.rxbus.Bus
 import com.lkpower.pis.common.AppManager
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
@@ -22,6 +23,9 @@ open class BaseActivity : RxAppCompatActivity() {
         AppManager.instance.addActivity(this)
 
         PushAgent.getInstance(this).onAppStart()
+
+        //ARouter注册
+        ARouter.getInstance().inject(this)
     }
 
     override fun onResume() {

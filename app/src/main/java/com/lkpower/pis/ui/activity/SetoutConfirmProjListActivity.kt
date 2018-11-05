@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.LinearLayout
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.kennyc.view.MultiStateView
@@ -30,6 +31,7 @@ import org.jetbrains.anko.toast
 /*
 出乘管理-项目确认-列表-详情
  */
+@Route(path = "/pis/SetoutConfirmProjListActivity")
 class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjListPresenter>(), SetoutConfirmProjListView {
 
     private var GroupTaskId: String = ""

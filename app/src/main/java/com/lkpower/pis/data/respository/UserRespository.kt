@@ -14,8 +14,8 @@ import javax.inject.Inject
 class UserRespository @Inject constructor() {
 
     // 登录
-    fun login(loginName: String, loginPwd: String, deviceId: String): Observable<BaseResp<UserInfo>> {
-        return RetrofitFactory.instance.create(UserApi::class.java).login(loginName, loginPwd, deviceId)
+    fun login(loginName: String, loginPwd: String, deviceId: String, APPVersion: String): Observable<BaseResp<UserInfo>> {
+        return RetrofitFactory.instance.create(UserApi::class.java).login(loginName, loginPwd, deviceId, APPVersion)
     }
 
 

@@ -44,8 +44,8 @@ class SetoffRespository @Inject constructor() {
     }
 
     // 退乘酒测确认
-    fun setoffAlcoholTest(taskId: String, state: String, tokenKey: String): Observable<BaseResp<Boolean>> {
-        return RetrofitFactory.instance.create(SetoffApi::class.java).setoffAlcoholTest(taskId, state, tokenKey)
+    fun setoffAlcoholTest(taskId: String, result: String, tokenKey: String): Observable<BaseResp<Boolean>> {
+        return RetrofitFactory.instance.create(SetoffApi::class.java).setoffAlcoholTest(taskId, "2", result, tokenKey)
     }
 
     // 获取当前发车实例退乘任务实例列表

@@ -16,6 +16,7 @@ import com.lkpower.pis.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.RiskItem
 import com.lkpower.pis.data.protocol.TaskConveyDetail
+import com.lkpower.pis.ext.onClick
 import com.lkpower.pis.injection.component.DaggerSetoutComponent
 import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.TaskConveyDetailPresenter
@@ -51,6 +52,13 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
     }
 
     private fun initView() {
+
+        mConfirmBtn.isShadowEnabled = true
+        mConfirmBtn.shadowHeight = 5
+        mConfirmBtn.cornerRadius = 5
+        mConfirmBtn.onClick { sendConfrimAction() }
+
+
         mRiskItemsRv.layoutManager = LinearLayoutManager(this)
         mAdapter = RiskItemAdapter(this)
         mRiskItemsRv.adapter = mAdapter
@@ -143,6 +151,14 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
         var layout: LinearLayout = mRiskItemsRv.getChildAt(index) as LinearLayout
         var imagePickerView = layout.findViewById<ImagePickerView>(R.id.mPickerView)
         return imagePickerView
+    }
+
+    // 总体确认
+    private fun sendConfrimAction() {
+
+
+
+
     }
 
     override fun injectComponent() {

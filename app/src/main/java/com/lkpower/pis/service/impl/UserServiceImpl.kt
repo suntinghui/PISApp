@@ -13,8 +13,8 @@ class UserServiceImpl @Inject constructor() : UserService {
     @Inject
     lateinit var respository: UserRespository
 
-    override fun login(loginName: String, loginPwd: String, deviceId: String): Observable<UserInfo> {
-        return respository.login(loginName, loginPwd, deviceId).convert()
+    override fun login(loginName: String, loginPwd: String, deviceId: String, APPVersion: String): Observable<UserInfo> {
+        return respository.login(loginName, loginPwd, deviceId, APPVersion).convert()
     }
 
     override fun loginOff(tokenKey: String): Observable<String> {

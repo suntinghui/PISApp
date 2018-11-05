@@ -51,7 +51,8 @@ interface SetoffApi {
     @FormUrlEncoded
     @POST("WorkTask.ashx?Commond=SetOffAlcoholTest")
     fun setoffAlcoholTest(@Field("TaskId") taskId: String,
-                          @Field("TaskStatus") status: String,
+                          @Field("TaskStatus") taskStatus: String,
+                          @Field("Result") result: String,
                           @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>
 
     // 获取当前发车实例退乘任务实例列表

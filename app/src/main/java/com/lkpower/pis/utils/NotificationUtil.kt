@@ -7,7 +7,6 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.support.v4.app.NotificationCompat
 import com.lkpower.pis.R
 import java.util.*
@@ -15,6 +14,7 @@ import java.util.*
 object NotificationUtil {
 
     fun showNotification(context: Context, ticker: String, title: String, msg: String, intent: Intent) {
+
         var notifyId = Random().nextInt()
         // 因为将Notification设置为FLAG_INSISTENT,点击无关关闭，只能记录ID，自己关闭。
         intent.putExtra("NotifyId", notifyId)
@@ -48,4 +48,6 @@ object NotificationUtil {
             e.printStackTrace()
         }
     }
+
+
 }

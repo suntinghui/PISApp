@@ -4,8 +4,12 @@ import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import com.alibaba.android.arouter.launcher.ARouter
+import com.blankj.utilcode.util.AppUtils
+import com.lkpower.pis.common.AppManager
 import com.lkpower.pis.common.PushTypeConstant
 import com.lkpower.pis.data.api.InspectionApi
+import com.lkpower.pis.data.protocol.BaseResp
 import com.lkpower.pis.utils.PISUtil
 import com.orhanobut.logger.Logger
 import retrofit2.Call
@@ -24,6 +28,7 @@ class NotificationReceiver : BroadcastReceiver() {
     private var MissionInstanceId = "" // 相关任务实例ID
     private var PushType = "" // 预警类型
     private var nofifyId: Int = 0
+    private var action = "" // ARouter路径
 
     private lateinit var context: Context
 
@@ -38,6 +43,7 @@ class NotificationReceiver : BroadcastReceiver() {
         MissionInstanceId = intent.getStringExtra("MissionInstanceId")
         PushType = intent.getStringExtra("PushType")
         nofifyId = intent.getIntExtra("NotifyId", 0)
+        action = intent.getStringExtra("action")
 
         when (PushType) {
             // 该类型确认成功后再关闭通知
@@ -46,6 +52,7 @@ class NotificationReceiver : BroadcastReceiver() {
             }
             else -> {
                 cancelNotify(context)
+                gotoActivity(action)
             }
         }
     }
@@ -58,15 +65,19 @@ class NotificationReceiver : BroadcastReceiver() {
                 .build()
         val request = retrofit.create(InspectionApi::class.java)
         val call = request.alarmUpdateLogInfo(InstanceId, PISUtil.getDeviceId(context), StationId, MissionInstanceId, "", PISUtil.getTokenKey())
-        call.enqueue(object : Callback<Boolean> {
-            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-                Logger.e("AlarmLogInfo 预警触发日志回写成功！")
+        call.enqueue(object : Callback<BaseResp<Boolean>> {
+            override fun onResponse(call: Call<BaseResp<Boolean>>, response: Response<BaseResp<Boolean>>) {
+                Logger.e("alarmUpdateLogInfo ${response.body().toString()}")
 
                 cancelNotify(context)
+
+                gotoActivity(action)
             }
 
-            override fun onFailure(call: Call<Boolean>, t: Throwable) {
-                Logger.e("AlarmLogInfo 预警触发日志回写失败！")
+            override fun onFailure(call: Call<BaseResp<Boolean>>, t: Throwable) {
+                Logger.e("alarmUpdateLogInfo 预警触发日志回写失败！")
+
+                gotoActivity(action)
             }
         })
     }
@@ -77,6 +88,21 @@ class NotificationReceiver : BroadcastReceiver() {
             mNotificationManager.cancel(nofifyId)
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    /*
+        如果栈中包含主菜单界面说明已经正在运行，则直接跳转，否则进入登录界面
+        activityUrl 必须是ARouter定义好的
+     */
+    private fun gotoActivity(activityUrl: String) {
+        if (AppManager.instance.containsPrimaryCategoryActivity()) {
+            ARouter.getInstance().build(activityUrl)
+                    .navigation()
+
+        } else {
+            // 启动登录
+            AppUtils.launchApp(this.context.packageName)
         }
     }
 

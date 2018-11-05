@@ -10,7 +10,7 @@ import io.reactivex.Observable
 interface UserService {
 
     // 登录
-    fun login(loginName: String, loginPwd: String, deviceId: String): Observable<UserInfo>
+    fun login(loginName: String, loginPwd: String, deviceId: String, APPVersion: String): Observable<UserInfo>
 
     // 注销
     fun loginOff(tokenKey: String): Observable<String>

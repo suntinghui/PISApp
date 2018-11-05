@@ -36,8 +36,8 @@ class SetoffServiceImpl @Inject constructor() : SetoffService {
         return respository.getSetOffAlcoholTest(instanceId, taskId, tokenKey).convert()
     }
 
-    override fun setoffAlcoholTest(taskId: String, state: String, tokenKey: String): Observable<Boolean> {
-        return respository.setoffAlcoholTest(taskId, state, tokenKey).convertBoolean()
+    override fun setoffAlcoholTest(taskId: String, result: String, tokenKey: String): Observable<Boolean> {
+        return respository.setoffAlcoholTest(taskId, result, tokenKey).convertBoolean()
     }
 
     override fun getSetoffList(instanceId: String, tokenKey: String): Observable<List<SetoffInfo>> {

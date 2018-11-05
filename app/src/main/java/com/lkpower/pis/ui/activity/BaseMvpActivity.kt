@@ -1,8 +1,6 @@
 package com.lkpower.pis.ui.activity
 
 import android.os.Bundle
-import com.alibaba.android.arouter.launcher.ARouter
-import com.lkpower.pis.widgets.ProgressLoading
 import com.lkpower.pis.common.BaseApplication
 import com.lkpower.pis.injection.component.ActivityComponent
 import com.lkpower.pis.injection.component.DaggerActivityComponent
@@ -11,8 +9,7 @@ import com.lkpower.pis.injection.module.LifecycleProviderModule
 import com.lkpower.pis.presenter.BasePresenter
 import com.lkpower.pis.presenter.view.BaseView
 import com.lkpower.pis.utils.ViewUtils
-import org.jetbrains.anko.toast
-import java.lang.Exception
+import com.lkpower.pis.widgets.ProgressLoading
 import javax.inject.Inject
 
 /*
@@ -36,8 +33,6 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
         //初始加载框
         mLoadingDialog = ProgressLoading.create(this)
 
-        //ARouter注册
-        ARouter.getInstance().inject(this)
     }
 
     /*
