@@ -23,7 +23,7 @@ class RetrofitFactory private constructor() {
     }
 
     private val interceptor: Interceptor
-    private val retrofit: Retrofit
+    private var retrofit: Retrofit
 
     //初始化
     init {
@@ -72,5 +72,16 @@ class RetrofitFactory private constructor() {
      */
     fun <T> create(service: Class<T>): T {
         return retrofit.create(service)
+    }
+
+    // 为了能够实现更换服务器地址后能够立即生效。
+    // 应该不是最好的实现方式。
+    fun resetRetrofit() {
+        retrofit = Retrofit.Builder()
+                .baseUrl(PISUtil.getServerAddress())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .client(initClient())
+                .build()
     }
 }

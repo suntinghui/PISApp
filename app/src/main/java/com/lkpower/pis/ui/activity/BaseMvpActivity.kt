@@ -75,6 +75,10 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
     override fun onError(text: String) {
         this.hideLoading()
 
-        ViewUtils.error(this, text)
+        try {
+            ViewUtils.showSimpleAlert(this, text)
+        } catch (e: java.lang.Exception) {
+            ViewUtils.error(this, text)
+        }
     }
 }

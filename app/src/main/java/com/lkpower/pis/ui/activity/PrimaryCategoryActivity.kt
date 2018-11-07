@@ -23,6 +23,7 @@ import com.lkpower.pis.injection.module.UserModule
 import com.lkpower.pis.presenter.LCFCInstancePresenter
 import com.lkpower.pis.presenter.view.LCFCInstanceView
 import com.lkpower.pis.ui.adapter.CategoryAdapter
+import com.lkpower.pis.utils.UpdateUtil
 import com.orhanobut.logger.Logger
 import com.umeng.message.PushAgent
 import com.umeng.message.UTrack
@@ -43,6 +44,8 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
         initView()
 
         queryLCFC()
+
+        UpdateUtil.checkLatestVersion(this, false)
 
     }
 
