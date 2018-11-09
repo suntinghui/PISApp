@@ -66,8 +66,8 @@ class UMengNotificationService : UmengMessageService() {
                     ticker = "您有一条到站预警消息"
                     title = "到站预警"
                     content = "$StationName 即将到站"
-                    action = "/pis/InspectionTaskListActivity"
-                    tempIntent = Intent(context, InspectionTaskListActivity::class.java)
+                    action = "/pis/InspectionStationListActivity"
+                    tempIntent = Intent(context, InspectionStationListActivity::class.java)
 
                     AlarmLogInfo()
                 }
@@ -130,8 +130,8 @@ class UMengNotificationService : UmengMessageService() {
                     ticker = "您有一条出乘确认项目超时预警消息"
                     title = "出乘确认项目超时预警"
                     content = "$StationName 出乘确认项目已超时，请及时处理"
-                    action = "/pis/SetoutConfirmProjListActivity"
-                    tempIntent = Intent(context, SetoutConfirmProjListActivity::class.java)
+                    action = "/pis/SetoutGroupTaskListActivity"
+                    tempIntent = Intent(context, SetoutGroupTaskListActivity::class.java)
 
                 }
 
@@ -174,8 +174,8 @@ class UMengNotificationService : UmengMessageService() {
                     ticker = "您有一条巡检任务预警消息"
                     title = "巡检任务预警"
                     content = "$StationName 巡检任务将在$ArriveDate 开始，请及时处理"
-                    action = "/pis/InspectionTaskListActivity"
-                    tempIntent = Intent(context, InspectionTaskListActivity::class.java)
+                    action = "/pis/InspectionStationListActivity"
+                    tempIntent = Intent(context, InspectionStationListActivity::class.java)
 
                 }
 
