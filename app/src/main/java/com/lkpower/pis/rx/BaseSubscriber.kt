@@ -27,13 +27,15 @@ open class BaseSubscriber<T>(val baseView: BaseView) : Observer<T> {
         baseView.hideLoading()
 
         if (e is BaseException) {
-            baseView.onError(e.Mesg)
-        } else if (e is DataNullException){
+            var msg = if (e.Mesg.isNullOrEmpty()) "数据异常，请重试" else e.Mesg
+            baseView.onError(msg)
+        } else if (e is DataNullException) {
             baseView.onDataIsNull()
         } else if (e is SocketTimeoutException) {
             baseView.onError("网络连接超时，请检查网络或稍候重试")
         } else {
-            baseView.onError(e.toString())
+            e.printStackTrace()
+            baseView.onError("数据异常，请稍候重试")
         }
 
     }

@@ -38,10 +38,37 @@ class TaskConveyDetailPresenter @Inject constructor() : BasePresenter<TaskConvey
 
         setoutService.taskRiskItemConfirm(itemId, feedBack, tokenKey).execute(object : BaseSubscriber<Boolean>(mView) {
             override fun onNext(t: Boolean) {
-                mView.onConfirmResult(t)
+                mView.onConfirmRiskResult(t)
             }
         }, lifecycleProvider)
     }
+
+    fun getNoDoneRiskCount(ConveyDetailId: String, tokenKey: String) {
+        if (!checkNetWork())
+            return
+
+        mView.showLoading()
+
+        setoutService.getNoDoneRiskCount(ConveyDetailId, tokenKey).execute(object : BaseSubscriber<String>(mView) {
+            override fun onNext(t: String) {
+                mView.onGetNoRiskCountResult(t)
+            }
+        }, lifecycleProvider)
+    }
+
+    fun taskConveyConfirm(ConveyDetailId: String, feedback: String, tokenKey: String) {
+        if (!checkNetWork())
+            return
+
+        mView.showLoading()
+
+        setoutService.taskConveyConfirm(ConveyDetailId, feedback, tokenKey).execute(object : BaseSubscriber<Boolean>(mView) {
+            override fun onNext(t: Boolean) {
+                mView.onConfirmConveyResult(t)
+            }
+        }, lifecycleProvider)
+    }
+
 
     fun getAttList(busId: String, attType: String, tokenKey: String) {
         if (!checkNetWork())

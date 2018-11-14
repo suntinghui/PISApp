@@ -93,6 +93,36 @@
                 android:paddingBottom="@dimen/common_padding">
 
                 <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="right"
+                    android:text="检修类型"
+                    android:textSize="@dimen/text_middle_size" />
+
+                <TextView
+                    android:id="@+id/mCheckTypeTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/common_margin"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/icon_arrow_drop_down"
+                    android:text="请选择检修类型"
+                    android:textColor="@color/text_dark" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/border_bottom"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/common_padding"
+                android:paddingRight="@dimen/common_padding"
+                android:paddingBottom="@dimen/common_padding">
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"

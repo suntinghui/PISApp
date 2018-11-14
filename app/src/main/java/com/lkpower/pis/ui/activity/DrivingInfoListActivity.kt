@@ -59,7 +59,7 @@ class DrivingInfoListActivity : BaseMvpActivity<DrivingInfoListPresenter>(), Dri
 
     private fun loadData() {
         mMultiStateView.startLoading()
-        mPresenter.getDrivingInfoList("{'DeviceId':${PISUtil.getDeviceId(this)}}", PageBeanUtil.getPageBeanJson(mCurrentPage), PISUtil.getTokenKey())
+        mPresenter.getDrivingInfoList("{'DeviceId':${PISUtil.getDeviceId(this, true)}}", PageBeanUtil.getPageBeanJson(mCurrentPage), PISUtil.getTokenKey())
 
     }
 

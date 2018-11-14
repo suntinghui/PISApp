@@ -128,7 +128,7 @@ class FaultHistoryListActivity : BaseMvpActivity<FaultInfoListPresenter>(), Faul
             FaultType = ""
         }
 
-        var searchInfo = "{'TrainNo':$trainNo,'PartId':$PartId,'FaultType':$FaultType, 'DeviceId':${PISUtil.getDeviceId(this)}}"
+        var searchInfo = "{'TrainNo':$trainNo,'PartId':$PartId,'FaultType':$FaultType, 'DeviceId':${PISUtil.getDeviceId(this, true)}}"
 
         mPresenter.getFaultInfoList(searchInfo, PageBeanUtil.getPageBeanJson(mCurrentPage), PISUtil.getTokenKey())
     }

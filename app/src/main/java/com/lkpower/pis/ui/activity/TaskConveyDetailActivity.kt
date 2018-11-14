@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.text.Editable
 import android.widget.LinearLayout
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
@@ -17,6 +18,7 @@ import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.RiskItem
 import com.lkpower.pis.data.protocol.TaskConveyDetail
 import com.lkpower.pis.ext.onClick
+import com.lkpower.pis.ext.setVisible
 import com.lkpower.pis.injection.component.DaggerSetoutComponent
 import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.TaskConveyDetailPresenter
@@ -26,6 +28,7 @@ import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_taskconvey_detail.*
 import org.jetbrains.anko.toast
+import java.lang.Exception
 
 
 class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), TaskConveyDetailView {
@@ -53,10 +56,13 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
 
     private fun initView() {
 
-        mConfirmBtn.isShadowEnabled = true
-        mConfirmBtn.shadowHeight = 5
-        mConfirmBtn.cornerRadius = 5
-        mConfirmBtn.onClick { sendConfrimAction() }
+        mTaskConfirmLayout.setVisible(false)
+
+        mTaskConfirmBtn.setButtonColor(getResources().getColor(R.color.fbutton_color_alizarin))
+        mTaskConfirmBtn.isShadowEnabled = true
+        mTaskConfirmBtn.shadowHeight = 5
+        mTaskConfirmBtn.cornerRadius = 5
+        mTaskConfirmBtn.onClick { sendConfrimAction() }
 
 
         mRiskItemsRv.layoutManager = LinearLayoutManager(this)
@@ -90,39 +96,80 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
     // 加载详情
     private fun loadDetail() {
         mPresenter.getTaskConveyDetail(ConveyDetailId, PISUtil.getTokenKey())
+
+        mPresenter.getNoDoneRiskCount(ConveyDetailId, PISUtil.getTokenKey())
+    }
+
+    // 提交总任务
+    private fun sendConfrimAction() {
+        if (mTaskConfirmRemarEt.text.toString().isNullOrEmpty()) {
+            ViewUtils.warning(this, "请输入意见")
+            return
+        }
+
+        mPresenter.taskConveyConfirm(ConveyDetailId, mTaskConfirmRemarEt.text.toString(), PISUtil.getTokenKey())
     }
 
 
     override fun onGetDetailResult(result: TaskConveyDetail) {
-        this.mDetail = result
+        try {
+            this.mDetail = result
 
-        mTitleView.setContentText(result.TaskTitle)
-        mContentView.setContentText(result.TaskContent)
-        mSetOutTypeNameView.setContentText(result.SetOutTypeName)
-        mCompleteTimeView.setContentText(result.CompleteTime)
-        mPublisherNameView.setContentText(result.PublisherName)
-        mPublishDateView.setContentText(result.PublishDate)
+            mTitleView.setContentText(result.TaskTitle)
+            mContentView.setContentText(result.TaskContent)
+            mSetOutTypeNameView.setContentText(result.SetOutTypeName)
+            mCompleteTimeView.setContentText(result.CompleteTime)
+            mPublisherNameView.setContentText(result.PublisherName)
+            mPublishDateView.setContentText(result.PublishDate)
 
-        var riskItems = result.RiskItems
+            var riskItems = result.RiskItems
 
-        if (riskItems.isNotEmpty()) {
+            if (riskItems.isNotEmpty()) {
 
-            dataList = riskItems.toMutableList()
+                dataList = riskItems.toMutableList()
 
-            riskItems.map {
-                // 获取每一个子项的图片
-                mPresenter.getAttList(it.ItemId, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
+                riskItems.map {
+                    // 获取每一个子项的图片
+                    mPresenter.getAttList(it.ItemId, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
+                }
+                mAdapter.setData(riskItems.toMutableList())
+
             }
-            mAdapter.setData(riskItems.toMutableList())
 
+            mTaskConfirmRemarEt.text = Editable.Factory.getInstance().newEditable(result.ConfirmDetail.FeedBack)
+            mTaskConfirmBtn.setVisible(result.ConfirmDetail.FeedBack.isNullOrEmpty())
+            mTaskConfirmRemarEt.isEnabled = result.ConfirmDetail.FeedBack.isNullOrEmpty()
+
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
     // 项目提交成功后的响应
-    override fun onConfirmResult(result: Boolean) {
+    override fun onConfirmRiskResult(result: Boolean) {
         this.hideLoading()
 
-        ViewUtils.success(this,"提交成功")
+        ViewUtils.success(this, "提交成功")
+
+        loadDetail()
+    }
+
+    // 查询未处理的风险项的数量,数量为0才显示该控件。并且有意见时说明已经提交过，不再显示提交按纽
+    override fun onGetNoRiskCountResult(result: String) {
+        try {
+            var count = result.toInt()
+            mTaskConfirmLayout.setVisible(count == 0)
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+            mTaskConfirmLayout.setVisible(false)
+        }
+
+    }
+
+    // 处理总任务
+    override fun onConfirmConveyResult(result: Boolean) {
+        ViewUtils.success(this, "处理完成")
 
         loadDetail()
     }
@@ -151,14 +198,6 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
         var layout: LinearLayout = mRiskItemsRv.getChildAt(index) as LinearLayout
         var imagePickerView = layout.findViewById<ImagePickerView>(R.id.mPickerView)
         return imagePickerView
-    }
-
-    // 总体确认
-    private fun sendConfrimAction() {
-
-
-
-
     }
 
     override fun injectComponent() {

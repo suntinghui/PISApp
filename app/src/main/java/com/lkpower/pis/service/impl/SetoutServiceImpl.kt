@@ -50,6 +50,14 @@ class SetoutServiceImpl @Inject constructor() : SetoutService {
         return respository.taskRiskItemConfirm(itemId, feedBack, tokenKey).convertBoolean()
     }
 
+    override fun getNoDoneRiskCount(ConveyDetailId: String, tokenKey: String): Observable<String> {
+        return respository.getNoDoneRiskCount(ConveyDetailId, tokenKey).convert()
+    }
+
+    override fun taskConveyConfirm(ConveyDetailId: String, feedBack: String, tokenKey: String): Observable<Boolean> {
+        return respository.taskConveyConfirm(ConveyDetailId, feedBack, tokenKey).convertBoolean()
+    }
+
     override fun getSetoutGroupTaskList(instanceId: String, tokenKey: String): Observable<List<SetoutGroupTask>> {
         return respository.getSetoutGroupTaskList(instanceId, tokenKey).convert()
     }

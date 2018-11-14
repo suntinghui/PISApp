@@ -45,5 +45,10 @@ class FaultInfoRespository @Inject constructor() {
         return RetrofitFactory.instance.create(CommonApi::class.java).getDicList("FaultType", relParentId, keyword)
     }
 
+    // 获取检修类型
+    fun getCheckTypeList(): Observable<BaseResp<List<SysDic>>> {
+        return RetrofitFactory.instance.create(CommonApi::class.java).getDicList("CheckType", "", "")
+    }
+
 
 }

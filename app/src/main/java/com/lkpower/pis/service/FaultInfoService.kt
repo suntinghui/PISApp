@@ -26,4 +26,8 @@ interface FaultInfoService {
 
     // 获取故障类型
     fun getFaultTypeList(relParentId: String, keyword: String): Observable<List<SysDic>>
+
+    // 获取检修类型
+    fun getCheckTypeList(): Observable<List<SysDic>>
+
 }

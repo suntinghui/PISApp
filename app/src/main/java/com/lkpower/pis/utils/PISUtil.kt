@@ -49,7 +49,11 @@ object PISUtil {
     }
 
     @SuppressLint("MissingPermission")
-    fun getDeviceId(context: Context): String {
+    fun getDeviceId(context: Context, needEmpty: Boolean = false): String {
+        if (needEmpty) {
+            return ""
+        }
+
         var deviceId = "UNKNOWN"
 
         try {

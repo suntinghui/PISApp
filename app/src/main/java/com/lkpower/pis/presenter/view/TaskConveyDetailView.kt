@@ -8,7 +8,11 @@ interface TaskConveyDetailView : BaseView {
 
     fun onGetDetailResult(result: TaskConveyDetail)
 
-    fun onConfirmResult(result: Boolean)
+    fun onConfirmRiskResult(result: Boolean)
+
+    fun onGetNoRiskCountResult(result: String)
+
+    fun onConfirmConveyResult(result: Boolean)
 
     fun onGetAttListResult(result: List<AttModel>)
 }

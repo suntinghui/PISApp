@@ -8,8 +8,10 @@ interface FaultInfoAddView : BaseView {
 
     fun onAddDetailResult(result: CommonReturn)
 
-    fun onFailPartResult(result:List<SysDic>)
+    fun onFailPartResult(result: List<SysDic>)
 
-    fun onFaultTypeResult(result:List<SysDic>)
+    fun onFaultTypeResult(result: List<SysDic>)
+
+    fun onCheckTypeResult(result: List<SysDic>)
 
 }

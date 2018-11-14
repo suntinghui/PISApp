@@ -9,10 +9,12 @@ data class FaultInfo(
         val FaultType: String,
         val FaultTypeName: String,
         val Remark: String,
+        val CheckType: String,
+        val CheckTypeName: String,
         val ReportUser: String,
         val ReportTime: String,
         val HandleResult: String,
         val InstanceId: String,
-        val ConfirmInfo: FaultInfoConfirm
+        var ConfirmInfo: FaultInfoConfirm
 
 )

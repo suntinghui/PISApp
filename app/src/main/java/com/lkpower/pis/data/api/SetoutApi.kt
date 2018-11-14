@@ -70,6 +70,20 @@ interface SetoutApi {
                             @Field("FeedBack") feedBack: String,
                             @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>
 
+    // 剩余未确认风险项数量
+    @FormUrlEncoded
+    @POST("WorkTask.ashx?Commond=GetNoDoneRiskCount")
+    fun getNoDoneRiskCount(@Field("ConveyDetailId") ConveyDetailId: String,
+                           @Field("tokenKey") tokenKey: String): Observable<BaseResp<String>>
+
+    // 计划任务确认
+    @FormUrlEncoded
+    @POST("WorkTask.ashx?Commond=TaskConveyConfirm")
+    fun taskConveyConfirm(@Field("ConveyDetailId") ConveyDetailId: String,
+                           @Field("FeedBack") feedBack: String,
+                           @Field("tokenKey") tokenKey: String): Observable<BaseResp<Boolean>>
+
+
     // 获取出乘确认项目主任务列表
     @FormUrlEncoded
     @POST("WorkTask.ashx?Commond=GetSetOutGroupTaskList")

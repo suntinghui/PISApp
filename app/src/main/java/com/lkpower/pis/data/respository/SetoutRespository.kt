@@ -45,6 +45,14 @@ class SetoutRespository @Inject constructor() {
         return RetrofitFactory.instance.create(SetoutApi::class.java).taskRiskItemConfirm(itemId, feedBack, tokenKey)
     }
 
+    fun getNoDoneRiskCount(ConveyDetailId: String, tokenKey: String): Observable<BaseResp<String>> {
+        return RetrofitFactory.instance.create(SetoutApi::class.java).getNoDoneRiskCount(ConveyDetailId, tokenKey)
+    }
+
+    fun taskConveyConfirm(ConveyDetailId: String, feedBack: String, tokenKey: String): Observable<BaseResp<Boolean>> {
+        return RetrofitFactory.instance.create(SetoutApi::class.java).taskConveyConfirm(ConveyDetailId, feedBack, tokenKey)
+    }
+
     fun getSetoutGroupTaskList(instanceId: String, tokenKey: String): Observable<BaseResp<List<SetoutGroupTask>>> {
         return RetrofitFactory.instance.create(SetoutApi::class.java).getSetoutGroupTaskList(instanceId, tokenKey)
     }

@@ -100,14 +100,15 @@ class FaultHistoryConfirmActivity : BaseMvpActivity<FaultInfoDetailPresenter>(),
 
     }
 
-    override fun injectComponent() {
-        DaggerFaultInfoComponent.builder().activityComponent(mActivityComponent).faultInfoModule(FaultInfoModule()).build().inject(this)
-        mPresenter.mView = this
-    }
-
     // 取得详情的事件
     override fun onGetDetailResult(result: FaultInfo) {
         faultInfo = result
+
+        // 如果faultInfo的ConfirmInfo为null，这说明是还没有创建确认对象，App来手动创建
+        if (faultInfo.ConfirmInfo == null) {
+            faultInfo.ConfirmInfo = FaultInfoConfirm(PISUtil.getUUID(), faultInfo.FaultId, "0", "", "", "", "")
+        }
+
         try {
             // 查询故障图片
             mPresenter.getAttList(faultInfo.FaultId, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
@@ -175,6 +176,11 @@ class FaultHistoryConfirmActivity : BaseMvpActivity<FaultInfoDetailPresenter>(),
         pickerView.setPicker(CONFIRM_STATUS_LIS)
         pickerView.setSelectOptions(CONFIRM_STATUS_LIS.indexOf(mConfirmTv.text))
         pickerView.show()
+    }
+
+    override fun injectComponent() {
+        DaggerFaultInfoComponent.builder().activityComponent(mActivityComponent).faultInfoModule(FaultInfoModule()).build().inject(this)
+        mPresenter.mView = this
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

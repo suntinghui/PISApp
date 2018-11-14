@@ -61,7 +61,7 @@ class EmergencyInfoListActivity : BaseMvpActivity<EmergencyInfoListPresenter>(),
 
     private fun loadData() {
         mMultiStateView.startLoading()
-        mPresenter.getEmergencyInfoList("{'DeviceId':${PISUtil.getDeviceId(this)}}", PageBeanUtil.getPageBeanJson(mCurrentPage), PISUtil.getTokenKey())
+        mPresenter.getEmergencyInfoList("{'DeviceId':${PISUtil.getDeviceId(this, true)}}", PageBeanUtil.getPageBeanJson(mCurrentPage), PISUtil.getTokenKey())
 
     }
 

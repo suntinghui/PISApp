@@ -50,6 +50,12 @@ interface SetoutService {
      */
     fun taskRiskItemConfirm(itemId: String, feedBack: String, tokenKey: String): Observable<Boolean>
 
+    // 剩余未确认风险项数量
+    fun getNoDoneRiskCount(ConveyDetailId: String, tokenKey: String): Observable<String>
+
+    // 计划任务确认
+    fun taskConveyConfirm(ConveyDetailId: String, feedBack: String, tokenKey: String): Observable<Boolean>
+
     /*
    获取出乘确认项目主任务列表
     */

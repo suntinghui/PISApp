@@ -40,5 +40,10 @@ class FaultInfoServiceImpl @Inject constructor() : FaultInfoService {
         return faultInfoRespository.getFaultTypeList(relParentId, keyword).convert()
     }
 
+    override fun getCheckTypeList(): Observable<List<SysDic>> {
+        return faultInfoRespository.getCheckTypeList().convert()
+    }
+
+
 
 }

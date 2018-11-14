@@ -40,13 +40,24 @@ class FaultInfoAddPresenter @Inject constructor() : BasePresenter<FaultInfoAddVi
         }, lifecycleProvider)
     }
 
-    fun getFaultTypeList(relParentId: String, keyword: String="") {
+    fun getFaultTypeList(relParentId: String, keyword: String = "") {
         if (!checkNetWork())
             return
 
         faultInfoService.getFaultTypeList(relParentId, keyword).execute(object : BaseSubscriber<List<SysDic>>(mView) {
             override fun onNext(t: List<SysDic>) {
                 mView.onFaultTypeResult(t)
+            }
+        }, lifecycleProvider)
+    }
+
+    fun getCheckTypeList() {
+        if (!checkNetWork())
+            return
+
+        faultInfoService.getCheckTypeList().execute(object : BaseSubscriber<List<SysDic>>(mView) {
+            override fun onNext(t: List<SysDic>) {
+                mView.onCheckTypeResult(t)
             }
         }, lifecycleProvider)
     }

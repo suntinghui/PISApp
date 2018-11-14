@@ -23,6 +23,7 @@ import com.lkpower.pis.data.protocol.CommonReturn
 import com.lkpower.pis.data.protocol.FaultInfo
 import com.lkpower.pis.data.protocol.FaultInfoConfirm
 import com.lkpower.pis.data.protocol.SysDic
+import com.lkpower.pis.ext.isNullOrEmpty
 import com.lkpower.pis.injection.component.DaggerFaultInfoComponent
 import com.lkpower.pis.injection.module.FaultInfoModule
 import com.lkpower.pis.presenter.FaultInfoAddPresenter
@@ -31,6 +32,7 @@ import com.lkpower.pis.utils.PISUtil
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_fault_report.*
+import kotlinx.android.synthetic.main.activity_setoff_detail.*
 import org.jetbrains.anko.toast
 import java.lang.Exception
 
@@ -40,9 +42,11 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
     private lateinit var mFailPartAdapter: ArrayAdapter<String>
     private lateinit var failPartList: MutableList<SysDic>
     private lateinit var faultTypeList: MutableList<SysDic>
+    private lateinit var checkTypeList: MutableList<SysDic>
 
     private lateinit var selectFailPart: SysDic
     private lateinit var selectFaultType: SysDic
+    private lateinit var selectCheckType: SysDic
 
     private lateinit var uuid: String
 
@@ -60,6 +64,7 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
     private fun initView() {
         failPartList = mutableListOf<SysDic>()
         faultTypeList = mutableListOf<SysDic>()
+        checkTypeList = mutableListOf<SysDic>()
 
         // 设置输入监听
         mFailPartTv.addTextChangedListener(object : TextWatcher {
@@ -86,6 +91,10 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
             queryFaultTypeData()
         }
 
+
+        // 设置选择事件
+        mCheckTypeTv.onClick { queryCheckType() }
+
         mFaultTypeTv.onClick { showFaultTypeEvent() }
 
         mSendBtn.setShadowEnabled(true)
@@ -103,7 +112,7 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
 
             override fun onComplete() {
                 var faultConfirm = FaultInfoConfirm("", "", "", "", "", "", "")
-                var fault = FaultInfo(uuid, mTrainNoEt.text.toString(), selectFailPart.ID, selectFailPart.DicValue, selectFaultType.ID, selectFaultType.DicValue, mRemarkEt.text.toString(), "", DateUtils.getNow("yyyy-MM-dd HH:mm:ss"), "", PISUtil.getInstanceId(), faultConfirm)
+                var fault = FaultInfo(uuid, mTrainNoEt.text.toString(), selectFailPart.ID, selectFailPart.DicValue, selectFaultType.ID, selectFaultType.DicValue, mRemarkEt.text.toString(), selectCheckType.ID, selectCheckType.DicValue, "", DateUtils.getNow("yyyy-MM-dd HH:mm:ss"), "", PISUtil.getInstanceId(), faultConfirm)
                 mPresenter.addFaultInfo(PISUtil.getTokenKey(), Gson().toJson(fault))
             }
 
@@ -124,6 +133,11 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
                 return
             }
 
+            if (this::selectCheckType.isInitialized.not() || selectCheckType == null) {
+                ViewUtils.warning(this, "没有选择检修类型")
+                return
+            }
+
             if (mTrainNoEt.text.toString().isNullOrEmpty()) {
                 ViewUtils.warning(this, "请输入车号")
                 return
@@ -134,6 +148,7 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
                 return
             }
         } catch (e: Exception) {
+            e.printStackTrace()
             ViewUtils.warning(this, "请先填写相应信息")
             return
         }
@@ -163,6 +178,10 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
         mPresenter.getFaultTypeList(selectFailPart.ID)
     }
 
+    private fun queryCheckType() {
+        mPresenter.getCheckTypeList()
+    }
+
     override fun onFailPartResult(result: List<SysDic>) {
         failPartList = result.toMutableList()
         refreshFailPart()
@@ -176,7 +195,7 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
             mFaultTypeTv.text = selectFaultType.DicValue
 
         } else {
-            selectFaultType = SysDic("","","","","","")
+            selectFaultType = SysDic("", "", "", "", "", "")
             mFaultTypeTv.text = "该故障件没有故障类型"
         }
     }
@@ -199,10 +218,37 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
         }
         ).build<String>()
         pickerView.setPicker(faultTypeList.map { it.DicValue })
-        pickerView.setSelectOptions(faultTypeList.indexOf(faultTypeList.first { it.DicValue == mFaultTypeTv.text.toString() }))
+
+        var index = faultTypeList.map { it.DicValue }.indexOf(mFaultTypeTv.text.toString())
+        pickerView.setSelectOptions(if (index < 0) 0 else index)
+
         pickerView.show()
     }
 
+    // 检修类型
+    override fun onCheckTypeResult(result: List<SysDic>) {
+        checkTypeList = result.toMutableList()
+
+        try {
+            if (checkTypeList == null || checkTypeList.isEmpty()) {
+                ViewUtils.warning(this, "没有检修类型可供选择")
+                return
+            }
+
+            var pickerView = OptionsPickerBuilder(this, OnOptionsSelectListener { options1, options2, options3, v ->
+                selectCheckType = checkTypeList.get(options1)
+                mCheckTypeTv.text = selectCheckType.DicValue
+            }
+            ).build<String>()
+            pickerView.setPicker(checkTypeList.map { it.DicValue })
+            var index = checkTypeList.map { it.DicValue }.indexOf(mCheckTypeTv.text)
+            pickerView.setSelectOptions(if (index < 0) 0 else index)
+            pickerView.show()
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
     override fun injectComponent() {
         DaggerFaultInfoComponent.builder().activityComponent(mActivityComponent).faultInfoModule(FaultInfoModule()).build().inject(this)
