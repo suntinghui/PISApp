@@ -87,7 +87,7 @@ class SettingActivity : BaseActivity(), View.OnClickListener {
                 startActivity(intent)
             }
             R.id.mExitBtn -> {
-                AlertView("提示", "您确定要退出登录吗？", "取消", arrayOf("确定"), null, this@SettingActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
+                AlertView("确定退出？", "退出登录后将不能再接收推送消息", "取消", arrayOf("确定"), null, this@SettingActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
                     when (position) {
                         0 -> {
                             logout()

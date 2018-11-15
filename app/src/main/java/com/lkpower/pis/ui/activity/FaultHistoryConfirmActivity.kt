@@ -75,7 +75,7 @@ class FaultHistoryConfirmActivity : BaseMvpActivity<FaultInfoDetailPresenter>(),
         AlertView("确认提交？", "您选中的状态为：${mConfirmTv.text}", "取消", arrayOf("确定"), null, this@FaultHistoryConfirmActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
             when (position) {
                 0 -> {
-                    mImagePicker.uploadAction(faultInfo.FaultId, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
+                    mImagePicker.uploadAction(faultInfo.ConfirmInfo.ID, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
                 }
             }
         }).show();
