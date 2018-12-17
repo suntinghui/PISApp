@@ -9,13 +9,11 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.kennyc.view.MultiStateView
-import com.lkpower.pis.ui.activity.BaseMvpActivity
-import com.lkpower.pis.widgets.ImagePickerView
+import com.lkpower.pis.R
 import com.lkpower.pis.common.BaseConstant
 import com.lkpower.pis.data.protocol.AttModel
-import com.lkpower.pis.ext.startLoading
-import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.SetoutConfirmProj
+import com.lkpower.pis.ext.startLoading
 import com.lkpower.pis.injection.component.DaggerSetoutComponent
 import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.SetoutGroupConfirmProjListPresenter
@@ -23,10 +21,10 @@ import com.lkpower.pis.presenter.view.SetoutConfirmProjListView
 import com.lkpower.pis.ui.adapter.ConfirmProjAdapter
 import com.lkpower.pis.utils.PISUtil
 import com.lkpower.pis.utils.ViewUtils
+import com.lkpower.pis.widgets.ImagePickerView
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_setout_confirm_proj_list.*
-import org.jetbrains.anko.toast
 
 /*
 出乘管理-项目确认-列表-详情
@@ -69,7 +67,7 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
                         0 -> {
                             this@SetoutConfirmProjListActivity.showLoading()
                             // 开始上传图片
-                            getImagePickerView(position).uploadAction(dataList.get(position).ID, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
+                            getImagePickerView(position)?.uploadAction(dataList.get(position).ID, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
                         }
                     }
                 }).show()
@@ -132,15 +130,20 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
         }
 
         // 找到项目后进行设置
-        getImagePickerView(currentIndex).setNetImages(result)
+        getImagePickerView(currentIndex)?.setNetImages(result)
     }
 
 
     // 根据给定的序号得到ImagePickerView
-    private fun getImagePickerView(index: Int): ImagePickerView {
-        var layout: LinearLayout = mProjRv.getChildAt(index) as LinearLayout
-        var imagePickerView = layout.findViewById<ImagePickerView>(R.id.mPickerView)
-        return imagePickerView
+    private fun getImagePickerView(index: Int): ImagePickerView? {
+        try {
+            var layout: LinearLayout = mProjRv.getChildAt(index) as LinearLayout
+            var imagePickerView = layout.findViewById<ImagePickerView>(R.id.mPickerView)
+            return imagePickerView
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return null
+        }
     }
 
     override fun injectComponent() {
@@ -155,7 +158,7 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
             when (requestCode) {
                 PictureConfig.CHOOSE_REQUEST -> {
                     val selectList = PictureSelector.obtainMultipleResult(data)
-                    getImagePickerView(mAdapter.getCurrentIndex()).onPickerDoneResult(selectList)
+                    getImagePickerView(mAdapter.getCurrentIndex())?.onPickerDoneResult(selectList)
                 }
             }
         }

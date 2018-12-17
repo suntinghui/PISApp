@@ -53,8 +53,6 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
         mLoginBtn.setCornerRadius(5)
         mLoginBtn.onClick(this)
 
-        com.lkpower.pis.utils.AppUtils.checkVoice(this)
-
     }
 
     override fun onClick(v: View) {

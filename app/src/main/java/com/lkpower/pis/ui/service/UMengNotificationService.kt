@@ -179,8 +179,40 @@ class UMengNotificationService : UmengMessageService() {
 
                 }
 
+                PushTypeConstant.kPublish -> { // 段发信息
+                    ticker = "收到段发消息"
+                    title = "段发消息提醒"
+                    content = "收到一条段发信息,请及时查看"
+                    action = "/pis/PublishListActivity"
+                    tempIntent = Intent(context, PublishListActivity::class.java)
+                }
+
+                PushTypeConstant.kPublish -> { // 列车晚点通知
+                    ticker = "列车晚点通知"
+                    title = "列车晚点提醒"
+                    content = "列车已晚点,请知悉"
+                    action = "/pis/InspectionStationListActivity"
+                    tempIntent = Intent(context, InspectionStationListActivity::class.java)
+                }
+
+                PushTypeConstant.kPublish -> { // 列车正点通知
+                    ticker = "列车正点通知"
+                    title = "列车正点提醒"
+                    content = "列车已正点运行,请知悉"
+                    action = "/pis/InspectionStationListActivity"
+                    tempIntent = Intent(context, InspectionStationListActivity::class.java)
+                }
+
+                PushTypeConstant.kPublish -> { // 学习文件信息通知
+                    ticker = "学习文件信息通知"
+                    title = "学习文件信息通知"
+                    content = "收到一条学习文件信息,点击查看"
+                    action = "/pis/LearnDocListActivity"
+                    tempIntent = Intent(context, LearnDocListActivity::class.java)
+                }
+
                 else -> {
-                    ViewUtils.error(context, "未知类型${PushType}")
+                    ViewUtils.error(context, "推送类型：${PushType}")
 
                     ticker = "收到一条推送消息"
                     title = "巡检任务预警"

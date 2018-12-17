@@ -47,6 +47,7 @@ class PrimaryCategoryActivity : BaseMvpActivity<LCFCInstancePresenter>(), LCFCIn
 
         UpdateUtil.checkLatestVersion(this, false)
 
+        com.lkpower.pis.utils.AppUtils.checkVoice(this)
     }
 
     private fun initView() {
