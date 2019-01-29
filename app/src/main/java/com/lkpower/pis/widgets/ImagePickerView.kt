@@ -87,8 +87,11 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
 
         mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<LocalMedia> {
             override fun onItemClick(item: LocalMedia, position: Int) {
+                Logger.e("===========================================================+")
                 if (this@ImagePickerView::onImageClickLisenter.isInitialized) {
                     this@ImagePickerView.onImageClickLisenter.onClick(item.path)
+                } else {
+                    Logger.e("onImageClickLisenter未被初始化。。。"+position)
                 }
 
                 if (item.path.isNullOrEmpty()) {

@@ -135,9 +135,9 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
 
 
     // 根据给定的序号得到ImagePickerView
-    private fun getImagePickerView(index: Int): ImagePickerView? {
+    private fun getImagePickerView(position: Int): ImagePickerView? {
         try {
-            var layout: LinearLayout = mProjRv.getChildAt(index) as LinearLayout
+            var layout: LinearLayout = mProjRv.layoutManager.findViewByPosition(position) as LinearLayout
             var imagePickerView = layout.findViewById<ImagePickerView>(R.id.mPickerView)
             return imagePickerView
         } catch (e: Exception) {

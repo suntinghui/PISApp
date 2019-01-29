@@ -26,6 +26,7 @@ import com.lkpower.pis.presenter.view.TaskConveyDetailView
 import com.lkpower.pis.ui.adapter.RiskItemAdapter
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
+import kotlinx.android.synthetic.main.activity_setout_confirm_proj_list.*
 import kotlinx.android.synthetic.main.activity_taskconvey_detail.*
 import org.jetbrains.anko.toast
 import java.lang.Exception
@@ -194,8 +195,8 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
 
 
     // 根据给定的序号得到ImagePickerView
-    private fun getImagePickerView(index: Int): ImagePickerView {
-        var layout: LinearLayout = mRiskItemsRv.getChildAt(index) as LinearLayout
+    private fun getImagePickerView(position: Int): ImagePickerView {
+        var layout: LinearLayout = mProjRv.layoutManager.findViewByPosition(position) as LinearLayout
         var imagePickerView = layout.findViewById<ImagePickerView>(R.id.mPickerView)
         return imagePickerView
     }

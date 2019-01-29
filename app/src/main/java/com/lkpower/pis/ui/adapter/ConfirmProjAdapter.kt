@@ -59,7 +59,7 @@ class ConfirmProjAdapter(context: Context) : BaseRecyclerViewAdapter<SetoutConfi
                 // 为空则说明点击的是选择
                 if (path.isNullOrEmpty()) {
                     currentIndex = position
-                    Logger.e(currentIndex.toString())
+                    Logger.e("当前location是"+currentIndex.toString()+"个模块")
                 }
             }
         })
