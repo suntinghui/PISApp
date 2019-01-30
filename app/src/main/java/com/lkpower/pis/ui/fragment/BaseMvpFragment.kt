@@ -15,6 +15,7 @@ import com.lkpower.pis.presenter.view.BaseView
 import com.lkpower.pis.utils.ViewUtils
 import org.jetbrains.anko.support.v4.act
 import org.jetbrains.anko.support.v4.toast
+import java.lang.Exception
 import javax.inject.Inject
 
 /*
@@ -37,6 +38,15 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
         //初始加载框
         mLoadingDialog = ProgressLoading.create(context!!)
         return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        try {
+            hideLoading()
+        } catch (e:Exception) {
+        }
     }
 
     /*

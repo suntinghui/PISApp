@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.widget.LinearLayout
 import com.bigkoo.alertview.AlertView
@@ -40,6 +41,8 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
 
     private lateinit var dataList: MutableList<RiskItem>
 
+    private lateinit var attMap:MutableMap<String, List<AttModel>>
+
     private var remark: String = "" // 暂存记录提交的内容
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +52,7 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
 
         ConveyDetailId = intent.getStringExtra("ConveyDetailId")
         dataList = mutableListOf()
+        attMap = mutableMapOf()
 
         initView()
 
@@ -90,6 +94,25 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
         mAdapter.setOnUploadImageDoneListener(object : RiskItemAdapter.UploadImageDoneListener {
             override fun complete(position: Int) {
                 mPresenter.taskRiskItemConfirm(mDetail.RiskItems.get(position).ItemId, remark, PISUtil.getTokenKey())
+            }
+        })
+
+        mProjRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+
+                val layoutManager = recyclerView?.getLayoutManager()
+                if (layoutManager is LinearLayoutManager) {
+                    var first = layoutManager.findFirstVisibleItemPosition()
+                    var last = layoutManager.findLastVisibleItemPosition()
+
+                    for (position in first..last) {
+                        // 这里有一个潜在的可能性bug，比如选定本地图片后在没有上传时滚动可能会将本地图片清除，需要用户再次进行选择
+                        // 在setNetImages里加了一个与原有数据的比较操作，如果两次的list是相同的，则不刷新。这样能解决掉本地图片被刷没的现象。
+                        getImagePickerView(position)?.setNetImages(attMap.get("${position}"))
+                    }
+                }
+
             }
         })
     }
@@ -190,14 +213,15 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
         }
 
         // 找到项目后进行设置
-        getImagePickerView(currentIndex).setNetImages(result)
+        getImagePickerView(currentIndex)?.setNetImages(result)
     }
 
 
     // 根据给定的序号得到ImagePickerView
     private fun getImagePickerView(position: Int): ImagePickerView {
         var layout: LinearLayout = mProjRv.layoutManager.findViewByPosition(position) as LinearLayout
-        var imagePickerView = layout.findViewById<ImagePickerView>(R.id.mPickerView)
+        var imagePickerView = layout?.findViewById<ImagePickerView>(R.id.mPickerView)
+        imagePickerView.setAttType(BaseConstant.Att_Type_Other)
         return imagePickerView
     }
 

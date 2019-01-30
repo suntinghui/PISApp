@@ -74,6 +74,7 @@ class ConfirmProjAdapter(context: Context) : BaseRecyclerViewAdapter<SetoutConfi
             }
 
         })
+
     }
 
     fun setOnSubmitConfirmProjListener(listener: SubmitConfirmProjListener) {

@@ -87,7 +87,6 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
 
         mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<LocalMedia> {
             override fun onItemClick(item: LocalMedia, position: Int) {
-                Logger.e("===========================================================+")
                 if (this@ImagePickerView::onImageClickLisenter.isInitialized) {
                     this@ImagePickerView.onImageClickLisenter.onClick(item.path)
                 } else {
@@ -120,7 +119,14 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
     }
 
     // 设置网络图片列表
-    public fun setNetImages(attList: List<AttModel>) {
+    public fun setNetImages(attList: List<AttModel>?) {
+        if (attList == null || attList.isEmpty())
+            return
+
+        // 如果网络图片相同，则不必再刷新
+        if (netAttList.equals(attList))
+            return
+
         netAttList = attList
         netList.clear()
 

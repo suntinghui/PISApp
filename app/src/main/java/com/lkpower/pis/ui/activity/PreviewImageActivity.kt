@@ -73,7 +73,7 @@ class PreviewImageActivity : BaseMvpActivity<AttachmentDeletePresenter>(), Attac
         // setDisplayListener() 一定要在 displayImage() 之前
         mImageView.displayListener = object : DisplayListener {
             override fun onStarted() {
-                this@PreviewImageActivity.showLoading()
+                this@PreviewImageActivity?.showLoading()
             }
 
             override fun onCanceled(cause: CancelCause) {
@@ -132,6 +132,8 @@ class PreviewImageActivity : BaseMvpActivity<AttachmentDeletePresenter>(), Attac
         super.onDestroy()
 
         try {
+            this.hideLoading()
+
             ImageViewUtil.releaseImageResource(mImageView)
 
             if (mRootLayout != null && mImageView != null) {

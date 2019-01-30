@@ -7,13 +7,14 @@ import android.inputmethodservice.InputMethodService
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.bigkoo.alertview.AlertView
+import com.orhanobut.logger.Logger
 import es.dmoral.toasty.Toasty
 
 object ViewUtils {
 
     // 简单提示框，只有一个确认按纽，点击后关闭提示框，没有其他动作
     fun showSimpleAlert(context: Context, msg: String) {
-        AlertView("提示", msg, null, arrayOf("确定"), null, context, AlertView.Style.Alert, null).show();
+        Toasty.error(context, msg, Toast.LENGTH_LONG, true).show()
     }
 
     fun success(context: Context, msg: String) {

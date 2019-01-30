@@ -7,6 +7,7 @@ import android.view.Gravity
 import android.widget.ImageView
 import com.lkpower.pis.R
 import org.jetbrains.anko.find
+import java.lang.Exception
 
 /*
     加载对话框封装
@@ -46,8 +47,12 @@ class ProgressLoading private constructor(context: Context, theme: Int) : Dialog
         显示加载对话框，动画开始
      */
     fun showLoading() {
-        super.show()
-        animDrawable?.start()
+        try {
+            super.show()
+            animDrawable?.start()
+        } catch (e:Exception) {
+            e.printStackTrace()
+        }
     }
 
     /*

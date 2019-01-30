@@ -55,7 +55,7 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
         显示加载框，默认实现
      */
     override fun showLoading() {
-        mLoadingDialog.showLoading()
+        mLoadingDialog?.showLoading()
     }
 
     /*
@@ -65,7 +65,6 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
         try {
             mLoadingDialog.hideLoading()
         } catch (e: Exception) {
-
         }
     }
 

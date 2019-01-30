@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.widget.LinearLayout
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.bigkoo.alertview.AlertView
@@ -26,6 +27,8 @@ import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_setout_confirm_proj_list.*
 
+
+
 /*
 出乘管理-项目确认-列表-详情
  */
@@ -36,6 +39,8 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
     private lateinit var mAdapter: ConfirmProjAdapter
     private lateinit var dataList: MutableList<SetoutConfirmProj>
 
+    private lateinit var attMap:MutableMap<String, List<AttModel>>
+
     private var remark: String = "" // 暂存记录提交的内容
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +50,7 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
 
         GroupTaskId = intent.getStringExtra("GroupTaskId")
         dataList = mutableListOf()
+        attMap = mutableMapOf()
 
         initView()
 
@@ -80,6 +86,26 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
                 mPresenter.setoutConfirmProj(dataList.get(position).ID, remark, PISUtil.getTokenKey())
             }
         })
+
+        mProjRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+
+                val layoutManager = recyclerView?.getLayoutManager()
+                if (layoutManager is LinearLayoutManager) {
+                    var first = layoutManager.findFirstVisibleItemPosition()
+                    var last = layoutManager.findLastVisibleItemPosition()
+
+                    for (position in first..last) {
+                        // 这里有一个潜在的可能性bug，比如选定本地图片后在没有上传时滚动可能会将本地图片清除，需要用户再次进行选择
+                        // 在setNetImages里加了一个与原有数据的比较操作，如果两次的list是相同的，则不刷新。这样能解决掉本地图片被刷没的现象。
+                        getImagePickerView(position)?.setNetImages(attMap.get("${position}"))
+                    }
+                }
+
+            }
+        })
+
     }
 
     // 加载详情
@@ -129,6 +155,8 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
             }
         }
 
+        attMap.put("$currentIndex", result)
+
         // 找到项目后进行设置
         getImagePickerView(currentIndex)?.setNetImages(result)
     }
@@ -137,8 +165,10 @@ class SetoutConfirmProjListActivity : BaseMvpActivity<SetoutGroupConfirmProjList
     // 根据给定的序号得到ImagePickerView
     private fun getImagePickerView(position: Int): ImagePickerView? {
         try {
+            // 注意：因为RecyclerView的复用性，不可见的item为空，所以下面的layout肯定是null的。
             var layout: LinearLayout = mProjRv.layoutManager.findViewByPosition(position) as LinearLayout
-            var imagePickerView = layout.findViewById<ImagePickerView>(R.id.mPickerView)
+            var imagePickerView = layout?.findViewById<ImagePickerView>(R.id.mPickerView)
+            imagePickerView.setAttType(BaseConstant.Att_Type_Other)
             return imagePickerView
         } catch (e: Exception) {
             e.printStackTrace()
