@@ -27,9 +27,7 @@ import com.lkpower.pis.presenter.view.TaskConveyDetailView
 import com.lkpower.pis.ui.adapter.RiskItemAdapter
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
-import kotlinx.android.synthetic.main.activity_setout_confirm_proj_list.*
 import kotlinx.android.synthetic.main.activity_taskconvey_detail.*
-import org.jetbrains.anko.toast
 import java.lang.Exception
 
 
@@ -97,7 +95,7 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
             }
         })
 
-        mProjRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        mRiskItemsRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
 
@@ -219,7 +217,7 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
 
     // 根据给定的序号得到ImagePickerView
     private fun getImagePickerView(position: Int): ImagePickerView {
-        var layout: LinearLayout = mProjRv.layoutManager.findViewByPosition(position) as LinearLayout
+        var layout: LinearLayout = mRiskItemsRv.layoutManager.findViewByPosition(position) as LinearLayout
         var imagePickerView = layout?.findViewById<ImagePickerView>(R.id.mPickerView)
         imagePickerView.setAttType(BaseConstant.Att_Type_Other)
         return imagePickerView
