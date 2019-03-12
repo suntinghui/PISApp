@@ -14,7 +14,9 @@ import com.lkpower.pis.ext.onClick
 import com.lkpower.pis.utils.ViewUtils
 import com.lkpower.pis.R
 import com.lkpower.pis.data.protocol.RiskItem
+import com.lkpower.pis.utils.ViewUtils.buttonEnable
 import com.orhanobut.logger.Logger
+import info.hoang8f.widget.FButton
 import kotlinx.android.synthetic.main.layout_risk_item.view.*
 
 class RiskItemAdapter(context: Context) : BaseRecyclerViewAdapter<RiskItem, RiskItemAdapter.ViewHolder>(context) {
@@ -23,6 +25,8 @@ class RiskItemAdapter(context: Context) : BaseRecyclerViewAdapter<RiskItem, Risk
     private lateinit var uploadImageDoneListener: UploadImageDoneListener
 
     private var currentIndex = 0
+
+    private var ctx:Context = context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(mContext).inflate(R.layout.layout_risk_item, parent, false)
@@ -45,7 +49,9 @@ class RiskItemAdapter(context: Context) : BaseRecyclerViewAdapter<RiskItem, Risk
                 return@onClick
             }
 
-            submitConfirmProjListener?.onSubmit(position, holder.itemView.mContentEt.text.toString())
+            buttonEnable(ctx, holder.itemView.mConfirmBtn, false)
+
+            submitConfirmProjListener?.onSubmit(position,holder.itemView.mConfirmBtn, holder.itemView.mContentEt.text.toString())
         }
 
         holder.itemView.mPickerView.setOnImageClickListener(object : ImagePickerView.OnImageClickLisenter {
@@ -60,10 +66,12 @@ class RiskItemAdapter(context: Context) : BaseRecyclerViewAdapter<RiskItem, Risk
 
         holder.itemView.mPickerView.setOnUploadListener(object : ImagePickerView.OnUploadListener {
             override fun onError() {
+                buttonEnable(ctx, holder.itemView.mConfirmBtn, true)
                 ViewUtils.showSimpleAlert(context, "有图片上传失败，请重新确定上传")
             }
 
             override fun onComplete() {
+                buttonEnable(ctx, holder.itemView.mConfirmBtn, true)
                 this@RiskItemAdapter.uploadImageDoneListener.complete(position)
             }
 
@@ -85,7 +93,7 @@ class RiskItemAdapter(context: Context) : BaseRecyclerViewAdapter<RiskItem, Risk
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     interface SubmitConfirmProjListener {
-        fun onSubmit(position: Int, content: String)
+        fun onSubmit(position: Int,btn:FButton, content: String)
     }
 
     interface UploadImageDoneListener {

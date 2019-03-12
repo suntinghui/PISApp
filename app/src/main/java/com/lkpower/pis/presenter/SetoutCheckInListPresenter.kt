@@ -20,6 +20,7 @@ class SetoutCheckInListPresenter @Inject constructor() : BasePresenter<SetoutChe
 
         setoutService.getSetoutCheckInList(instanceId, tokenKey).execute(object : BaseSubscriber<List<SetoutCheckIn>>(mView) {
             override fun onNext(t: List<SetoutCheckIn>) {
+                super.onNext(t)
                 mView.onGetListResult(t)
             }
         }, lifecycleProvider)

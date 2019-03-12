@@ -9,4 +9,6 @@ interface SetoutDetailView : BaseView {
     fun onGetDetailResult(result: SetoutInfo)
 
     fun setOutResult(result: CommonReturn)
+
+    fun setOutComplete()
 }

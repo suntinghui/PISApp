@@ -19,6 +19,7 @@ import com.lkpower.pis.presenter.SetoutAlcoholTestDetailPresenter
 import com.lkpower.pis.presenter.view.SetoutAlcoholTestDetailView
 import com.lkpower.pis.utils.PISUtil
 import com.lkpower.pis.utils.ViewUtils
+import com.lkpower.pis.utils.ViewUtils.buttonEnable
 import com.lkpower.pis.widgets.ImagePickerView
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
@@ -61,11 +62,13 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
         // 上传图片的事件
         mImagePicker.setOnUploadListener(object : ImagePickerView.OnUploadListener {
             override fun onError() {
+                buttonEnable(this@SetoutAlcoholTestDetailActivity, mOperBtn, true)
                 this@SetoutAlcoholTestDetailActivity.hideLoading()
                 ViewUtils.showSimpleAlert(this@SetoutAlcoholTestDetailActivity, "有图片上传失败，请重新确定上传")
             }
 
             override fun onComplete() {
+                buttonEnable(this@SetoutAlcoholTestDetailActivity, mOperBtn, true)
                 mPresenter.setOutAlcoholTest(taskId, RESULT_KEY_LIST.get(RESULT_VALUE_LIST.indexOf(mResultTv.text)), PISUtil.getTokenKey())
             }
 
@@ -84,6 +87,7 @@ class SetoutAlcoholTestDetailActivity : BaseMvpActivity<SetoutAlcoholTestDetailP
         AlertView("确认提交", "当前状态为${mResultTv.text}", "取消", arrayOf("确定"), null, this@SetoutAlcoholTestDetailActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
             when (position) {
                 0 -> {
+                    buttonEnable(this, mOperBtn, false)
                     this@SetoutAlcoholTestDetailActivity.showLoading()
                     mImagePicker.uploadAction(setoutAlcoholTest.ID, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
                 }

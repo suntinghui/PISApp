@@ -21,6 +21,7 @@ class FeedbackPresenter @Inject constructor() : BasePresenter<FeedbackView>() {
 
         settingService.addFeebback(feedbackInfo, tokenKey).execute(object : BaseSubscriber<CommonReturn>(mView) {
             override fun onNext(t: CommonReturn) {
+                super.onNext(t)
                 mView.onAddResult(t)
             }
         }, lifecycleProvider)

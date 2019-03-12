@@ -25,6 +25,7 @@ class TaskConveyDetailPresenter @Inject constructor() : BasePresenter<TaskConvey
 
         setoutService.getTaskConveyDetail(conveyDetailId, tokenKey).execute(object : BaseSubscriber<TaskConveyDetail>(mView) {
             override fun onNext(t: TaskConveyDetail) {
+                super.onNext(t)
                 mView.onGetDetailResult(t)
             }
         }, lifecycleProvider)
@@ -38,6 +39,7 @@ class TaskConveyDetailPresenter @Inject constructor() : BasePresenter<TaskConvey
 
         setoutService.taskRiskItemConfirm(itemId, feedBack, tokenKey).execute(object : BaseSubscriber<Boolean>(mView) {
             override fun onNext(t: Boolean) {
+                super.onNext(t)
                 mView.onConfirmRiskResult(t)
             }
         }, lifecycleProvider)
@@ -51,6 +53,7 @@ class TaskConveyDetailPresenter @Inject constructor() : BasePresenter<TaskConvey
 
         setoutService.getNoDoneRiskCount(ConveyDetailId, tokenKey).execute(object : BaseSubscriber<String>(mView) {
             override fun onNext(t: String) {
+                super.onNext(t)
                 mView.onGetNoRiskCountResult(t)
             }
         }, lifecycleProvider)
@@ -64,7 +67,14 @@ class TaskConveyDetailPresenter @Inject constructor() : BasePresenter<TaskConvey
 
         setoutService.taskConveyConfirm(ConveyDetailId, feedback, tokenKey).execute(object : BaseSubscriber<Boolean>(mView) {
             override fun onNext(t: Boolean) {
+                super.onNext(t)
                 mView.onConfirmConveyResult(t)
+            }
+
+            override fun onComplete() {
+                super.onComplete()
+
+                mView.confirmConveyComplete()
             }
         }, lifecycleProvider)
     }
@@ -78,6 +88,7 @@ class TaskConveyDetailPresenter @Inject constructor() : BasePresenter<TaskConvey
 
         attachmentService.getAttList(busId, attType, tokenKey).execute(object : BaseSubscriber<List<AttModel>>(mView) {
             override fun onNext(t: List<AttModel>) {
+                super.onNext(t)
                 mView.onGetAttListResult(t)
             }
         }, lifecycleProvider)

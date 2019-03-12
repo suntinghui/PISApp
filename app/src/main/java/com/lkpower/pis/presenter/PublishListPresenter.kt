@@ -27,6 +27,7 @@ class PublishListPresenter @Inject constructor() : BasePresenter<PublishListView
 
         publishService.getPublishInfoList(searchInfo, pageInfo, tokenKey).execute(object : BaseSubscriber<ListResult<PublishInfo>>(mView) {
             override fun onNext(t: ListResult<PublishInfo>) {
+                super.onNext(t)
                 mView.onGetListResult(t)
             }
         }, lifecycleProvider)

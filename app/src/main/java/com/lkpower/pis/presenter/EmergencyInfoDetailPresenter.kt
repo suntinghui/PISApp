@@ -30,6 +30,7 @@ class EmergencyInfoDetailPresenter @Inject constructor() : BasePresenter<Emergen
 
         emergencyInfoService.getEmergencyInfoModel(emInfoId, tokenKey).execute(object : BaseSubscriber<EmergencyInfo>(mView) {
             override fun onNext(t: EmergencyInfo) {
+                super.onNext(t)
                 mView.onGetDetailResult(t)
             }
         }, lifecycleProvider)
@@ -43,6 +44,7 @@ class EmergencyInfoDetailPresenter @Inject constructor() : BasePresenter<Emergen
 
         attachmentService.getAttList(busId, attType, tokenKey).execute(object : BaseSubscriber<List<AttModel>>(mView) {
             override fun onNext(t: List<AttModel>) {
+                super.onNext(t)
                 mView.onGetAttListResult(t)
             }
         }, lifecycleProvider)

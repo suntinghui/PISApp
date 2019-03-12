@@ -12,6 +12,7 @@ import com.lkpower.pis.injection.component.DaggerSetoutComponent
 import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.SetoutCheckinDetailPresenter
 import com.lkpower.pis.presenter.view.SetoutCheckinDetailView
+import com.lkpower.pis.utils.ViewUtils.buttonEnable
 import kotlinx.android.synthetic.main.activity_setout_checkin_detail.*
 import org.jetbrains.anko.toast
 import java.lang.Exception

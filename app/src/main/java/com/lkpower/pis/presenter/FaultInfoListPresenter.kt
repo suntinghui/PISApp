@@ -21,6 +21,7 @@ class FaultInfoListPresenter @Inject constructor() : BasePresenter<FaultInfoList
 
         faultInfoService.getFaultInfoList(searchInfo, pageInfo, tokenKey).execute(object : BaseSubscriber<ListResult<FaultInfo>>(mView) {
             override fun onNext(t: ListResult<FaultInfo>) {
+                super.onNext(t)
                 mView.onGetListResult(t)
             }
         }, lifecycleProvider)
@@ -32,6 +33,7 @@ class FaultInfoListPresenter @Inject constructor() : BasePresenter<FaultInfoList
 
         faultInfoService.getFailPartList(keyword).execute(object : BaseSubscriber<List<SysDic>>(mView) {
             override fun onNext(t: List<SysDic>) {
+                super.onNext(t)
                 mView.onFailPartResult(t)
             }
         }, lifecycleProvider)
@@ -43,6 +45,7 @@ class FaultInfoListPresenter @Inject constructor() : BasePresenter<FaultInfoList
 
         faultInfoService.getFaultTypeList(relParentId, keyword).execute(object : BaseSubscriber<List<SysDic>>(mView) {
             override fun onNext(t: List<SysDic>) {
+                super.onNext(t)
                 mView.onFaultTypeResult(t)
             }
         }, lifecycleProvider)

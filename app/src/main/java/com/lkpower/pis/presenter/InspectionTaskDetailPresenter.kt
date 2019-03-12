@@ -26,6 +26,7 @@ class InspectionTaskDetailPresenter @Inject constructor() : BasePresenter<Inspec
 
         inspectionService.getXJTaskModel(taskId, tokenKey).execute(object : BaseSubscriber<MissionStateInfo>(mView) {
             override fun onNext(t: MissionStateInfo) {
+                super.onNext(t)
                 mView.onGetDetailResult(t)
             }
         }, lifecycleProvider)
@@ -39,6 +40,7 @@ class InspectionTaskDetailPresenter @Inject constructor() : BasePresenter<Inspec
 
         inspectionService.updateMissionInfoExt(taskId, state, remark, tokenKey).execute(object : BaseSubscriber<Boolean>(mView) {
             override fun onNext(t: Boolean) {
+                super.onNext(t)
                 mView.onUpdateMissionInfo(t)
             }
         }, lifecycleProvider)
@@ -52,6 +54,7 @@ class InspectionTaskDetailPresenter @Inject constructor() : BasePresenter<Inspec
 
         attachmentService.getAttList(busId, attType, tokenKey).execute(object : BaseSubscriber<List<AttModel>>(mView) {
             override fun onNext(t: List<AttModel>) {
+                super.onNext(t)
                 mView.onGetAttListResult(t)
             }
         }, lifecycleProvider)

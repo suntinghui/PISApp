@@ -16,6 +16,7 @@ import com.lkpower.pis.injection.component.DaggerSetoutComponent
 import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.SetoutDetailPresenter
 import com.lkpower.pis.presenter.view.SetoutDetailView
+import com.lkpower.pis.utils.ViewUtils.buttonEnable
 import kotlinx.android.synthetic.main.activity_setout_detail.*
 
 /*
@@ -52,6 +53,7 @@ class SetoutDetailActivity : BaseMvpActivity<SetoutDetailPresenter>(), SetoutDet
     }
 
     private fun setAction() {
+        buttonEnable(this, mOperBtn, false)
         mPresenter.setOutConfirm(taskId, mTaskPlaceTv.text.toString(), PISUtil.getTokenKey())
     }
 
@@ -97,6 +99,10 @@ class SetoutDetailActivity : BaseMvpActivity<SetoutDetailPresenter>(), SetoutDet
     override fun setOutResult(result: CommonReturn) {
         ViewUtils.success(this, "操作成功")
         queryDetail()
+    }
+
+    override fun setOutComplete() {
+        buttonEnable(this, mOperBtn, true)
     }
 
     private fun refreshStatus() {

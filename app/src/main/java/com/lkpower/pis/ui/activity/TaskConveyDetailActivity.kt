@@ -25,8 +25,10 @@ import com.lkpower.pis.injection.module.SetoutModule
 import com.lkpower.pis.presenter.TaskConveyDetailPresenter
 import com.lkpower.pis.presenter.view.TaskConveyDetailView
 import com.lkpower.pis.ui.adapter.RiskItemAdapter
+import com.lkpower.pis.utils.ViewUtils.buttonEnable
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
+import info.hoang8f.widget.FButton
 import kotlinx.android.synthetic.main.activity_taskconvey_detail.*
 import java.lang.Exception
 
@@ -73,12 +75,14 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
         mRiskItemsRv.adapter = mAdapter
 
         mAdapter.setOnSubmitConfirmProjListener(object : RiskItemAdapter.SubmitConfirmProjListener {
-            override fun onSubmit(position: Int, feedback: String) {
+            override fun onSubmit(position: Int, btn:FButton, feedback: String) {
                 remark = feedback
 
                 AlertView("提示", "已确认信息无误，立即提交？", "取消", arrayOf("确定"), null, this@TaskConveyDetailActivity, AlertView.Style.Alert, OnItemClickListener { o, index ->
                     when (index) {
                         0 -> {
+                            buttonEnable(this@TaskConveyDetailActivity, btn, false)
+
                             this@TaskConveyDetailActivity.showLoading()
                             // 开始上传图片
                             getImagePickerView(position).uploadAction(dataList.get(position).ItemId, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
@@ -129,6 +133,7 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
             return
         }
 
+        buttonEnable(this, mTaskConfirmBtn, false)
         mPresenter.taskConveyConfirm(ConveyDetailId, mTaskConfirmRemarEt.text.toString(), PISUtil.getTokenKey())
     }
 
@@ -176,6 +181,8 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
         loadDetail()
     }
 
+
+
     // 查询未处理的风险项的数量,数量为0才显示该控件。并且有意见时说明已经提交过，不再显示提交按纽
     override fun onGetNoRiskCountResult(result: String) {
         try {
@@ -194,6 +201,10 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
         ViewUtils.success(this, "处理完成")
 
         loadDetail()
+    }
+
+    override fun confirmConveyComplete() {
+        buttonEnable(this, mTaskConfirmBtn, true, R.color.fbutton_color_alizarin)
     }
 
     // 查询图片后的响应

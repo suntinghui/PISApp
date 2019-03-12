@@ -10,4 +10,6 @@ interface SetoffDetailView : BaseView {
     fun onGetDetailResult(result: SetoffInfo)
 
     fun setOffResult(result: CommonReturn)
+
+    fun setOffComplete()
 }

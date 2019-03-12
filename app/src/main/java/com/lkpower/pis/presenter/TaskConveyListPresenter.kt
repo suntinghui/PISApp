@@ -21,6 +21,7 @@ class TaskConveyListPresenter @Inject constructor() : BasePresenter<TaskConveyLi
 
         setoutService.getTaskConveyList(instanceId, tokenKey).execute(object : BaseSubscriber<List<TaskConveyDetail>>(mView) {
             override fun onNext(t: List<TaskConveyDetail>) {
+                super.onNext(t)
                 mView.onGetListResult(t)
             }
         }, lifecycleProvider)

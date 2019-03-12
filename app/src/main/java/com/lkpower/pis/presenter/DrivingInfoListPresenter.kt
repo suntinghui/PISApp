@@ -28,6 +28,7 @@ class DrivingInfoListPresenter @Inject constructor() : BasePresenter<DrivingInfo
 
         drivingInfoService.getDrivingInfoList(searchInfo, pageInfo, tokenKey).execute(object : BaseSubscriber<ListResult<DrivingInfo>>(mView) {
             override fun onNext(t: ListResult<DrivingInfo>) {
+                super.onNext(t)
                 mView.onGetListResult(t)
             }
         }, lifecycleProvider)

@@ -29,6 +29,7 @@ import com.lkpower.pis.injection.module.FaultInfoModule
 import com.lkpower.pis.presenter.FaultInfoAddPresenter
 import com.lkpower.pis.presenter.view.FaultInfoAddView
 import com.lkpower.pis.utils.PISUtil
+import com.lkpower.pis.utils.ViewUtils.buttonEnable
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_fault_report.*
@@ -97,20 +98,23 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
 
         mFaultTypeTv.onClick { showFaultTypeEvent() }
 
-        mSendBtn.setShadowEnabled(true)
-        mSendBtn.setShadowHeight(5)
-        mSendBtn.setCornerRadius(5)
+        mSendBtn.isShadowEnabled = true
+        mSendBtn.shadowHeight = 5
+        mSendBtn.cornerRadius = 5
         mSendBtn.onClick { sendAction() }
 
         mImagePicker.setAttType(BaseConstant.Att_Type_Other)
         // 上传图片的事件
         mImagePicker.setOnUploadListener(object : ImagePickerView.OnUploadListener {
             override fun onError() {
+                buttonEnable(this@FaultReportActivity, mSendBtn, true)
                 this@FaultReportActivity.hideLoading()
                 ViewUtils.showSimpleAlert(this@FaultReportActivity, "有图片上传失败，请重新确定上传")
             }
 
             override fun onComplete() {
+                buttonEnable(this@FaultReportActivity, mSendBtn, true)
+
                 var faultConfirm = FaultInfoConfirm("", "", "", "", "", "", "")
                 var fault = FaultInfo(uuid, mTrainNoEt.text.toString(), selectFailPart.ID, selectFailPart.DicValue, selectFaultType.ID, selectFaultType.DicValue, mRemarkEt.text.toString(), selectCheckType.ID, selectCheckType.DicValue, "", DateUtils.getNow("yyyy-MM-dd HH:mm:ss"), "", PISUtil.getInstanceId(), faultConfirm)
                 mPresenter.addFaultInfo(PISUtil.getTokenKey(), Gson().toJson(fault))
@@ -156,6 +160,7 @@ class FaultReportActivity : BaseMvpActivity<FaultInfoAddPresenter>(), FaultInfoA
         AlertView("提示", "您确定要提交吗?", "取消", arrayOf("确定"), null, this@FaultReportActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
             when (position) {
                 0 -> {
+                    buttonEnable(this, mSendBtn, false)
                     this@FaultReportActivity.showLoading()
                     mImagePicker.uploadAction(uuid, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
                 }

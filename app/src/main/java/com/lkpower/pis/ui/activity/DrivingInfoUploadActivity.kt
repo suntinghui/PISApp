@@ -18,6 +18,7 @@ import com.lkpower.pis.injection.module.DrivingInfoModule
 import com.lkpower.pis.presenter.DrivingInfoUploadPresenter
 import com.lkpower.pis.presenter.view.DrivingInfoUploadView
 import com.lkpower.pis.utils.PISUtil
+import com.lkpower.pis.utils.ViewUtils.buttonEnable
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_driving_info_upload.*
@@ -48,11 +49,13 @@ class DrivingInfoUploadActivity : BaseMvpActivity<DrivingInfoUploadPresenter>(),
         // 上传图片的事件
         mImagePicker.setOnUploadListener(object : ImagePickerView.OnUploadListener {
             override fun onError() {
+                buttonEnable(this@DrivingInfoUploadActivity, mSendBtn, true)
                 this@DrivingInfoUploadActivity.hideLoading()
                 ViewUtils.showSimpleAlert(this@DrivingInfoUploadActivity, "有图片上传失败，请重新确定上传")
             }
 
             override fun onComplete() {
+                buttonEnable(this@DrivingInfoUploadActivity, mSendBtn, true)
                 mPresenter.updateDrivingInfo(PISUtil.getInstanceId(), mRemarkEt.text.toString(), uuid, PISUtil.getTokenKey())
             }
 
@@ -69,6 +72,7 @@ class DrivingInfoUploadActivity : BaseMvpActivity<DrivingInfoUploadPresenter>(),
         AlertView("提示", "您确定要提交吗?", "取消", arrayOf("确定"), null, this@DrivingInfoUploadActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
             when (position) {
                 0 -> {
+                    buttonEnable(this, mSendBtn, false)
                     this@DrivingInfoUploadActivity.showLoading()
                     mImagePicker.uploadAction(uuid, BaseConstant.Att_Type_Driving, PISUtil.getTokenKey())
                 }

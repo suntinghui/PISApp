@@ -26,6 +26,7 @@ class SetoutGroupConfirmProjListPresenter @Inject constructor() : BasePresenter<
 
         setoutService.getSetOutConfirmProjList(instanceId, groupTaskId, tokenKey).execute(object : BaseSubscriber<List<SetoutConfirmProj>>(mView) {
             override fun onNext(t: List<SetoutConfirmProj>) {
+                super.onNext(t)
                 mView.onGetProjListResult(t)
             }
         }, lifecycleProvider)
@@ -39,6 +40,7 @@ class SetoutGroupConfirmProjListPresenter @Inject constructor() : BasePresenter<
 
         setoutService.setoutConfirmProj(taskId,confirmRemark, tokenKey).execute(object : BaseSubscriber<Boolean>(mView) {
             override fun onNext(t: Boolean) {
+                super.onNext(t)
                 mView.onConfirmResult(t)
             }
         }, lifecycleProvider)
@@ -52,6 +54,7 @@ class SetoutGroupConfirmProjListPresenter @Inject constructor() : BasePresenter<
 
         attachmentService.getAttList(busId, attType, tokenKey).execute(object : BaseSubscriber<List<AttModel>>(mView) {
             override fun onNext(t: List<AttModel>) {
+                super.onNext(t)
                 mView.onGetAttListResult(t)
             }
         }, lifecycleProvider)

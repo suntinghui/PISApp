@@ -21,6 +21,7 @@ import com.lkpower.pis.injection.module.EmergencyInfoModule
 import com.lkpower.pis.presenter.EmergencyInfoAddPresenter
 import com.lkpower.pis.presenter.view.EmergencyInfoAddView
 import com.lkpower.pis.utils.PISUtil
+import com.lkpower.pis.utils.ViewUtils.buttonEnable
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_driving_info_upload.*
@@ -51,11 +52,13 @@ class EmergencyInfoAddActivity : BaseMvpActivity<EmergencyInfoAddPresenter>(), E
         // 上传图片的事件
         mImagePicker.setOnUploadListener(object : ImagePickerView.OnUploadListener {
             override fun onError() {
+                buttonEnable(this@EmergencyInfoAddActivity, mSendBtn, true)
                 this@EmergencyInfoAddActivity.hideLoading()
                 ViewUtils.showSimpleAlert(this@EmergencyInfoAddActivity, "有图片上传失败，请重新确定上传")
             }
 
             override fun onComplete() {
+                buttonEnable(this@EmergencyInfoAddActivity, mSendBtn, true)
                 var info = EmergencyInfo(uuid, PISUtil.getInstanceId(), "", "", DateUtils.getNow("yyyy-MM-dd HH:mm:ss"), mRemarkEt.text.toString(), "", "", "", "")
                 mPresenter.addEmergencyInfo(Gson().toJson(info), PISUtil.getTokenKey())
             }
@@ -72,6 +75,7 @@ class EmergencyInfoAddActivity : BaseMvpActivity<EmergencyInfoAddPresenter>(), E
         AlertView("提示", "您确定要提交吗?", "取消", arrayOf("确定"), null, this@EmergencyInfoAddActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
             when (position) {
                 0 -> {
+                    buttonEnable(this, mSendBtn, false)
                     this@EmergencyInfoAddActivity.showLoading()
                     mImagePicker.uploadAction(uuid, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
                 }

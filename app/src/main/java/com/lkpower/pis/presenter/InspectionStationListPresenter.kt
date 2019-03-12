@@ -28,6 +28,7 @@ class InspectionStationListPresenter @Inject constructor() : BasePresenter<Inspe
 
         inspectionService.getSiteList(instanceId, tokenKey).execute(object : BaseSubscriber<List<XJ_CZSL>>(mView) {
             override fun onNext(t: List<XJ_CZSL>) {
+                super.onNext(t)
                 mView.onGetListResult(t)
             }
         }, lifecycleProvider)

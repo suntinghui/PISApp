@@ -21,6 +21,7 @@ class PublishDetailPresenter @Inject constructor() : BasePresenter<PublishDetail
 
         publishService.getPublishInfoModel(id, deviceId, tokenKey).execute(object : BaseSubscriber<PublishInfo>(mView) {
             override fun onNext(t: PublishInfo) {
+                super.onNext(t)
                 mView.onGetDetailResult(t)
             }
         }, lifecycleProvider)

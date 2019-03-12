@@ -27,6 +27,7 @@ class EmergencyInfoListPresenter @Inject constructor() : BasePresenter<Emergency
 
         emergencyInfoService.getEmergencyInfoList(searchInfo, pageInfo, tokenKey).execute(object : BaseSubscriber<ListResult<EmergencyInfo>>(mView) {
             override fun onNext(t: ListResult<EmergencyInfo>) {
+                super.onNext(t)
                 mView.onGetListResult(t)
             }
         }, lifecycleProvider)

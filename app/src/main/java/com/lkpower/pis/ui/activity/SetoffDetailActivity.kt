@@ -16,6 +16,7 @@ import com.lkpower.pis.presenter.SetoffDetailPresenter
 import com.lkpower.pis.presenter.view.SetoffDetailView
 import com.lkpower.pis.utils.PISUtil
 import com.lkpower.pis.utils.ViewUtils
+import com.lkpower.pis.utils.ViewUtils.buttonEnable
 import kotlinx.android.synthetic.main.activity_setoff_detail.*
 
 /*
@@ -52,6 +53,7 @@ class SetoffDetailActivity : BaseMvpActivity<SetoffDetailPresenter>(), SetoffDet
     }
 
     private fun setAction() {
+        buttonEnable(this, mOperBtn, false)
         mPresenter.setoffConfirm(taskId, mTaskPlaceTv.text.toString(), PISUtil.getTokenKey())
     }
 
@@ -97,6 +99,10 @@ class SetoffDetailActivity : BaseMvpActivity<SetoffDetailPresenter>(), SetoffDet
     override fun setOffResult(result: CommonReturn) {
         ViewUtils.success(this, "操作成功")
         queryDetail()
+    }
+
+    override fun setOffComplete() {
+        buttonEnable(this, mOperBtn, true)
     }
 
     private fun refreshStatus() {

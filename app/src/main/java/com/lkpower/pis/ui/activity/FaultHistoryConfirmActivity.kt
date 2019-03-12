@@ -27,6 +27,7 @@ import com.lkpower.pis.injection.module.FaultInfoModule
 import com.lkpower.pis.presenter.FaultInfoDetailPresenter
 import com.lkpower.pis.presenter.view.FaultInfoDetailView
 import com.lkpower.pis.utils.PISUtil
+import com.lkpower.pis.utils.ViewUtils.buttonEnable
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_fault_history_confirm.*
@@ -52,9 +53,9 @@ class FaultHistoryConfirmActivity : BaseMvpActivity<FaultInfoDetailPresenter>(),
         mConfirmTv.text = CONFIRM_STATUS_LIS.first()
         mConfirmTv.onClick { selectConfirmStatus() }
 
-        mSendBtn.setShadowEnabled(true)
-        mSendBtn.setShadowHeight(5)
-        mSendBtn.setCornerRadius(5)
+        mSendBtn.isShadowEnabled = true
+        mSendBtn.shadowHeight = 5
+        mSendBtn.cornerRadius = 5
         mSendBtn.onClick { sendAction() }
 
         mShowImageView.setEditable(false)
@@ -75,6 +76,8 @@ class FaultHistoryConfirmActivity : BaseMvpActivity<FaultInfoDetailPresenter>(),
         AlertView("确认提交？", "您选中的状态为：${mConfirmTv.text}", "取消", arrayOf("确定"), null, this@FaultHistoryConfirmActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
             when (position) {
                 0 -> {
+                    buttonEnable(this, mSendBtn, false)
+                    this@FaultHistoryConfirmActivity.showLoading()
                     mImagePicker.uploadAction(faultInfo.ConfirmInfo.ID, BaseConstant.Att_Type_Other, PISUtil.getTokenKey())
                 }
             }
@@ -82,6 +85,7 @@ class FaultHistoryConfirmActivity : BaseMvpActivity<FaultInfoDetailPresenter>(),
 
         mImagePicker.setOnUploadListener(object : ImagePickerView.OnUploadListener {
             override fun onError() {
+                buttonEnable(this@FaultHistoryConfirmActivity, mSendBtn, true)
                 this@FaultHistoryConfirmActivity.hideLoading()
                 ViewUtils.showSimpleAlert(this@FaultHistoryConfirmActivity, "有图片上传失败，请重新确定上传")
             }
@@ -93,6 +97,8 @@ class FaultHistoryConfirmActivity : BaseMvpActivity<FaultInfoDetailPresenter>(),
                 } catch (e: Exception) {
                     ViewUtils.showSimpleAlert(this@FaultHistoryConfirmActivity, "数据异常,请稍候重试")
                     e.printStackTrace()
+                } finally {
+                    buttonEnable(this@FaultHistoryConfirmActivity, mSendBtn, true)
                 }
             }
 

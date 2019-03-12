@@ -29,6 +29,7 @@ class SetoffAlcoholTestDetailPresenter @Inject constructor() : BasePresenter<Set
 
         setoffService.getSetOffAlcoholTest(instanceId, taskId, tokenKey).execute(object : BaseSubscriber<SetoffAlcoholTest>(mView) {
             override fun onNext(t: SetoffAlcoholTest) {
+                super.onNext(t)
                 mView.onGetDetailResult(t)
             }
         }, lifecycleProvider)
@@ -42,6 +43,7 @@ class SetoffAlcoholTestDetailPresenter @Inject constructor() : BasePresenter<Set
 
         setoffService.setoffAlcoholTest(taskId, result, tokenKey).execute(object : BaseSubscriber<Boolean>(mView) {
             override fun onNext(t: Boolean) {
+                super.onNext(t)
                 mView.setOffResult(t)
             }
         }, lifecycleProvider)
@@ -55,6 +57,7 @@ class SetoffAlcoholTestDetailPresenter @Inject constructor() : BasePresenter<Set
 
         attachmentService.getAttList(busId, attType, tokenKey).execute(object : BaseSubscriber<List<AttModel>>(mView) {
             override fun onNext(t: List<AttModel>) {
+                super.onNext(t)
                 mView.onGetAttListResult(t)
             }
         }, lifecycleProvider)

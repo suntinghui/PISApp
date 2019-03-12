@@ -20,6 +20,7 @@ class SetoutGroupTaskListPresenter @Inject constructor() : BasePresenter<SetoutG
 
         setoutService.getSetoutGroupTaskList(instanceId, tokenKey).execute(object : BaseSubscriber<List<SetoutGroupTask>>(mView) {
             override fun onNext(t: List<SetoutGroupTask>) {
+                super.onNext(t)
                 mView.onGetListResult(t)
             }
         }, lifecycleProvider)

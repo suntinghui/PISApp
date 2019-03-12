@@ -15,4 +15,6 @@ interface TaskConveyDetailView : BaseView {
     fun onConfirmConveyResult(result: Boolean)
 
     fun onGetAttListResult(result: List<AttModel>)
+
+    fun confirmConveyComplete()
 }

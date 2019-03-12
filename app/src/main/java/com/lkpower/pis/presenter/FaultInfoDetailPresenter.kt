@@ -27,6 +27,7 @@ class FaultInfoDetailPresenter @Inject constructor() : BasePresenter<FaultInfoDe
 
         faultInfoService.getFaultInfoModel(faultId, tokenKey).execute(object : BaseSubscriber<FaultInfo>(mView) {
             override fun onNext(t: FaultInfo) {
+                super.onNext(t)
                 mView.onGetDetailResult(t)
             }
         }, lifecycleProvider)
@@ -41,6 +42,7 @@ class FaultInfoDetailPresenter @Inject constructor() : BasePresenter<FaultInfoDe
 
         faultInfoService.addFaultInfoConfirm(tokenKey, confirmInfo).execute(object : BaseSubscriber<CommonReturn>(mView) {
             override fun onNext(t: CommonReturn) {
+                super.onNext(t)
                 mView.onConfirmResult(t)
             }
         }, lifecycleProvider)
@@ -54,6 +56,7 @@ class FaultInfoDetailPresenter @Inject constructor() : BasePresenter<FaultInfoDe
 
         attachmentService.getAttList(busId, attType, tokenKey).execute(object : BaseSubscriber<List<AttModel>>(mView) {
             override fun onNext(t: List<AttModel>) {
+                super.onNext(t)
                 mView.onGetAttListResult(t)
             }
         }, lifecycleProvider)

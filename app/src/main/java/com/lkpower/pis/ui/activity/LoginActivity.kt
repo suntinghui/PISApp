@@ -20,6 +20,7 @@ import com.lkpower.pis.injection.module.UserModule
 import com.lkpower.pis.presenter.LoginPresenter
 import com.lkpower.pis.presenter.view.LoginView
 import com.lkpower.pis.utils.UpdateUtil
+import com.lkpower.pis.utils.ViewUtils.buttonEnable
 import com.orhanobut.logger.Logger
 import com.umeng.analytics.MobclickAgent
 import com.umeng.message.IUmengCallback
@@ -48,9 +49,9 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
         mPasswordEt.setText(AppPrefsUtils.getString(BaseConstant.kPassword))
 
         mLoginBtn.setButtonColor(getResources().getColor(R.color.fbutton_color_carrot))
-        mLoginBtn.setShadowEnabled(true)
-        mLoginBtn.setShadowHeight(5)
-        mLoginBtn.setCornerRadius(5)
+        mLoginBtn.isShadowEnabled = true
+        mLoginBtn.shadowHeight = 5
+        mLoginBtn.cornerRadius = 5
         mLoginBtn.onClick(this)
 
     }
@@ -59,6 +60,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
         when (v.id) {
             R.id.mLoginBtn -> {
                 if (checkInput()) {
+                    buttonEnable(this, mLoginBtn, false)
                     mPresenter.login(mUsernameEt.text.toString(), mPasswordEt.text.toString(), PISUtil.getDeviceId(this), AppUtils.getAppVersionName())
                 }
             }
@@ -97,6 +99,11 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
         registerUMengAlias()
 
         startActivity<PrimaryCategoryActivity>()
+    }
+
+    override fun onLoginComplete() {
+
+        buttonEnable(this, mLoginBtn, true, R.color.fbutton_color_carrot)
     }
 
     /*

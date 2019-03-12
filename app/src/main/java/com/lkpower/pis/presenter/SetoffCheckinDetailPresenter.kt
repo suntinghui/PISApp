@@ -23,6 +23,7 @@ class SetoffCheckinDetailPresenter @Inject constructor() : BasePresenter<SetoffC
 
         setoffService.getSetoffCheckIn(instanceId, taskId, tokenKey).execute(object : BaseSubscriber<SetoffCheckIn>(mView) {
             override fun onNext(t: SetoffCheckIn) {
+                super.onNext(t)
                 mView.onGetDetailResult(t)
             }
         }, lifecycleProvider)
@@ -36,6 +37,7 @@ class SetoffCheckinDetailPresenter @Inject constructor() : BasePresenter<SetoffC
 
         setoffService.setOffCheckIn(taskId, tokenKey).execute(object : BaseSubscriber<Boolean>(mView) {
             override fun onNext(t: Boolean) {
+                super.onNext(t)
                 mView.setOutResult(t)
             }
         }, lifecycleProvider)

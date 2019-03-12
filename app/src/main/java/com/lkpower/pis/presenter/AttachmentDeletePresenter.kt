@@ -20,6 +20,7 @@ class AttachmentDeletePresenter @Inject constructor() : BasePresenter<Attachment
 
         attachmentService.deleteFile(attId, attType, tokenKey).execute(object : BaseSubscriber<Boolean>(mView) {
             override fun onNext(t: Boolean) {
+                super.onNext(t)
                 mView.onDeleteResult(t)
             }
         }, lifecycleProvider)

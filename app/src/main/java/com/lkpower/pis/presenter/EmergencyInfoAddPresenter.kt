@@ -25,6 +25,7 @@ class EmergencyInfoAddPresenter @Inject constructor() : BasePresenter<EmergencyI
 
         emergencyInfoService.addEmergencyInfo(info, tokenKey).execute(object : BaseSubscriber<CommonReturn>(mView) {
             override fun onNext(t: CommonReturn) {
+                super.onNext(t)
                 mView.onUploadDetailResult(t)
             }
         }, lifecycleProvider)

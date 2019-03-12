@@ -24,6 +24,7 @@ class SetoffDetailPresenter @Inject constructor() : BasePresenter<SetoffDetailVi
 
         setoffService.getSetoff(instanceId, taskId, tokenKey).execute(object : BaseSubscriber<SetoffInfo>(mView) {
             override fun onNext(t: SetoffInfo) {
+                super.onNext(t)
                 mView.onGetDetailResult(t)
             }
         }, lifecycleProvider)
@@ -37,7 +38,14 @@ class SetoffDetailPresenter @Inject constructor() : BasePresenter<SetoffDetailVi
 
         setoffService.setoffConfirm(taskId, TaskPlace, tokenKey).execute(object : BaseSubscriber<CommonReturn>(mView) {
             override fun onNext(t: CommonReturn) {
+                super.onNext(t)
                 mView.setOffResult(t)
+            }
+
+            override fun onComplete() {
+                super.onComplete()
+
+                mView.setOffComplete()
             }
         }, lifecycleProvider)
     }

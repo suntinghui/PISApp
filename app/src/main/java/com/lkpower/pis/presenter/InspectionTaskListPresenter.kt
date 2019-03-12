@@ -26,6 +26,7 @@ class InspectionTaskListPresenter @Inject constructor() : BasePresenter<Inspecti
 
         inspectionService.getXJTaskList(instanceId, sitId, tokenKey).execute(object : BaseSubscriber<List<MissionStateInfo>>(mView) {
             override fun onNext(t: List<MissionStateInfo>) {
+                super.onNext(t)
                 mView.onGetListResult(t)
             }
         }, lifecycleProvider)

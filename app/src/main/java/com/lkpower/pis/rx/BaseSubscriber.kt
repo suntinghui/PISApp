@@ -21,10 +21,10 @@ open class BaseSubscriber<T>(val baseView: BaseView) : Observer<T> {
     }
 
     override fun onNext(t: T) {
+        onComplete()
     }
 
     override fun onError(e: Throwable) {
-        baseView.hideLoading()
 
         if (e is BaseException) {
             var msg = if (e.Mesg.isNullOrEmpty()) "数据异常，请重试" else e.Mesg
@@ -38,5 +38,6 @@ open class BaseSubscriber<T>(val baseView: BaseView) : Observer<T> {
             baseView.onError("数据异常，请稍候重试")
         }
 
+        onComplete()
     }
 }

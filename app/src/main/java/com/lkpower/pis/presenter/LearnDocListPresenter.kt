@@ -24,6 +24,7 @@ class LearnDocListPresenter @Inject constructor() : BasePresenter<LearnDocListVi
 
         learnDocService.getLearnDocList(searchInfo, pageInfo, tokenKey).execute(object : BaseSubscriber<ListResult<LearnDoc>>(mView) {
             override fun onNext(t: ListResult<LearnDoc>) {
+                super.onNext(t)
                 mView.onGetListResult(t)
             }
         }, lifecycleProvider)

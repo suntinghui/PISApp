@@ -14,6 +14,7 @@ import com.lkpower.pis.presenter.FeedbackPresenter
 import com.lkpower.pis.presenter.view.FeedbackView
 import com.lkpower.pis.utils.PISUtil
 import com.lkpower.pis.utils.ViewUtils
+import com.lkpower.pis.utils.ViewUtils.buttonEnable
 import kotlinx.android.synthetic.main.activity_feedback.*
 import org.jetbrains.anko.toast
 
@@ -28,9 +29,9 @@ class FeedbackActivity : BaseMvpActivity<FeedbackPresenter>(), FeedbackView {
     }
 
     private fun initView() {
-        mSendBtn.setShadowEnabled(true)
-        mSendBtn.setShadowHeight(5)
-        mSendBtn.setCornerRadius(5)
+        mSendBtn.isShadowEnabled = true
+        mSendBtn.shadowHeight = 5
+        mSendBtn.cornerRadius = 5
         mSendBtn.onClick { sendAction() }
     }
 

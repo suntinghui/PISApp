@@ -22,6 +22,7 @@ class DrivingInfoUploadPresenter @Inject constructor() : BasePresenter<DrivingIn
 
         drivingInfoService.updateDrivingInfo(instanceId, remark,uuid, tokenKey).execute(object : BaseSubscriber<CommonReturn>(mView) {
             override fun onNext(t: CommonReturn) {
+                super.onNext(t)
                 mView.onUploadDetailResult(t)
             }
         }, lifecycleProvider)

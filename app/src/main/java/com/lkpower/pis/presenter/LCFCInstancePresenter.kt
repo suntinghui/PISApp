@@ -20,6 +20,7 @@ class LCFCInstancePresenter @Inject constructor() : BasePresenter<LCFCInstanceVi
 
         userService.getLCFCInstance(empId, tokenKey).execute(object : BaseSubscriber<List<XJ_LCFC>>(mView) {
             override fun onNext(t: List<XJ_LCFC>) {
+                super.onNext(t)
                 mView.onGetLCFCInstanceResult(t)
             }
         }, lifecycleProvider)

@@ -20,7 +20,15 @@ class LoginPresenter @Inject constructor() : BasePresenter<LoginView>() {
 
         userService.login(userName, pwd, deviceId, APPVersion).execute(object : BaseSubscriber<UserInfo>(mView) {
             override fun onNext(t: UserInfo) {
+                super.onNext(t)
+
                 mView.onLoginResult(t)
+            }
+
+            override fun onComplete() {
+                super.onComplete()
+
+                mView.onLoginComplete()
             }
         }, lifecycleProvider)
     }

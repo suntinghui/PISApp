@@ -22,6 +22,7 @@ import com.lkpower.pis.injection.module.InspectionModule
 import com.lkpower.pis.presenter.InspectionTaskDetailPresenter
 import com.lkpower.pis.presenter.view.InspectionTaskDetailView
 import com.lkpower.pis.utils.PISUtil
+import com.lkpower.pis.utils.ViewUtils.buttonEnable
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import kotlinx.android.synthetic.main.activity_inspection_task_detail.*
@@ -62,10 +63,13 @@ class InspectionTaskDetailActivity : BaseMvpActivity<InspectionTaskDetailPresent
         // 上传图片的事件
         mImagePicker.setOnUploadListener(object : ImagePickerView.OnUploadListener {
             override fun onError() {
+                buttonEnable(this@InspectionTaskDetailActivity, mSendBtn, true)
+                this@InspectionTaskDetailActivity.hideLoading()
                 ViewUtils.showSimpleAlert(this@InspectionTaskDetailActivity, "有图片上传失败，请重新确定上传")
             }
 
             override fun onComplete() {
+                buttonEnable(this@InspectionTaskDetailActivity, mSendBtn, true)
                 mPresenter.updateMissionInfoExt(taskId, (TASK_STATUS_LIS.indexOf(mStateTv.text) + 3).toString(), mRemarkEt.text.toString(), PISUtil.getTokenKey())
             }
 
@@ -91,6 +95,8 @@ class InspectionTaskDetailActivity : BaseMvpActivity<InspectionTaskDetailPresent
         AlertView("确认提交？", "您选中的状态为：${mStateTv.text}", "取消", arrayOf("确定"), null, this@InspectionTaskDetailActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
             when (position) {
                 0 -> {
+                    buttonEnable(this, mSendBtn, false)
+                    this@InspectionTaskDetailActivity.showLoading()
                     mImagePicker.uploadAction(missionStateInfo.ID, BaseConstant.Att_Type_Inspection, PISUtil.getTokenKey())
                 }
             }

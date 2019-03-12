@@ -213,6 +213,12 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
     private fun showPickerView() {
         PictureFileUtils.deleteCacheDirFile(context)
 
+        // 20190312 客户要求取消从相册中选择照片的功能，仅支持拍照功能
+        PictureSelector.create(context as Activity)
+                .openCamera(PictureMimeType.ofImage())
+                .forResult(PictureConfig.CHOOSE_REQUEST)
+
+        /*
         PictureSelector.create(context as Activity)
                 .openGallery(PictureMimeType.ofImage())
                 .maxSelectNum(BaseConstant.PickerImageSize - netList.size) // 最大可选择的数量需要减去网络上的图片
@@ -227,6 +233,7 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
                 .cropCompressQuality(10)
                 .minimumCompressSize(100)
                 .forResult(PictureConfig.CHOOSE_REQUEST)
+                */
     }
 
     fun onPickerDoneResult(list: List<LocalMedia>) {

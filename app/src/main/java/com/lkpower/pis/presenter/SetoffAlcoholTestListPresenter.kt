@@ -23,6 +23,7 @@ class SetoffAlcoholTestListPresenter @Inject constructor() : BasePresenter<Setof
 
         setoffService.getSetoffAlcoholTestList(instanceId, tokenKey).execute(object : BaseSubscriber<List<SetoffAlcoholTest>>(mView) {
             override fun onNext(t: List<SetoffAlcoholTest>) {
+                super.onNext(t)
                 mView.onGetListResult(t)
             }
         }, lifecycleProvider)
