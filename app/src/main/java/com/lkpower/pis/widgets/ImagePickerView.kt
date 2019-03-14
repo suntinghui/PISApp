@@ -216,6 +216,9 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
         // 20190312 客户要求取消从相册中选择照片的功能，仅支持拍照功能
         PictureSelector.create(context as Activity)
                 .openCamera(PictureMimeType.ofImage())
+                .compress(true)
+                .cropCompressQuality(10)
+                .minimumCompressSize(100)
                 .forResult(PictureConfig.CHOOSE_REQUEST)
 
         /*
