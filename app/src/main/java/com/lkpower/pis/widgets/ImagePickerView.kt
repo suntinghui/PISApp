@@ -73,7 +73,7 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
         registerDeleteEvent()
     }
 
-    //初始化视图
+    //初始化视图。
     private fun initView() {
         View.inflate(context, R.layout.layout_imagepicker_view, this)
 
@@ -103,8 +103,9 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
     }
 
     private fun refreshData() {
-        if (localList.isNotEmpty())
+        if (localList.isNotEmpty()) {
             localList.removeAll { it.path.isNullOrEmpty() }
+        }
 
         if (isEditable && localList.size < BaseConstant.PickerImageSize - netList.size) {
             localList.add(getEmptyLocalMedia())
@@ -239,8 +240,21 @@ class ImagePickerView @JvmOverloads constructor(context: Context, attrs: Attribu
                 */
     }
 
+    /*
+       选择完图片后调用该方法
+       一开始的需求是既能拍照也能选择照片，所以回来的都是全部的图片，后来的需求改为只能拍照选择，那
+       么传递过来的就只有一张新拍的图片了。
+
+     */
     fun onPickerDoneResult(list: List<LocalMedia>) {
+        /*
+        // 原来能选择图片时的代码
         localList = list.toMutableList()
+        refreshData()
+        */
+
+        // 仅能拍照的逻辑代码，list里面应该只有一个新拍的图片，所以直接添加到localList中就可以了。
+        localList.addAll(list)
         refreshData()
     }
 
