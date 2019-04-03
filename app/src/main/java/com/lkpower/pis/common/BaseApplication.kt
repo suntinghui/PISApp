@@ -9,6 +9,7 @@ import com.lkpower.pis.injection.module.AppModule
 import com.lkpower.pis.ui.service.UMengNotificationService
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
+import com.tencent.bugly.crashreport.CrashReport
 import com.umeng.commonsdk.UMConfigure
 import com.umeng.message.*
 import org.android.agoo.huawei.HuaWeiRegister
@@ -36,6 +37,8 @@ open class BaseApplication : MultiDexApplication() {
         registerUMPush()
 
         registerHuawei()
+
+        CrashReport.initCrashReport(getApplicationContext(), "2835d91eb7", true);
 
     }
 

@@ -63,7 +63,7 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
 
         mTaskConfirmLayout.setVisible(false)
 
-        mTaskConfirmBtn.setButtonColor(getResources().getColor(R.color.fbutton_color_alizarin))
+        mTaskConfirmBtn.setButtonColor(getResources().getColor(info.hoang8f.fbutton.R.color.fbutton_color_alizarin))
         mTaskConfirmBtn.isShadowEnabled = true
         mTaskConfirmBtn.shadowHeight = 5
         mTaskConfirmBtn.cornerRadius = 5
@@ -204,7 +204,7 @@ class TaskConveyDetailActivity : BaseMvpActivity<TaskConveyDetailPresenter>(), T
     }
 
     override fun confirmConveyComplete() {
-        buttonEnable(this, mTaskConfirmBtn, true, R.color.fbutton_color_alizarin)
+        buttonEnable(this, mTaskConfirmBtn, true, info.hoang8f.fbutton.R.color.fbutton_color_alizarin)
     }
 
     // 查询图片后的响应

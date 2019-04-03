@@ -56,7 +56,7 @@ class SettingActivity : BaseActivity(), View.OnClickListener {
         mCurrentVersionTv.text = "当前版本：${AppUtils.getAppVersionName()}"
         mPhoneNumTv.text = PHONE_NUM
 
-        mExitBtn.setButtonColor(getResources().getColor(R.color.fbutton_color_alizarin))
+        mExitBtn.setButtonColor(getResources().getColor(info.hoang8f.fbutton.R.color.fbutton_color_alizarin))
         mExitBtn.isShadowEnabled = true
         mExitBtn.shadowHeight = 5
         mExitBtn.cornerRadius = 5

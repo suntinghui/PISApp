@@ -26,4 +26,6 @@
 
     <color name="button_enable">#3eadeb</color>
     <color name="button_disable">#bdc3c7</color>
+
+    <color name="gray_disable">#bdc3c7</color>
 </resources>

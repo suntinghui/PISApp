@@ -17,6 +17,7 @@ import com.lkpower.pis.injection.component.DaggerLearnDocComponent
 import com.lkpower.pis.injection.module.LearnDocModule
 import com.lkpower.pis.presenter.LearnDocDetailPresenter
 import com.lkpower.pis.presenter.view.LearnDocDetailView
+import info.hoang8f.widget.FButton
 import kotlinx.android.synthetic.main.activity_learn_detail.*
 import org.jetbrains.anko.toast
 import java.lang.Exception
@@ -98,11 +99,11 @@ class LearnDocDetailActivity : BaseMvpActivity<LearnDocDetailPresenter>(), Learn
         mOperBtn.isEnabled = enable
 
         if (enable) {
-            mOperBtn.setButtonColor(getResources().getColor(R.color.fbutton_default_shadow_color))
+            mOperBtn.setButtonColor(getResources().getColor(info.hoang8f.fbutton.R.color.fbutton_default_shadow_color))
             mOperBtn.setText("学习完成")
             mOperBtn.onClick { mPresenter.setLearnDocRead(docId, PISUtil.getTokenKey()) }
         } else {
-            mOperBtn.setButtonColor(getResources().getColor(R.color.fbutton_color_silver))
+            mOperBtn.setButtonColor(getResources().getColor(info.hoang8f.fbutton.R.color.fbutton_color_silver))
         }
 
     }

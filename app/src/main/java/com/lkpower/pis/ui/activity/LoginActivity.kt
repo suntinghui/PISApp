@@ -48,7 +48,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
         mUsernameEt.setText(AppPrefsUtils.getString(BaseConstant.kUsername))
         mPasswordEt.setText(AppPrefsUtils.getString(BaseConstant.kPassword))
 
-        mLoginBtn.setButtonColor(getResources().getColor(R.color.fbutton_color_carrot))
+        mLoginBtn.setButtonColor(getResources().getColor(info.hoang8f.fbutton.R.color.fbutton_color_carrot))
         mLoginBtn.isShadowEnabled = true
         mLoginBtn.shadowHeight = 5
         mLoginBtn.cornerRadius = 5
@@ -103,7 +103,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
 
     override fun onLoginComplete() {
 
-        buttonEnable(this, mLoginBtn, true, R.color.fbutton_color_carrot)
+        buttonEnable(this, mLoginBtn, true, info.hoang8f.fbutton.R.color.fbutton_color_carrot)
     }
 
     /*

@@ -62,7 +62,7 @@ class PreviewImageActivity : BaseMvpActivity<AttachmentDeletePresenter>(), Attac
 
         mDeleteBtn.setVisible(ShowDelete)
 
-        mDeleteBtn.setButtonColor(getResources().getColor(R.color.fbutton_color_alizarin));
+        mDeleteBtn.setButtonColor(getResources().getColor(info.hoang8f.fbutton.R.color.fbutton_color_alizarin));
         mDeleteBtn.setShadowEnabled(false);
         mDeleteBtn.onClick { deleteAction() }
 

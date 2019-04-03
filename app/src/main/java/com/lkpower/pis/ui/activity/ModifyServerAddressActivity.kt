@@ -27,7 +27,7 @@ class ModifyServerAddressActivity : BaseActivity() {
     private fun initView() {
         mAddressEt.text = Editable.Factory.getInstance().newEditable(PISUtil.getUserInputAddress())
 
-        mSendBtn.setButtonColor(getResources().getColor(R.color.fbutton_color_alizarin))
+        mSendBtn.setButtonColor(getResources().getColor(info.hoang8f.fbutton.R.color.fbutton_color_alizarin))
         mSendBtn.isShadowEnabled = true
         mSendBtn.shadowHeight = 5
         mSendBtn.cornerRadius = 5
